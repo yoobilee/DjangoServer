@@ -1,0 +1,134 @@
+::-moz-selection {
+  background: #FE18AE;
+  color: #fff;
+}
+
+::selection {
+  background-color: #FE18AE;
+  color: #fff;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+div.left {
+  display: flex;
+  width: 50%;
+  height: 100vh;
+  float: left;
+  box-sizing: border-box;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)), url("media/influ.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  /*background: #8977ad;*/
+}
+
+div.right {
+  display: flex;
+  width: 50%;
+  height: 100vh;
+  float: right;
+  box-sizing: border-box;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)), url("media/business.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  /*background: #ece6cc;*/
+}
+
+div.text-wrapper {
+  display: flex;
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  padding: 100px;
+}
+
+.bold-txt {
+  font-size: 46px;
+  font-weight: 700;
+  color: white;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+span.c-primary-left {
+  color: #FE18AE;
+}
+
+span.c-primary-right {
+  color: #42AEE2;
+}
+
+div.desc {
+  margin: 0 auto 48px;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.btn-left {
+  display: flex;
+  width: auto;
+  margin: auto;
+  display: block;
+  background-color: transparent;
+  border-radius: 28px;
+  border: 1px solid #fff;
+  cursor: pointer;
+  color: #fff;
+  font-family: Arial;
+  font-size: 16px;
+  padding: 5px 30px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #ffffff;
+  transition: 0.5s;
+}
+
+.btn-left:hover {
+  background-color: #FE18AE;
+}
+
+.btn-left:active {
+  position: relative;
+  top: 1px;
+}
+
+.btn-right {
+  display: flex;
+  width: auto;
+  margin: auto;
+  display: block;
+  background-color: transparent;
+  border-radius: 28px;
+  border: 1px solid #fff;
+  cursor: pointer;
+  color: #fff;
+  font-family: Arial;
+  font-size: 16px;
+  padding: 5px 30px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #ffffff;
+  transition: 0.5s;
+}
+
+.btn-right:hover {
+  background-color: #42AEE2;
+}
+
+.btn-right:active {
+  position: relative;
+  top: 1px;
+}
+
+.speech {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  width: 70px;
+  margin-bottom: 20px;
+  vertical-align: middle;
+}

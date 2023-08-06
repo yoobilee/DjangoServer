@@ -1,4 +1,6 @@
-from django.shortcuts import render
+from django.contrib import auth
+from django.contrib.auth import authenticate
+from django.shortcuts import render, redirect
 
 # Create your views here.
 def agency_signup(request):

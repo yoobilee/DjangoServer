@@ -1,7 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.db import connection
 
 # Create your views here.
+def first_index(request):
+    return render(request, "first-index.html")
+
 def base(request):
     return render(request, "base.html")
 
