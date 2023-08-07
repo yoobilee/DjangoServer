@@ -8,7 +8,8 @@ app_name = 'main'
 
 urlpatterns = [
     path('', views.first_index, name = "first-index"),
-    path('base/', views.base, name = "base"),
+    path('InfluHome/', views.InfluHome, name = "InfluHome"),
+    path('AdvHome/', views.AdvHome, name = "AdvHome"),
     path('inner-page/', views.inner_page, name = "inner-page"),
     path('portfolio-details/', views.portfolio_details, name = "portfolio-details"),
 ]

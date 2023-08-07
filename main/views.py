@@ -5,8 +5,11 @@ from django.db import connection
 def first_index(request):
     return render(request, "first-index.html")
 
-def base(request):
-    return render(request, "base.html")
+def InfluHome(request):
+    return render(request, "InfluHome.html")
+
+def AdvHome(request):
+    return render(request, "AdvHome.html")
 
 def inner_page(request):
     return render(request, "inner-page.html")
