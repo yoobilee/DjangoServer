@@ -36,6 +36,7 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  <script src="https://code.highcharts.com/highcharts.js"></script>
 </head>
 
 <body>
@@ -45,7 +46,7 @@
     <div class="container d-flex align-items-center justify-content-between">
 
       <!--<h1 class="logo"><a href="base.html">Dewi</a></h1>-->
-      <a href="">
+      <a href="/">
         <img class="logo" src="{% static 'img/logo.png' %}" alt="" />
       </a>
       <!-- Uncomment below if you prefer to use an image logo -->
@@ -58,7 +59,8 @@
           <li><a class="nav-link scrollto" href="#services">Recommend</a></li>
           <li><a class="nav-link scrollto" href="#team">Team</a></li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-          <li><a class="getstarted scrollto" href="/accounts/Adv_Login">로그인/회원가입</a></li>
+          <li><a class="getstarted scrollto" href="/accounts/Adv_Login" style="margin-left:0; padding:5px 15px;">로그인</a></li>
+          <li><a class="getstarted scrollto" href="/accounts/Adv_Signup" style="margin-left:0; padding:5px 15px;">회원가입</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -71,10 +73,32 @@
     <div class="hero-container" data-aos="fade-up" data-aos-delay="150">
       <h1>Plan. Launch. Grow.</h1>
       <h2>We are team of talented designers making websites with Bootstrap</h2>
-      <div class="d-flex">
+      <!--<div class="d-flex">
         <a href="#about" class="btn-get-started scrollto">Get Started</a>
         <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
+      </div>-->
+
+      <!-- ++++++ Search Section ++++++ -->
+      <div id="search">
+        <!--<form class="d-flex" role="search" method="POST">
+          {% csrf_token %}
+        <input type="search" class="form-control me-2" autocomplete="off" placeholder="키워드를 입력하세요" name="search_query" required aria-label="search">
+        <button class="btn btn-outline-success" type="submit">검색</button>
+        </form>-->
+        <form class="d-flex" role="search" method="GET" action="{% url 'search' %}">
+          {% csrf_token %}
+          <input type="search" class="form-control me-2" autocomplete="off" name="q" value="{{ query }}" placeholder="키워드를 입력하세요" required aria-label="search">
+          <button class="btn btn-info" type="submit" style="width:100px;">검색</button>
+      </form>
       </div>
+
+      <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+
+      <!--<div id="suggestion_box" class = "invisible">
+        <div id = "suggested_items"></div>
+      </div>-->
     </div>
   </section><!-- End Hero -->
 
@@ -337,16 +361,115 @@
         <div class="row" data-aos="fade-up" data-aos-delay="200">
           <div class="col-md-6">
             <div class="icon-box">
-              <i class="bi bi-laptop"></i>
-              <h4><a href="#">Lorem Ipsum</a></h4>
-              <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
-            </div>
-          </div>
-          <div class="col-md-6 mt-4 mt-md-0">
-            <div class="icon-box">
-              <i class="bi bi-bar-chart"></i>
-              <h4><a href="#">Dolor Sitema</a></h4>
-              <p>Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
+              <table id="dataTable" style="display:none;">
+                <thead>
+                    <tr>
+                        <th>이름</th>
+                        <th>홍창범</th>
+                        <th>박재형</th>
+                        <th>이유비</th>
+                        <th>홍승민</th>
+                        <!-- 추가 데이터 열들 -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>게시글</td>
+                        <td>10</td>
+                        <td>15</td>
+                        <td>8</td>
+                        <td>30</td>
+                        <!-- 추가 데이터 값들 -->
+                    </tr>
+                    <tr>
+                        <td>팔로워 수</td>
+                        <td>121</td>
+                        <td>185</td>
+                        <td>150</td>
+                        <td>200</td>
+                        <!-- 추가 데이터 값들 -->
+                    </tr>
+                    <tr>
+                        <td>좋아요 수</td>
+                        <td>1000</td>
+                        <td>200</td>
+                        <td>405</td>
+                        <td>650</td>
+                        <!-- 추가 데이터 값들 -->
+                    </tr>
+                    <!-- 다른 데이터 행들 -->
+                </tbody>
+            </table>
+
+            <div id="chartContainer"></div>
+
+    <script>
+      // 데이터 테이블에서 데이터 추출
+var table = document.getElementById('dataTable');
+var data = [];
+for (var i = 1; i < table.rows.length; i++) {
+    var row = table.rows[i];
+    var date = row.cells[0].textContent;
+    var value1 = parseFloat(row.cells[1].textContent);
+    var value2 = parseFloat(row.cells[2].textContent);
+    var value3 = parseFloat(row.cells[3].textContent);
+    var value4 = parseFloat(row.cells[4].textContent);
+    // 추가 데이터 추출
+    // ...
+
+    data.push({
+        date: date,
+        value1: value1,
+        value2: value2,
+        value3: value3,
+        value4: value4,
+        // 추가 데이터 필드들
+    });
+}
+
+// Highcharts 막대 그래프 생성
+Highcharts.chart('chartContainer', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: '각 요소별 비교'
+    },
+    xAxis: {
+        categories: data.map(function(item) {
+            return item.date;
+        })
+    },
+    yAxis: {
+        title: {
+            text: 'Value'
+        }
+    },
+    series: [{
+        name: '홍창범',
+        data: data.map(function(item) {
+            return item.value1;
+        })
+    }, {
+        name: '박재형',
+        data: data.map(function(item) {
+            return item.value2;
+        })
+    }, {
+        name: '이유비',
+        data: data.map(function(item) {
+            return item.value3;
+        })
+    }, {
+        name: '홍승민',
+        data: data.map(function(item) {
+          return item.value4;
+        })
+    }]
+});
+    </script>
+        
+            <div id="chartContainer"></div>
             </div>
           </div>
           <!--<div class="col-md-6 mt-4 mt-md-0">
@@ -775,7 +898,7 @@
 
     <div class="container">
       <div class="copyright">
-        &copy; Copyright <strong><span>Dewi</span></strong>. All Rights Reserved
+        &copy; Copyright <strong><span>FOLLOWR</span></strong>. All Rights Reserved
       </div>
       <div class="credits">
         <!-- All the links in the footer should remain intact. -->

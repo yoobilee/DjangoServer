@@ -7,5 +7,7 @@ app_name = 'accounts'
 
 urlpatterns = [
     path('Adv_Login/', views.Adv_Login, name = "Adv_Login"),
+    path('Adv_Signup/', views.Adv_Signup, name = "Adv_Signup"),
     path('Influ_Login/', views.Influ_Login, name = "Influ_Login"),
+    path('Influ_Signup/', views.Influ_Signup, name = "Influ_Signup"),
 ]

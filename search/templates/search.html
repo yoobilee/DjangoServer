@@ -1,0 +1,16 @@
+{% load static %}
+
+{% block content %}
+    <h2>검색 결과</h2>
+    <form method="GET" action="{% url 'search' %}">
+        <input type="text" name="q" value="{{ query }}" placeholder="키워드를 입력하세요">
+        <button type="submit">검색</button>
+    </form>
+    <ul>
+        {% for item in results %}
+            <li>{{ item.name }} - {{ item.description }}</li>
+        {% empty %}
+            <li>검색 결과가 없습니다.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
