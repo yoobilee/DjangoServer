@@ -59,11 +59,6 @@
     .form-group input[type="password"] {
         flex: 1;
     }
-    
-    /* 동적으로 추가되는 필드의 스타일 */
-    #dynamic-fields {
-        
-    }
 
     button {
         margin-top: 10px;
@@ -155,15 +150,15 @@
         </div>
         <div class="form-group">
             <label>비즈니스 분야:</label>
-            <input type="radio" id="business_health" name="business" value="건강">
+            <input type="radio" id="business_health" name="business" value="건강" required>
             <label for="business_health">건강</label>
-            <input type="radio" id="business_fashion" name="business" value="의류">
+            <input type="radio" id="business_fashion" name="business" value="의류" required>
             <label for="business_fashion">의류</label>
-            <input type="radio" id="business_food" name="business" value="음식">
+            <input type="radio" id="business_food" name="business" value="음식" required>
             <label for="business_food">음식</label>
-            <input type="radio" id="business_trip" name="business" value="여행">
+            <input type="radio" id="business_trip" name="business" value="여행" required>
             <label for="business_trip">여행</label>
-            <input type="radio" id="business_daily" name="business" value="일상">
+            <input type="radio" id="business_daily" name="business" value="일상" required>
             <label for="business_daily">일상</label>
         </div>
         <div class="form-group">

@@ -97,3 +97,67 @@ class Post_yakstory119(models.Model):
   class Meta:
     managed = False
     db_table = 'post_yakstory119'
+    
+class Post_iam_yaksa(models.Model):
+  post_id = models.CharField(max_length=100, primary_key=True)
+  caption = models.TextField(max_length=10000)
+  comments_count = models.IntegerField()
+  like_count = models.IntegerField()
+  media_type = models.CharField(max_length=100)
+  timestamp = models.CharField(max_length=100)
+  username = models.CharField(max_length=100)
+  owner_id = models.CharField(max_length=100)
+   
+  class Meta:
+    managed = False
+    db_table = 'post_iam_yaksa'
+    
+class Post_yakstagram(models.Model):
+  post_id = models.CharField(max_length=100, primary_key=True)
+  caption = models.TextField(max_length=10000)
+  comments_count = models.IntegerField()
+  like_count = models.IntegerField()
+  media_type = models.CharField(max_length=100)
+  timestamp = models.CharField(max_length=100)
+  username = models.CharField(max_length=100)
+  owner_id = models.CharField(max_length=100)
+   
+  class Meta:
+    managed = False
+    db_table = 'post_yakstagram'
+    
+class Post_pt_jjuny(models.Model):
+  post_id = models.CharField(max_length=100, primary_key=True)
+  caption = models.TextField(max_length=10000)
+  comments_count = models.IntegerField()
+  like_count = models.IntegerField()
+  media_type = models.CharField(max_length=100)
+  timestamp = models.CharField(max_length=100)
+  username = models.CharField(max_length=100)
+  owner_id = models.CharField(max_length=100)
+   
+  class Meta:
+    managed = False
+    db_table = 'post_pt__jjuny'
+    
+class User_adv(models.Model):
+  id = models.CharField(max_length=100, primary_key=True)
+  company = models.CharField(max_length=100)
+  password = models.CharField(max_length=100)
+  bussiness = models.CharField(max_length=100)
+  followers_count = models.CharField(max_length=100)
+  
+  class Meta:
+    managed = False
+    db_table = 'user_adv'
+    
+class User_influ(models.Model):
+  id = models.CharField(max_length=100, primary_key=True)
+  instagram_id = models.CharField(max_length=100)
+  password = models.CharField(max_length=100)
+  bussiness = models.CharField(max_length=100)
+  followers_count = models.CharField(max_length=100)
+  
+  class Meta:
+    managed = False
+    db_table = 'user_influ'
