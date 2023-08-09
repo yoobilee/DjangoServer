@@ -10,4 +10,7 @@ urlpatterns = [
     path('Adv_Signup/', views.Adv_Signup, name = "Adv_Signup"),
     path('Influ_Login/', views.Influ_Login, name = "Influ_Login"),
     path('Influ_Signup/', views.Influ_Signup, name = "Influ_Signup"),
+    path('MyPage/', views.MyPage, name = "MyPage"),
+    path('AdvHome/', views.Adv_Logout, name = "Adv_Logout"),
+    path('InfluHome/', views.Influ_Logout, name = "Influ_Logout"),
 ]

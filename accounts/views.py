@@ -14,3 +14,12 @@ def Influ_Login(request):
 
 def Influ_Signup(request):
     return render(request, 'Influ_Signup.html')
+
+def Adv_Logout(request):
+    return render(request, 'AdvHome.html')
+
+def Influ_Logout(request):
+    return render(request, 'InfluHome.html')
+
+def MyPage(request):
+    return render(request, 'MyPage.html')

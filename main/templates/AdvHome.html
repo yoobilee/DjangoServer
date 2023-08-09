@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>FOLLOWR</title>
+  <title>inflaze</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -28,6 +28,7 @@
 
   <!-- Template Main CSS File -->
   <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/swiper.css' %}">
 
   <!-- =======================================================
   * Template Name: Dewi
@@ -59,8 +60,13 @@
           <li><a class="nav-link scrollto" href="#services">Recommend</a></li>
           <li><a class="nav-link scrollto" href="#team">Team</a></li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          {% if user.is_authenticated %}
+          <li><a class="getstarted scrollto" href="/accounts/MyPage", style="margin-left:0; padding:5px 15px;">마이페이지</a></li>
+          <li><a class="getstarted scrollto" href="{% url 'Adv_Logout' %}", style="margin-left:0; padding:5px 15px;">{{ user.username }} 로그아웃</a></li>
+          {% else %}
           <li><a class="getstarted scrollto" href="/accounts/Adv_Login" style="margin-left:0; padding:5px 15px;">로그인</a></li>
           <li><a class="getstarted scrollto" href="/accounts/Adv_Signup" style="margin-left:0; padding:5px 15px;">회원가입</a></li>
+          {% endif %}
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -710,7 +716,89 @@ Highcharts.chart('chartContainer', {
           <p>Check our Team</p>
         </div>
 
-        <div class="row">
+        <section class="swiper mySwiper">
+
+          <div class="swiper-wrapper">
+      
+            <div class="card swiper-slide">
+              <div class="card__image">
+                <img src="{% static '/img/LotteGiants.png' %}" alt="card image">
+              </div>
+      
+              <div class="card__content">
+                <span class="card__title">DB Master</span>
+                <span class="card__name">홍창범</span>
+                <p class="card__text">꼴데 팬</p>
+                <button class="card__btn" onclick="location.href='/influencer/Influencer1'">자세히 보기</button>
+              </div>
+            </div>
+      
+            <div class="card swiper-slide">
+              <div class="card__image">
+                <img src="/images/user2.jpg" alt="card image">
+              </div>
+      
+              <div class="card__content">
+                <span class="card__title">Ui Designer</span>
+                <span class="card__name">Sarah Bowen</span>
+                <p class="card__text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit veritatis labore provident non tempora odio est sunt, ipsum</p>
+                <button class="card__btn">View More</button>
+              </div>
+            </div>
+      
+            <div class="card swiper-slide">
+              <div class="card__image">
+                <img src="/images/user3.jpg" alt="card image">
+              </div>
+      
+              <div class="card__content">
+                <span class="card__title">Web Developer</span>
+                <span class="card__name">David Murphy</span>
+                <p class="card__text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit veritatis labore provident non tempora odio est sunt, ipsum</p>
+                <button class="card__btn">View More</button>
+              </div>
+            </div>
+      
+            <div class="card swiper-slide">
+              <div class="card__image">
+                <img src="/images/user4.jpg" alt="card image">
+              </div>
+      
+              <div class="card__content">
+                <span class="card__title">Mobile Designer</span>
+                <span class="card__name">Kelsey West</span>
+                <p class="card__text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit veritatis labore provident non tempora odio est sunt, ipsum</p>
+                <button class="card__btn">View More</button>
+              </div>
+            </div>
+      
+          </div>
+        </section>
+      
+      <!-- Swiper JS -->
+        <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+      
+        <!-- Initialize Swiper -->
+        <script>
+          var swiper = new Swiper(".mySwiper", {
+            effect: "coverflow",
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: "auto",
+            coverflowEffect: {
+              rotate: 0,
+              stretch: 0,
+              depth: 300,
+              modifier: 1,
+              slideShadows: false,
+            },
+            pagination: {
+              el: ".swiper-pagination",
+            },
+          });
+        </script>
+
+        <!--<div class="row">
 
           <div class="col-lg-4 col-md-6">
             <div class="member" data-aos="fade-up" data-aos-delay="100">
@@ -760,7 +848,7 @@ Highcharts.chart('chartContainer', {
             </div>
           </div>
 
-        </div>
+        </div>-->
 
       </div>
     </section><!-- End Team Section -->
@@ -898,7 +986,7 @@ Highcharts.chart('chartContainer', {
 
     <div class="container">
       <div class="copyright">
-        &copy; Copyright <strong><span>FOLLOWR</span></strong>. All Rights Reserved
+        &copy; Copyright <strong><span>inflaze</span></strong>. All Rights Reserved
       </div>
       <div class="credits">
         <!-- All the links in the footer should remain intact. -->
