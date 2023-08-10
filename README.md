@@ -3,7 +3,7 @@
     <img width="600" src="https://github.com/arnold714/SWBOOTCAMP/blob/main/src/keb.png?raw=true" alt="{Logo}">
     <br />
 </div>
-    <h4>Backend</h4><br>
+    Backend<br>
     <img width="100" alt="Python" src ="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54"/>
     <img width="100" alt="Django" src="https://img.shields.io/badge/Django MTV-092E20?style=flat-square&logo=django&logoColor=white"/>
     <br>
