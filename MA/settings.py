@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 from . import local_settings
+import os
 
 SECRET_KEY = local_settings.SECRET_KEY
 DATABASES = local_settings.DATABASES
@@ -80,8 +81,12 @@ WSGI_APPLICATION = 'MA.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'circuit_champions',
+        'USER': 'circuit_champions',
+        'PASSWORD': '1234',
+        'HOST': '121.140.47.102',
+        'PORT': 35432,
     }
 }
 
