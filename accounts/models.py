@@ -145,7 +145,7 @@ class User_adv(models.Model):
   company = models.CharField(max_length=100)
   password = models.CharField(max_length=100)
   bussiness = models.CharField(max_length=100)
-  followers_count = models.CharField(max_length=100)
+  size = models.CharField(max_length=100)
   
   class Meta:
     managed = False
