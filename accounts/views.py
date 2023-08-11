@@ -77,6 +77,10 @@ def Influ_SignUp(request):
         return redirect('influ_login')  # 회원가입 후 로그인 페이지로 이동
     return render(request, 'Influ_SignUp.html')
 
+def Adv_Signup(request):
+    influencers = Influencer.objects.all()
+    return render(request, 'Adv_Signup.html', {'influencers': influencers})
+
 def Influ_Login(request):
     login_error = None  # 초기화
 
@@ -97,3 +101,12 @@ def Influ_Login(request):
             login_error = "비밀번호가 틀렸습니다."  # 비밀번호 틀림 메시지
 
     return render(request, 'Influ_Login.html', {'login_error': login_error})
+
+def Adv_Logout(request):
+    return render(request, 'AdvHome.html')
+
+def Influ_Logout(request):
+    return render(request, 'InfluHome.html')
+
+def MyPage(request):
+    return render(request, 'MyPage.html')

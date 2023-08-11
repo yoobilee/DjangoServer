@@ -21,4 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),
     path('accounts/', include('accounts.urls')),
+    path('search/', include('search.urls')),
+    path('influencer/', include('influencer.urls')),
 ]
