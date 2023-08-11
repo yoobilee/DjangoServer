@@ -7,7 +7,7 @@ from .models import Influencer, Post_limmiae, Post_10_12_16yp, Post_b_saem, Post
 
 # your_app/views.py
 
-def Adv_SignUp(request):
+def Adv_Signup(request):
     if request.method == 'POST':
         id = request.POST['id']
         company = request.POST['company']
@@ -29,7 +29,7 @@ def Adv_SignUp(request):
         user = User_adv(id=id, company=company, password=password, bussiness=bussiness, size=size)
         user.save()
         return redirect('accounts:Adv_Login') # 회원가입 후 로그인 페이지로 이동
-    return render(request, 'Adv_SignUp.html')
+    return render(request, 'Adv_Signup.html')
 
 def Adv_Login(request):
     login_error = None  # 초기화
@@ -49,11 +49,12 @@ def Adv_Login(request):
             login_error = "여러 사용자가 존재합니다. 관리자에게 문의하세요."  # 중복 사용자 메시지
         else:
             login_error = "비밀번호가 틀렸습니다."  # 비밀번호 틀림 메시지
+        return redirect('main:AdvHome')  # 로그인 후 광고주 홈으로 이동
 
     return render(request, 'Adv_Login.html', {'login_error': login_error})
 
 
-def Influ_SignUp(request):
+def Influ_Signup(request):
     if request.method == 'POST':
         id = request.POST['id']
         instagram_id = request.POST['instagram_id']
@@ -74,12 +75,8 @@ def Influ_SignUp(request):
 
         user = User_influ(id=id, instagram_id=instagram_id, password=password, bussiness=bussiness, followers_count=followers_count)
         user.save()
-        return redirect('influ_login')  # 회원가입 후 로그인 페이지로 이동
-    return render(request, 'Influ_SignUp.html')
-
-def Adv_Signup(request):
-    influencers = Influencer.objects.all()
-    return render(request, 'Adv_Signup.html', {'influencers': influencers})
+        return redirect('accounts:Influ_Login')  # 회원가입 후 로그인 페이지로 이동
+    return render(request, 'Influ_Signup.html')
 
 def Influ_Login(request):
     login_error = None  # 초기화
@@ -99,6 +96,7 @@ def Influ_Login(request):
             login_error = "여러 사용자가 존재합니다. 관리자에게 문의하세요."  # 중복 사용자 메시지
         else:
             login_error = "비밀번호가 틀렸습니다."  # 비밀번호 틀림 메시지
+        return redirect('main:InfluHome')  # 로그인 후 인플루언서 홈으로 이동
 
     return render(request, 'Influ_Login.html', {'login_error': login_error})
 
