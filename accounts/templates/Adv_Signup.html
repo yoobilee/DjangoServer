@@ -56,11 +56,12 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto " href="#hero">Home</a></li>
+          <!--<li><a class="nav-link scrollto active" href="#hero">Home</a></li>
           <li><a class="nav-link scrollto" href="#about">About</a></li>
           <li><a class="nav-link scrollto" href="#services">Recommend</a></li>
           <li><a class="nav-link scrollto" href="#team">Team</a></li>
-          <li><a class="getstarted scrollto" href="#about">Get Started</a></li>
+          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>-->
+          <li><a class="getstarted scrollto" href="/accounts/Adv_Login">로그인/회원가입</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -75,9 +76,9 @@
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2>광고주 회원가입</h2>
+          <h2 style="color:black;">광고주 회원가입</h2>
           <ol>
-            <li><a href="/AdvHome">Home</a></li>
+            <li><a href="/AdvHome" style="color:#ff4a17;">Home</a></li>
             <li>광고주 회원가입</li>
           </ol>
         </div>
@@ -101,12 +102,12 @@
           <div class="signup_pw">
             <!--<h4>Password</h4>
                 <input type="password" name="" id="" placeholder="Password">-->
-            <label for="password">비밀번호</label>
-            <input type="password" id="password" placeholder="비밀번호를 입력하세요(필수)" name="password" required>
-          </div>
-          <div class="signup_pw">
-            <label for="re_password">비밀번호 <br>재입력</label>
-            <input type="re_password" id="re_password" placeholder="비밀번호를 재입력하세요(필수)" name="re_password" required>
+              <label for="password">비밀번호</label>
+              <input type="password" id="password" placeholder="비밀번호를 입력하세요(필수)" name="password" required>
+            </div>
+            <div class="signup_pw">
+            <label for="confirmPassword">비밀번호 <br>재입력</label>
+            <input type="password" id="confirmPassword" placeholder="비밀번호를 재입력하세요(필수)" name="confirmPassword" required>
           </div>
           <div class="signup_company">
             <label for="company">기업명</label>
@@ -116,11 +117,11 @@
             <label>비즈니스<br> 분야</label>
             <select class="business">
               <option value="" disabled selected>선택</option>
-              <option value="business_health">건강</option>
-              <option value="business_fashion">의류</option>
-              <option value="business_food">음식</option>
-              <option value="business_trip">여행</option>
-              <option value="business_daily">일상</option>
+              <option value="business_health" name="business">건강</option>
+              <option value="business_fashion" name="business">의류</option>
+              <option value="business_food" name="business">음식</option>
+              <option value="business_trip" name="business">여행</option>
+              <option value="business_daily" name="business">일상</option>
               <option value="etc">기타</option>
             </select>
           </div>
@@ -128,11 +129,11 @@
             <label>비즈니스<br> 규모</label>
             <select class="business">
               <option value="" disabled selected>선택</option>
-              <option value="business_small">중소기업</option>
-              <option value="business_fashion">중견기업</option>
-              <option value="business_food">준대기업</option>
-              <option value="business_trip">대기업</option>
-              <option value="business_daily">스타트업</option>
+              <option value="business_small" name="size">중소기업</option>
+              <option value="business_fashion" name="size">중견기업</option>
+              <option value="business_food" name="size">준대기업</option>
+              <option value="business_trip" name="size">대기업</option>
+              <option value="business_daily" name="size">스타트업</option>
             </select>
           </div>
           <!--<div class="login_etc">
@@ -243,6 +244,19 @@
 
   <!-- Template Main JS File -->
   <script src="{% static 'js/scripts.js' %}"></script>
+  <script>
+    function validateForm() {
+    var password = document.getElementById("password").value;
+    var confirmPassword = document.getElementById("confirmPassword").value;
+
+    if (password !== confirmPassword) {
+      alert("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+      return false;
+    }
+
+    return true;
+  }
+  </script>
 
 </body>
 
