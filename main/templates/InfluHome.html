@@ -57,10 +57,15 @@
           <li><a class="nav-link scrollto" href="#about">About</a></li>
           <li><a class="nav-link scrollto" href="#services">Services</a></li>
           <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
-          <li><a class="nav-link scrollto" href="#team">Team</a></li>
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          <!--<li><a class="nav-link scrollto" href="#team">Team</a></li>
+          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>-->
+          {% if user.is_authenticated %}
+          <li><a class="getstarted scrollto" href="/accounts/MyPage" style="margin-left:0; padding:5px 15px;">마이페이지</a></li>
+          <li><a class="getstarted scrollto" href="{% url 'accounts:Influ_Logout' %}" style="margin-left:0; padding:5px 15px;">{{ user.username }} 로그아웃</a></li>
+          {% else %}
           <li><a class="getstarted scrollto" href="/accounts/Influ_Login" style="margin-left:0; padding:5px 15px;">로그인</a></li>
           <li><a class="getstarted scrollto" href="/accounts/Influ_Signup" style="margin-left:0; padding:5px 15px;">회원가입</a></li>
+          {% endif %}
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -223,28 +228,16 @@
 
         <div class="row">
 
-          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-            <img src="{% static 'img/clients/client-1.png' %}" class="img-fluid" alt="">
+          <div class="col-lg-4 col-md-4 col-6 d-flex align-items-center justify-content-center">
+            <img src="{% static 'img/clients/LEVWARE.png' %}" class="img-fluid" alt="">
           </div>
 
-          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-            <img src="{% static 'img/clients/client-2.png' %}" class="img-fluid" alt="">
+          <div class="col-lg-4 col-md-4 col-6 d-flex align-items-center justify-content-center">
+            <img src="{% static 'img/clients/1401Home.png' %}" class="img-fluid" alt="">
           </div>
 
-          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-            <img src="{% static 'img/clients/client-3.png' %}" class="img-fluid" alt="">
-          </div>
-
-          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-            <img src="{% static 'img/clients/client-4.png' %}" class="img-fluid" alt="">
-          </div>
-
-          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-            <img src="{% static 'img/clients/client-5.png' %}" class="img-fluid" alt="">
-          </div>
-
-          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-            <img src="{% static 'img/clients/client-6.png' %}" class="img-fluid" alt="">
+          <div class="col-lg-4 col-md-4 col-6 d-flex align-items-center justify-content-center">
+            <img src="{% static 'img/clients/pharma_bros.png' %}" class="img-fluid" alt="">
           </div>
 
         </div>
@@ -398,43 +391,43 @@
         <div class="row" data-aos="fade-up" data-aos-delay="200">
           <div class="col-md-6">
             <div class="icon-box">
-              <i class="bi bi-laptop"></i>
-              <h4><a href="#">Lorem Ipsum</a></h4>
+              <i class="bi bi-gift"></i>
+              <h4><a href="" style="pointer-events : none;" onclick="return false;">상품 협찬</a></h4>
               <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
             </div>
           </div>
           <div class="col-md-6 mt-4 mt-md-0">
             <div class="icon-box">
-              <i class="bi bi-bar-chart"></i>
-              <h4><a href="#">Dolor Sitema</a></h4>
+              <i class="bi bi-calendar3"></i>
+              <h4><a href="" style="pointer-events : none;" onclick="return false;">단독 공구 진행</a></h4>
               <p>Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
             </div>
           </div>
           <div class="col-md-6 mt-4 mt-md-0">
             <div class="icon-box">
-              <i class="bi bi-brightness-high"></i>
-              <h4><a href="#">Sed ut perspiciatis</a></h4>
+              <i class="bi bi-cash-coin"></i>
+              <h4><a href="" style="pointer-events : none;" onclick="return false;">다양한 결제수단 제공</a></h4>
               <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
             </div>
           </div>
           <div class="col-md-6 mt-4 mt-md-0">
             <div class="icon-box">
-              <i class="bi bi-briefcase"></i>
-              <h4><a href="#">Nemo Enim</a></h4>
+              <i class="bi bi-calculator"></i>
+              <h4><a href="" style="pointer-events : none;" onclick="return false;">바로 정산</a></h4>
               <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
             </div>
           </div>
           <div class="col-md-6 mt-4 mt-md-0">
             <div class="icon-box">
-              <i class="bi bi-card-checklist"></i>
-              <h4><a href="#">Magni Dolore</a></h4>
+              <i class="bi bi-cursor"></i>
+              <h4><a href="" style="pointer-events : none;" onclick="return false;">방향성 제시</a></h4>
               <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
             </div>
           </div>
           <div class="col-md-6 mt-4 mt-md-0">
             <div class="icon-box">
-              <i class="bi bi-clock"></i>
-              <h4><a href="#">Eiusmod Tempor</a></h4>
+              <i class="bi bi-journal-text"></i>
+              <h4><a href="" style="pointer-events : none;" onclick="return false;">정산 리포트 제공</a></h4>
               <p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p>
             </div>
           </div>
@@ -640,7 +633,7 @@
     </section><!-- End Portfolio Section -->
 
     <!-- ======= Team Section ======= -->
-    <section id="team" class="team section-bg">
+    {% comment %} <section id="team" class="team section-bg">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
@@ -701,10 +694,10 @@
         </div>
 
       </div>
-    </section><!-- End Team Section -->
+    </section><!-- End Team Section --> {% endcomment %}
 
     <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact">
+    {% comment %} <section id="contact" class="contact">
       <div class="container" data-aos="fade-up">
 
     <div class=" section-title">
@@ -770,7 +763,7 @@
       </div>
 
       </div>
-    </section><!-- End Contact Section -->
+    </section><!-- End Contact Section --> {% endcomment %}
 
   </main><!-- End #main -->
 

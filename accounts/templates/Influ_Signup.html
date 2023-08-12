@@ -57,12 +57,12 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+          <!--<li><a class="nav-link scrollto active" href="#hero">Home</a></li>
           <li><a class="nav-link scrollto" href="#about">About</a></li>
           <li><a class="nav-link scrollto" href="#services">Recommend</a></li>
           <li><a class="nav-link scrollto" href="#team">Team</a></li>
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-          <li><a class="getstarted scrollto" href="/accounts/Adv_Login">로그인/회원가입</a></li>
+          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>-->
+          <li><a class="getstarted scrollto" href="/accounts/Influ_Login">로그인/회원가입</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -74,10 +74,14 @@
     <section id="breadcrumbs" class="breadcrumbs">
       <div class="container">
 
-        <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex justify-content-between align-items-center" 
+        style="-webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-use-select: none;
+        user-select: none;">
           <h2>인플루언서 회원가입</h2>
           <ol>
-            <li><a href="/InfluHome">Home</a></li>
+            <li><a href="/InfluHome" style="color:#ff4a17;">Home</a></li>
             <li>인플루언서 회원가입</li>
           </ol>
         </div>
@@ -88,7 +92,10 @@
     <div class="signup_wrap">
       <div class="signup">
         <div>
-          <h2>인플루언서로 가입</h2>
+          <h2 style="-webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-use-select: none;
+          user-select: none;">인플루언서 회원가입</h2>
         </div>
         <form onsubmit="return validateForm()" class="signup-form" method="post">
           {% csrf_token %}

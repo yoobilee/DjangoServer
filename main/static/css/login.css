@@ -130,18 +130,23 @@ h2 {
   outline: none;
 }
 
+.signup_instagram {
+  margin-top: 20px;
+  width: 100%;
+}
+
 .signup_instagram input {
   width: 70%;
   height: 30px;
   border-radius: 30px;
   margin-top: 10px;
-  margin-left: 25px;
+  margin-left: 22px;
   padding: 0px 20px;
   border: 1px solid lightgray;
   outline: none;
 }
 
-.signup_businessfield, .signup_businesssize .signup_folllowersize{
+.signup_businessfield, .signup_businesssize, .signup_followersize {
   margin-top: 20px;
   display: flex;
 }
@@ -207,4 +212,16 @@ h2 {
   color: rgb(255, 77, 46);
   font-size: 1.1em;
   letter-spacing: 2px;
+}
+
+.login {
+  width: 30%;
+  height: 400px;
+  background: white;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 50px;
 }
