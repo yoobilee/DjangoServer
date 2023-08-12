@@ -15,7 +15,9 @@
   <link href="{% static 'img/apple-touch-icon.png' %}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="{% static 'vendor/aos/aos.css' %}" rel="stylesheet">
@@ -29,6 +31,8 @@
   <!-- Template Main CSS File -->
   <link href="{% static 'css/styles.css' %}" rel="stylesheet">
 
+  <script src="https://kit.fontawesome.com/53a8c415f1.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="{% static 'css/login.css' %}">
   <!-- =======================================================
   * Template Name: Dewi
   * Updated: Jul 27 2023 with Bootstrap v5.3.1
@@ -36,153 +40,113 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
-  <style>
-    .signup-form {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .form-group {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        margin-bottom: 10px;
-    }
-
-    .form-group label {
-        width: 120px;
-        padding-right: 10px;
-    }
-
-    .form-group input[type="text"],
-    .form-group input[type="password"] {
-        flex: 1;
-    }
-
-    button {
-        margin-top: 10px;
-    }
-  </style>
 </head>
 
 <body>
 
   <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top ">
+  <header id="header" class="fixed-top header-inner-pages">
     <div class="container d-flex align-items-center justify-content-between">
 
       <!--<h1 class="logo"><a href="base.html">Dewi</a></h1>-->
-      <a href="">
-        <img class="logo" src="{% static 'img/logo.png' %}" alt="" />
+      <a href="/InfluHome">
+        <img class="logo" src="{% static 'img/logo.png' %}" style="width:30%;" alt="" />
       </a>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+          <!--<li><a class="nav-link scrollto active" href="#hero">Home</a></li>
           <li><a class="nav-link scrollto" href="#about">About</a></li>
           <li><a class="nav-link scrollto" href="#services">Recommend</a></li>
           <li><a class="nav-link scrollto" href="#team">Team</a></li>
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-          <li><a class="getstarted scrollto" href="/accounts/Adv_Login">로그인/회원가입</a></li>
+          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>-->
+          <li><a class="getstarted scrollto" href="/accounts/Influ_Login">로그인/회원가입</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
     </div>
   </header><!-- End Header -->
+  <main id="main">
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
 
-  <section id="signup" class="section">
-    <div class="container" data-aos="fade-up">
-      <div class="section-header">
-        <h2 class="section-title">인플루언서로 가입</h2>
-        <!-- accounts/templates/accounts/influencer_list.html -->
-
+        <div class="d-flex justify-content-between align-items-center"
+        style="-webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-use-select: none;
+        user-select: none;">
+          <h2>인플루언서 회원가입</h2>
+          <ol>
+            <li><a href="/InfluHome" style="color:#ff4a17;">Home</a></li>
+            <li>인플루언서 회원가입</li>
+          </ol>
+        </div>
 
       </div>
-      <!--<form onsubmit="return validateForm()" class="signup-form" method="post">
-        {% csrf_token %}
-        <label for="id">아이디:</label>
-        <input type="text" id="id" name="id" required>
-        <br>
-        <label for="nickname">닉네임:</label>
-        <input type="text" id="nickname" name="nickname" required>
-        <br>
-        <label for="password">비밀번호:</label>
-        <input type="password" id="password" name="password" required>
-        <br>
-        
-        <label for="confirmPassword">비밀번호 확인:</label>
-        <input type="password" id="confirmPassword" name="confirmPassword" required>
-        <br>
-        
-        <div id="dynamic-fields">
-            동적으로 추가될 폼 필드들이 들어갈 공간
-            
+    </section><!-- End Breadcrumbs -->
+
+    <div class="signup_wrap">
+      <div class="signup">
+        <div>
+          <h2 style="-webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-use-select: none;
+          user-select: none;">인플루언서 회원가입</h2>
+        </div>
+        <form onsubmit="return validateForm()" class="signup-form" method="post">
+          {% csrf_token %}
+          <div class="signup_id">
+            <label for="id">아이디</label>
+            <input type="text" id="id" placeholder="아이디를 입력하세요(필수)" name="id" required>
           </div>
-          <button type="button" onclick="addDynamicField('business')">비즈니스 분야 추가</button>
-          <button type="button" onclick="addDynamicField('size')">회사의 규모 추가</button>
-          <button type="button" onclick="addDynamicField('field')">주 상품 추가</button>
-          <br>
-        
-        
-        <button type="submit">회원가입</button>
-      </form>-->
-      <form onsubmit="return validateForm()" class="signup-form" method="post">
-        {% csrf_token %}
-        <div class="form-group">
-            <label for="id">아이디:</label>
-            <input type="text" id="id" name="id" required>
-        </div>
-        <div class="form-group">
-            <label for="instagram_id">계정명:</label>
-            <input type="text" id="instagram_id" name="instagram_id" required>
-        </div>
-        <div class="form-group">
-            <label for="password">비밀번호:</label>
-            <input type="password" id="password" name="password" required>
-        </div>
-        <div class="form-group">
-            <label for="confirmPassword">비밀번호 확인:</label>
-            <input type="password" id="confirmPassword" name="confirmPassword" required>
-        </div>
-        <div class="form-group">
-            <label>비즈니스 분야:</label>
-            <input type="radio" id="business_health" name="business" value="건강" required>
-            <label for="business_health">건강</label>
-            <input type="radio" id="business_fashion" name="business" value="의류" required>
-            <label for="business_fashion">의류</label>
-            <input type="radio" id="business_food" name="business" value="음식" required>
-            <label for="business_food">음식</label>
-            <input type="radio" id="business_trip" name="business" value="여행" required>
-            <label for="business_trip">여행</label>
-            <input type="radio" id="business_daily" name="business" value="일상" required>
-            <label for="business_daily">일상</label>
-        </div>
-        <div class="form-group">
-            <label>팔로워 수:</label>
-            <input type="radio" id="ten_thousand" name="size" value="만">
-            <label for="ten_thousand">만명 이하</label>
-            <input type="radio" id="one_hundred_thousand" name="size" value="십만">
-            <label for="one_hundred_thousand">십만명 이하</label>
-            <input type="radio" id="one_hundred_thousand" name="size" value="백만">
-            <label for="ten_hundred_thousand">백만명 이하</label>
-            <input type="radio" id="ten_hundred_thousand" name="size" value="십만">
-            <label for="one_hundred_thousand">천만명 이하</label>
-            <!-- 여러 규모 라디오 버튼 추가 -->
-        </div>
-        <br>
-        <button type="submit">회원가입</button>
-    </form>
+          <div class="signup_pw">
+            <label for="password">비밀번호</label>
+            <input type="password" id="password" placeholder="비밀번호를 입력하세요(필수)" name="password" required>
+          </div>
+          <div class="signup_pw">
+            <label for="confirmPassword">비밀번호 <br>재입력</label>
+            <input type="password" id="confirmPassword" placeholder="비밀번호를 재입력하세요(필수)" name="confirmPassword" required>
+          </div>
+          <div class="signup_instagram">
+            <label for="instagram_id">계정명</label>
+            <input type="text" id="instagram_id" placeholder="계정명을 입력하세요(필수)" name="instagram_id" required>
+          </div>
+          <div class="signup_businessfield">
+            <label>비즈니스<br> 분야</label>
+            <select class="business">
+              <option value="" disabled selected>선택</option>
+              <option value="business_health">건강</option>
+              <option value="business_fashion">의류</option>
+              <option value="business_food">음식</option>
+              <option value="business_trip">여행</option>
+              <option value="business_daily">일상</option>
+              <option value="etc">기타</option>
+            </select>
+          </div>
+          <div class="signup_followersize">
+            <label>팔로워수</label>
+            <select class="business">
+              <option value="" disabled selected>선택</option>
+              <option value="ten_thousand">1,000~10,000명</option>
+              <option value="five_thousand">10,001~50,000명</option>
+              <option value="hundred_thousand">50,001~100,000명</option>
+              <option value="900_thousand">100,001~999,999명</option>
+              <option value="million">1,000,000명 이상</option>
+            </select>
+          </div>
+          <div class="submit">
+            <input type="button" id="prev" onclick="history.back(-1);" value="이전으로">
+            <input type="submit" value="회원가입하기">
+          </div>
+        </form>
+      </div>
     </div>
-    </section>
-    
-    </div>
-  </section>
 
-
+  </main>
 
 
   <!-- ======= Footer ======= -->
@@ -260,7 +224,8 @@
   </footer><!-- End Footer -->
 
   <div id="preloader"></div>
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
   <script src="{% static 'vendor/purecounter/purecounter_vanilla.js' %}"></script>
@@ -273,46 +238,6 @@
 
   <!-- Template Main JS File -->
   <script src="{% static 'js/scripts.js'%}"></script>
-  <script>
-    function validateForm() {
-    var password = document.getElementById("password").value;
-    var confirmPassword = document.getElementById("confirmPassword").value;
-
-    if (password !== confirmPassword) {
-      alert("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
-      return false;
-    }
-
-    return true;
-  }
-  </script>
-
-<script>
-    function addDynamicField(fieldName) {
-      var dynamicFieldsDiv = document.getElementById("dynamic-fields");
-      
-      var selectField = document.createElement("select");
-      selectField.name = fieldName;
-      selectField.required = true;
-      
-      var options = [];
-      if (fieldName === 'business') {
-        options = ["건강", "의류", "음식", "여행", "화장품"];
-      } else if (fieldName === 'size') {
-        options = ["소기업", "중소기업", "중견기업", "대기업", "스타트업"];
-      }
-      
-      for (var i = 0; i < options.length; i++) {
-        var option = document.createElement("option");
-        option.value = options[i];
-        option.text = options[i];
-        selectField.appendChild(option);
-      }
-      
-
-      dynamicFieldsDiv.appendChild(selectField);
-    }
-  </script>
 
 </body>
 

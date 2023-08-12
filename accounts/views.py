@@ -47,8 +47,9 @@ def Adv_Login(request):
             login_error = "사용자가 존재하지 않습니다."  # 사용자 없음 메시지
         except User_adv.MultipleObjectsReturned:
             login_error = "여러 사용자가 존재합니다. 관리자에게 문의하세요."  # 중복 사용자 메시지
-        else:
+        else: 
             login_error = "비밀번호가 틀렸습니다."  # 비밀번호 틀림 메시지
+        return redirect('main:AdvHome')  # 로그인 후 광고주 홈으로 이동
 
     return render(request, 'Adv_Login.html', {'login_error': login_error})
 
@@ -74,12 +75,8 @@ def Influ_Signup(request):
 
         user = User_influ(id=id, instagram_id=instagram_id, password=password, bussiness=bussiness, followers_count=followers_count)
         user.save()
-        return redirect('influ_login')  # 회원가입 후 로그인 페이지로 이동
+        return redirect('accounts:influ_login')  # 회원가입 후 로그인 페이지로 이동
     return render(request, 'Influ_Signup.html')
-
-# def Adv_Signup(request):
-#     influencers = Influencer.objects.all()
-#     return render(request, 'Adv_Signup.html', {'influencers': influencers})
 
 def Influ_Login(request):
     login_error = None  # 초기화
@@ -99,11 +96,12 @@ def Influ_Login(request):
             login_error = "여러 사용자가 존재합니다. 관리자에게 문의하세요."  # 중복 사용자 메시지
         else:
             login_error = "비밀번호가 틀렸습니다."  # 비밀번호 틀림 메시지
+        return redirect('main:InfluHome')  # 로그인 후 인플루언서 홈으로 이동
 
     return render(request, 'Influ_Login.html', {'login_error': login_error})
 
 def Adv_Logout(request):
-    return render(request, 'AdvHome.html')
+    return redirect('main:AdvHome')
 
 def Influ_Logout(request):
     return render(request, 'InfluHome.html')

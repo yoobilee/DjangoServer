@@ -980,6 +980,49 @@ section {
 }
 
 /*--------------------------------------------------------------
+# Recommend
+--------------------------------------------------------------*/
+.recommend .icon-box {
+  margin-bottom: 20px;
+  padding: 30px;
+  border-radius: 6px;
+  background: #fff;
+}
+
+.recommend .icon-box i {
+  float: left;
+  color: #5c8eb0;
+  font-size: 40px;
+  line-height: 0;
+}
+
+.recommend .icon-box h4 {
+  margin-left: 70px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+.recommend .icon-box h4 a {
+  color: #365870;
+  transition: 0.3s;
+}
+
+.recommend .icon-box .icon-box:hover h4 a {
+  color: #ff4a17;
+}
+
+.recommend .icon-box p {
+  margin-left: 70px;
+  line-height: 24px;
+  font-size: 14px;
+}
+
+.recommend .icon-box:hover h4 a {
+  color: #ff4a17;
+}
+
+/*--------------------------------------------------------------
 # Testimonials
 --------------------------------------------------------------*/
 .testimonials {
