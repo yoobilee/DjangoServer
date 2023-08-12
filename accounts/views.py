@@ -1,6 +1,7 @@
 from django.contrib import auth
 from django.contrib.auth import authenticate
 from django.shortcuts import render, redirect
+from django.contrib.auth import logout
 from .models import Influencer, Post_limmiae, Post_10_12_16yp, Post_b_saem, Post_wescsp1121, Post_vevi_d_live, Post_yakstory119, Post_iam_yaksa, Post_yakstagram, Post_pt_jjuny, User_adv, User_influ
 
 # Create your views here.
@@ -41,7 +42,8 @@ def Adv_Login(request):
         try:
             user = User_adv.objects.get(id=id, password=password)
             # 로그인 성공 처리
-            return render(request, 'AdvHome.html')  # 성공 시 이동
+            request.session['user_id'] = user.id
+            return redirect('main:AdvHome')  # 로그인 후 광고주 홈으로 이동
         except User_adv.DoesNotExist:
             # 로그인 실패 처리
             login_error = "사용자가 존재하지 않습니다."  # 사용자 없음 메시지
@@ -49,7 +51,6 @@ def Adv_Login(request):
             login_error = "여러 사용자가 존재합니다. 관리자에게 문의하세요."  # 중복 사용자 메시지
         else:
             login_error = "비밀번호가 틀렸습니다."  # 비밀번호 틀림 메시지
-        return redirect('main:AdvHome')  # 로그인 후 광고주 홈으로 이동
 
     return render(request, 'Adv_Login.html', {'login_error': login_error})
 
@@ -88,7 +89,8 @@ def Influ_Login(request):
         try:
             user = User_influ.objects.get(id=id, password=password)
             # 로그인 성공 처리
-            return render(request, 'InfluHome.html')  # 성공 시 이동
+            request.session['user_id'] = user.id
+            return redirect('main:InfluHome')  # 로그인 후 인플루언서 홈으로 이동
         except User_influ.DoesNotExist:
             # 로그인 실패 처리
             login_error = "사용자가 존재하지 않습니다."  # 사용자 없음 메시지
@@ -96,15 +98,37 @@ def Influ_Login(request):
             login_error = "여러 사용자가 존재합니다. 관리자에게 문의하세요."  # 중복 사용자 메시지
         else:
             login_error = "비밀번호가 틀렸습니다."  # 비밀번호 틀림 메시지
-        return redirect('main:InfluHome')  # 로그인 후 인플루언서 홈으로 이동
 
     return render(request, 'Influ_Login.html', {'login_error': login_error})
 
 def Adv_Logout(request):
-    return render(request, 'AdvHome.html')
+    if 'user_id' in request.session:
+        del request.session['user_id']
+    return redirect('main:AdvHome')  # 로그아웃 후 광고주 홈으로 리다이렉트
 
 def Influ_Logout(request):
-    return render(request, 'InfluHome.html')
+    if 'user_id' in request.session:
+        del request.session['user_id']
+    return redirect('main:InfluHome')  # 로그아웃 후 인플루언서 홈으로 리다이렉트
 
-def MyPage(request):
-    return render(request, 'MyPage.html')
+def MyPage(request, user_type):
+    user_id = request.session.get('user_id')
+    if user_id:
+        if user_type == 'adv':
+            try:
+                adv_user = User_adv.objects.get(id=user_id)
+                context = {'user': adv_user}
+                return render(request, 'MyPage.html', context)
+            except User_adv.DoesNotExist:
+                pass
+
+        elif user_type == 'influ':
+            try:
+                influ_user = User_influ.objects.get(id=user_id)
+                context = {'user': influ_user}
+                return render(request, 'MyPage.html', context)
+            except User_influ.DoesNotExist:
+                pass
+
+    # 유저 타입에 따른 정보가 없거나 로그인이 되어있지 않은 경우
+    return render(request, 'MyPage_generic.html')
