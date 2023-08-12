@@ -163,4 +163,3 @@ class User_influ(models.Model):
   class Meta:
     managed = False
     db_table = 'user_influ'
-    
