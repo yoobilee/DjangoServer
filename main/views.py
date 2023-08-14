@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db import connection
+from django.contrib.auth import logout
 
 # Create your views here.
 def first_index(request):
+    logout(request)
     return render(request, "first-index.html")
 
 def InfluHome(request):
