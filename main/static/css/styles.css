@@ -1786,3 +1786,7 @@ section {
 .section-wrapper strong {
   font-weight: bold;
 }
+
+.relation-keywords {
+  margin-top: 20px;
+}
