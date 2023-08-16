@@ -1,0 +1,43 @@
+{% load static %}
+{% comment %} <!DOCTYPE html>
+<html>
+<head>
+    <title>Search Results</title>
+</head>
+<body>
+    <h1>Search Results for '{{ query }}'</h1>
+
+    {% if query %}
+        <ul>
+            <li><a href="{% url 'portfolio-details' 1 %}">Portfolio Details 01</a></li>
+            <li><a href="{% url 'portfolio-details' 2 %}">Portfolio Details 02</a></li>
+            <li><a href="{% url 'portfolio-details' 3 %}">Portfolio Details 03</a></li>
+            <li><a href="{% url 'portfolio-details' 4 %}">Portfolio Details 04</a></li>
+        </ul>
+    {% else %}
+        <p>No search query provided.</p>
+    {% endif %}
+</body>
+</html> {% endcomment %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Results</title>
+</head>
+<body>
+    <h1>Search Results for '{{ query }}'</h1>
+
+    {% if query %}
+        <ul>
+            {% for item in items %}
+                <li><a href="{% url 'portfolio-details' item.pk %}">{{ item.title }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No search query provided.</p>
+    {% endif %}
+
+
+</body>
+</html>

@@ -57,15 +57,13 @@
           <li><a class="nav-link scrollto" href="#about">About</a></li>
           <li><a class="nav-link scrollto" href="#services">Services</a></li>
           <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
-          <!--<li><a class="nav-link scrollto" href="#team">Team</a></li>
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>-->
-          {% if user.is_authenticated %}
-          <li><a class="getstarted scrollto" href="/accounts/MyPage" style="margin-left:0; padding:5px 15px;">마이페이지</a></li>
-          <li><a class="getstarted scrollto" href="{% url 'accounts:Influ_Logout' %}" style="margin-left:0; padding:5px 15px;">{{ user.username }} 로그아웃</a></li>
-          {% else %}
-          <li><a class="getstarted scrollto" href="/accounts/Influ_Login" style="margin-left:0; padding:5px 15px;">로그인</a></li>
-          <li><a class="getstarted scrollto" href="/accounts/Influ_Signup" style="margin-left:0; padding:5px 15px;">회원가입</a></li>
-          {% endif %}
+          {% if request.session.user_id %}
+            <li><a class="getstarted scrollto" href="/accounts/MyPage" style="margin-left:0; padding:5px 15px;">마이페이지</a></li>
+            <li><a class="getstarted scrollto" href="/accounts/Influ_Logout" style="margin-left:0; padding:5px 15px;">로그아웃</a></li>
+            {% else %}
+            <li><a class="getstarted scrollto" href="/accounts/Influ_Login" style="margin-left:0; padding:5px 15px;">로그인</a></li>
+            <li><a class="getstarted scrollto" href="/accounts/Influ_Signup" style="margin-left:0; padding:5px 15px;">회원가입</a></li>
+            {% endif %}
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -77,18 +75,14 @@
   <section id="hero">
     <div class="hero-container" data-aos="fade-up" data-aos-delay="150">
       <h1>Plan. Launch. Grow.</h1>
-      <h2>We are team of talented designers making websites with Bootstrap</h2>
+      <h2>Driving business growth through innovative strategies and results-driven marketing</h2>
       <!-- ++++++ Search Section ++++++ -->
       <div id="search">
-        <!--<form class="d-flex" role="search" method="POST">
+        <form class="d-flex-s" role="search" method="GET" action="{% url 'search_results' %}">
           {% csrf_token %}
-        <input type="search" class="form-control me-2" autocomplete="off" placeholder="키워드를 입력하세요" name="search_query" required aria-label="search">
-        <button class="btn btn-outline-success" type="submit">검색</button>
-        </form>-->
-        <form class="d-flex" role="search" method="GET" action="{% url 'search' %}">
-          {% csrf_token %}
-          <input type="search" class="form-control me-2" autocomplete="off" name="q" value="{{ query }}" placeholder="키워드를 입력하세요" required aria-label="search">
-          <button class="btn btn-info" type="submit" style="width:100px;">검색</button>
+          <input type="text" class="form-control me-2" autocomplete="off" name="q" placeholder="키워드를 입력하세요">
+          <img class="absolute" src="{% static 'img/#.png' %}">
+          <button class="btn btn-info" type="submit" style="width:auto;">검색</button>
       </form>
       </div>
 
@@ -148,26 +142,24 @@
         <div class="row">
 
           <div class="col-lg-6 video-box align-self-baseline" data-aos="zoom-in" data-aos-delay="100">
-            <img src="{% static 'img/about.jpg' %}" class="img-fluid" alt="">
-            <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox play-btn mb-4"></a>
+            <img src="{% static 'img/about-video.png' %}" class="img-fluid" alt="">
+            <a href="https://www.youtube.com/watch?v=QsY8fnvMn6c" class="glightbox play-btn mb-4"></a>
           </div>
 
           <div class="col-lg-6 pt-3 pt-lg-0 content">
-            <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
+            <h3>당신의 도전을 우리와 함께 나눠보세요. 브랜드의 성공을 위한 첫 걸음을 함께 시작해보세요.</h3>
             <p class="fst-italic">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua.
+              우리의 철학은 간단합니다. 인플루언서의 힘과 브랜드의 가치를 융합하여 더 큰 영향력을 창출하는 것입니다. 이제 당신도 인플루언서 마케팅의 혁신적인 파도에 탑승할 차례입니다.
             </p>
             <ul>
-              <li><i class="bx bx-check-double"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-              <li><i class="bx bx-check-double"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-              <li><i class="bx bx-check-double"></i> Voluptate repellendus pariatur reprehenderit corporis sint.</li>
-              <li><i class="bx bx-check-double"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
+              <li><i class="bx bx-check-double"></i> <b>전문성 강조:</b> 우리는 인플루언서 마케팅의 선두주자로, 브랜드와 인플루언서 간의 미학적인 만남을 형성합니다.</li>
+              <li><i class="bx bx-check-double"></i> <b>목표 달성:</b> 우리의 열정은 당신의 브랜드를 세상에 선보이는 데 있습니다. 깊은 인사이트와 체계적인 분석을 통해 우리는 인플루언서를 신중하게 선택하고, 귀사의 목표와 어울리는 파트너를 찾아냅니다.</li>
+              <li><i class="bx bx-check-double"></i> <b>전략적 접근:</b> 우리의 전문가들은 트렌드를 예측하며, 창의적인 콘텐츠와 전략을 개발하여 브랜드의 목소리를 더욱 뚜렷하게 전달합니다.</li>
+              <li><i class="bx bx-check-double"></i> <b>연결과 영향력:</b> 인플루언서와 브랜드 간의 소중한 연결을 형성하여, 영향력 있는 스토리를 세계에 전파하겠습니다.</li>
+              <li><i class="bx bx-check-double"></i> <b>협력과 확장:</b> 우리와 함께하면 더 많은 사람들에게 당신의 메시지를 전달할 수 있습니다.</li>
             </ul>
             <p>
-              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-              culpa qui officia deserunt mollit anim id est laborum
+              우리의 끊임없는 탐구와 열정으로 브랜드의 미래를 형성하는 데 기여하겠습니다. 당신과 함께하는 여정을 기대하며, 당신의 성공을 응원합니다.
             </p>
           </div>
 
@@ -393,42 +385,42 @@
             <div class="icon-box">
               <i class="bi bi-gift"></i>
               <h4><a href="" style="pointer-events : none;" onclick="return false;">상품 협찬</a></h4>
-              <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+              <p>공동구매 이전 샘플 제공으로 사용해본 후에 상품 판매</p>
             </div>
           </div>
           <div class="col-md-6 mt-4 mt-md-0">
             <div class="icon-box">
               <i class="bi bi-calendar3"></i>
               <h4><a href="" style="pointer-events : none;" onclick="return false;">단독 공구 진행</a></h4>
-              <p>Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
+              <p>다른 인플루언서 셀러와 일정이 겹치지 않도록 조율</p>
             </div>
           </div>
           <div class="col-md-6 mt-4 mt-md-0">
             <div class="icon-box">
-              <i class="bi bi-cash-coin"></i>
-              <h4><a href="" style="pointer-events : none;" onclick="return false;">다양한 결제수단 제공</a></h4>
-              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
+              <i class="bi bi-clipboard2-pulse"></i>
+              <h4><a href="" style="pointer-events : none;" onclick="return false;">인플루언서 컨설팅</a></h4>
+              <p>해당 업계에서 가장 영향력 있는 인플루언서를 식별하여 고객의 브랜드와 잘 맞는 전략을 제안합니다.</p>
             </div>
           </div>
           <div class="col-md-6 mt-4 mt-md-0">
             <div class="icon-box">
-              <i class="bi bi-calculator"></i>
-              <h4><a href="" style="pointer-events : none;" onclick="return false;">바로 정산</a></h4>
-              <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+              <i class="bi bi-camera-video"></i>
+              <h4><a href="" style="pointer-events : none;" onclick="return false;">콘텐츠 제작 및 편집</a></h4>
+              <p>인플루언서와 협업하여 브랜드의 메시지를 반영한 동영상 콘텐츠를 제작하고 편집하여 소셜 미디어에 공개합니다.</p>
             </div>
           </div>
           <div class="col-md-6 mt-4 mt-md-0">
             <div class="icon-box">
-              <i class="bi bi-cursor"></i>
-              <h4><a href="" style="pointer-events : none;" onclick="return false;">방향성 제시</a></h4>
-              <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
+              <i class="bi bi-person-fill-gear"></i>
+              <h4><a href="" style="pointer-events : none;" onclick="return false;">인플루언서 관리</a></h4>
+              <p>인플루언서와의 일정 관리, 콘텐츠 승인 및 성과 지표 모니터링을 통해 캠페인 진행 상황을 효과적으로 관리합니다.</p>
             </div>
           </div>
           <div class="col-md-6 mt-4 mt-md-0">
             <div class="icon-box">
-              <i class="bi bi-journal-text"></i>
-              <h4><a href="" style="pointer-events : none;" onclick="return false;">정산 리포트 제공</a></h4>
-              <p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p>
+              <i class="bi bi-pencil-square"></i>
+              <h4><a href="" style="pointer-events : none;" onclick="return false;">소셜 미디어 캠페인 기획</a></h4>
+              <p>특정 이벤트를 홍보하는 캠페인을 위해 인플루언서와 함께 해시태그 챌린지를 기획하고 구체적인 전략을 수립합니다.</p>
             </div>
           </div>
         </div>
@@ -445,12 +437,12 @@
 
             <div class="swiper-slide">
               <div class="testimonial-item">
-                <img src="{% static 'img/testimonials/testimonials-1.jpg' %}" class="testimonial-img" alt="">
-                <h3>Saul Goodman</h3>
-                <h4>Ceo &amp; Founder</h4>
+                <img src="{% static 'img/testimonials/jjjjaehyung.jpg' %}" class="testimonial-img" alt="">
+                <h3>박재형</h3>
+                <h4>Data Preprocessing Specialist</h4>
                 <p>
                   <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
+                  
                   <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
               </div>
@@ -458,12 +450,12 @@
 
             <div class="swiper-slide">
               <div class="testimonial-item">
-                <img src="{% static 'img/testimonials/testimonials-2.jpg' %}" class="testimonial-img" alt="">
-                <h3>Sara Wilsson</h3>
-                <h4>Designer</h4>
+                <img src="{% static 'img/testimonials/baaam_jjjang.jpg' %}" class="testimonial-img" alt="">
+                <h3>홍창범</h3>
+                <h4>Database Administrator</h4>
                 <p>
                   <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
+                  
                   <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
               </div>
@@ -471,12 +463,12 @@
 
             <div class="swiper-slide">
               <div class="testimonial-item">
-                <img src="{% static 'img/testimonials/testimonials-3.jpg' %}" class="testimonial-img" alt="">
-                <h3>Jena Karlis</h3>
-                <h4>Store Owner</h4>
+                <img src="{% static 'img/testimonials/seung___minn_h.jpg' %}" class="testimonial-img" alt="">
+                <h3>홍승민</h3>
+                <h4>Backend Developer</h4>
                 <p>
                   <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
+                  
                   <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
               </div>
@@ -484,25 +476,12 @@
 
             <div class="swiper-slide">
               <div class="testimonial-item">
-                <img src="{% static 'img/testimonials/testimonials-4.jpg' %}" class="testimonial-img" alt="">
-                <h3>Matt Brandon</h3>
-                <h4>Freelancer</h4>
+                <img src="{% static 'img/testimonials/0l___l_lb.jpg' %}" class="testimonial-img" alt="">
+                <h3>이유비</h3>
+                <h4>Frontend Developer</h4>
                 <p>
                   <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-              </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img src="{% static 'img/testimonials/testimonials-5.jpg' %}" class="testimonial-img" alt="">
-                <h3>John Larson</h3>
-                <h4>Entrepreneur</h4>
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
+                  
                   <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
               </div>
@@ -522,15 +501,16 @@
         <div class="section-title">
           <h2>Portfolio</h2>
           <p>Check our Portfolio</p>
+          <p style="font-size: 1em; font-weight: lighter; padding-left: 10px; color: #ff4a17; font-style: italic;">If you would like to submit a portfolio, please contact us by e-mail.</p>
         </div>
 
         <div class="row" data-aos="fade-up" data-aos-delay="100">
           <div class="col-lg-12 d-flex justify-content-center">
             <ul id="portfolio-flters">
               <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-app">App</li>
-              <li data-filter=".filter-card">Card</li>
-              <li data-filter=".filter-web">Web</li>
+              <li data-filter=".filter-app">운동/건강</li>
+              <li data-filter=".filter-card">약</li>
+              <li data-filter=".filter-web">보조제/기능식품</li>
             </ul>
           </div>
         </div>
@@ -548,12 +528,12 @@
           </div>
 
           <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <img src="{% static 'img/portfolio/portfolio-2.jpg' %}" class="img-fluid" alt="">
+            <img src="{% static 'img/portfolio/diet01.jpg' %}" class="img-fluid" alt="">
             <div class="portfolio-info">
-              <h4>Web 1</h4>
-              <p>Web</p>
-              <a href="{% static 'img/portfolio/portfolio-2.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 1"><i class="bx bx-plus"></i></a>
-              <a href="/portfolio-details" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+              <h4>보미오라환</h4>
+              <p>#다이어트</p>
+              <a href="{% static 'img/portfolio/diet01.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 1"><i class="bx bx-plus"></i></a>
+              <a href="/portfolio-details01" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
             </div>
           </div>
 
@@ -631,140 +611,7 @@
 
       </div>
     </section><!-- End Portfolio Section -->
-
-    <!-- ======= Team Section ======= -->
-    {% comment %} <section id="team" class="team section-bg">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-          <h2>Team</h2>
-          <p>Check our Team</p>
-        </div>
-
-        <div class="row">
-
-          <div class="col-lg-4 col-md-6">
-            <div class="member" data-aos="fade-up" data-aos-delay="100">
-              <div class="pic"><img src="{% static 'img/team/team-1.jpg' %}" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>Walter White</h4>
-                <span>Chief Executive Officer</span>
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-            <div class="member">
-              <div class="pic"><img src="{% static 'img/team/team-2.jpg' %}" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>Sarah Jhonson</h4>
-                <span>Product Manager</span>
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-            <div class="member">
-              <div class="pic"><img src="{% static 'img/team/team-3.jpg' %}" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>William Anderson</h4>
-                <span>CTO</span>
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End Team Section --> {% endcomment %}
-
-    <!-- ======= Contact Section ======= -->
-    {% comment %} <section id="contact" class="contact">
-      <div class="container" data-aos="fade-up">
-
-    <div class=" section-title">
-        <h2>Contact</h2>
-        <p>Contact Us</p>
-      </div>
-
-      <div class="row">
-
-        <div class="col-lg-6">
-
-          <div class="row">
-            <div class="col-md-12">
-              <div class="info-box">
-                <i class="bx bx-map"></i>
-                <h3>Our Address</h3>
-                <p>A108 Adam Street, New York, NY 535022</p>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="info-box mt-4">
-                <i class="bx bx-envelope"></i>
-                <h3>Email Us</h3>
-                <p>info@example.com<br>contact@example.com</p>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="info-box mt-4">
-                <i class="bx bx-phone-call"></i>
-                <h3>Call Us</h3>
-                <p>+1 5589 55488 55<br>+1 6678 254445 41</p>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="col-lg-6 mt-4 mt-lg-0">
-          <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-            <div class="row">
-              <div class="col-md-6 form-group">
-                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-              </div>
-              <div class="col-md-6 form-group mt-3 mt-md-0">
-                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
-              </div>
-            </div>
-            <div class="form-group mt-3">
-              <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
-            </div>
-            <div class="form-group mt-3">
-              <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
-            </div>
-            <div class="my-3">
-              <div class="loading">Loading</div>
-              <div class="error-message"></div>
-              <div class="sent-message">Your message has been sent. Thank you!</div>
-            </div>
-            <div class="text-center"><button type="submit">Send Message</button></div>
-          </form>
-        </div>
-
-      </div>
-
-      </div>
-    </section><!-- End Contact Section --> {% endcomment %}
-
+    
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
@@ -773,15 +620,31 @@
       <div class="container">
         <div class="row">
 
-          <div class="col-lg-3 col-md-6">
+          <div class="col-lg-4 col-md-6">
             <div class="footer-info">
-              <h3>Inizio</h3>
+              <h3>Info</h3>
               <p>
                 Bundang-gu, Seongnam-si, Gyeonggi-do <br>
                 Pangyo 289-20, Korea<br><br>
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-6 footer-links">
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="/TermOfUse_I">이용약관</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="/PrivacyPolicy_I">개인정보처리방침</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="footer-info">
+              <p>
                 <strong>Phone:</strong> +82 010 8937 6522<br>
                 <strong>Email:</strong> ghdtmdalsdad@naver.com<br>
               </p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="footer-info">
               <div class="social-links mt-3">
                 <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
                 <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
@@ -791,38 +654,6 @@
               </div>
             </div>
           </div>
-
-          <div class="col-lg-2 col-md-6 footer-links">
-            <h4>Useful Links</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Our Services</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-4 col-md-6 footer-newsletter">
-            <h4>Our Newsletter</h4>
-            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="Subscribe">
-            </form>
-
-          </div>
-
         </div>
       </div>
     </div>
@@ -832,10 +663,6 @@
         &copy; Copyright <strong><span>inflaze</span></strong>. All Rights Reserved
       </div>
       <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/dewi-free-multi-purpose-html-template/ -->
         Designed by <a href="https://bootstrapmade.com/">CircuitChamps</a>
       </div>
     </div>

@@ -146,7 +146,7 @@ class User_adv(models.Model):
   id = models.CharField(max_length=100, primary_key=True)
   company = models.CharField(max_length=100)
   password = models.CharField(max_length=100)
-  bussiness = models.CharField(max_length=100)
+  business = models.CharField(max_length=100)
   size = models.CharField(max_length=100)
   
   class Meta:
@@ -157,9 +157,10 @@ class User_influ(models.Model):
   id = models.CharField(max_length=100, primary_key=True)
   instagram_id = models.CharField(max_length=100)
   password = models.CharField(max_length=100)
-  bussiness = models.CharField(max_length=100)
+  business = models.CharField(max_length=100)
   followers_count = models.CharField(max_length=100)
   
   class Meta:
     managed = False
     db_table = 'user_influ'
+    

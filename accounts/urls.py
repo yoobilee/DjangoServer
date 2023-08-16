@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from . import views
+from django.contrib.auth import views as auth_views
 #from django.conf import settings
 
 app_name = 'accounts'
@@ -11,6 +12,6 @@ urlpatterns = [
     path('Influ_Login/', views.Influ_Login, name = "Influ_Login"),
     path('Influ_Signup/', views.Influ_Signup, name = "Influ_Signup"),
     path('MyPage/', views.MyPage, name = "MyPage"),
-    path('AdvHome/', views.Adv_Logout, name = "Adv_Logout"),
-    path('InfluHome/', views.Influ_Logout, name = "Influ_Logout"),
+    path('Adv_Logout/', auth_views.LogoutView.as_view(next_page='main:AdvHome'), name='Adv_Logout'),
+    path('Influ_Logout/', auth_views.LogoutView.as_view(next_page='main:InfluHome'), name='Influ_Logout'),
 ]
