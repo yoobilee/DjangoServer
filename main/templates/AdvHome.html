@@ -32,6 +32,7 @@
   <!-- Template Main CSS File -->
   <link href="{% static 'css/styles.css' %}" rel="stylesheet">
   <link rel="stylesheet" href="{% static 'css/swiper.css' %}">
+  <link rel="stylesheet" href="{% static 'css/chart.css' %}">
 
   <!-- =======================================================
   * Template Name: Dewi
@@ -40,8 +41,14 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  <!-- Highcharts 라이브러리 추가 -->
   <script src="https://code.highcharts.com/highcharts.js"></script>
+<<<<<<< HEAD
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+=======
+  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+>>>>>>> main
 </head>
 
 <body>
@@ -65,12 +72,16 @@
           <li><a class="nav-link scrollto" href="#team">Team</a></li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
           {% if request.session.user_id %}
-            <li><a class="getstarted scrollto" href="/accounts/MyPage" style="margin-left:0; padding:5px 15px;">마이페이지</a></li>
-            <li><a class="getstarted scrollto" href="/accounts/Adv_Logout" style="margin-left:0; padding:5px 15px;">로그아웃</a></li>
-            {% else %}
-            <li><a class="getstarted scrollto" href="/accounts/Adv_Login" style="margin-left:0; padding:5px 15px;">로그인</a></li>
-            <li><a class="getstarted scrollto" href="/accounts/Adv_Signup" style="margin-left:0; padding:5px 15px;">회원가입</a></li>
-            {% endif %}
+          <li><a class="getstarted scrollto" href="/accounts/MyPage" style="margin-left:0; padding:5px 15px;">마이페이지</a>
+          </li>
+          <li><a class="getstarted scrollto" href="/accounts/Adv_Logout"
+              style="margin-left:0; padding:5px 15px;">로그아웃</a></li>
+          {% else %}
+          <li><a class="getstarted scrollto" href="/accounts/Adv_Login" style="margin-left:0; padding:5px 15px;">로그인</a>
+          </li>
+          <li><a class="getstarted scrollto" href="/accounts/Adv_Signup"
+              style="margin-left:0; padding:5px 15px;">회원가입</a></li>
+          {% endif %}
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -96,7 +107,7 @@
           <input type="text" class="form-control me-2" autocomplete="off" name="q" placeholder="키워드를 입력하세요">
           <img class="absolute" src="{% static 'img/#.png' %}">
           <button class="btn btn-info" type="submit" style="width:auto;">검색</button>
-      </form>
+        </form>
       </div>
 
       <div id="content">
@@ -168,10 +179,14 @@
               우리의 철학은 간단합니다. 인플루언서의 힘과 브랜드의 가치를 융합하여 더 큰 영향력을 창출하는 것입니다. 이제 당신도 인플루언서 마케팅의 혁신적인 파도에 탑승할 차례입니다.
             </p>
             <ul>
-              <li><i class="bx bx-check-double"></i> <b>전문성 강조:</b> 우리는 인플루언서 마케팅의 선두주자로, 브랜드와 인플루언서 간의 미학적인 만남을 형성합니다.</li>
-              <li><i class="bx bx-check-double"></i> <b>목표 달성:</b> 우리의 열정은 당신의 브랜드를 세상에 선보이는 데 있습니다. 깊은 인사이트와 체계적인 분석을 통해 우리는 인플루언서를 신중하게 선택하고, 귀사의 목표와 어울리는 파트너를 찾아냅니다.</li>
-              <li><i class="bx bx-check-double"></i> <b>전략적 접근:</b> 우리의 전문가들은 트렌드를 예측하며, 창의적인 콘텐츠와 전략을 개발하여 브랜드의 목소리를 더욱 뚜렷하게 전달합니다.</li>
-              <li><i class="bx bx-check-double"></i> <b>연결과 영향력:</b> 인플루언서와 브랜드 간의 소중한 연결을 형성하여, 영향력 있는 스토리를 세계에 전파하겠습니다.</li>
+              <li><i class="bx bx-check-double"></i> <b>전문성 강조:</b> 우리는 인플루언서 마케팅의 선두주자로, 브랜드와 인플루언서 간의 미학적인 만남을 형성합니다.
+              </li>
+              <li><i class="bx bx-check-double"></i> <b>목표 달성:</b> 우리의 열정은 당신의 브랜드를 세상에 선보이는 데 있습니다. 깊은 인사이트와 체계적인 분석을
+                통해 우리는 인플루언서를 신중하게 선택하고, 귀사의 목표와 어울리는 파트너를 찾아냅니다.</li>
+              <li><i class="bx bx-check-double"></i> <b>전략적 접근:</b> 우리의 전문가들은 트렌드를 예측하며, 창의적인 콘텐츠와 전략을 개발하여 브랜드의 목소리를 더욱
+                뚜렷하게 전달합니다.</li>
+              <li><i class="bx bx-check-double"></i> <b>연결과 영향력:</b> 인플루언서와 브랜드 간의 소중한 연결을 형성하여, 영향력 있는 스토리를 세계에
+                전파하겠습니다.</li>
               <li><i class="bx bx-check-double"></i> <b>협력과 확장:</b> 우리와 함께하면 더 많은 사람들에게 당신의 메시지를 전달할 수 있습니다.</li>
             </ul>
             <p>
@@ -363,13 +378,14 @@
       </div>
     </section><!-- End Features Section -->
 
-     <!-- ======= Recommend Section ======= -->
-     <section id="recommend" class="recommend section-bg">
+    <!-- ======= Recommend Section ======= -->
+    <section id="recommend" class="recommend section-bg">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
           <h2>Recommend</h2>
           <p>인플루언서를 비교하여 추천해드립니다</p>
+
         </div>
         <!--<select id="leftInfluencer" onchange="updateCharts()">
           <option value="">인플루언서 선택</option>
@@ -380,13 +396,19 @@
         <!-- HTML 코드 -->
 
         <script>
+          var selectedInfluencerDataArray = []; // 선택한 인플루언서 데이터 배열
+          var selectedInfluencerData1 = null;
+          var selectedInfluencerData2 = null;
+
           var influencersData = [
             {% for influencer in influencers %}
           {
             username: "{{ influencer.username|escapejs }}",
-            media_count: { { influencer.media_count } },
-              followers_count: { { influencer.followers_count } },
-              follows_count: { { influencer.follows_count } },
+              media_count: { { influencer.media_count } },
+            followers_count: { { influencer.followers_count } },
+            follows_count: { { influencer.follows_count } },
+            comments_count: { { influencer.comments_count } },
+            like_count: { { influencer.like_count } },
             // 기타 필드들
           }
           {% endfor %}
@@ -398,6 +420,13 @@
             $("#influencersTable1").hide();
             $("#influencersTable2").hide();
 
+
+            var selectedInfluencerDataArray = []; // 선택한 인플루언서 데이터 배열
+
+            $(".selectButton").hide(); // 초기에는 선택 버튼 숨김
+
+            $("#resetButton").hide(); // 리셋 버튼 초기에는 숨김
+
             $("#searchInput1").on("input", function () {
               var input = $(this).val().toLowerCase();
               if (input.trim() === "") {
@@ -408,12 +437,32 @@
                   var influencerName = $(this).find("td:first-child").text().toLowerCase();
                   if (influencerName.includes(input)) {
                     $(this).show();
+                    $(this).find(".selectButton").show(); // 검색 결과가 있으면 선택 버튼 표시
                   } else {
                     $(this).hide();
+                    $(this).find(".selectButton").hide(); // 검색 결과가 없으면 선택 버튼 숨김
                   }
                 });
               }
             });
+
+            $(".selectButton").click(function () {
+              var username = $(this).data("username");
+              var selectedRow = $(this).closest("tr"); // 선택된 버튼이 속한 행을 가져옴
+
+              var selectedInfluencerData = {
+                username: selectedRow.find("td:first-child").text(),
+                media_count: parseFloat(selectedRow.find("td:nth-child(2)").text()),
+                followers_count: parseFloat(selectedRow.find("td:nth-child(3)").text())/100,
+                follows_count: parseFloat(selectedRow.find("td:nth-child(4)").text())
+              };
+
+              fetchAdditionalData(selectedInfluencerData.username);
+              selectedInfluencerDataArray.push(selectedInfluencerData);
+              updateChart(selectedInfluencerDataArray);
+              $("#resetButton").show();
+            });
+
 
             $("#searchInput2").on("input", function () {
               var input = $(this).val().toLowerCase();
@@ -432,26 +481,23 @@
               }
             });
 
-            var selectedInfluencerData1 = null;
-            var selectedInfluencerData2 = null;
-
             // 인플루언서 데이터가 선택될 경우 createChart 함수 호출
-  $("#selectButton1").click(function () {
-    var selectedRow = $("#influencersTable1 tbody tr:visible:first");
-    if (selectedRow.length > 0) {
-      selectedInfluencerData1 = {
-        username: selectedRow.find("td:first-child").text(),
-        media_count: parseFloat(selectedRow.find("td:nth-child(2)").text()), // 수정 필요
-        followers_count: parseFloat(selectedRow.find("td:nth-child(3)").text()), // 수정 필요
-        follows_count: parseFloat(selectedRow.find("td:nth-child(4)").text()) // 수정 필요
-      };
-      alert("인플루언서 1 선택 완료: " + selectedInfluencerData1.username);
-      // 선택한 인플루언서 데이터를 기반으로 차트 생성
-      createChart(selectedInfluencerData1);
-    } else {
-      alert("선택할 인플루언서가 없습니다.");
-    }
-  });
+            $("#selectButton1").click(function () {
+              var selectedRow = $("#influencersTable1 tbody tr:visible:first");
+              if (selectedRow.length > 0) {
+                selectedInfluencerData1 = {
+                  username: selectedRow.find("td:first-child").text(),
+                  media_count: parseFloat(selectedRow.find("td:nth-child(2)").text()),
+                  followers_count: parseFloat(selectedRow.find("td:nth-child(3)").text()),
+                  follows_count: parseFloat(selectedRow.find("td:nth-child(4)").text())
+                };
+
+                // 추가 데이터를 가져오는 함수 호출
+                fetchAdditionalData(selectedInfluencerData1.username);
+              } else {
+                alert("선택할 인플루언서가 없습니다.");
+              }
+            });
 
             $("#selectButton2").click(function () {
               var selectedRow = $("#influencersTable2 tbody tr:visible:first");
@@ -466,7 +512,71 @@
                 alert("선택할 인플루언서가 없습니다.");
               }
             });
+
+            // 추가 데이터를 가져오는 함수
+            function fetchAdditionalData(username) {
+              $.ajax({
+                url: `/get_additional_data/?username=${username}`,
+                method: "POST",
+                headers: { "X-CSRFToken": getCookie("csrftoken") }, // CSRF 토큰 포함
+                success: function (response) {
+                  // 여기에서 selectedInfluencerData를 수정하여 사용합니다.
+                  console.log("Fetched additional data:", response); // 데이터 확인을 위한 로그
+                  var selectedInfluencerData = { ...selectedInfluencerDataArray[selectedInfluencerDataArray.length - 1], ...response };
+                  selectedInfluencerDataArray[selectedInfluencerDataArray.length - 1] = selectedInfluencerData;
+                  updateChart(selectedInfluencerDataArray);
+                },
+                error: function () {
+                  console.log("Error fetching additional data.");
+                }
+              });
+            }
+
+            // CSRF 토큰을 가져오는 함수 (일반적으로 Django의 기본 템플릿 태그를 사용)
+            function getCookie(name) {
+              var cookieValue = null;
+              if (document.cookie && document.cookie !== "") {
+                var cookies = document.cookie.split(";");
+                for (var i = 0; i < cookies.length; i++) {
+                  var cookie = cookies[i].trim();
+                  if (cookie.substring(0, name.length + 1) === name + "=") {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                  }
+                }
+              }
+              return cookieValue;
+            }
+
+
+            // 리셋 버튼 클릭 시 인플루언서 데이터 배열 초기화
+            $("#resetButton").click(function () {
+              selectedInfluencerDataArray = [];
+              resetChart();
+              $("#resetButton").hide();
+            });
+
+            function resetChart() {
+              var emptyValues = [0, 0, 0, 0, 0]; // 초기화할 데이터 배열
+              Highcharts.chart('chartContainer', {
+                // ... (차트 설정 등)
+                series: [{
+                  name: '',
+                  type: 'column',
+                  animation: {
+                    duration: 1000,
+                    easing: 'easeOutBounce'
+                  },
+                  data: emptyValues
+                }]
+              });
+            }
+
+
           });
+
+
+
         </script>
 
 
@@ -478,67 +588,137 @@
                 <thead>
                   <tr>
                     <th>이름</th>
-                    <th>미디어 수</th>
-                    <th>팔로워 수</th>
-                    <th>팔로우 수</th>
                     <!-- 기타 필드들 -->
                   </tr>
                 </thead>
                 <tbody>
                   {% for influencer in influencers %}
-                  <tr>
+                  <tr class="influencer-row" data-username="{{ influencer.username }}">
                     <td>{{ influencer.username }}</td>
                     <td>{{ influencer.media_count }}</td>
                     <td>{{ influencer.followers_count }}</td>
                     <td>{{ influencer.follows_count }}</td>
+                    <td><button class="selectButton" data-username="{{ influencer.username }}">선택</button></td>
+
                     <!-- 기타 필드 값들 -->
                   </tr>
                   {% endfor %}
                 </tbody>
               </table>
-              <button id="selectButton1">선택</button>
+              <button id="resetButton">리셋</button>
 
               <div id="chartContainer"></div>
-
-              <script src="https://code.highcharts.com/highcharts.js"></script>
               <script>
-                // createChart 함수에서 인플루언서 데이터를 받아와서 Highcharts 차트를 생성
-  function createChart(influencerData) {
-    var categories = ['media_count', 'followers_count', 'follows_count']; // 카테고리 변경
-    var values = [
-      influencerData.media_count,
-      influencerData.followers_count,
-      influencerData.follows_count
-    ];
+                // 차트 업데이트 함수
+                function updateChart(selectedInfluencerDataArray) {
+                  var seriesData = []; // 그래프의 시리즈 데이터 배열
 
-    // Highcharts 막대 그래프 생성
-    Highcharts.chart('chartContainer', {
-      chart: {
-        type: 'column'
-      },
-      title: {
-        text: influencerData.username + '의 각 요소별 비교'
-      },
-      xAxis: {
-        categories: categories,
-        labels: {
-          rotation: 0, // 가로 레이블 텍스트를 0도 회전하여 길이를 줄임
-          style: {
-            fontSize: '10px' // 레이블 텍스트 크기 조정
-          }
-        }
-      },
-      yAxis: {
-        title: {
-          text: 'Value'
-        }
-      },
-      series: [{
-        name: influencerData.username,
-        data: values
-      }]
-    });
-  }
+                  // 선택한 인플루언서 데이터 배열을 순회하며 시리즈 데이터 배열에 추가
+                  for (var i = 0; i < selectedInfluencerDataArray.length; i++) {
+                    var influencerData = selectedInfluencerDataArray[i];
+                    var values = [
+                      influencerData.media_count,
+                      influencerData.followers_count,
+                      influencerData.follows_count,
+                      influencerData['댓글 수'], // 수정
+                      influencerData['좋아요 수'] // 수정
+                    ];
+
+                    console.log("Influencer Data:", influencerData);
+                    console.log("Values:", values);
+                    seriesData.push({
+                      name: influencerData.username,
+                      type: 'column',
+                      data: values
+                    });
+                  }
+
+                  // Highcharts 차트 생성 및 업데이트
+                  Highcharts.chart('chartContainer', {
+                    chart: {
+                      type: 'column'
+                    },
+                    title: {
+                      text: '인플루언서 요소별 비교'
+                    },
+                    xAxis: {
+                      categories: ['미디어 수', '팔로워 수 (천 명)', '팔로우 수', '평균 댓글 수', '평균 좋아요 수'],
+                      labels: {
+                        rotation: 0,
+                        style: {
+                          fontSize: '10px'
+                        }
+                      }
+                    },
+                    yAxis: {
+                      title: {
+                        text: 'Value'
+                      }
+                    },
+                    series: seriesData // 위에서 구성한 시리즈 데이터 배열 사용
+                  });
+                }
+                // createChart 함수에서 인플루언서 데이터를 받아와서 Highcharts 차트를 생성
+                function createChart(influencerData) {
+                  console.log(influencerData);
+
+                  // 정수로 변환할 값들 가져오기
+                  var comments_count_sum = parseInt(influencerData['댓글 수']);
+                  var like_count_sum = parseInt(influencerData['좋아요 수']);
+
+                  if (isNaN(comments_count_sum) || isNaN(like_count_sum)) {
+                    console.log("데이터의 타입을 확인할 수 없습니다.");
+                  } else {
+                    console.log("데이터는 숫자입니다.");
+
+                    // 데이터 값 배열로 설정
+                    var values = [
+                      influencerData.media_count,
+                      influencerData.followers_count,
+                      influencerData.follows_count,
+                      comments_count_sum,
+                      like_count_sum
+                    ];
+
+                    console.log("Processed values:", values); // 처리된 데이터 값 출력
+                    // Highcharts 막대 그래프 생성
+                    Highcharts.chart('chartContainer', {
+                      chart: {
+                        type: 'column'
+                      },
+                      title: {
+                        text: influencerData.username + '의 각 요소별 비교'
+                      },
+                      xAxis: {
+                        categories: ['미디어 수', '팔로워 수', '팔로우 수', '평균 댓글 수', '평균 좋아요 수'],
+                        labels: {
+                          rotation: 0,
+                          style: {
+                            fontSize: '10px'
+                          }
+                        }
+                      },
+                      yAxis: {
+                        title: {
+                          text: 'Value'
+                        },
+
+                      },
+                      series: [{
+                        name: influencerData.username,
+                        type: 'column',
+                        animation: {
+                          duration: 1000,
+                          easing: 'easeOutBounce'
+                        },
+                        data: values
+                      }]
+                    });
+                  }
+                }
+
+
+
               </script>
 
 
@@ -949,7 +1129,13 @@
         <div class="row">
 
           <div class="col-lg-12 mt-4 mt-lg-0">
+<<<<<<< HEAD
             <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+=======
+            <form
+              action="https://script.google.com/macros/s/AKfycbxQdSiVTIbl3b_L8UzKWYkuiivrjpIEBf_NDSKdnJB3V7RZ8_M1sAHahjV6t-lPnjjLag/exec"
+              method="post" role="form" class="php-email-form" target="frAttachFiles">
+>>>>>>> main
               <div class="row">
                 <div class="col-md-6 form-group">
                   <label for="company">회사명</label>

@@ -1708,6 +1708,7 @@ section {
   box-shadow: none;
 }
 
+/* 검색창 스타일 */
 .d-flex-s {
   position: relative;
   width: 300px;
