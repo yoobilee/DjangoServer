@@ -108,4 +108,33 @@
   border-radius: .5em;
   margin-top: .5em;
   cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card__btn:hover {
+  background-color: #ff5b2b; /* 더 밝은 색으로 변경 */
+  transform: translateY(-2px); /* 조금 위로 띄우기 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 약간의 그림자 추가 */
+}
+
+/* 화살표 스타일링 */
+.swiper-button-prev,
+.swiper-button-next {
+  position: absolute;
+  top: 60%;
+  /* 수직 가운데 정렬 */
+  transform: translateY(-50%);
+  z-index: 100;
+  /* 화살표가 카드 위에 나타나도록 */
+  color: black;
+}
+
+.swiper-button-prev {
+  left: 10px;
+  /* 왼쪽 화살표 위치 */
+}
+
+.swiper-button-next {
+  right: 10px;
+  /* 오른쪽 화살표 위치 */
 }
