@@ -414,9 +414,12 @@
             $("#influencersTable1").hide();
             $("#influencersTable2").hide();
 
+
             var selectedInfluencerDataArray = []; // 선택한 인플루언서 데이터 배열
 
             $(".selectButton").hide(); // 초기에는 선택 버튼 숨김
+
+            $("#resetButton").hide(); // 리셋 버튼 초기에는 숨김
 
             $("#searchInput1").on("input", function () {
               var input = $(this).val().toLowerCase();
@@ -444,13 +447,14 @@
               var selectedInfluencerData = {
                 username: selectedRow.find("td:first-child").text(),
                 media_count: parseFloat(selectedRow.find("td:nth-child(2)").text()),
-                followers_count: parseFloat(selectedRow.find("td:nth-child(3)").text()),
+                followers_count: parseFloat(selectedRow.find("td:nth-child(3)").text())/100,
                 follows_count: parseFloat(selectedRow.find("td:nth-child(4)").text())
               };
 
               fetchAdditionalData(selectedInfluencerData.username);
               selectedInfluencerDataArray.push(selectedInfluencerData);
               updateChart(selectedInfluencerDataArray);
+              $("#resetButton").show();
             });
 
 
@@ -539,10 +543,11 @@
             }
 
 
+            // 리셋 버튼 클릭 시 인플루언서 데이터 배열 초기화
             $("#resetButton").click(function () {
               selectedInfluencerDataArray = [];
-              // 리셋 시에 차트도 초기화하는 로직 추가
               resetChart();
+              $("#resetButton").hide();
             });
 
             function resetChart() {
@@ -631,7 +636,7 @@
                       text: '인플루언서 요소별 비교'
                     },
                     xAxis: {
-                      categories: ['미디어 수', '팔로워 수', '팔로우 수', '댓글 수', '좋아요 수'],
+                      categories: ['미디어 수', '팔로워 수 (천 명)', '팔로우 수', '평균 댓글 수', '평균 좋아요 수'],
                       labels: {
                         rotation: 0,
                         style: {
@@ -679,7 +684,7 @@
                         text: influencerData.username + '의 각 요소별 비교'
                       },
                       xAxis: {
-                        categories: ['미디어 수', '팔로워 수', '팔로우 수', '댓글 수', '좋아요 수'],
+                        categories: ['미디어 수', '팔로워 수', '팔로우 수', '평균 댓글 수', '평균 좋아요 수'],
                         labels: {
                           rotation: 0,
                           style: {
@@ -1113,42 +1118,51 @@
 
         <div class="row">
 
-        <div class="col-lg-12 mt-4 mt-lg-0">
-          <form action="https://script.google.com/macros/s/AKfycbxQdSiVTIbl3b_L8UzKWYkuiivrjpIEBf_NDSKdnJB3V7RZ8_M1sAHahjV6t-lPnjjLag/exec" method="post" role="form" class="php-email-form" target="frAttachFiles">
-            <div class="row">
-              <div class="col-md-6 form-group">
-                <label for="company">회사명</label>
-                <input type="text" name="company" class="form-control" id="company" placeholder="기업명을 입력해 주세요." required>
+          <div class="col-lg-12 mt-4 mt-lg-0">
+            <form
+              action="https://script.google.com/macros/s/AKfycbxQdSiVTIbl3b_L8UzKWYkuiivrjpIEBf_NDSKdnJB3V7RZ8_M1sAHahjV6t-lPnjjLag/exec"
+              method="post" role="form" class="php-email-form" target="frAttachFiles">
+              <div class="row">
+                <div class="col-md-6 form-group">
+                  <label for="company">회사명</label>
+                  <input type="text" name="company" class="form-control" id="company" placeholder="기업명을 입력해 주세요."
+                    required>
+                </div>
+                <div class="col-md-6 form-group">
+                  <label for="brand">브랜드명 & 제품명</label>
+                  <input type="text" name="brand" class="form-control" id="brand" placeholder="브랜드&제품명을 입력해 주세요."
+                    required>
+                </div>
+                <div class="col-md-6 form-group">
+                  <label for="manager">담당자 명</label>
+                  <input type="text" name="manager" class="form-control" id="manager" placeholder="담당자 이름을 입력해 주세요."
+                    required>
+                </div>
+                <div class="col-md-6 form-group">
+                  <label for="email">이메일</label>
+                  <input type="email" class="form-control" name="email" id="email" placeholder="이메일 주소를 입력해 주세요."
+                    required>
+                </div>
+                <div class="col-md-6 form-group">
+                  <label for="contact">연락처</label>
+                  <input type="text" name="contact" class="form-control" id="contact" placeholder="연락받으실 연락처를 입력해 주세요."
+                    required>
+                </div>
+                <div class="col-md-6 form-group">
+                  <label for="budget">가용예산</label>
+                  <input type="text" name="budget" class="form-control" id="budget" placeholder="가용예산을 입력해주세요. (원)"
+                    required>
+                </div>
               </div>
-              <div class="col-md-6 form-group">
-                <label for="brand">브랜드명 & 제품명</label>
-                <input type="text" name="brand" class="form-control" id="brand" placeholder="브랜드&제품명을 입력해 주세요." required>
+              <div class="form-group mt-3">
+                <label for="homepage">홈페이지</label>
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="회사 홈페이지 주소를 입력해 주세요."
+                  required>
               </div>
-              <div class="col-md-6 form-group">
-                <label for="manager">담당자 명</label>
-                <input type="text" name="manager" class="form-control" id="manager" placeholder="담당자 이름을 입력해 주세요." required>
+              <div class="form-group mt-3">
+                <label for="question">문의 내용</label>
+                <textarea class="form-control" name="question" rows="5" placeholder="" required></textarea>
               </div>
-              <div class="col-md-6 form-group">
-                <label for="email">이메일</label>
-                <input type="email" class="form-control" name="email" id="email" placeholder="이메일 주소를 입력해 주세요." required>
-              </div>
-              <div class="col-md-6 form-group">
-                <label for="contact">연락처</label>
-                <input type="text" name="contact" class="form-control" id="contact" placeholder="연락받으실 연락처를 입력해 주세요." required>
-              </div>
-              <div class="col-md-6 form-group">
-                <label for="budget">가용예산</label>
-                <input type="text" name="budget" class="form-control" id="budget" placeholder="가용예산을 입력해주세요. (원)" required>
-              </div>
-            </div>
-            <div class="form-group mt-3">
-              <label for="homepage">홈페이지</label>
-              <input type="text" class="form-control" name="subject" id="subject" placeholder="회사 홈페이지 주소를 입력해 주세요." required>
-            </div>
-            <div class="form-group mt-3">
-              <label for="question">문의 내용</label>
-              <textarea class="form-control" name="question" rows="5" placeholder="" required></textarea>
-            </div>
 
               <div style="margin-bottom:10px; padding-top:10px;">
                 <label class="ant-checkbox-wrapper" style="margin-right: 5px;">
