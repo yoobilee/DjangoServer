@@ -1,5 +1,5 @@
 {% load static %}
-<!DOCTYPE html>
+{% comment %} <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -241,6 +241,116 @@
     }
   </script>
 
+</body>
+
+</html> {% endcomment %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>inflaze - 인플루언서 회원가입</title>
+  <link rel="shortcut icon" type="image/png" href="{% static 'img/logos/favicon.png' %}" />
+  <link rel="stylesheet" href="{% static 'css/styles.min.css' %}" />
+</head>
+
+<body>
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <div
+      class="position-relative overflow-hidden radial-gradient min-vh-100 d-flex align-items-center justify-content-center">
+      <div class="d-flex align-items-center justify-content-center w-100">
+        <div class="row justify-content-center w-100">
+          <div class="col-md-8 col-lg-6 col-xxl-3">
+            <div class="card mb-0">
+              <div class="card-body">
+                <a href="./index.html" class="text-nowrap logo-img text-center d-block py-3 w-100">
+                  <img src="{% static 'img/logos/logo.png' %}" width="180" alt="">
+                </a>
+                <p class="text-center">Your Social Campaigns</p>
+                {% comment %} <form>
+                  <div class="mb-3">
+                    <label for="exampleInputtext1" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="exampleInputtext1" aria-describedby="textHelp">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email Address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  </div>
+                  <div class="mb-4">
+                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1">
+                  </div>
+                  <a href="./index.html" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Sign Up</a>
+                  <div class="d-flex align-items-center justify-content-center">
+                    <p class="fs-4 mb-0 fw-bold">Already have an Account?</p>
+                    <a class="text-primary fw-bold ms-2" href="./authentication-login.html">Sign In</a>
+                  </div>
+                </form> {% endcomment %}
+                <form onsubmit="return validateForm()" class="signup-form" method="post">
+                  {% csrf_token %}
+                  <div class="signup_id">
+                    <label for="id" class="form-label">아이디</label>
+                    <input type="text" class="form-control" id="id" placeholder="아이디를 입력하세요(필수)" name="id" required>
+                  </div>
+                  <div class="signup_instagram">
+                    <label for="instagram_id" class="form-label">계정명</label>
+                    <input type="text" class="form-control" id="instagram_id" placeholder="계정명을 입력하세요(필수)" name="instagram_id" required>
+                  </div>
+                  <div class="signup_pw">
+                    <!--<h4>Password</h4>
+                        <input type="password" name="" id="" placeholder="Password">-->
+                      <label for="password" class="form-label">비밀번호</label>
+                      <input type="password" class="form-control" id="password" placeholder="비밀번호를 입력하세요(필수)" name="password" required>
+                    </div>
+                    <div class="signup_pw">
+                    <label for="confirmPassword" class="form-label">비밀번호 재입력</label>
+                    <input type="password" class="form-control" id="confirmPassword" placeholder="비밀번호를 재입력하세요(필수)" name="confirmPassword" required>
+                  </div>
+                  <div class="signup_businessfield">
+                    <label class="form-label">비즈니스 분야</label>
+                    <select class="form-control" name="business">
+                      <option value="" disabled selected>선택</option>
+                      <option value="건강">건강</option>
+                      <option value="의류">의류</option>
+                      <option value="음식">음식</option>
+                      <option value="여행">여행</option>
+                      <option value="일상">일상</option>
+                      <option value="기타">기타</option>
+                    </select>
+                  </div>
+                  <div class="signup_folllowersize">
+                    <label class="form-label">팔로워수</label>
+                    <select class="form-control" name="follower_count">
+                      <option value="" disabled selected>선택</option>
+                      <option value="만명 이하">만명 이하</option>
+                      <option value="십만명 이하">십만명 이하</option>
+                      <option value="백만명 이하">백만명 이하</option>
+                      <option value="천만명 이하">천만명 이하</option>
+                    </select>
+                  </div>
+                  {% comment %} <div class="submit">
+                    <input type="button" id="prev" onclick="history.back(-1);" value="이전으로">
+                    <input type="submit" value="회원가입하기">
+                  </div> {% endcomment %}
+                  <a href="./index.html" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2" style="margin-top: 10px;">Sign Up</a>
+                  <div class="d-flex align-items-center justify-content-center">
+                    <p class="fs-4 mb-0 fw-bold">Already have an Account?</p>
+                    <a class="text-primary fw-bold ms-2" href="accounts/Influ_Login">Sign In</a>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="{% static 'libs/jquery/dist/jquery.min.js' %}"></script>
+  <script src="{% static 'libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
 </body>
 
 </html>
