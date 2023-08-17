@@ -12,4 +12,5 @@ urlpatterns = [
     path('AdvHome/', views.AdvHome, name = "AdvHome"),
     path('inner-page/', views.inner_page, name = "inner-page"),
     path('portfolio-details/', views.portfolio_details, name = "portfolio-details"),
+    path('get_influencer_data', views.get_influencer_data, name='get_influencer_data'),
 ]
