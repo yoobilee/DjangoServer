@@ -33,6 +33,7 @@
   <link href="{% static 'css/styles.css' %}" rel="stylesheet">
   <link rel="stylesheet" href="{% static 'css/swiper.css' %}">
   <link rel="stylesheet" href="{% static 'css/chart.css' %}">
+  <link rel="stylesheet" href="{% static 'css/chart.css' %}">
 
   <!-- =======================================================
   * Template Name: Dewi
@@ -68,9 +69,11 @@
         <ul>
           <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
           <li><a class="nav-link scrollto" href="#about">About</a></li>
-          <li><a class="nav-link scrollto" href="#services">Recommend</a></li>
+          <li><a class="nav-link scrollto" href="#recommend">Recommend</a></li>
+          <li><a class="nav-link scrollto" href="#features">Services</a></li>
           <li><a class="nav-link scrollto" href="#team">Team</a></li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          <li><a class="nav-link scrollto" href="/search/search">Search &nbsp;<img src="{% static 'img/search.png' %}"></a></li>
           {% if request.session.user_id %}
           <li><a class="getstarted scrollto" href="/accounts/MyPage" style="margin-left:0; padding:5px 15px;">마이페이지</a>
           </li>
@@ -99,21 +102,9 @@
         <a href="#about" class="btn-get-started scrollto">Get Started</a>
         <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
       </div>-->
-
-      <!-- ++++++ Search Section ++++++ -->
-      <div id="search">
-        <form class="d-flex-s" role="search" method="GET" action="{% url 'search_results' %}">
-          {% csrf_token %}
-          <input type="text" class="form-control me-2" autocomplete="off" name="q" placeholder="키워드를 입력하세요">
-          <img class="absolute" src="{% static 'img/#.png' %}">
-          <button class="btn btn-info" type="submit" style="width:auto;">검색</button>
-        </form>
+      <div class="down-arrow">
+        <img id="arrow-bg" src="{% static 'img/down-arrow.png' %}" alt=""></img>
       </div>
-
-      <div id="content">
-        {% block content %}{% endblock %}
-      </div>
-    </div>
   </section><!-- End Hero -->
 
   <main id="main">
@@ -197,187 +188,6 @@
       </div>
     </section><!-- End About Section -->
 
-    <!-- ======= Clients Section ======= -->
-    <section id="clients" class="clients">
-      <div class="container" data-aos="zoom-in">
-
-        <div class="row">
-
-          <div class="col-lg-4 col-md-4 col-6 d-flex align-items-center justify-content-center">
-            <img src="{% static 'img/clients/LEVWARE.png' %}" class="img-fluid" alt="">
-          </div>
-
-          <div class="col-lg-4 col-md-4 col-6 d-flex align-items-center justify-content-center">
-            <img src="{% static 'img/clients/1401Home.png' %}" class="img-fluid" alt="">
-          </div>
-
-          <div class="col-lg-4 col-md-4 col-6 d-flex align-items-center justify-content-center">
-            <img src="{% static 'img/clients/pharma_bros.png' %}" class="img-fluid" alt="">
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End Clients Section -->
-
-    <!-- ======= Features Section ======= -->
-    <section id="features" class="features">
-      <div class="container" data-aos="fade-up">
-
-        <ul class="nav nav-tabs row d-flex">
-          <li class="nav-item col-3">
-            <a class="nav-link active show" data-bs-toggle="tab" href="#tab-1">
-              <i class="ri-shake-hands-fill"></i>
-              <h4 class="d-none d-lg-block">광고주와 인플루언서가 직접 고르는 연결 시스템</h4>
-            </a>
-          </li>
-          <li class="nav-item col-3">
-            <a class="nav-link" data-bs-toggle="tab" href="#tab-2">
-              <i class="ri-profile-line"></i>
-              <h4 class="d-none d-lg-block">시각적인 자료로 뚜렷한 차이점 비교</h4>
-            </a>
-          </li>
-          <li class="nav-item col-3">
-            <a class="nav-link" data-bs-toggle="tab" href="#tab-3">
-              <i class="ri-thumb-up-line"></i>
-              <h4 class="d-none d-lg-block">숫자가 증명하는 만족도</h4>
-            </a>
-          </li>
-          <li class="nav-item col-3">
-            <a class="nav-link" data-bs-toggle="tab" href="#tab-4">
-              <i class="ri-arrow-right-up-line"></i>
-              <h4 class="d-none d-lg-block">한 눈에 보이는 내 성장도</h4>
-            </a>
-          </li>
-        </ul>
-
-        <div class="tab-content">
-          <div class="tab-pane active show" id="tab-1">
-            <div class="row">
-              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
-                <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
-                <p class="fst-italic">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                  dolore
-                  magna aliqua.
-                </p>
-                <ul>
-                  <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-                  <li><i class="ri-check-double-line"></i> Duis aute irure dolor in reprehenderit in voluptate velit.
-                  </li>
-                  <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-                    aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla
-                    pariatur.</li>
-                </ul>
-                <p>
-                  Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                  voluptate
-                  velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                  sunt in
-                  culpa qui officia deserunt mollit anim id est laborum
-                </p>
-              </div>
-              <div class="col-lg-6 order-1 order-lg-2 text-center">
-                <img src="{% static 'img/features-1.png' %}" alt="" class="img-fluid">
-              </div>
-            </div>
-          </div>
-          <div class="tab-pane" id="tab-2">
-            <div class="row">
-              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
-                <h3>Neque exercitationem debitis soluta quos debitis quo mollitia officia est</h3>
-                <p>
-                  Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                  voluptate
-                  velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                  sunt in
-                  culpa qui officia deserunt mollit anim id est laborum
-                </p>
-                <p class="fst-italic">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                  dolore
-                  magna aliqua.
-                </p>
-                <ul>
-                  <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-                  <li><i class="ri-check-double-line"></i> Duis aute irure dolor in reprehenderit in voluptate velit.
-                  </li>
-                  <li><i class="ri-check-double-line"></i> Provident mollitia neque rerum asperiores dolores quos qui a.
-                    Ipsum neque dolor voluptate nisi sed.</li>
-                  <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-                    aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla
-                    pariatur.</li>
-                </ul>
-              </div>
-              <div class="col-lg-6 order-1 order-lg-2 text-center">
-                <img src="{% static 'img/features-2.png' %}" alt="" class="img-fluid">
-              </div>
-            </div>
-          </div>
-          <div class="tab-pane" id="tab-3">
-            <div class="row">
-              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
-                <h3>Voluptatibus commodi ut accusamus ea repudiandae ut autem dolor ut assumenda</h3>
-                <p>
-                  Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                  voluptate
-                  velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                  sunt in
-                  culpa qui officia deserunt mollit anim id est laborum
-                </p>
-                <ul>
-                  <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-                  <li><i class="ri-check-double-line"></i> Duis aute irure dolor in reprehenderit in voluptate velit.
-                  </li>
-                  <li><i class="ri-check-double-line"></i> Provident mollitia neque rerum asperiores dolores quos qui a.
-                    Ipsum neque dolor voluptate nisi sed.</li>
-                </ul>
-                <p class="fst-italic">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                  dolore
-                  magna aliqua.
-                </p>
-              </div>
-              <div class="col-lg-6 order-1 order-lg-2 text-center">
-                <img src="{% static 'img/features-3.png' %}" alt="" class="img-fluid">
-              </div>
-            </div>
-          </div>
-          <div class="tab-pane" id="tab-4">
-            <div class="row">
-              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
-                <h3>Omnis fugiat ea explicabo sunt dolorum asperiores sequi inventore rerum</h3>
-                <p>
-                  Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                  voluptate
-                  velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                  sunt in
-                  culpa qui officia deserunt mollit anim id est laborum
-                </p>
-                <p class="fst-italic">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                  dolore
-                  magna aliqua.
-                </p>
-                <ul>
-                  <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-                  <li><i class="ri-check-double-line"></i> Duis aute irure dolor in reprehenderit in voluptate velit.
-                  </li>
-                  <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-                    aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla
-                    pariatur.</li>
-                </ul>
-              </div>
-              <div class="col-lg-6 order-1 order-lg-2 text-center">
-                <img src="{% static 'img/features-4.png' %}" alt="" class="img-fluid">
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section><!-- End Features Section -->
-
     <!-- ======= Recommend Section ======= -->
     <section id="recommend" class="recommend section-bg">
       <div class="container" data-aos="fade-up">
@@ -404,7 +214,7 @@
             {% for influencer in influencers %}
           {
             username: "{{ influencer.username|escapejs }}",
-              media_count: { { influencer.media_count } },
+            media_count: { { influencer.media_count } },
             followers_count: { { influencer.followers_count } },
             follows_count: { { influencer.follows_count } },
             comments_count: { { influencer.comments_count } },
@@ -846,71 +656,163 @@
       </div>
     </section><!-- End Recommend Section -->
 
-    <!-- ======= Testimonials Section ======= -->
-    <section id="testimonials" class="testimonials">
-      <div class="container" data-aos="zoom-in">
+    <!-- ======= Features Section ======= -->
+    <section id="features" class="features">
+      <div class="container" data-aos="fade-up">
 
-        <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
-          <div class="swiper-wrapper">
+        <ul class="nav nav-tabs row d-flex">
+          <li class="nav-item col-3">
+            <a class="nav-link active show" data-bs-toggle="tab" href="#tab-1">
+              <i class="ri-shake-hands-fill"></i>
+              <h4 class="d-none d-lg-block">광고주와 인플루언서가 직접 고르는 연결 시스템</h4>
+            </a>
+          </li>
+          <li class="nav-item col-3">
+            <a class="nav-link" data-bs-toggle="tab" href="#tab-2">
+              <i class="ri-profile-line"></i>
+              <h4 class="d-none d-lg-block">시각적인 자료로 뚜렷한 차이점 비교</h4>
+            </a>
+          </li>
+          <li class="nav-item col-3">
+            <a class="nav-link" data-bs-toggle="tab" href="#tab-3">
+              <i class="ri-thumb-up-line"></i>
+              <h4 class="d-none d-lg-block">숫자가 증명하는 만족도</h4>
+            </a>
+          </li>
+          <li class="nav-item col-3">
+            <a class="nav-link" data-bs-toggle="tab" href="#tab-4">
+              <i class="ri-arrow-right-up-line"></i>
+              <h4 class="d-none d-lg-block">한 눈에 보이는 내 성장도</h4>
+            </a>
+          </li>
+        </ul>
 
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img src="{% static 'img/testimonials/jjjjaehyung.jpg' %}" class="testimonial-img" alt="">
-                <h3>박재형</h3>
-                <h4>Data Preprocessing Specialist</h4>
+        <div class="tab-content">
+          <div class="tab-pane active show" id="tab-1">
+            <div class="row">
+              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
+                <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
+                <p class="fst-italic">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                  dolore
+                  magna aliqua.
+                </p>
+                <ul>
+                  <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+                  <li><i class="ri-check-double-line"></i> Duis aute irure dolor in reprehenderit in voluptate velit.
+                  </li>
+                  <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+                    aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla
+                    pariatur.</li>
+                </ul>
                 <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                  Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                  voluptate
+                  velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                  sunt in
+                  culpa qui officia deserunt mollit anim id est laborum
                 </p>
               </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img src="{% static 'img/testimonials/baaam_jjjang.jpg' %}" class="testimonial-img" alt="">
-                <h3>홍창범</h3>
-                <h4>Database Administrator</h4>
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
+              <div class="col-lg-6 order-1 order-lg-2 text-center">
+                <img src="{% static 'img/features-1.png' %}" alt="" class="img-fluid">
               </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img src="{% static 'img/testimonials/seung___minn_h.jpg' %}" class="testimonial-img" alt="">
-                <h3>홍승민</h3>
-                <h4>Backend Developer</h4>
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-              </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img src="{% static 'img/testimonials/0l___l_lb.jpg' %}" class="testimonial-img" alt="">
-                <h3>이유비</h3>
-                <h4>Frontend Developer</h4>
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-              </div>
-            </div><!-- End testimonial item -->
-
+            </div>
           </div>
-          <div class="swiper-pagination"></div>
+          <div class="tab-pane" id="tab-2">
+            <div class="row">
+              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
+                <h3>Neque exercitationem debitis soluta quos debitis quo mollitia officia est</h3>
+                <p>
+                  Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                  voluptate
+                  velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                  sunt in
+                  culpa qui officia deserunt mollit anim id est laborum
+                </p>
+                <p class="fst-italic">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                  dolore
+                  magna aliqua.
+                </p>
+                <ul>
+                  <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+                  <li><i class="ri-check-double-line"></i> Duis aute irure dolor in reprehenderit in voluptate velit.
+                  </li>
+                  <li><i class="ri-check-double-line"></i> Provident mollitia neque rerum asperiores dolores quos qui a.
+                    Ipsum neque dolor voluptate nisi sed.</li>
+                  <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+                    aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla
+                    pariatur.</li>
+                </ul>
+              </div>
+              <div class="col-lg-6 order-1 order-lg-2 text-center">
+                <img src="{% static 'img/features-2.png' %}" alt="" class="img-fluid">
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="tab-3">
+            <div class="row">
+              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
+                <h3>Voluptatibus commodi ut accusamus ea repudiandae ut autem dolor ut assumenda</h3>
+                <p>
+                  Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                  voluptate
+                  velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                  sunt in
+                  culpa qui officia deserunt mollit anim id est laborum
+                </p>
+                <ul>
+                  <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+                  <li><i class="ri-check-double-line"></i> Duis aute irure dolor in reprehenderit in voluptate velit.
+                  </li>
+                  <li><i class="ri-check-double-line"></i> Provident mollitia neque rerum asperiores dolores quos qui a.
+                    Ipsum neque dolor voluptate nisi sed.</li>
+                </ul>
+                <p class="fst-italic">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                  dolore
+                  magna aliqua.
+                </p>
+              </div>
+              <div class="col-lg-6 order-1 order-lg-2 text-center">
+                <img src="{% static 'img/features-3.png' %}" alt="" class="img-fluid">
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="tab-4">
+            <div class="row">
+              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
+                <h3>Omnis fugiat ea explicabo sunt dolorum asperiores sequi inventore rerum</h3>
+                <p>
+                  Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                  voluptate
+                  velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                  sunt in
+                  culpa qui officia deserunt mollit anim id est laborum
+                </p>
+                <p class="fst-italic">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                  dolore
+                  magna aliqua.
+                </p>
+                <ul>
+                  <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+                  <li><i class="ri-check-double-line"></i> Duis aute irure dolor in reprehenderit in voluptate velit.
+                  </li>
+                  <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+                    aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla
+                    pariatur.</li>
+                </ul>
+              </div>
+              <div class="col-lg-6 order-1 order-lg-2 text-center">
+                <img src="{% static 'img/features-4.png' %}" alt="" class="img-fluid">
+              </div>
+            </div>
+          </div>
         </div>
 
       </div>
-    </section><!-- End Testimonials Section -->
+    </section><!-- End Features Section -->
 
     <!-- ======= Team Section ======= -->
     <section id="team" class="team section-bg">
@@ -1128,55 +1030,42 @@
 
         <div class="row">
 
-          <div class="col-lg-12 mt-4 mt-lg-0">
-<<<<<<< HEAD
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-=======
-            <form
-              action="https://script.google.com/macros/s/AKfycbxQdSiVTIbl3b_L8UzKWYkuiivrjpIEBf_NDSKdnJB3V7RZ8_M1sAHahjV6t-lPnjjLag/exec"
-              method="post" role="form" class="php-email-form" target="frAttachFiles">
->>>>>>> main
-              <div class="row">
-                <div class="col-md-6 form-group">
-                  <label for="company">회사명</label>
-                  <input type="text" name="company" class="form-control" id="company" placeholder="기업명을 입력해 주세요."
-                    required>
-                </div>
-                <div class="col-md-6 form-group">
-                  <label for="brand">브랜드명 & 제품명</label>
-                  <input type="text" name="brand" class="form-control" id="brand" placeholder="브랜드&제품명을 입력해 주세요."
-                    required>
-                </div>
-                <div class="col-md-6 form-group">
-                  <label for="manager">담당자 명</label>
-                  <input type="text" name="manager" class="form-control" id="manager" placeholder="담당자 이름을 입력해 주세요."
-                    required>
-                </div>
-                <div class="col-md-6 form-group">
-                  <label for="email">이메일</label>
-                  <input type="email" class="form-control" name="email" id="email" placeholder="이메일 주소를 입력해 주세요."
-                    required>
-                </div>
-                <div class="col-md-6 form-group">
-                  <label for="contact">연락처</label>
-                  <input type="text" name="contact" class="form-control" id="contact" placeholder="연락받으실 연락처를 입력해 주세요."
-                    required>
-                </div>
-                <div class="col-md-6 form-group">
-                  <label for="budget">가용예산</label>
-                  <input type="text" name="budget" class="form-control" id="budget" placeholder="가용예산을 입력해주세요. (원)"
-                    required>
-                </div>
+        <div class="col-lg-12 mt-4 mt-lg-0">
+          <form action="https://script.google.com/macros/s/AKfycbzqyn1rBQCOgWK1Czgwfk9dxzyyDPlQGCF5QPfgDxfq8rX8YVY872VbcqS78P4U-fSKtw/exec" method="post" role="form" class="php-email-form" target="frAttachFiles" style="background: white;">
+            <div class="row">
+              <div class="col-md-6 form-group">
+                <label for="회사명">회사명</label>
+                <input type="text" name="회사명" class="form-control" id="company" placeholder="기업명을 입력해 주세요." required>
               </div>
-              <div class="form-group mt-3">
-                <label for="homepage">홈페이지</label>
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="회사 홈페이지 주소를 입력해 주세요."
-                  required>
+              <div class="col-md-6 form-group">
+                <label for="브랜드명&제품명">브랜드명 & 제품명</label>
+                <input type="text" name="브랜드명&제품명" class="form-control" id="brand" placeholder="브랜드&제품명을 입력해 주세요." required>
               </div>
-              <div class="form-group mt-3">
-                <label for="question">문의 내용</label>
-                <textarea class="form-control" name="question" rows="5" placeholder="" required></textarea>
+              <div class="col-md-6 form-group">
+                <label for="담당자명">담당자명</label>
+                <input type="text" name="담당자명" class="form-control" id="manager" placeholder="담당자 이름을 입력해 주세요." required>
               </div>
+              <div class="col-md-6 form-group">
+                <label for="이메일">이메일</label>
+                <input type="email" class="form-control" name="이메일" id="email" placeholder="이메일 주소를 입력해 주세요." required>
+              </div>
+              <div class="col-md-6 form-group">
+                <label for="연락처">연락처</label>
+                <input type="text" name="연락처" class="form-control" id="contact" placeholder="연락받으실 연락처를 입력해 주세요." required>
+              </div>
+              <div class="col-md-6 form-group">
+                <label for="가용예산">가용예산</label>
+                <input type="text" name="가용예산" class="form-control" id="budget" placeholder="가용예산을 입력해주세요. (원)" required>
+              </div>
+            </div>
+            <div class="form-group mt-3">
+              <label for="홈페이지">홈페이지</label>
+              <input type="text" class="form-control" name="홈페이지" id="subject" placeholder="회사 홈페이지 주소를 입력해 주세요." required>
+            </div>
+            <div class="form-group mt-3">
+              <label for="문의내용">문의 내용</label>
+              <textarea class="form-control" name="문의내용" rows="5" placeholder=""></textarea>
+            </div>
 
               <div style="margin-bottom:10px; padding-top:10px;">
                 <label class="ant-checkbox-wrapper" style="margin-right: 5px;">
@@ -1188,14 +1077,15 @@
                 <span class="policy-title">개인정보처리방침</span> / <span class="policy-title">이용방침</span>에 동의 합니다.
               </div>
 
-              <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
-              </div>
-              <div class="text-center"><button type="submit" id="submit-btn" disabled>문의하기</button></div>
-            </form>
-          </div>
+            <div class="my-3">
+              <div class="loading">Loading</div>
+              <div class="error-message"></div>
+              <div class="sent-message">Your message has been sent. Thank you!</div>
+            </div>
+            <div class="text-center"><button type="submit" id="submit-btn" disabled>문의하기</button></div>
+          </form>
+          <iframe name="frAttachFiles" style="display:none"></iframe>
+        </div>
 
           <script>
             document.addEventListener('DOMContentLoaded', function () {
@@ -1208,14 +1098,107 @@
                 } else {
                   button.setAttribute('disabled', 'true');
                 }
-              });
             });
-          </script>
+
+            button.addEventListener('click', function() {
+              alert('전송되었습니다.');
+            });
+        });
+      </script>
 
         </div>
 
       </div>
     </section><!-- End Contact Section -->
+
+    <!-- ======= Testimonials Section ======= -->
+    <section id="testimonials" class="testimonials">
+      <div class="container" data-aos="zoom-in">
+
+        <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
+          <div class="swiper-wrapper">
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <img src="{% static 'img/testimonials/jjjjaehyung.jpg' %}" class="testimonial-img" alt="">
+                <h3>박재형</h3>
+                <h4>Data Preprocessing Specialist</h4>
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <img src="{% static 'img/testimonials/baaam_jjjang.jpg' %}" class="testimonial-img" alt="">
+                <h3>홍창범</h3>
+                <h4>Database Administrator</h4>
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <img src="{% static 'img/testimonials/seung___minn_h.jpg' %}" class="testimonial-img" alt="">
+                <h3>홍승민</h3>
+                <h4>Backend Developer</h4>
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <img src="{% static 'img/testimonials/0l___l_lb.jpg' %}" class="testimonial-img" alt="">
+                <h3>이유비</h3>
+                <h4>Frontend Developer</h4>
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+              </div>
+            </div><!-- End testimonial item -->
+
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+      </div>
+    </section><!-- End Testimonials Section -->
+
+    <!-- ======= Clients Section ======= -->
+    <section id="clients" class="clients">
+      <div class="container" data-aos="zoom-in">
+
+        <div class="row">
+
+          <div class="col-lg-4 col-md-4 col-6 d-flex align-items-center justify-content-center">
+            <img src="{% static 'img/clients/LEVWARE.png' %}" class="img-fluid" alt="">
+          </div>
+
+          <div class="col-lg-4 col-md-4 col-6 d-flex align-items-center justify-content-center">
+            <img src="{% static 'img/clients/1401Home.png' %}" class="img-fluid" alt="">
+          </div>
+
+          <div class="col-lg-4 col-md-4 col-6 d-flex align-items-center justify-content-center">
+            <img src="{% static 'img/clients/pharma_bros.png' %}" class="img-fluid" alt="">
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Clients Section -->
 
   </main><!-- End #main -->
 

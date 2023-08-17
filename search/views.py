@@ -5,6 +5,9 @@ from django.contrib import messages
 
 from main.models import YourModel
 
+def search(request):
+    return render(request, 'search.html')
+
 def search_results(request):
     query = request.GET.get('q')
     if query:
