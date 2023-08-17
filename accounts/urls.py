@@ -14,4 +14,5 @@ urlpatterns = [
     path('MyPage/', views.MyPage, name = "MyPage"),
     path('Adv_Logout/', auth_views.LogoutView.as_view(next_page='main:AdvHome'), name='Adv_Logout'),
     path('Influ_Logout/', auth_views.LogoutView.as_view(next_page='main:InfluHome'), name='Influ_Logout'),
+    
 ]
