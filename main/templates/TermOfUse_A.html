@@ -1,0 +1,251 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>inflaze</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static 'img/favicon.png' %}" rel="icon">
+  <link href="{% static 'img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=inter%7CNoto+Sans+KR:100,300,500,700,900"
+    media="all">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Dewi
+  * Updated: Jul 27 2023 with Bootstrap v5.3.1
+  * Template URL: https://bootstrapmade.com/dewi-free-multi-purpose-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top header-inner-pages">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <a href="/AdvHome">
+        <img class="logo" src="{% static 'img/logo.png' %}" style="width:30%;" alt="" />
+      </a>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="/AdvHome/#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="/AdvHome/#about">About</a></li>
+          <li><a class="nav-link scrollto" href="/AdvHome/#recommend">Recommend</a></li>
+          <li><a class="nav-link scrollto" href="/AdvHome/#team">Team</a></li>
+          <li><a class="nav-link scrollto" href="/AdvHome/#contact">Contact</a></li>
+          {% if user.is_authenticated %}
+          <!-- 로그인 상태 -->
+          <li><a class="getstarted scrollto" href="{% url 'accounts:MyPage' %}"
+              style="margin-left:0; padding:5px 15px;">마이페이지</a></li>
+          <li><a class="getstarted scrollto" href="{% url 'accounts:Adv_Logout' %}"
+              style="margin-left:0; padding:5px 15px;">{{ user.username }} 로그아웃</a></li>
+          {% else %}
+          <!-- 로그아웃 상태 -->
+          <li><a class="getstarted scrollto" href="{% url 'accounts:Adv_Login' %}"
+              style="margin-left:0; padding:5px 15px;">로그인</a></li>
+          <li><a class="getstarted scrollto" href="{% url 'accounts:Adv_Signup' %}"
+              style="margin-left:0; padding:5px 15px;">회원가입</a></li>
+          {% endif %}
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>이용약관</h2>
+          <ol>
+            <li><a href="/AdvHome">Home</a></li>
+            <li>이용약관</li>
+          </ol>
+        </div>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <section class="inner-page">
+      <div class="container">
+        <div class="page-title">
+          <strong>이용약관</strong>
+        </div>
+        <div class="section-wrapper">
+              <h4><strong>1. 약관의 목적</strong></h4>
+
+              <h5>이 약관은 inflaze (이하 '회사')의 홈페이지 (이하 '사이트')를 이용함에 있어 회사와 이용자 간의 권리, 의무 및 책임사항을 규정합니다.</h5>
+
+              <h4><strong>2. 약관의 효력과 변경</strong></h4>
+
+              <h5>본 약관은 회사와 이용자 간에 계약의 내용을 구체화한 것으로서, 이 약관에 동의하는 것은 회사의 서비스를 이용하는 조건으로 간주됩니다.
+              회사는 사전 고지 없이 본 약관을 변경할 수 있으며, 변경된 약관은 사이트를 통해 공지하거나 이메일을 통해 통지합니다. 변경된 약관은 공지 후 [일정 기간] 이후부터 효력이 발생하며, 이
+              기간 동안 이용자는 변경된 약관에 동의하지 않을 경우 사이트 이용을 중단할 수 있습니다.</h5>
+
+              <h4><strong>3. 개인정보 처리방침</strong></h4>
+
+              <h5>회사는 이용자의 개인정보를 보호하기 위해 최선의 노력을 다하며, 개인정보 처리방침에 따라 개인정보를 수집, 이용, 보관 및 관리합니다. 개인정보 처리방침의 내용은 사이트 내에서 확인하실 수
+              있습니다.</h5>
+
+              <h4><strong>4. 서비스의 제공</strong></h4>
+
+              <h5>회사는 이용자에게 다양한 마케팅 서비스를 제공할 수 있으며, 해당 서비스는 사이트 내에서 상세히 안내됩니다.
+              회사가 제공하는 서비스 중 일부는 유료로 제공될 수 있습니다. 유료 서비스 이용 시 별도의 약관이 적용될 수 있으며, 해당 내용은 사이트 내에서 안내됩니다.</h5>
+              
+              <h4><strong>5. 저작권 및 지적재산권</strong></h4>
+
+              <h5>사이트 내에 게시된 모든 콘텐츠 및 자료의 저작권 및 지적재산권은 회사에 속합니다.
+              회사의 사전 동의 없이 사이트 내의 콘텐츠를 무단으로 복사, 배포, 수정, 전송, 게시, 또는 이용하는 것은 금지됩니다.</h5>
+
+              <h4><strong>6. 책임의 제한</strong></h4>
+
+              <h5>회사는 사이트의 내용 및 서비스에 대한 정확성, 신뢰성, 완전성 등에 대해 어떠한 보증도 제공하지 않습니다.
+              회사는 이용자의 사이트 이용으로 발생하는 어떠한 손해에 대해서도 책임을 지지 않습니다.</h5>
+
+              <h4><strong>7. 분쟁의 해결</strong></h4>
+
+              <h5>본 약관과 관련하여 발생하는 분쟁에 대해서는 대한민국의 법령을 적용하며, 이로 인한 소송은 서울중앙지방법원을 관할 법원으로 합니다.</h5>
+
+              <h4><strong>8. 기타 사항</strong></h4>
+
+              <h5>본 약관에 명시되지 않은 사항에 대해서는 회사와 이용자 간의 합의에 따르며, 합의가 없는 경우 관련 법령 및 상관례에 따릅니다.
+                <br><br>
+              본 약관은 2023년 8월 25일부터 적용됩니다.</h5>
+        </div>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6">
+            <div class="footer-info">
+              <h3>Info</h3>
+              <p>
+                Bundang-gu, Seongnam-si, Gyeonggi-do <br>
+                Pangyo 289-20, Korea<br><br>
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-6 footer-links">
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="/TermOfUse_A">이용약관</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="/PrivacyPolicy_A">개인정보처리방침</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="footer-info">
+              <p>
+                <strong>Phone:</strong> +82 010 8937 6522<br>
+                <strong>Email:</strong> ghdtmdalsdad@naver.com<br>
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="footer-info">
+              <div class="social-links mt-3">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+
+          {% comment %} <div class="col-lg-2 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Services</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+            </ul>
+          </div> {% endcomment %}
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>inflaze</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/dewi-free-multi-purpose-html-template/ -->
+        Designed by <a href="https://bootstrapmade.com/">CircuitChamps</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'vendor/purecounter/purecounter_vanilla.js' %}"></script>
+  <script src="{% static 'vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'vendor/swiper/swiper-bundle.min.js' %}"></script>
+  <script src="{% static 'vendor/php-email-form/validate.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'js/scripts.js' %}"></script>
+
+</body>
+
+</html>

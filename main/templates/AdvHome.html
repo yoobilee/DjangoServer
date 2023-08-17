@@ -65,16 +65,12 @@
           <li><a class="nav-link scrollto" href="#team">Team</a></li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
           {% if request.session.user_id %}
-          <li><a class="getstarted scrollto" href="/accounts/MyPage" style="margin-left:0; padding:5px 15px;">마이페이지</a>
-          </li>
-          <li><a class="getstarted scrollto" href="/accounts/Adv_Logout"
-              style="margin-left:0; padding:5px 15px;">로그아웃</a></li>
-          {% else %}
-          <li><a class="getstarted scrollto" href="/accounts/Adv_Login" style="margin-left:0; padding:5px 15px;">로그인</a>
-          </li>
-          <li><a class="getstarted scrollto" href="/accounts/Adv_Signup"
-              style="margin-left:0; padding:5px 15px;">회원가입</a></li>
-          {% endif %}
+            <li><a class="getstarted scrollto" href="/accounts/MyPage" style="margin-left:0; padding:5px 15px;">마이페이지</a></li>
+            <li><a class="getstarted scrollto" href="/accounts/Adv_Logout" style="margin-left:0; padding:5px 15px;">로그아웃</a></li>
+            {% else %}
+            <li><a class="getstarted scrollto" href="/accounts/Adv_Login" style="margin-left:0; padding:5px 15px;">로그인</a></li>
+            <li><a class="getstarted scrollto" href="/accounts/Adv_Signup" style="margin-left:0; padding:5px 15px;">회원가입</a></li>
+            {% endif %}
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -87,7 +83,7 @@
   <section id="hero">
     <div class="hero-container" data-aos="fade-up" data-aos-delay="150">
       <h1>Plan. Launch. Grow.</h1>
-      <h2>We are team of talented designers making websites with Bootstrap</h2>
+      <h2>Driving business growth through innovative strategies and results-driven marketing</h2>
       <!--<div class="d-flex">
         <a href="#about" class="btn-get-started scrollto">Get Started</a>
         <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
@@ -95,26 +91,17 @@
 
       <!-- ++++++ Search Section ++++++ -->
       <div id="search">
-        <!--<form class="d-flex" role="search" method="POST">
+        <form class="d-flex-s" role="search" method="GET" action="{% url 'search_results' %}">
           {% csrf_token %}
-        <input type="search" class="form-control me-2" autocomplete="off" placeholder="키워드를 입력하세요" name="search_query" required aria-label="search">
-        <button class="btn btn-outline-success" type="submit">검색</button>
-        </form>-->
-        <form class="d-flex" role="search" method="GET" action="{% url 'search' %}">
-          {% csrf_token %}
-          <input type="search" class="form-control me-2" autocomplete="off" name="q" value="{{ query }}"
-            placeholder="키워드를 입력하세요" required aria-label="search">
-          <button class="btn btn-info" type="submit" style="width:100px;">검색</button>
-        </form>
+          <input type="text" class="form-control me-2" autocomplete="off" name="q" placeholder="키워드를 입력하세요">
+          <img class="absolute" src="{% static 'img/#.png' %}">
+          <button class="btn btn-info" type="submit" style="width:auto;">검색</button>
+      </form>
       </div>
 
       <div id="content">
         {% block content %}{% endblock %}
       </div>
-
-      <!--<div id="suggestion_box" class = "invisible">
-        <div id = "suggested_items"></div>
-      </div>-->
     </div>
   </section><!-- End Hero -->
 
@@ -164,7 +151,6 @@
                   <p>Average Satisfaction</p>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
@@ -172,35 +158,27 @@
         <div class="row">
 
           <div class="col-lg-6 video-box align-self-baseline" data-aos="zoom-in" data-aos-delay="100">
-            <img src="{% static 'img/about.jpg' %}" class="img-fluid" alt="">
-            <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox play-btn mb-4"></a>
+            <img src="{% static 'img/about-video.png' %}" class="img-fluid" alt="">
+            <a href="https://www.youtube.com/watch?v=QsY8fnvMn6c" class="glightbox play-btn mb-4"></a>
           </div>
 
           <div class="col-lg-6 pt-3 pt-lg-0 content">
-            <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
+            <h3>당신의 도전을 우리와 함께 나눠보세요. 브랜드의 성공을 위한 첫 걸음을 함께 시작해보세요.</h3>
             <p class="fst-italic">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore
-              magna aliqua.
+              우리의 철학은 간단합니다. 인플루언서의 힘과 브랜드의 가치를 융합하여 더 큰 영향력을 창출하는 것입니다. 이제 당신도 인플루언서 마케팅의 혁신적인 파도에 탑승할 차례입니다.
             </p>
             <ul>
-              <li><i class="bx bx-check-double"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-              <li><i class="bx bx-check-double"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-              <li><i class="bx bx-check-double"></i> Voluptate repellendus pariatur reprehenderit corporis sint.</li>
-              <li><i class="bx bx-check-double"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla
-                pariatur.</li>
+              <li><i class="bx bx-check-double"></i> <b>전문성 강조:</b> 우리는 인플루언서 마케팅의 선두주자로, 브랜드와 인플루언서 간의 미학적인 만남을 형성합니다.</li>
+              <li><i class="bx bx-check-double"></i> <b>목표 달성:</b> 우리의 열정은 당신의 브랜드를 세상에 선보이는 데 있습니다. 깊은 인사이트와 체계적인 분석을 통해 우리는 인플루언서를 신중하게 선택하고, 귀사의 목표와 어울리는 파트너를 찾아냅니다.</li>
+              <li><i class="bx bx-check-double"></i> <b>전략적 접근:</b> 우리의 전문가들은 트렌드를 예측하며, 창의적인 콘텐츠와 전략을 개발하여 브랜드의 목소리를 더욱 뚜렷하게 전달합니다.</li>
+              <li><i class="bx bx-check-double"></i> <b>연결과 영향력:</b> 인플루언서와 브랜드 간의 소중한 연결을 형성하여, 영향력 있는 스토리를 세계에 전파하겠습니다.</li>
+              <li><i class="bx bx-check-double"></i> <b>협력과 확장:</b> 우리와 함께하면 더 많은 사람들에게 당신의 메시지를 전달할 수 있습니다.</li>
             </ul>
             <p>
-              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-              voluptate
-              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-              culpa qui officia deserunt mollit anim id est laborum
+              우리의 끊임없는 탐구와 열정으로 브랜드의 미래를 형성하는 데 기여하겠습니다. 당신과 함께하는 여정을 기대하며, 당신의 성공을 응원합니다.
             </p>
           </div>
-
         </div>
-
       </div>
     </section><!-- End About Section -->
 
@@ -210,28 +188,16 @@
 
         <div class="row">
 
-          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-            <img src="{% static 'img/clients/client-1.png' %}" class="img-fluid" alt="">
+          <div class="col-lg-4 col-md-4 col-6 d-flex align-items-center justify-content-center">
+            <img src="{% static 'img/clients/LEVWARE.png' %}" class="img-fluid" alt="">
           </div>
 
-          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-            <img src="{% static 'img/clients/client-2.png' %}" class="img-fluid" alt="">
+          <div class="col-lg-4 col-md-4 col-6 d-flex align-items-center justify-content-center">
+            <img src="{% static 'img/clients/1401Home.png' %}" class="img-fluid" alt="">
           </div>
 
-          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-            <img src="{% static 'img/clients/client-3.png' %}" class="img-fluid" alt="">
-          </div>
-
-          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-            <img src="{% static 'img/clients/client-4.png' %}" class="img-fluid" alt="">
-          </div>
-
-          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-            <img src="{% static 'img/clients/client-5.png' %}" class="img-fluid" alt="">
-          </div>
-
-          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-            <img src="{% static 'img/clients/client-6.png' %}" class="img-fluid" alt="">
+          <div class="col-lg-4 col-md-4 col-6 d-flex align-items-center justify-content-center">
+            <img src="{% static 'img/clients/pharma_bros.png' %}" class="img-fluid" alt="">
           </div>
 
         </div>
@@ -397,8 +363,8 @@
       </div>
     </section><!-- End Features Section -->
 
-    <!-- ======= Recommend Section ======= -->
-    <section id="recommend" class="recommend section-bg">
+     <!-- ======= Recommend Section ======= -->
+     <section id="recommend" class="recommend section-bg">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
@@ -766,123 +732,6 @@
       </div>
     </section><!-- End Testimonials Section -->
 
-    <!-- ======= Portfolio Section ======= 
-    <section id="portfolio" class="portfolio">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-          <h2>Portfolio</h2>
-          <p>Check our Portfolio</p>
-        </div>
-
-        <div class="row" data-aos="fade-up" data-aos-delay="100">
-          <div class="col-lg-12 d-flex justify-content-center">
-            <ul id="portfolio-flters">
-              <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-app">App</li>
-              <li data-filter=".filter-card">Card</li>
-              <li data-filter=".filter-web">Web</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <img src="{% static 'img/portfolio/portfolio-1.jpg' %}" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>App 1</h4>
-              <p>App</p>
-              <a href="{% static 'img/portfolio/portfolio-1.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <img src="{% static 'img/portfolio/portfolio-2.jpg' %}" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Web 3</h4>
-              <p>Web</p>
-              <a href="{% static 'img/portfolio/portfolio-2.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <img src="{% static 'img/portfolio/portfolio-3.jpg' %}" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>App 2</h4>
-              <p>App</p>
-              <a href="{% static 'img/portfolio/portfolio-3.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 2"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <img src="{% static 'img/portfolio/portfolio-4.jpg' %}" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Card 2</h4>
-              <p>Card</p>
-              <a href="{% static 'img/portfolio/portfolio-4.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Card 2"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <img src="{% static '/img/portfolio/portfolio-5.jpg' %}" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Web 2</h4>
-              <p>Web</p>
-              <a href="{% static 'img/portfolio/portfolio-5.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 2"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <img src="{% static 'img/portfolio/portfolio-6.jpg' %}" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>App 3</h4>
-              <p>App</p>
-              <a href="{% static 'img/portfolio/portfolio-6.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 3"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <img src="{% static 'img/portfolio/portfolio-7.jpg' %}" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Card 1</h4>
-              <p>Card</p>
-              <a href="{% static 'img/portfolio/portfolio-7.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Card 1"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <img src="{% static 'img/portfolio/portfolio-8.jpg' %}" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Card 3</h4>
-              <p>Card</p>
-              <a href="{% static 'img/portfolio/portfolio-8.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Card 3"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <img src="{% static 'img/portfolio/portfolio-9.jpg' %}" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Web 3</h4>
-              <p>Web</p>
-              <a href="{% static 'img/portfolio/portfolio-9.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End Portfolio Section -->
-
     <!-- ======= Team Section ======= -->
     <section id="team" class="team section-bg">
       <div class="container" data-aos="fade-up">
@@ -891,6 +740,11 @@
           <h2>Team</h2>
           <p>Check our Team</p>
         </div>
+
+        <!-- 이전 버튼 -->
+        <div class="swiper-button-prev"></div>
+        <!-- 다음 버튼 -->
+        <div class="swiper-button-next"></div>
 
         <!-- 이전 버튼 -->
         <div class="swiper-button-prev"></div>
@@ -1080,59 +934,6 @@
             loop: true, // loop 옵션 활성화
           });
         </script>
-
-        <!--<div class="row">
-
-          <div class="col-lg-4 col-md-6">
-            <div class="member" data-aos="fade-up" data-aos-delay="100">
-              <div class="pic"><img src="{% static 'img/team/team-1.jpg' %}" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>Walter White</h4>
-                <span>Chief Executive Officer</span>
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-            <div class="member">
-              <div class="pic"><img src="{% static 'img/team/team-2.jpg' %}" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>Sarah Jhonson</h4>
-                <span>Product Manager</span>
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-            <div class="member">
-              <div class="pic"><img src="{% static 'img/team/team-3.jpg' %}" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>William Anderson</h4>
-                <span>CTO</span>
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>-->
-
       </div>
     </section><!-- End Team Section -->
 
@@ -1238,15 +1039,31 @@
       <div class="container">
         <div class="row">
 
-          <div class="col-lg-3 col-md-6">
+          <div class="col-lg-4 col-md-6">
             <div class="footer-info">
-              <h3>Inizio</h3>
+              <h3>Info</h3>
               <p>
                 Bundang-gu, Seongnam-si, Gyeonggi-do <br>
                 Pangyo 289-20, Korea<br><br>
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-6 footer-links">
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="/TermOfUse_A">이용약관</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="/PrivacyPolicy_A">개인정보처리방침</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="footer-info">
+              <p>
                 <strong>Phone:</strong> +82 010 8937 6522<br>
                 <strong>Email:</strong> ghdtmdalsdad@naver.com<br>
               </p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="footer-info">
               <div class="social-links mt-3">
                 <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
                 <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
@@ -1256,38 +1073,6 @@
               </div>
             </div>
           </div>
-
-          <div class="col-lg-2 col-md-6 footer-links">
-            <h4>Useful Links</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Our Services</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-4 col-md-6 footer-newsletter">
-            <h4>Our Newsletter</h4>
-            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="Subscribe">
-            </form>
-
-          </div>
-
         </div>
       </div>
     </div>
@@ -1297,10 +1082,6 @@
         &copy; Copyright <strong><span>inflaze</span></strong>. All Rights Reserved
       </div>
       <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/dewi-free-multi-purpose-html-template/ -->
         Designed by <a href="https://bootstrapmade.com/">CircuitChamps</a>
       </div>
     </div>
