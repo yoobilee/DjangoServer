@@ -1751,3 +1751,14 @@ section {
 .relation-keywords {
   margin-top: 20px;
 }
+
+.down-arrow {
+  position: absolute;
+  padding-top: 500px;
+}
+
+.down-arrow #arrow-bg {
+  width:50px;
+  background-color: transparent;
+  opacity: 0.3;
+}

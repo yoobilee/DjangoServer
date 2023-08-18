@@ -96,21 +96,9 @@
         <a href="#about" class="btn-get-started scrollto">Get Started</a>
         <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
       </div>-->
-
-      {% comment %} <!-- ++++++ Search Section ++++++ -->
-      <div id="search">
-        <form class="d-flex-s" role="search" method="GET" action="{% url 'search_results' %}">
-          {% csrf_token %}
-          <input type="text" class="form-control me-2" autocomplete="off" name="q" placeholder="키워드를 입력하세요">
-          <img class="absolute" src="{% static 'img/#.png' %}">
-          <button class="btn btn-info" type="submit" style="width:auto;">검색</button>
-        </form>
+      <div class="down-arrow">
+        <img id="arrow-bg" src="{% static 'img/down-arrow.png' %}" alt=""></img>
       </div>
-
-      <div id="content">
-        {% block content %}{% endblock %}
-      </div> {% endcomment %}
-    </div>
   </section><!-- End Hero -->
 
   <main id="main">
@@ -401,7 +389,7 @@
             {% for influencer in influencers %}
           {
             username: "{{ influencer.username|escapejs }}",
-              media_count: { { influencer.media_count } },
+            media_count: { { influencer.media_count } },
             followers_count: { { influencer.followers_count } },
             follows_count: { { influencer.follows_count } },
             comments_count: { { influencer.comments_count } },
