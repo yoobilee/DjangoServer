@@ -28,6 +28,7 @@
 
   <!-- Template Main CSS File -->
   <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+  <link href="{% static 'css/influencer.css' %}" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: Dewi
@@ -73,7 +74,7 @@
 
   <main id="main">
 
-    <!-- ======= Breadcrumbs ======= -->
+    {% comment %} <!-- ======= Breadcrumbs ======= -->
     <section id="breadcrumbs" class="breadcrumbs">
       <div class="container">
 
@@ -86,7 +87,7 @@
         </div>
 
       </div>
-    </section><!-- End Breadcrumbs -->
+    </section><!-- End Breadcrumbs --> {% endcomment %}
 
     {% block contents %}
 
