@@ -15,9 +15,9 @@ def first_index(request):
 def InfluHome(request):
     return render(request, "InfluHome.html")
 
-def AdvHome(request):
+def AgencyHome(request):
     influencers = Influencer.objects.all()    
-    return render(request, 'AdvHome.html', {'influencers': influencers})
+    return render(request, 'AgencyHome.html', {'influencers': influencers})
 
 def inner_page(request):
     return render(request, "inner-page.html")
@@ -102,3 +102,9 @@ def get_additional_data(request):
         return JsonResponse(influencer_data)
     except (Influencer.DoesNotExist, Post_master.username.DoesNotExist):
         return JsonResponse({'error': 'Data not found'})
+    
+def notice(request):
+    return render(request, "notice.html")
+
+def notice_Agency1(request):
+    return render(request, "notice-Agency1.html")
