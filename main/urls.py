@@ -18,4 +18,5 @@ urlpatterns = [
     path('TermOfUse_I/', views.TermOfUse_I, name = "TermOfUse_I"),
     path('PrivacyPolicy_I/', views.PrivacyPolicy_I, name = "PrivacyPolicy_I"),
     path('get_influencer_data', views.get_influencer_data, name='get_influencer_data'),
+    path('get_additional_data/', views.get_additional_data, name='get_additional_data'),
 ]

@@ -29,6 +29,7 @@
   <!-- Template Main CSS File -->
   <link href="{% static 'css/styles.css' %}" rel="stylesheet">
   <link rel="stylesheet" href="{% static 'css/swiper.css' %}">
+  <link rel="stylesheet" href="{% static 'css/chart.css' %}">
 
   <!-- =======================================================
   * Template Name: Dewi
@@ -37,7 +38,10 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  <!-- Highcharts 라이브러리 추가 -->
   <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
 </head>
 
 <body>
@@ -57,9 +61,11 @@
         <ul>
           <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
           <li><a class="nav-link scrollto" href="#about">About</a></li>
+          <li><a class="nav-link scrollto" href="#features">Services</a></li>
           <li><a class="nav-link scrollto" href="#recommend">Recommend</a></li>
           <li><a class="nav-link scrollto" href="#team">Team</a></li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          <li><a class="nav-link scrollto" href="/search/search">Search &nbsp;<img src="{% static 'img/search.png' %}"></a></li>
           {% if request.session.user_id %}
             <li><a class="getstarted scrollto" href="/accounts/MyPage" style="margin-left:0; padding:5px 15px;">마이페이지</a></li>
             <li><a class="getstarted scrollto" href="/accounts/Adv_Logout" style="margin-left:0; padding:5px 15px;">로그아웃</a></li>
@@ -84,7 +90,7 @@
         <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
       </div>-->
 
-      <!-- ++++++ Search Section ++++++ -->
+      {% comment %} <!-- ++++++ Search Section ++++++ -->
       <div id="search">
         <form class="d-flex-s" role="search" method="GET" action="{% url 'search_results' %}">
           {% csrf_token %}
@@ -96,7 +102,7 @@
 
       <div id="content">
         {% block content %}{% endblock %}
-      </div>
+      </div> {% endcomment %}
     </div>
   </section><!-- End Hero -->
 
@@ -347,13 +353,19 @@
         <!-- HTML 코드 -->
 
         <script>
+          var selectedInfluencerDataArray = []; // 선택한 인플루언서 데이터 배열
+          var selectedInfluencerData1 = null;
+          var selectedInfluencerData2 = null;
+
           var influencersData = [
             {% for influencer in influencers %}
           {
             username: "{{ influencer.username|escapejs }}",
-            media_count: { { influencer.media_count } },
-              followers_count: { { influencer.followers_count } },
-              follows_count: { { influencer.follows_count } },
+              media_count: { { influencer.media_count } },
+            followers_count: { { influencer.followers_count } },
+            follows_count: { { influencer.follows_count } },
+            comments_count: { { influencer.comments_count } },
+            like_count: { { influencer.like_count } },
             // 기타 필드들
           }
           {% endfor %}
@@ -365,6 +377,10 @@
             $("#influencersTable1").hide();
             $("#influencersTable2").hide();
 
+            var selectedInfluencerDataArray = []; // 선택한 인플루언서 데이터 배열
+
+            $(".selectButton").hide(); // 초기에는 선택 버튼 숨김
+
             $("#searchInput1").on("input", function () {
               var input = $(this).val().toLowerCase();
               if (input.trim() === "") {
@@ -375,12 +391,31 @@
                   var influencerName = $(this).find("td:first-child").text().toLowerCase();
                   if (influencerName.includes(input)) {
                     $(this).show();
+                    $(this).find(".selectButton").show(); // 검색 결과가 있으면 선택 버튼 표시
                   } else {
                     $(this).hide();
+                    $(this).find(".selectButton").hide(); // 검색 결과가 없으면 선택 버튼 숨김
                   }
                 });
               }
             });
+
+            $(".selectButton").click(function () {
+              var username = $(this).data("username");
+              var selectedRow = $(this).closest("tr"); // 선택된 버튼이 속한 행을 가져옴
+
+              var selectedInfluencerData = {
+                username: selectedRow.find("td:first-child").text(),
+                media_count: parseFloat(selectedRow.find("td:nth-child(2)").text()),
+                followers_count: parseFloat(selectedRow.find("td:nth-child(3)").text()),
+                follows_count: parseFloat(selectedRow.find("td:nth-child(4)").text())
+              };
+
+              fetchAdditionalData(selectedInfluencerData.username);
+              selectedInfluencerDataArray.push(selectedInfluencerData);
+              updateChart(selectedInfluencerDataArray);
+            });
+
 
             $("#searchInput2").on("input", function () {
               var input = $(this).val().toLowerCase();
@@ -399,26 +434,23 @@
               }
             });
 
-            var selectedInfluencerData1 = null;
-            var selectedInfluencerData2 = null;
-
             // 인플루언서 데이터가 선택될 경우 createChart 함수 호출
-  $("#selectButton1").click(function () {
-    var selectedRow = $("#influencersTable1 tbody tr:visible:first");
-    if (selectedRow.length > 0) {
-      selectedInfluencerData1 = {
-        username: selectedRow.find("td:first-child").text(),
-        media_count: parseFloat(selectedRow.find("td:nth-child(2)").text()), // 수정 필요
-        followers_count: parseFloat(selectedRow.find("td:nth-child(3)").text()), // 수정 필요
-        follows_count: parseFloat(selectedRow.find("td:nth-child(4)").text()) // 수정 필요
-      };
-      alert("인플루언서 1 선택 완료: " + selectedInfluencerData1.username);
-      // 선택한 인플루언서 데이터를 기반으로 차트 생성
-      createChart(selectedInfluencerData1);
-    } else {
-      alert("선택할 인플루언서가 없습니다.");
-    }
-  });
+            $("#selectButton1").click(function () {
+              var selectedRow = $("#influencersTable1 tbody tr:visible:first");
+              if (selectedRow.length > 0) {
+                selectedInfluencerData1 = {
+                  username: selectedRow.find("td:first-child").text(),
+                  media_count: parseFloat(selectedRow.find("td:nth-child(2)").text()),
+                  followers_count: parseFloat(selectedRow.find("td:nth-child(3)").text()),
+                  follows_count: parseFloat(selectedRow.find("td:nth-child(4)").text())
+                };
+
+                // 추가 데이터를 가져오는 함수 호출
+                fetchAdditionalData(selectedInfluencerData1.username);
+              } else {
+                alert("선택할 인플루언서가 없습니다.");
+              }
+            });
 
             $("#selectButton2").click(function () {
               var selectedRow = $("#influencersTable2 tbody tr:visible:first");
@@ -433,7 +465,70 @@
                 alert("선택할 인플루언서가 없습니다.");
               }
             });
+
+            // 추가 데이터를 가져오는 함수
+            function fetchAdditionalData(username) {
+              $.ajax({
+                url: `/get_additional_data/?username=${username}`,
+                method: "POST",
+                headers: { "X-CSRFToken": getCookie("csrftoken") }, // CSRF 토큰 포함
+                success: function (response) {
+                  // 여기에서 selectedInfluencerData를 수정하여 사용합니다.
+                  console.log("Fetched additional data:", response); // 데이터 확인을 위한 로그
+                  var selectedInfluencerData = { ...selectedInfluencerDataArray[selectedInfluencerDataArray.length - 1], ...response };
+                  selectedInfluencerDataArray[selectedInfluencerDataArray.length - 1] = selectedInfluencerData;
+                  updateChart(selectedInfluencerDataArray);
+                },
+                error: function () {
+                  console.log("Error fetching additional data.");
+                }
+              });
+            }
+
+            // CSRF 토큰을 가져오는 함수 (일반적으로 Django의 기본 템플릿 태그를 사용)
+            function getCookie(name) {
+              var cookieValue = null;
+              if (document.cookie && document.cookie !== "") {
+                var cookies = document.cookie.split(";");
+                for (var i = 0; i < cookies.length; i++) {
+                  var cookie = cookies[i].trim();
+                  if (cookie.substring(0, name.length + 1) === name + "=") {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                  }
+                }
+              }
+              return cookieValue;
+            }
+
+
+            $("#resetButton").click(function () {
+              selectedInfluencerDataArray = [];
+              // 리셋 시에 차트도 초기화하는 로직 추가
+              resetChart();
+            });
+
+            function resetChart() {
+              var emptyValues = [0, 0, 0, 0, 0]; // 초기화할 데이터 배열
+              Highcharts.chart('chartContainer', {
+                // ... (차트 설정 등)
+                series: [{
+                  name: '',
+                  type: 'column',
+                  animation: {
+                    duration: 1000,
+                    easing: 'easeOutBounce'
+                  },
+                  data: emptyValues
+                }]
+              });
+            }
+
+
           });
+
+
+
         </script>
 
 
@@ -445,67 +540,137 @@
                 <thead>
                   <tr>
                     <th>이름</th>
-                    <th>미디어 수</th>
-                    <th>팔로워 수</th>
-                    <th>팔로우 수</th>
                     <!-- 기타 필드들 -->
                   </tr>
                 </thead>
                 <tbody>
                   {% for influencer in influencers %}
-                  <tr>
+                  <tr class="influencer-row" data-username="{{ influencer.username }}">
                     <td>{{ influencer.username }}</td>
                     <td>{{ influencer.media_count }}</td>
                     <td>{{ influencer.followers_count }}</td>
                     <td>{{ influencer.follows_count }}</td>
+                    <td><button class="selectButton" data-username="{{ influencer.username }}">선택</button></td>
+
                     <!-- 기타 필드 값들 -->
                   </tr>
                   {% endfor %}
                 </tbody>
               </table>
-              <button id="selectButton1">선택</button>
+              <button id="resetButton">리셋</button>
 
               <div id="chartContainer"></div>
-
-              <script src="https://code.highcharts.com/highcharts.js"></script>
               <script>
-                // createChart 함수에서 인플루언서 데이터를 받아와서 Highcharts 차트를 생성
-  function createChart(influencerData) {
-    var categories = ['media_count', 'followers_count', 'follows_count']; // 카테고리 변경
-    var values = [
-      influencerData.media_count,
-      influencerData.followers_count,
-      influencerData.follows_count
-    ];
+                // 차트 업데이트 함수
+                function updateChart(selectedInfluencerDataArray) {
+                  var seriesData = []; // 그래프의 시리즈 데이터 배열
 
-    // Highcharts 막대 그래프 생성
-    Highcharts.chart('chartContainer', {
-      chart: {
-        type: 'column'
-      },
-      title: {
-        text: influencerData.username + '의 각 요소별 비교'
-      },
-      xAxis: {
-        categories: categories,
-        labels: {
-          rotation: 0, // 가로 레이블 텍스트를 0도 회전하여 길이를 줄임
-          style: {
-            fontSize: '10px' // 레이블 텍스트 크기 조정
-          }
-        }
-      },
-      yAxis: {
-        title: {
-          text: 'Value'
-        }
-      },
-      series: [{
-        name: influencerData.username,
-        data: values
-      }]
-    });
-  }
+                  // 선택한 인플루언서 데이터 배열을 순회하며 시리즈 데이터 배열에 추가
+                  for (var i = 0; i < selectedInfluencerDataArray.length; i++) {
+                    var influencerData = selectedInfluencerDataArray[i];
+                    var values = [
+                      influencerData.media_count,
+                      influencerData.followers_count,
+                      influencerData.follows_count,
+                      influencerData['댓글 수'], // 수정
+                      influencerData['좋아요 수'] // 수정
+                    ];
+
+                    console.log("Influencer Data:", influencerData);
+                    console.log("Values:", values);
+                    seriesData.push({
+                      name: influencerData.username,
+                      type: 'column',
+                      data: values
+                    });
+                  }
+
+                  // Highcharts 차트 생성 및 업데이트
+                  Highcharts.chart('chartContainer', {
+                    chart: {
+                      type: 'column'
+                    },
+                    title: {
+                      text: '인플루언서 요소별 비교'
+                    },
+                    xAxis: {
+                      categories: ['미디어 수', '팔로워 수', '팔로우 수', '댓글 수', '좋아요 수'],
+                      labels: {
+                        rotation: 0,
+                        style: {
+                          fontSize: '10px'
+                        }
+                      }
+                    },
+                    yAxis: {
+                      title: {
+                        text: 'Value'
+                      }
+                    },
+                    series: seriesData // 위에서 구성한 시리즈 데이터 배열 사용
+                  });
+                }
+                // createChart 함수에서 인플루언서 데이터를 받아와서 Highcharts 차트를 생성
+                function createChart(influencerData) {
+                  console.log(influencerData);
+
+                  // 정수로 변환할 값들 가져오기
+                  var comments_count_sum = parseInt(influencerData['댓글 수']);
+                  var like_count_sum = parseInt(influencerData['좋아요 수']);
+
+                  if (isNaN(comments_count_sum) || isNaN(like_count_sum)) {
+                    console.log("데이터의 타입을 확인할 수 없습니다.");
+                  } else {
+                    console.log("데이터는 숫자입니다.");
+
+                    // 데이터 값 배열로 설정
+                    var values = [
+                      influencerData.media_count,
+                      influencerData.followers_count,
+                      influencerData.follows_count,
+                      comments_count_sum,
+                      like_count_sum
+                    ];
+
+                    console.log("Processed values:", values); // 처리된 데이터 값 출력
+                    // Highcharts 막대 그래프 생성
+                    Highcharts.chart('chartContainer', {
+                      chart: {
+                        type: 'column'
+                      },
+                      title: {
+                        text: influencerData.username + '의 각 요소별 비교'
+                      },
+                      xAxis: {
+                        categories: ['미디어 수', '팔로워 수', '팔로우 수', '댓글 수', '좋아요 수'],
+                        labels: {
+                          rotation: 0,
+                          style: {
+                            fontSize: '10px'
+                          }
+                        }
+                      },
+                      yAxis: {
+                        title: {
+                          text: 'Value'
+                        },
+
+                      },
+                      series: [{
+                        name: influencerData.username,
+                        type: 'column',
+                        animation: {
+                          duration: 1000,
+                          easing: 'easeOutBounce'
+                        },
+                        data: values
+                      }]
+                    });
+                  }
+                }
+
+
+
               </script>
 
 
@@ -633,74 +798,8 @@
       </div>
     </section><!-- End Recommend Section -->
 
-    <!-- ======= Testimonials Section ======= -->
-    <section id="testimonials" class="testimonials">
-      <div class="container" data-aos="zoom-in">
-
-        <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
-          <div class="swiper-wrapper">
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img src="{% static 'img/testimonials/jjjjaehyung.jpg' %}" class="testimonial-img" alt="">
-                <h3>박재형</h3>
-                <h4>Data Preprocessing Specialist</h4>
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-              </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img src="{% static 'img/testimonials/baaam_jjjang.jpg' %}" class="testimonial-img" alt="">
-                <h3>홍창범</h3>
-                <h4>Database Administrator</h4>
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-              </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img src="{% static 'img/testimonials/seung___minn_h.jpg' %}" class="testimonial-img" alt="">
-                <h3>홍승민</h3>
-                <h4>Backend Developer</h4>
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-              </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img src="{% static 'img/testimonials/0l___l_lb.jpg' %}" class="testimonial-img" alt="">
-                <h3>이유비</h3>
-                <h4>Frontend Developer</h4>
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-              </div>
-            </div><!-- End testimonial item -->
-
-          </div>
-          <div class="swiper-pagination"></div>
-        </div>
-
-      </div>
-    </section><!-- End Testimonials Section -->
-
     <!-- ======= Team Section ======= -->
-    <section id="team" class="team section-bg">
+    <section id="team" class="team">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
@@ -879,7 +978,7 @@
     </section><!-- End Team Section -->
 
     <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact">
+    <section id="contact" class="contact section-bg">
       <div class="container" data-aos="fade-up">
 
     <div class=" section-title">
@@ -890,40 +989,40 @@
       <div class="row">
 
         <div class="col-lg-12 mt-4 mt-lg-0">
-          <form action="https://script.google.com/macros/s/AKfycbxQdSiVTIbl3b_L8UzKWYkuiivrjpIEBf_NDSKdnJB3V7RZ8_M1sAHahjV6t-lPnjjLag/exec" method="post" role="form" class="php-email-form" target="frAttachFiles">
+          <form action="https://script.google.com/macros/s/AKfycbzqyn1rBQCOgWK1Czgwfk9dxzyyDPlQGCF5QPfgDxfq8rX8YVY872VbcqS78P4U-fSKtw/exec" method="post" role="form" class="php-email-form" target="frAttachFiles" style="background: white;">
             <div class="row">
               <div class="col-md-6 form-group">
-                <label for="company">회사명</label>
-                <input type="text" name="company" class="form-control" id="company" placeholder="기업명을 입력해 주세요." required>
+                <label for="회사명">회사명</label>
+                <input type="text" name="회사명" class="form-control" id="company" placeholder="기업명을 입력해 주세요." required>
               </div>
               <div class="col-md-6 form-group">
-                <label for="brand">브랜드명 & 제품명</label>
-                <input type="text" name="brand" class="form-control" id="brand" placeholder="브랜드&제품명을 입력해 주세요." required>
+                <label for="브랜드명&제품명">브랜드명 & 제품명</label>
+                <input type="text" name="브랜드명&제품명" class="form-control" id="brand" placeholder="브랜드&제품명을 입력해 주세요." required>
               </div>
               <div class="col-md-6 form-group">
-                <label for="manager">담당자 명</label>
-                <input type="text" name="manager" class="form-control" id="manager" placeholder="담당자 이름을 입력해 주세요." required>
+                <label for="담당자명">담당자명</label>
+                <input type="text" name="담당자명" class="form-control" id="manager" placeholder="담당자 이름을 입력해 주세요." required>
               </div>
               <div class="col-md-6 form-group">
-                <label for="email">이메일</label>
-                <input type="email" class="form-control" name="email" id="email" placeholder="이메일 주소를 입력해 주세요." required>
+                <label for="이메일">이메일</label>
+                <input type="email" class="form-control" name="이메일" id="email" placeholder="이메일 주소를 입력해 주세요." required>
               </div>
               <div class="col-md-6 form-group">
-                <label for="contact">연락처</label>
-                <input type="text" name="contact" class="form-control" id="contact" placeholder="연락받으실 연락처를 입력해 주세요." required>
+                <label for="연락처">연락처</label>
+                <input type="text" name="연락처" class="form-control" id="contact" placeholder="연락받으실 연락처를 입력해 주세요." required>
               </div>
               <div class="col-md-6 form-group">
-                <label for="budget">가용예산</label>
-                <input type="text" name="budget" class="form-control" id="budget" placeholder="가용예산을 입력해주세요. (원)" required>
+                <label for="가용예산">가용예산</label>
+                <input type="text" name="가용예산" class="form-control" id="budget" placeholder="가용예산을 입력해주세요. (원)" required>
               </div>
             </div>
             <div class="form-group mt-3">
-              <label for="homepage">홈페이지</label>
-              <input type="text" class="form-control" name="subject" id="subject" placeholder="회사 홈페이지 주소를 입력해 주세요." required>
+              <label for="홈페이지">홈페이지</label>
+              <input type="text" class="form-control" name="홈페이지" id="subject" placeholder="회사 홈페이지 주소를 입력해 주세요." required>
             </div>
             <div class="form-group mt-3">
-              <label for="question">문의 내용</label>
-              <textarea class="form-control" name="question" rows="5" placeholder="" required></textarea>
+              <label for="문의내용">문의 내용</label>
+              <textarea class="form-control" name="문의내용" rows="5" placeholder=""></textarea>
             </div>
 
             <div style="margin-bottom:10px; padding-top:10px;">
@@ -943,6 +1042,7 @@
             </div>
             <div class="text-center"><button type="submit" id="submit-btn" disabled>문의하기</button></div>
           </form>
+          <iframe name="frAttachFiles" style="display:none"></iframe>
         </div>
 
         <script>
@@ -957,6 +1057,10 @@
                     button.setAttribute('disabled', 'true');
                 }
             });
+
+            button.addEventListener('click', function() {
+              alert('전송되었습니다.');
+            });
         });
       </script>
 
@@ -964,6 +1068,72 @@
 
       </div>
     </section><!-- End Contact Section -->
+
+    <!-- ======= Testimonials Section ======= -->
+    <section id="testimonials" class="testimonials">
+      <div class="container" data-aos="zoom-in">
+
+        <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
+          <div class="swiper-wrapper">
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <img src="{% static 'img/testimonials/jjjjaehyung.jpg' %}" class="testimonial-img" alt="">
+                <h3>박재형</h3>
+                <h4>Data Preprocessing Specialist</h4>
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <img src="{% static 'img/testimonials/baaam_jjjang.jpg' %}" class="testimonial-img" alt="">
+                <h3>홍창범</h3>
+                <h4>Database Administrator</h4>
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <img src="{% static 'img/testimonials/seung___minn_h.jpg' %}" class="testimonial-img" alt="">
+                <h3>홍승민</h3>
+                <h4>Backend Developer</h4>
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <img src="{% static 'img/testimonials/0l___l_lb.jpg' %}" class="testimonial-img" alt="">
+                <h3>이유비</h3>
+                <h4>Frontend Developer</h4>
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+              </div>
+            </div><!-- End testimonial item -->
+
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+      </div>
+    </section><!-- End Testimonials Section -->
 
   </main><!-- End #main -->
 

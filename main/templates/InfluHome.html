@@ -55,8 +55,9 @@
         <ul>
           <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
           <li><a class="nav-link scrollto" href="#about">About</a></li>
-          <li><a class="nav-link scrollto" href="#services">Services</a></li>
+          <li><a class="nav-link scrollto" href="#features">Services</a></li>
           <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
+          <li><a class="nav-link scrollto" href="/search/search">Search &nbsp;<img src="{% static 'img/search.png' %}"></a></li>
           {% if request.session.user_id %}
             <li><a class="getstarted scrollto" href="/accounts/MyPage" style="margin-left:0; padding:5px 15px;">마이페이지</a></li>
             <li><a class="getstarted scrollto" href="/accounts/Influ_Logout" style="margin-left:0; padding:5px 15px;">로그아웃</a></li>
@@ -76,7 +77,7 @@
     <div class="hero-container" data-aos="fade-up" data-aos-delay="150">
       <h1>Plan. Launch. Grow.</h1>
       <h2>Driving business growth through innovative strategies and results-driven marketing</h2>
-      <!-- ++++++ Search Section ++++++ -->
+      {% comment %} <!-- ++++++ Search Section ++++++ -->
       <div id="search">
         <form class="d-flex-s" role="search" method="GET" action="{% url 'search_results' %}">
           {% csrf_token %}
@@ -88,7 +89,7 @@
 
       <div id="content">
         {% block content %}{% endblock %}
-      </div>
+      </div> {% endcomment %}
     </div>
   </section><!-- End Hero -->
 
@@ -168,7 +169,7 @@
       </div>
     </section><!-- End About Section -->
 
-    <!-- ======= About Boxes Section ======= -->
+    {% comment %} <!-- ======= About Boxes Section ======= -->
     <section id="about-boxes" class="about-boxes">
       <div class="container" data-aos="fade-up">
 
@@ -212,7 +213,7 @@
         </div>
 
       </div>
-    </section><!-- End About Boxes Section -->
+    </section><!-- End About Boxes Section --> {% endcomment %}
 
     <!-- ======= Clients Section ======= -->
     <section id="clients" class="clients">
@@ -240,6 +241,11 @@
     <!-- ======= Features Section ======= -->
     <section id="features" class="features">
       <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Services</h2>
+          <p>Check our Services</p>
+        </div>
 
         <ul class="nav nav-tabs row d-flex">
           <li class="nav-item col-3">
@@ -271,7 +277,7 @@
         <div class="tab-content">
           <div class="tab-pane active show" id="tab-1">
             <div class="row">
-              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
+              <div class="col-lg-8 order-2 order-lg-1 mt-3 mt-lg-0">
                 <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
                 <p class="fst-italic">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
@@ -288,14 +294,14 @@
                   culpa qui officia deserunt mollit anim id est laborum
                 </p>
               </div>
-              <div class="col-lg-6 order-1 order-lg-2 text-center">
+              <div class="col-lg-4 order-1 order-lg-2 text-center">
                 <img src="{% static 'img/features-1.png' %}" alt="" class="img-fluid">
               </div>
             </div>
           </div>
           <div class="tab-pane" id="tab-2">
             <div class="row">
-              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
+              <div class="col-lg-8 order-2 order-lg-1 mt-3 mt-lg-0">
                 <h3>Neque exercitationem debitis soluta quos debitis quo mollitia officia est</h3>
                 <p>
                   Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
@@ -313,14 +319,14 @@
                   <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
                 </ul>
               </div>
-              <div class="col-lg-6 order-1 order-lg-2 text-center">
+              <div class="col-lg-4 order-1 order-lg-2 text-center">
                 <img src="{% static 'img/features-2.png' %}" alt="" class="img-fluid">
               </div>
             </div>
           </div>
           <div class="tab-pane" id="tab-3">
             <div class="row">
-              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
+              <div class="col-lg-8 order-2 order-lg-1 mt-3 mt-lg-0">
                 <h3>Voluptatibus commodi ut accusamus ea repudiandae ut autem dolor ut assumenda</h3>
                 <p>
                   Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
@@ -337,14 +343,14 @@
                   magna aliqua.
                 </p>
               </div>
-              <div class="col-lg-6 order-1 order-lg-2 text-center">
+              <div class="col-lg-4 order-1 order-lg-2 text-center">
                 <img src="{% static 'img/features-3.png' %}" alt="" class="img-fluid">
               </div>
             </div>
           </div>
           <div class="tab-pane" id="tab-4">
             <div class="row">
-              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
+              <div class="col-lg-8 order-2 order-lg-1 mt-3 mt-lg-0">
                 <h3>Omnis fugiat ea explicabo sunt dolorum asperiores sequi inventore rerum</h3>
                 <p>
                   Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
@@ -361,7 +367,7 @@
                   <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
                 </ul>
               </div>
-              <div class="col-lg-6 order-1 order-lg-2 text-center">
+              <div class="col-lg-4 order-1 order-lg-2 text-center">
                 <img src="{% static 'img/features-4.png' %}" alt="" class="img-fluid">
               </div>
             </div>
@@ -371,7 +377,7 @@
       </div>
     </section><!-- End Features Section -->
 
-    <!-- ======= Services Section ======= -->
+    {% comment %} <!-- ======= Services Section ======= -->
     <section id="services" class="services section-bg">
       <div class="container" data-aos="fade-up">
 
@@ -426,76 +432,10 @@
         </div>
 
       </div>
-    </section><!-- End Services Section -->
-
-    <!-- ======= Testimonials Section ======= -->
-    <section id="testimonials" class="testimonials">
-      <div class="container" data-aos="zoom-in">
-
-        <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
-          <div class="swiper-wrapper">
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img src="{% static 'img/testimonials/jjjjaehyung.jpg' %}" class="testimonial-img" alt="">
-                <h3>박재형</h3>
-                <h4>Data Preprocessing Specialist</h4>
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-              </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img src="{% static 'img/testimonials/baaam_jjjang.jpg' %}" class="testimonial-img" alt="">
-                <h3>홍창범</h3>
-                <h4>Database Administrator</h4>
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-              </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img src="{% static 'img/testimonials/seung___minn_h.jpg' %}" class="testimonial-img" alt="">
-                <h3>홍승민</h3>
-                <h4>Backend Developer</h4>
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-              </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img src="{% static 'img/testimonials/0l___l_lb.jpg' %}" class="testimonial-img" alt="">
-                <h3>이유비</h3>
-                <h4>Frontend Developer</h4>
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-              </div>
-            </div><!-- End testimonial item -->
-
-          </div>
-          <div class="swiper-pagination"></div>
-        </div>
-
-      </div>
-    </section><!-- End Testimonials Section -->
+    </section><!-- End Services Section --> {% endcomment %}
 
     <!-- ======= Portfolio Section ======= -->
-    <section id="portfolio" class="portfolio">
+    <section id="portfolio" class="portfolio section-bg">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
@@ -611,6 +551,72 @@
 
       </div>
     </section><!-- End Portfolio Section -->
+
+    <!-- ======= Testimonials Section ======= -->
+    <section id="testimonials" class="testimonials">
+      <div class="container" data-aos="zoom-in">
+
+        <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
+          <div class="swiper-wrapper">
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <img src="{% static 'img/testimonials/jjjjaehyung.jpg' %}" class="testimonial-img" alt="">
+                <h3>박재형</h3>
+                <h4>Data Preprocessing Specialist</h4>
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <img src="{% static 'img/testimonials/baaam_jjjang.jpg' %}" class="testimonial-img" alt="">
+                <h3>홍창범</h3>
+                <h4>Database Administrator</h4>
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <img src="{% static 'img/testimonials/seung___minn_h.jpg' %}" class="testimonial-img" alt="">
+                <h3>홍승민</h3>
+                <h4>Backend Developer</h4>
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <img src="{% static 'img/testimonials/0l___l_lb.jpg' %}" class="testimonial-img" alt="">
+                <h3>이유비</h3>
+                <h4>Frontend Developer</h4>
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+              </div>
+            </div><!-- End testimonial item -->
+
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+      </div>
+    </section><!-- End Testimonials Section -->
     
   </main><!-- End #main -->
 
