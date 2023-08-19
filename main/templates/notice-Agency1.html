@@ -276,11 +276,65 @@
       <div class="container-fluid" style="padding-top:10px;">
         <!--  Row 1 -->
         <div class="row">
-          <h3>기타 추가할 것</h3>
+          <h3>진행 중인 캠페인</h3>
           <div class="card">
             <div class="card-body">
               <div class="row">
-                <div class="col-md-12">...
+                <div class="col-md-4">
+                  <div class="card">
+                    <img src="{% static 'img/notice/noticeEX_thumbnail.png' %}" class="card-img-top" alt="모집 공고글 1(광고 캠페인 글)">
+                    <div class="card-body">
+                      <h5 class="card-title"><strong>딥스</strong></h5>
+                      <p class="card-text" style="font-size:11px;">2022년~현재<br>
+                        마케팅 진행내용: 브랜드 캠페인, 퍼포먼스 마케팅<br>
+                        진행 매체: SA, DA, SNS운영, SNS 스폰서드, 바이럴마케팅</p>
+                      <div class="col-md-12">
+                        <a href="#" class="btn btn-outline-primary" style="margin-right:33.3333%;" data-toggle="modal" data-target="#myModal">자세히 보기</a>
+
+                        <!-- 모달 창 코드 -->
+                        <div class="modal fade" id="myModal">
+                          <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+
+                              <!-- 모달 헤더 -->
+                              <div class="modal-header">
+                                <h4 class="modal-title">딥스_모집공고</h4>
+                                <button type="button" class="btn-close" aria-label="Close" data-dismiss="modal"></button>
+                              </div>
+
+                              <!-- 모달 본문 -->
+                              <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
+                                <!-- 스크롤이 필요한 내용을 여기에 추가합니다. -->
+                                <!-- 많은 내용이 들어가면 스크롤이 나타납니다. -->
+                                <!-- 예제로 많은 텍스트 추가 -->
+                                <h2><strong>딥스</strong></h2>
+                                <p style="opacity:0.5;">2022년~현재</p>
+                                <br><hr>
+                                <strong><p>
+                                  [카테고리]<br>
+                                  브랜딩 캠페인, 퍼포먼스 마케팅<br><br>
+                                  [진행내용]<br>
+                                  1. 브랜딩 진행내용<br>
+                                  <li>SNS 브랜드 채널 생성, 프리미엄 천연 미네랄 해양심층수 브랜드 홍보</li>
+                                  <br>
+                                  2. 퍼포먼스 진행내용<br>
+                                  <li>운동, 가족 직장인 등 타겟 세분화를 통해 다수 매체 동시 집행</li>
+                                  <li>소구 포인트 캐치 후 충성고객 확보</li></p></strong>
+                                  <img src="{% static 'img/notice/noticeEX.png' %}" alt="" style="max-width:750px; margin-top: 100px;">
+                                <!-- 다른 내용들 -->
+                              </div>
+
+                              <!-- 모달 푸터 -->
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -344,6 +398,11 @@
   <script src="{% static 'libs/apexcharts/dist/apexcharts.min.js' %}"></script>
   <script src="{% static 'libs/simplebar/dist/simplebar.js' %}"></script>
   <script src="{% static 'js/dashboard.js' %}"></script>
+
+  <!-- 부트스트랩 JavaScript 및 jQuery 라이브러리 불러오기 -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>
