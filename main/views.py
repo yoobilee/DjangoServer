@@ -15,23 +15,12 @@ def first_index(request):
 def InfluHome(request):
     return render(request, "InfluHome.html")
 
-def AdvHome(request):
-    influencers = Influencer.objects.all()
-    user_influ = User_influ.objects.all()
-    return render(request, 'AdvHome.html', {'influencers': influencers, 'user_influ':user_influ})
+def AgencyHome(request):
+    influencers = Influencer.objects.all()    
+    return render(request, 'AgencyHome.html', {'influencers': influencers})
 
 def inner_page(request):
     return render(request, "inner-page.html")
-
-def portfolio_details(request, pk):
-    item = get_object_or_404(YourModel, pk=pk)
-    
-    # query = request.GET.get('q')
-    # if query and query in item.body:
-    #     return redirect('search-results', q=query)
-    
-    context = {'item': item}
-    return render(request, 'portfolio-details.html', context)
 
 def portfolio_details01(request):
     return render(request, "portfolio-details01.html")
@@ -103,3 +92,12 @@ def get_additional_data(request):
         return JsonResponse(influencer_data)
     except (Influencer.DoesNotExist, Post_master.username.DoesNotExist):
         return JsonResponse({'error': 'Data not found'})
+    
+def notice_manage(request):
+    return render(request, "notice-manage.html")
+
+def notice(request):
+    return render(request, "notice.html")
+
+def notice_Agency1(request):
+    return render(request, "notice-Agency1.html")

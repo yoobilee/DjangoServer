@@ -12515,6 +12515,11 @@ fieldset:disabled .btn {
   border-radius: var(--bs-border-radius-2xl) !important
 }
 
+.profile:hover img {
+  transform: scale(1.2); /* 이미지를 1.2배 확대 */
+  transition: transform 0.3s ease; /* 부드러운 애니메이션을 위한 트랜지션 설정 */
+}
+
 .rounded-circle {
   border-radius: 50% !important
 }
@@ -19747,7 +19752,7 @@ fieldset:disabled .btn {
 
 .brand-logo {
   min-height: 70px;
-  padding: 0 24px
+  padding: 0 17%
 }
 
 .unlimited-access {
@@ -20450,4 +20455,8 @@ ul {
 
 .timeline-widget .timeline-item .timeline-badge.badge-primary {
   border: 2px solid #5D87FF
+}
+
+.brand-logo .d-flex .align-items-center .justify-content-between {
+  padding: 0 17%;
 }
