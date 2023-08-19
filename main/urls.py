@@ -18,6 +18,8 @@ urlpatterns = [
     path('PrivacyPolicy_I/', views.PrivacyPolicy_I, name = "PrivacyPolicy_I"),
     path('get_influencer_data/', views.get_influencer_data, name='get_influencer_data'),
     path('get_additional_data/', views.get_additional_data, name='get_additional_data'),
+    path('ComparisonAnalysis/', views.ComparisonAnalysis, name='ComparisonAnalysis'),
+    path('DetailedAnalysis/', views.DetailedAnalysis, name='DetailedAnalysis'),
     path('notice/', views.notice, name='notice'),
     path('notice-Agency1/', views.notice_Agency1, name='notice-Agency1'),
 

@@ -92,7 +92,13 @@ def get_additional_data(request):
         return JsonResponse(influencer_data)
     except (Influencer.DoesNotExist, Post_master.username.DoesNotExist):
         return JsonResponse({'error': 'Data not found'})
-    
+
+def ComparisonAnalysis(request):
+    return render(request, "ComparisonAnalysis.html")
+
+def DetailedAnalysis(request):
+    return render(request, "DetailedAnalysis.html")
+
 def notice_manage(request):
     return render(request, "notice-manage.html")
 

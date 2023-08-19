@@ -1,245 +1,58 @@
+{% extends "InfluHome-Base.html" %}
+
 {% load static %}
-<!doctype html>
-<html lang="en">
-{% if request.session.user_id %}
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>infraze</title>
-  <link rel="shortcut icon" type="img/png" href="{% static 'img/logos/favicon.png' %}" />
-  <link rel="stylesheet" href="{% static 'css/styles.min.css' %}" />
-</head>
 
-<body>
-  <!--  Body Wrapper -->
-  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
-    data-sidebar-position="fixed" data-header-position="fixed">
-    <!-- Sidebar Start -->
-    <aside class="left-sidebar">
-      <!-- Sidebar scroll-->
-      <div>
-        <div class="brand-logo d-flex align-items-center justify-content-between">
-          <a href="./index.html" class="text-nowrap logo-img">
-            <img src="{% static 'img/logos/logo.png' %}" width="180" alt="" />
-          </a>
-          <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
-            <i class="ti ti-x fs-8"></i>
-          </div>
-        </div>
-        <!-- Sidebar navigation-->
-        <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
-          <ul id="sidebarnav">
-            <!-- <li class="nav-small-cap">
-              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-              <span class="hide-menu">Home</span>
-            </li> -->
-            <li class="sidebar-item" style="text-align: center;">
-              <!-- <a class="sidebar-link" href="./index.html" aria-expanded="false">
-                <span>
-                  <i class="ti ti-layout-dashboard"></i>
-                </span>
-                <span class="hide-menu">Dashboard</span>
-              </a> -->
-
-              <!-- 인스타그램 프로필 사진 -->
-              <a href="javascript:void(0)" class="profile" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
-                  <img src="{% static 'img/profile/user-1.jpg' %}" alt="" width="100" height="100" class="rounded-circle" style="margin-bottom: 36px; margin-top: 36px;">
+{% block content %}
+<!--  Header Start -->
+<header class="app-header">
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <ul class="navbar-nav">
+      <li class="nav-item d-block d-xl-none">
+        <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
+          <i class="ti ti-menu-2"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <!-- <a class="nav-link nav-icon-hover" href="javascript:void(0)">
+          <i class="ti ti-bell-ringing"></i>
+          <div class="notification bg-primary rounded-circle"></div>
+        </a> -->
+        <a class="nav-link nav-icon-hover" href="" style="color: #5D87FF;">홈</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link nav-icon-hover" href="/ComparisonAnalysis">1대1 매칭 분석</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link nav-icon-hover" href="/notice">모집공고</a>
+      </li>
+    </ul>
+    <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+      <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+        <a href="/accounts/Influ_Logout" class="btn btn-primary">로그아웃</a>
+        <li class="nav-item dropdown">
+          <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+            <div class="message-body">
+              <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                <i class="ti ti-user fs-6"></i>
+                <p class="mb-0 fs-3">My Profile</p>
               </a>
-              <script>
-                // 마우스가 이미지 위로 올라왔을 때의 처리 함수
-                function enlargeImage() {
-                  var img = document.querySelector('.profile img');
-                  img.style.transform = 'scale(1.2)';
-                }
-              
-                // 마우스가 이미지를 벗어났을 때의 처리 함수
-                function restoreImage() {
-                  var img = document.querySelector('.profile img');
-                  img.style.transform = 'scale(1)';
-                }
-              
-                // 이벤트를 추가할 이미지 영역 요소 가져오기
-                var profileImage = document.querySelector('.profile');
-              
-                // 이벤트 리스너 등록
-                profileImage.addEventListener('mouseover', enlargeImage);
-                profileImage.addEventListener('mouseout', restoreImage);
-              </script>
-              
-              <div style="text-align: center;">
-                <h5>@id</h5>
-                <h6>이름</h6>
-                <h6>기타 추가할거..</h6>
-              </div>
-            </li>
-            <div style="display: grid; grid-template-columns: repeat(2,1fr); row-gap: 20px; margin-top: 36px; text-align: center;">
-              <span style="display: flex; flex-direction: column-reverse;">
-                <label>팔로워</label>
-                <strong>217.71k</strong> <!-- strong 실제 데이터 값 출력되어야 함 -->
-              </span>
-              <span style="display: flex; flex-direction: column-reverse;">
-                <label>팔로우</label>
-                <strong>247</strong> <!-- strong 실제 데이터 값 출력되어야 함 -->
-              </span>
-              <span style="display: flex; flex-direction: column-reverse;">
-                <label>게시물</label>
-                <strong>289</strong> <!-- strong 실제 데이터 값 출력되어야 함 -->
-              </span>
-              <span style="flex-direction: column-reverse; padding: 0% 25% 0% 25%;">
-                {% comment %} <label></label>
-                <strong>217.71k</strong> {% endcomment %}
-                <input type="image" src="{% static '/img/instagram.png' %}"
-                  onclick="window.open('https://www.instagram.com/limmiae/?hl=ko')"
-                  style="width:50px; filter: drop-shadow(1px 1px 1px #000); display:flex;">
-              </span>
+              <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                <i class="ti ti-mail fs-6"></i>
+                <p class="mb-0 fs-3">My Account</p>
+              </a>
+              <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                <i class="ti ti-list-check fs-6"></i>
+                <p class="mb-0 fs-3">My Task</p>
+              </a>
             </div>
-            <!-- <li class="nav-small-cap">
-              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-              <span class="hide-menu">UI COMPONENTS</span>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="./ui-buttons.html" aria-expanded="false">
-                <span>
-                  <i class="ti ti-article"></i>
-                </span>
-                <span class="hide-menu">Buttons</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="./ui-alerts.html" aria-expanded="false">
-                <span>
-                  <i class="ti ti-alert-circle"></i>
-                </span>
-                <span class="hide-menu">Alerts</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="./ui-card.html" aria-expanded="false">
-                <span>
-                  <i class="ti ti-cards"></i>
-                </span>
-                <span class="hide-menu">Card</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="./ui-forms.html" aria-expanded="false">
-                <span>
-                  <i class="ti ti-file-description"></i>
-                </span>
-                <span class="hide-menu">Forms</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="./ui-typography.html" aria-expanded="false">
-                <span>
-                  <i class="ti ti-typography"></i>
-                </span>
-                <span class="hide-menu">Typography</span>
-              </a>
-            </li> -->
-            <!-- <li class="nav-small-cap">
-              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-              <span class="hide-menu">AUTH</span>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="./authentication-login.html" aria-expanded="false">
-                <span>
-                  <i class="ti ti-login"></i>
-                </span>
-                <span class="hide-menu">Login</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="./authentication-register.html" aria-expanded="false">
-                <span>
-                  <i class="ti ti-user-plus"></i>
-                </span>
-                <span class="hide-menu">Register</span>
-              </a>
-            </li> -->
-            <!-- <li class="nav-small-cap">
-              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-              <span class="hide-menu">EXTRA</span>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="./icon-tabler.html" aria-expanded="false">
-                <span>
-                  <i class="ti ti-mood-happy"></i>
-                </span>
-                <span class="hide-menu">Icons</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="./sample-page.html" aria-expanded="false">
-                <span>
-                  <i class="ti ti-aperture"></i>
-                </span>
-                <span class="hide-menu">Sample Page</span>
-              </a>
-            </li> -->
-          </ul>
-        </nav>
-        <!-- End Sidebar navigation -->
-      </div>
-      <!-- End Sidebar scroll-->
-    </aside>
-    <!--  Sidebar End -->
-    <!--  Main wrapper -->
-    <div class="body-wrapper">
-      <!--  Header Start -->
-      <header class="app-header">
-        <nav class="navbar navbar-expand-lg navbar-light">
-          <ul class="navbar-nav">
-            <li class="nav-item d-block d-xl-none">
-              <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
-                <i class="ti ti-menu-2"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <!-- <a class="nav-link nav-icon-hover" href="javascript:void(0)">
-                <i class="ti ti-bell-ringing"></i>
-                <div class="notification bg-primary rounded-circle"></div>
-              </a> -->
-              <a class="nav-link nav-icon-hover" href="" style="color: #5D87FF;">홈</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link nav-icon-hover" href="javascript:void(0)">1대1 매칭 분석</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link nav-icon-hover" href="/notice">모집공고</a>
-            </li>
-          </ul>
-          <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
-            <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
-              <a href="/accounts/Influ_Logout" class="btn btn-primary">로그아웃</a>
-              <li class="nav-item dropdown">
-                <!-- <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
-                  aria-expanded="false">
-                  <img src="../assets/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
-                </a> -->
-                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
-                  <div class="message-body">
-                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
-                      <i class="ti ti-user fs-6"></i>
-                      <p class="mb-0 fs-3">My Profile</p>
-                    </a>
-                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
-                      <i class="ti ti-mail fs-6"></i>
-                      <p class="mb-0 fs-3">My Account</p>
-                    </a>
-                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
-                      <i class="ti ti-list-check fs-6"></i>
-                      <p class="mb-0 fs-3">My Task</p>
-                    </a>
-                    <!-- <a href="./authentication-login.html" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a> -->
-                  </div>
-                </div>
-              </li>
-            </ul>
           </div>
-        </nav>
-      </header>
-      <!--  Header End -->
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+<!--  Header End -->
+
       <div class="container-fluid">
         <!--  Row 1 -->
         <div class="row">
@@ -419,6 +232,240 @@
             </div>
           </div>
         </div>
+
+        <div class="row">
+          <div class="col-lg-6 d-flex align-items-stretch" style="height: 300px;">
+            <div class="card w-100">
+              <div class="card-body p-4">
+                <div class="mb-4">
+                  <h5 class="card-title fw-semibold">포스트 태그</h5>
+                </div>
+                <div id="chartkey"></div>
+
+                <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>
+  <script>
+    anychart.onDocumentReady(function () {
+        var data = [
+            {
+                "x": "IT",
+                "value": 590000000,
+                category: "Sino-Tibetan"
+            },
+            {
+                "x": "Python",
+                "value": 283000000,
+                category: "Indo-European"
+            },
+            {
+                "x": "소프트웨어",
+                "value": 544000000,
+                category: "Indo-European"
+            },
+            {
+                "x": "JAVA",
+                "value": 527000000,
+                category: "Indo-European"
+            }, {
+                "x": "C++",
+                "value": 422000000,
+                category: "Afro-Asiatic"
+            }, {
+                "x": "HTML",
+                "value": 620000000,
+                category: "Afro-Asiatic"
+            }
+        ];
+        var chart = anychart.tagCloud(data);
+        chart.angles([0]);
+        chart.container("chartkey");
+        // chart.getCredits().setEnabled(false);
+        chart.draw();
+    });
+    </script>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 d-flex align-items-stretch" style="height: 300px;">
+            <div class="card w-100">
+              <div class="card-body p-4">
+                <h5 class="card-title fw-semibold mb-4">분석 제목 미정</h5>
+              </div>
+              <div id="chartdiv"></div>
+
+              <style>
+                #chartdiv {
+                  width: 100%;
+                  max-width: 100%;
+                  height: 350px;
+                }
+                </style>
+              
+                 <!-- Resources -->
+              <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+              <script src="https://cdn.amcharts.com/lib/5/hierarchy.js"></script>
+              <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+              <script>
+                am5.ready(function() {
+                
+                // Create root element
+                // https://www.amcharts.com/docs/v5/getting-started/#Root_element
+                var root = am5.Root.new("chartdiv");
+                
+                // Set themes
+                // https://www.amcharts.com/docs/v5/concepts/themes/
+                root.setThemes([
+                  am5themes_Animated.new(root)
+                ]);
+                
+                var data = {
+                  value: 0,
+                  children: [
+                    {
+                      name: "Fruity",
+                      children: [
+                        {
+                          name: "Berry",
+                          children: [
+                            {
+                              name: "Blackberry",
+                              value: 1
+                            },
+                            {
+                              name: "Raspberry",
+                              value: 1
+                            },
+                            {
+                              name: "Blueberry",
+                              value: 1
+                            },
+                            {
+                              name: "Strawberry",
+                              value: 1
+                            }
+                          ]
+                        },
+                        {
+                          name: "Dried Fruit",
+                          children: [
+                            {
+                              name: "Raisin",
+                              value: 1
+                            },
+                            {
+                              name: "Prune",
+                              value: 1
+                            }
+                          ]
+                        },
+                        {
+                          name: "Other Fruit",
+                          children: [
+                            {
+                              name: "Coconut",
+                              value: 1
+                            },
+                            {
+                              name: "Cherry",
+                              value: 1
+                            },
+                            {
+                              name: "Pomegranate",
+                              value: 1
+                            },
+                            {
+                              name: "Pineapple",
+                              value: 1
+                            },
+                            {
+                              name: "Grape",
+                              value: 1
+                            },
+                            {
+                              name: "Apple",
+                              value: 1
+                            },
+                            {
+                              name: "Peach",
+                              value: 1
+                            },
+                            {
+                              name: "Pear",
+                              value: 1
+                            }
+                          ]
+                        },
+                        {
+                          name: "Citrus Fruit",
+                          children: [
+                            {
+                              name: "Grapefruit",
+                              value: 1
+                            },
+                            {
+                              name: "Orange",
+                              value: 1
+                            },
+                            {
+                              name: "Lemon",
+                              value: 1
+                            },
+                            {
+                              name: "Lime",
+                              value: 1
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                };
+                
+                // Create wrapper container
+                var container = root.container.children.push(am5.Container.new(root, {
+                  width: am5.percent(100),
+                  height: am5.percent(100),
+                  layout: root.verticalLayout
+                }));
+                
+                // Create series
+                // https://www.amcharts.com/docs/v5/charts/hierarchy/#Adding
+                var series = container.children.push(am5hierarchy.ForceDirected.new(root, {
+                  singleBranchOnly: false,
+                  downDepth: 2,
+                  topDepth: 1,
+                  initialDepth: 1,
+                  valueField: "value",
+                  categoryField: "name",
+                  childDataField: "children",
+                  idField: "name",
+                  linkWithField: "linkWith",
+                  manyBodyStrength: -10,
+                  centerStrength: 0.8
+                }));
+                
+                series.get("colors").setAll({
+                  step: 2
+                });
+                
+                series.links.template.set("strength", 0.5);
+                
+                series.data.setAll([data]);
+                
+                series.set("selectedDataItem", series.dataItems[0]);
+                
+                
+                // Make stuff animate on load
+                series.appear(1000, 100);
+                
+                }); // end am5.ready()
+                </script>
+
+            </div>
+          </div>
+        </div>
         <div class="row">
           <div class="col-lg-4 d-flex align-items-stretch">
             <div class="card w-100">
@@ -588,76 +635,4 @@
             </div>
           </div>
         </div>
-        
-        <div class="py-6 px-6 text-center">
-          <!-- ======= Footer ======= -->
-        <hr>
-        <footer id="footer">
-          <div class="footer-top">
-            <div class="container">
-              <div class="row">
-                <div class="col-lg-4 col-md-6">
-                  <div class="footer-info">
-                    <p>
-                      Bundang-gu, Seongnam-si, Gyeonggi-do, Pangyo 289-20, Korea
-                    </p>
-                  </div>
-                </div>
-                <div class="col-lg-2 col-md-6 footer-links">
-                  <ul>
-                    <li><i class="bx bx-chevron-right"></i> <a href="/TermOfUse_I">이용약관</a></li>
-                  </ul>
-                </div>
-                <div class="col-lg-2 col-md-6 footer-links">
-                  <ul>
-                    <li><i class="bx bx-chevron-right"></i> <a href="/PrivacyPolicy_I">개인정보처리방침</a></li>
-                  </ul>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                  <div class="footer-info">
-                    <p>
-                      <strong>Phone:</strong> +82 010 8937 6522<br>
-                      <strong>Email:</strong> ghdtmdalsdad@naver.com<br>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="container">
-            <div class="copyright">
-              &copy; Copyright <strong><span>inflaze</span></strong>. All Rights Reserved
-            </div>
-            <div class="credits">
-              Designed by <a href="https://bootstrapmade.com/">CircuitChamps</a>
-            </div>
-          </div>
-        </footer>
-        <!-- End Footer -->
-        </div>
-      </div>
-    </div>
-  </div>
-  <script src="{% static 'libs/jquery/dist/jquery.min.js' %}"></script>
-  <script src="{% static 'libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
-  <script src="{% static 'js/sidebarmenu.js' %}"></script>
-  <script src="{% static 'js/app.min.js' %}"></script>
-  <script src="{% static 'libs/apexcharts/dist/apexcharts.min.js' %}"></script>
-  <script src="{% static 'libs/simplebar/dist/simplebar.js' %}"></script>
-  <script src="{% static 'js/dashboard.js' %}"></script>
-</body>
-{% else %} <!-- 로그인 안하고 주소창에 /InfluHome 치고 들어왔을 때 서비스 이용 불가능 -->
-<head>
-  <title>페이지를 찾을 수 없음</title>
-</head>
-<body>
-  <h1>페이지를 찾을 수 없음</h1>
-  <p>죄송합니다. 요청하신 페이지를 찾을 수 없습니다.</p>
-</body>
-<div class="user-none">
-  <script>
-    alert("회원만 접근 가능합니다.");
-  </script>
-</div>
-{% endif %}
-</html>
+        {% endblock %}
