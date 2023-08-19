@@ -16,8 +16,9 @@ def InfluHome(request):
     return render(request, "InfluHome.html")
 
 def AdvHome(request):
-    influencers = Influencer.objects.all()    
-    return render(request, 'AdvHome.html', {'influencers': influencers})
+    influencers = Influencer.objects.all()
+    user_influ = User_influ.objects.all()
+    return render(request, 'AdvHome.html', {'influencers': influencers, 'user_influ':user_influ})
 
 def inner_page(request):
     return render(request, "inner-page.html")
