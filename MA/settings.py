@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'main',
     'accounts',
     'search',
-    'influencer',
+    'influencer'
 ]
 
 MIDDLEWARE = [

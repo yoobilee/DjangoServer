@@ -5,11 +5,31 @@
 <div class="container">
   <div class="relation-keywords">
     <h3>관련 키워드</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>ID</th>
+                <th>Words</th>
+                <th>Weights</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for keyword in keywords %}
+            <tr>
+                <td>{{ keyword.username }}</td>
+                <td>{{ keyword.id }}</td>
+                <td>{{ keyword.words }}</td>
+                <td>{{ keyword.weights }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
   </div>
-  <div>
-    <div id="chartdiv"></div>
+  <div class="charts-container">
+    <div class="chart-container" id="chartkey"></div>
+    <div class="chart-container" id="chartdiv"></div>
   </div>
-</div>
 </section>
 
 <section id="portfolio-details" class="portfolio-details">
@@ -25,15 +45,15 @@
           <div class="swiper-wrapper align-items-center">
 
             <div class="swiper-slide">
-              <img src="{% static 'img/influencer-more/' %}" alt="">
+              <img src="{% static 'img/influencer-more/myprotein.jpg' %}" alt="">
             </div>
 
             <div class="swiper-slide">
-              <img src="{% static 'img/influencer-more/' %}" alt="">
+              <img src="{% static 'img/influencer-more/almond.jpg' %}" alt="">
             </div>
 
             <div class="swiper-slide">
-              <img src="{% static 'img/influencer-more/' %}" alt="">
+              <img src="{% static 'img/influencer-more/kalo.jpg' %}" alt="">
             </div>
 
           </div>
@@ -45,8 +65,8 @@
         <div class="portfolio-info">
           <h3>인플루언서명</h3>
           <ul>
-            <li><strong>Category</strong>: </li>
-            <li><strong>Instagram URL</strong>: <a href="" target="_blank">바로가기</a></li>
+            <li><strong>Category</strong>: 운동/기능식품</li>
+            <li><strong>Instagram URL</strong>: <a href="https://www.instagram.com/p/CvwRXURywmz/?img_index=5" target="_blank">바로가기</a></li>
           </ul>
         </div>
         <div class="portfolio-description">
@@ -62,12 +82,22 @@
 </section>
 
 <style>
-  #chartdiv {
-    width: 100%;
-    max-width: 100%;
-    height: 350px;
+  #chartdiv,
+  #chartkey {
+    width: 70%; /* Set the width for each chart */
+    height: 500px; /* Set the height for each chart */
   }
-  </style>
+
+  .charts-container {
+    display: flex; /* Flexbox for horizontal alignment */
+    justify-content: space-between; /* Add space between the charts */
+  }
+
+  .chart-container {
+    flex: 1; /* Distribute available space equally */
+    padding: 0 10px; /* Add some padding between charts */
+  }
+</style>
 
    <!-- Resources -->
 <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
@@ -90,10 +120,10 @@
     value: 0,
     children: [
       {
-        name: "Fruity",
+        name: "운동",
         children: [
           {
-            name: "Berry",
+            name: "헬스장",
             children: [
               {
                 name: "Blackberry",
@@ -127,7 +157,7 @@
             ]
           },
           {
-            name: "Other Fruit",
+            name: "보충제",
             children: [
               {
                 name: "Coconut",
@@ -228,4 +258,23 @@
   
   }); // end am5.ready()
   </script>
+
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>
+  <script>
+    anychart.onDocumentReady(function () {
+        var data = [
+            {
+                "x": "{{ first_keyword.words }}",
+                "value": 0.8,
+                "category": "Sino-Tibetan"
+            }
+        ];
+        var chart = anychart.tagCloud(data);
+        chart.angles([0]);
+        chart.container("chartkey");
+        // chart.getCredits().setEnabled(false);
+        chart.draw();
+    });
+    </script>
 {% endblock %}

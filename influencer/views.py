@@ -7,8 +7,10 @@ from .models import Keyword
 
 # Create your views here.
 def Influencer1(request):
-    Keyword = Keyword.objects.all()  
-    return render(request, 'Influencer1.html',{'keyword': Keyword})
+    first_keyword = Keyword.objects.filter(username='b.saem').order_by('weights').first()
+    return render(request, 'Influencer1.html', {'first_keyword': first_keyword})
+
+
 
 def Influencer2(request):
     Keyword = Keyword.objects.all()  
