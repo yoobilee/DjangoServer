@@ -14,20 +14,20 @@ class Influencer(models.Model):
     managed = False
     db_table = 'influencers'
     
-
-class Post_limmiae(models.Model):
+    
+class Post_master(models.Model):
+  username = models.CharField(max_length=100)
   post_id = models.CharField(max_length=100, primary_key=True)
   caption = models.TextField(max_length=10000)
   comments_count = models.IntegerField()
   like_count = models.IntegerField()
   media_type = models.CharField(max_length=100)
   timestamp = models.CharField(max_length=100)
-  username = models.CharField(max_length=100)
   owner_id = models.CharField(max_length=100)
    
   class Meta:
     managed = False
-    db_table = 'post_limmiae'
+    db_table = 'post_master'
     
     
 class Post_10_12_16yp(models.Model):

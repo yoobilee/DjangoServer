@@ -2,13 +2,48 @@
 {% load static %}
 
 {% block contents %}
-<div class="container">
-  <div class="relation-keywords">
+
+<ul class="sidebar">
+  <li><a class="home" href="#">홈</a></li>
+  <li><a href="#">새소식</a></li>
+  <li><a href="#">상품</a></li>
+  <li><a href="#">회사</a></li>
+</ul>
+
+<div class="cd1">
+  <h1>큰 제목</h1>
+  <h2>작은 제목</h2>
+  <p>내용</p>
+  <p>내용</p>
+  <p>내용</p>
+  <p>내용</p>
+  <p>내용</p>
+  <p>내용</p>
+  <p>내용</p>
+  <p>내용</p>
+  <p>내용</p>
+  <p>내용</p>
+  <p>내용</p>
+  <p>내용</p>
+  <p>내용</p>
+  <p>내용</p>
+  <p>내용</p>
+  <p>내용</p>
+  <p>내용</p>
+
+</div>
+{% comment %} <div class="relation-keywords">
     <h3>관련 키워드</h3>
   </div>
-  <div>
+  <div class="row gy-4">
+  <div class="col-lg-6">
     <div id="chartdiv"></div>
   </div>
+
+  <div class="col-lg-6">
+    <div id="chartkey"></div>
+  </div>
+</div>
 </div>
 </section>
 
@@ -228,4 +263,46 @@
   
   }); // end am5.ready()
   </script>
+
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>
+  <script>
+    anychart.onDocumentReady(function () {
+        var data = [
+            {
+                "x": "IT",
+                "value": 590000000,
+                category: "Sino-Tibetan"
+            },
+            {
+                "x": "Python",
+                "value": 283000000,
+                category: "Indo-European"
+            },
+            {
+                "x": "소프트웨어",
+                "value": 544000000,
+                category: "Indo-European"
+            },
+            {
+                "x": "JAVA",
+                "value": 527000000,
+                category: "Indo-European"
+            }, {
+                "x": "C++",
+                "value": 422000000,
+                category: "Afro-Asiatic"
+            }, {
+                "x": "HTML",
+                "value": 620000000,
+                category: "Afro-Asiatic"
+            }
+        ];
+        var chart = anychart.tagCloud(data);
+        chart.angles([0]);
+        chart.container("chartkey");
+        // chart.getCredits().setEnabled(false);
+        chart.draw();
+    });
+    </script> {% endcomment %}
 {% endblock %}

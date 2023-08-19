@@ -1,0 +1,10 @@
+.biography h6 {
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out;
+  max-height: none;
+  line-height: 1.2;
+}
+
+.biography h6.collapsed {
+  max-height: 2.4em;
+}
