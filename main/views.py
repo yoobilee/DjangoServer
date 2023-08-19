@@ -6,18 +6,57 @@ from accounts.models import Influencer, Post_master, Post_10_12_16yp, Post_b_sae
 from django.core import serializers
 from django.contrib.contenttypes.models import ContentType
 from django.db.models import Avg
+import logging
+
+logger = logging.getLogger(__name__)
 
 # Create your views here.
 def first_index(request):
     logout(request)
     return render(request, "first-index.html")
 
+
 def InfluHome(request):
-    return render(request, "InfluHome.html")
+    # 로그인한 사용자의 아이디를 가져옵니다.
+    user_id = request.session.get('user_id', None)
+    
+    if user_id:
+        try:
+            # 로그인한 사용자의 아이디로 User_influ 모델에서 해당 사용자의 정보를 가져옵니다.
+            user = User_influ.objects.get(id=user_id)
+            
+            # 로그인한 사용자의 아이디로 Influencer 모델에서 해당 사용자의 정보를 가져옵니다.
+            influencer = Influencer.objects.get(username=user_id)
+            
+            return render(request, 'InfluHome.html', {'user': user, 'influencer': influencer})
+        except (User_influ.DoesNotExist, Influencer.DoesNotExist):
+            pass
+    
+    # 사용자가 로그인하지 않았거나 사용자 정보가 없는 경우 기본 템플릿을 렌더링합니다.
+    return render(request, 'InfluHome.html')
+
+
 
 def AgencyHome(request):
-    influencers = Influencer.objects.all()    
-    return render(request, 'AgencyHome.html', {'influencers': influencers})
+    # 로그인한 사용자의 아이디를 가져옵니다.
+    user_id = request.session.get('user_id', None)
+    
+    if user_id:
+        try:
+            # 로그인한 사용자의 아이디로 User_adv 모델에서 해당 사용자의 정보를 가져옵니다.
+            user = User_adv.objects.get(id=user_id)
+            
+            # 로그인한 사용자의 아이디로 Influencer 모델에서 해당 사용자의 정보를 가져옵니다.
+            influencer = Influencer.objects.get(id=user_id)
+            
+            return render(request, 'AgencyHome.html', {'user': user, 'influencer': influencer})
+        except (User_adv.DoesNotExist, Influencer.DoesNotExist):
+            pass
+    
+    # 사용자가 로그인하지 않았거나 사용자 정보가 없는 경우 기본 템플릿을 렌더링합니다.
+    return render(request, 'AgencyHome.html')
+
+
 
 def inner_page(request):
     return render(request, "inner-page.html")
