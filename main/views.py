@@ -22,16 +22,6 @@ def AgencyHome(request):
 def inner_page(request):
     return render(request, "inner-page.html")
 
-def portfolio_details(request, pk):
-    item = get_object_or_404(YourModel, pk=pk)
-    
-    # query = request.GET.get('q')
-    # if query and query in item.body:
-    #     return redirect('search-results', q=query)
-    
-    context = {'item': item}
-    return render(request, 'portfolio-details.html', context)
-
 def portfolio_details01(request):
     return render(request, "portfolio-details01.html")
 
@@ -103,6 +93,9 @@ def get_additional_data(request):
     except (Influencer.DoesNotExist, Post_master.username.DoesNotExist):
         return JsonResponse({'error': 'Data not found'})
     
+def notice_manage(request):
+    return render(request, "notice-manage.html")
+
 def notice(request):
     return render(request, "notice.html")
 

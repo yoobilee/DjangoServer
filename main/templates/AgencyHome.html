@@ -1,7 +1,7 @@
 {% load static %}
 <!doctype html>
 <html lang="en">
-
+{% if request.session.user_id %}
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -96,18 +96,18 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link nav-icon-hover" href="javascript:void(0)">홈</a>
+              <a class="nav-link nav-icon-hover" href="" style="color: #5D87FF;">홈</a>
             </li>
             <li class="nav-item">
               <a class="nav-link nav-icon-hover" href="javascript:void(0)" title="소속 인플루언서들을 시각적으로 자세히 분석해드립니다.">상세 분석</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link nav-icon-hover" href="javascript:void(0)" title="모집공고 글을 작성, 수정 또는 삭제합니다.">모집공고 관리</a>
+              <a class="nav-link nav-icon-hover" href="/notice-manage" title="모집공고 글을 작성, 수정 또는 삭제합니다.">모집공고 관리</a>
             </li>
           </ul>
           <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
             <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
-              <a href="https://adminmart.com/product/modernize-free-bootstrap-admin-dashboard/" target="_blank" class="btn btn-primary">로그아웃</a>
+              <a href="/accounts/Adv_Logout" class="btn btn-primary">로그아웃</a>
               <li class="nav-item dropdown">
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
                   <div class="message-body">
@@ -458,5 +458,18 @@
   <script src="{% static 'libs/simplebar/dist/simplebar.js' %}"></script>
   <script src="{% static 'js/dashboard.js' %}"></script>
 </body>
-
+{% else %} <!-- 로그인 안하고 주소창에 /AgencyHome 치고 들어왔을 때 서비스 이용 불가능 -->
+<head>
+  <title>페이지를 찾을 수 없음</title>
+</head>
+<body>
+  <h1>페이지를 찾을 수 없음</h1>
+  <p>죄송합니다. 요청하신 페이지를 찾을 수 없습니다.</p>
+</body>
+<div class="user-none">
+  <script>
+    alert("회원만 접근 가능합니다.");
+  </script>
+</div>
+{% endif %}
 </html>

@@ -49,7 +49,7 @@ def Adv_Login(request):
                 referer = request.session.pop('login_referer')
                 return redirect(referer)
             else:
-                return redirect('main:AdvHome')
+                return redirect('main:AgencyHome')
         except User_adv.DoesNotExist:
             login_error = "사용자가 존재하지 않습니다."
         except User_adv.MultipleObjectsReturned:
@@ -126,7 +126,7 @@ def Adv_Logout(request):
 def Influ_Logout(request):
     if 'user_id' in request.session:
         del request.session['user_id']
-    return redirect('main:InfluHome')  # 로그아웃 후 인플루언서 홈으로 리다이렉트
+    return redirect('main:first-index')  # 로그아웃 후 인플루언서 홈으로 리다이렉트
 
 
 def get_user_type(user):

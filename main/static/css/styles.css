@@ -20456,3 +20456,7 @@ ul {
 .timeline-widget .timeline-item .timeline-badge.badge-primary {
   border: 2px solid #5D87FF
 }
+
+.brand-logo .d-flex .align-items-center .justify-content-between {
+  padding: 0 17%;
+}
