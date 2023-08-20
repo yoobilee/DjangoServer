@@ -20166,11 +20166,59 @@ ul {
   border: 2px solid #5D87FF
 }
 
+/* 검색창 스타일 */
+.d-flex-s {
+  position: relative;
+  width: auto;
+  margin-bottom: 30px;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.d-flex-s img {
+  width: 17px;
+  top: 10px;
+  left: 12px;
+}
+
+.d-flex-s input {
+  width: 100%;
+  border: 1px solid #bbb;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+  padding-left: 35px;
+  border-radius: 10px 10px 0px 0px !important;
+}
+
+.d-flex-s button {
+  width: 100% !important;
+  /* margin-top: 10px; */
+  background: #5D87FF;
+  border: #5D87FF;
+  color: white;
+  border-radius: 0px 0px 10px 10px !important;
+}
+
+.d-flex-s button:hover {
+  background-color: #64C8FF
+}
+
+.d-flex-s button:active {
+  background-color: #5D87FF;
+  --bs-btn-active-bg: #5D87FF;
+  --bs-btn-active-border-color: #5D87FF;
+  --bs-btn-active-color: black;
+}
 
 .biography h6 {
   max-height: 2.4em; /* 2줄에 해당하는 높이 설정 */
   overflow: hidden;
   text-overflow: ellipsis; /* 텍스트가 길 경우 ...으로 생략 표시 */
+  font-size: 12px;
+  color: var(--bs-cyan);
 }
 
 .biography.expanded h6 {
@@ -20187,4 +20235,39 @@ ul {
   text-align: right;
   margin-right: 8px;
   float: right;
+}
+
+/*이용약관*/
+.inner-page .container {
+  font-family: Inter,Noto Sans Kr,sans-serif; 
+  font-size: 14px;
+}
+
+.page-title {
+  padding: 32px 0 32px;
+  font-size: 25px;
+}
+
+.section-wrapper {
+  padding: 0 46px;
+}
+
+.section-wrapper h4, h5 {
+  font-family: Inter,Noto Sans Kr,sans-serif !important; 
+  font-size: 1em;
+}
+
+.section-wrapper h5 {
+  font-weight: 400;
+  line-height: 1.6em;
+  margin-bottom: 2em;
+}
+
+.section-wrapper strong {
+  font-weight: bold;
+}
+
+.username {
+  font-size: 18px;
+  font-weight: 700;
 }

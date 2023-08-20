@@ -3,13 +3,6 @@ from accounts.models import User_adv
 
 # Create your models here.
 
-class YourModel(models.Model):
-    title = models.CharField(max_length=100)
-    body = models.TextField()
-
-    def __str__(self):
-        return self.title
-
 class Recruitment(models.Model):
     agency = models.ForeignKey(User_adv, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
@@ -26,9 +19,6 @@ class Recruitment(models.Model):
     class Meta:
         managed = True
         db_table = 'Recruitment'
-    
-    def __str__(self):
-        return self.title
 
     
 class RecruitmentImage(models.Model):

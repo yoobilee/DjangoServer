@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db import connection
 from django.contrib.auth import logout
-from .models import YourModel
-from accounts.models import Influencer, Post_master, Post_10_12_16yp, Post_b_saem, Post_wescsp1121, Post_vevi_d_live, Post_yakstory119, Post_iam_yaksa, Post_yakstagram, Post_pt_jjuny, User_adv, User_influ
+from accounts.models import Influencer, Keyword, Post_master, Post_10_12_16yp, Post_b_saem, Post_wescsp1121, Post_vevi_d_live, Post_yakstory119, Post_iam_yaksa, Post_yakstagram, Post_pt_jjuny, User_adv, User_influ
 from django.core import serializers
 from django.contrib.contenttypes.models import ContentType
 from django.db.models import Avg
@@ -23,7 +22,6 @@ def InfluHome(request):
     # 로그인한 사용자의 아이디를 가져옵니다.
     user_id = request.session.get('user_id', None)
     
-    
     if user_id:
         try:
             # 로그인한 사용자의 아이디로 User_influ 모델에서 해당 사용자의 정보를 가져옵니다.
@@ -31,15 +29,21 @@ def InfluHome(request):
             
             # 로그인한 사용자의 아이디로 Influencer 모델에서 해당 사용자의 정보를 가져옵니다.
             influencer = Influencer.objects.get(username=user_id)
+            first_keywords = Keyword.objects.filter(username=user_id).first()
+            second_keywords = Keyword.objects.filter(username=user_id)[1]
+            third_keywords = Keyword.objects.filter(username=user_id)[2]
+            forth_keywords = Keyword.objects.filter(username=user_id)[3]
+            fifth_keywords = Keyword.objects.filter(username=user_id)[4]
+            sixth_keywords = Keyword.objects.filter(username=user_id).last()
             
-            return render(request, 'InfluHome.html', {'user': user, 'influencer': influencer})
+            return render(request, 'InfluHome.html', {'user': user, 'influencer': influencer, 'first_keywords': first_keywords,
+                                                      'second_keywords': second_keywords, 'third_keywords': third_keywords, 'forth_keywords': forth_keywords,
+                                                      'fifth_keywords': fifth_keywords,'sixth_keywords': sixth_keywords})
         except (User_influ.DoesNotExist, Influencer.DoesNotExist):
             pass
     
     # 사용자가 로그인하지 않았거나 사용자 정보가 없는 경우 기본 템플릿을 렌더링합니다.
     return render(request, 'InfluHome.html')
-
-
 
 def AgencyHome(request):
     # 로그인한 사용자의 아이디를 가져옵니다.
@@ -134,6 +138,26 @@ def get_additional_data(request):
     except (Influencer.DoesNotExist, Post_master.username.DoesNotExist):
         return JsonResponse({'error': 'Data not found'})
 
+def ComparisonAnalysis(request):
+    # 로그인한 사용자의 아이디를 가져옵니다.
+    user_id = request.session.get('user_id', None)
+    
+    if user_id:
+        try:
+            # 로그인한 사용자의 아이디로 User_influ 모델에서 해당 사용자의 정보를 가져옵니다.
+            user = User_influ.objects.get(id=user_id)
+            
+            # 로그인한 사용자의 아이디로 Influencer 모델에서 해당 사용자의 정보를 가져옵니다.
+            influencer = Influencer.objects.get(username=user_id)
+            
+            return render(request, 'ComparisonAnalysis.html', {'user': user, 'influencer': influencer})
+        except (User_influ.DoesNotExist, Influencer.DoesNotExist):
+            pass
+
+    return render(request, "ComparisonAnalysis.html")
+
+def DetailedAnalysis(request):
+    return render(request, "DetailedAnalysis.html")
 
 def notice_manage(request):
     user_id = request.session.get('user_id', None)  # 로그인된 사용자 아이디 가져오기
@@ -153,15 +177,44 @@ def notice_manage(request):
 
 
 def notice(request):
+    # 로그인한 사용자의 아이디를 가져옵니다.
+    user_id = request.session.get('user_id', None)
+    
+    if user_id:
+        try:
+            # 로그인한 사용자의 아이디로 User_influ 모델에서 해당 사용자의 정보를 가져옵니다.
+            user = User_influ.objects.get(id=user_id)
+            
+            # 로그인한 사용자의 아이디로 Influencer 모델에서 해당 사용자의 정보를 가져옵니다.
+            influencer = Influencer.objects.get(username=user_id)
+            
+            return render(request, 'notice.html', {'user': user, 'influencer': influencer})
+        except (User_influ.DoesNotExist, Influencer.DoesNotExist):
+            pass
+
     return render(request, "notice.html")
 
 def notice_Agency1(request):
+    # 로그인한 사용자의 아이디를 가져옵니다.
+    user_id = request.session.get('user_id', None)
+    
+    if user_id:
+        try:
+            # 로그인한 사용자의 아이디로 User_influ 모델에서 해당 사용자의 정보를 가져옵니다.
+            user = User_influ.objects.get(id=user_id)
+            
+            # 로그인한 사용자의 아이디로 Influencer 모델에서 해당 사용자의 정보를 가져옵니다.
+            influencer = Influencer.objects.get(username=user_id)
+            
+            return render(request, 'notice-Agency1.html', {'user': user, 'influencer': influencer})
+        except (User_influ.DoesNotExist, Influencer.DoesNotExist):
+            pass
+
     return render(request, "notice-Agency1.html")
 
 def notice_list(request):
     notices = Recruitment.objects.all()  # 공고 목록을 가져옵니다.
     return render(request, 'notice_list.html', {'notices': notices})
-
 
 def create_notice(request):
     user_id = request.session.get('user_id', None)
@@ -192,13 +245,7 @@ def create_notice(request):
     else:
         # 로그인되지 않은 경우에 대한 처리
         return redirect('accounts:Adv_Login')     # 로그인 페이지로 리디렉션
-
-
-
-
-
-
-
+    
 def edit_notice(request, notice_id):
     notice = get_object_or_404(Recruitment, pk=notice_id)
     

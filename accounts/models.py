@@ -9,6 +9,18 @@ class Influencer(models.Model):
   media_count = models.IntegerField()
   follows_count = models.IntegerField()
   followers_count = models.IntegerField()
+  category = models.CharField(max_length=100)
+  adv_count = models.IntegerField()
+  week_avg_post = models.DecimalField(max_digits=5, decimal_places=1)
+  am_pm = models.CharField(max_length=100)
+  avg_post_time = models.CharField(max_length=100)
+  feed_percent = models.IntegerField()
+  reels_percent = models.IntegerField()
+  avg_comments = models.IntegerField()
+  avg_goods = models.IntegerField()
+  comments_percent = models.IntegerField()
+  goods_percent = models.IntegerField()
+  profile_url = models.CharField(max_length=1000)
   
   class Meta:
     managed = False
@@ -164,3 +176,12 @@ class User_influ(models.Model):
     managed = False
     db_table = 'user_influ'
     
+class Keyword(models.Model):
+  id=models.CharField(max_length=100)
+  username = models.CharField(max_length=100)
+  words = models.CharField(max_length=100)
+  weights = models.DecimalField(max_digits=15, decimal_places=10, primary_key=True)  # 소수점 10자리까지 저장
+
+  class Meta:
+    managed = False
+    db_table = 'keyword'
