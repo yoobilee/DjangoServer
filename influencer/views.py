@@ -3,31 +3,43 @@ from django.contrib.auth import authenticate
 from django.shortcuts import render
 from django.conf import settings
 from django.conf.urls.static import static
+from .models import Keyword
 
 # Create your views here.
 def Influencer1(request):
-    return render(request, 'Influencer1.html')
+    first_keyword = Keyword.objects.filter(username='b.saem').order_by('weights').first()
+    return render(request, 'Influencer1.html', {'first_keyword': first_keyword})
+
+
 
 def Influencer2(request):
-    return render(request, 'Influencer2.html')
+    Keyword = Keyword.objects.all()  
+    return render(request, 'Influencer2.html',{'keyword': Keyword})
 
 def Influencer3(request):
-    return render(request, 'Influencer3.html')
+    Keyword = Keyword.objects.all()  
+    return render(request, 'Influencer3.html',{'keyword': Keyword})
 
 def Influencer4(request):
-    return render(request, 'Influencer4.html')
+    Keyword = Keyword.objects.all()  
+    return render(request, 'Influencer4.html',{'keyword': Keyword})
 
 def Influencer5(request):
-    return render(request, 'Influencer5.html')
+    Keyword = Keyword.objects.all()  
+    return render(request, 'Influencer5.html',{'keyword': Keyword})
 
 def Influencer6(request):
-    return render(request, 'Influencer6.html')
+    Keyword = Keyword.objects.all()  
+    return render(request, 'Influencer6.html',{'keyword': Keyword})
 
 def Influencer7(request):
-    return render(request, 'Influencer7.html')
+    Keyword = Keyword.objects.all()  
+    return render(request, 'Influencer7.html',{'keyword': Keyword})
 
 def Influencer8(request):
-    return render(request, 'Influencer8.html')
+    Keyword = Keyword.objects.all()  
+    return render(request, 'Influencer8.html',{'keyword': Keyword})
 
 def Influencer9(request):
-    return render(request, 'Influencer9.html')
+    Keyword = Keyword.objects.all()  
+    return render(request, 'Influencer9.html',{'keyword': Keyword})
