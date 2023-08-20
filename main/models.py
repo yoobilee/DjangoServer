@@ -2,7 +2,6 @@ from django.db import models
 
 # Create your models here.
 
-<<<<<<< HEAD
 class YourModel(models.Model):
     title = models.CharField(max_length=100)
     body = models.TextField()
@@ -10,8 +9,6 @@ class YourModel(models.Model):
     def __str__(self):
         return self.title
 
-=======
->>>>>>> 75c32d966ac65d5fc7bc9da71943e510d23aec00
 # class Influencer(models.Model):
 #   id = models.CharField(max_length=100, primary_key=True)
 #   username = models.CharField(max_length=100)
@@ -34,7 +31,3 @@ class YourModel(models.Model):
 #   class Meta:
 #     managed = False
 #     db_table = 'influencers'
-<<<<<<< HEAD
-
-=======
->>>>>>> 75c32d966ac65d5fc7bc9da71943e510d23aec00

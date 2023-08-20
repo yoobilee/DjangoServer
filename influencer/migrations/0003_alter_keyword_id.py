@@ -15,8 +15,4 @@ class Migration(migrations.Migration):
             name='id',
             field=models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID'),
         ),
-<<<<<<< HEAD
     ]
-=======
-    ]
->>>>>>> 75c32d966ac65d5fc7bc9da71943e510d23aec00

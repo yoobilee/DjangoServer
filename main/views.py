@@ -33,11 +33,8 @@ def InfluHome(request):
     
     # 사용자가 로그인하지 않았거나 사용자 정보가 없는 경우 기본 템플릿을 렌더링합니다.
     return render(request, 'InfluHome.html')
-<<<<<<< HEAD
 
 
-=======
->>>>>>> 75c32d966ac65d5fc7bc9da71943e510d23aec00
 
 def AgencyHome(request):
     # 로그인한 사용자의 아이디를 가져옵니다.
@@ -57,14 +54,11 @@ def AgencyHome(request):
     
     # 사용자가 로그인하지 않았거나 사용자 정보가 없는 경우 기본 템플릿을 렌더링합니다.
     return render(request, 'AgencyHome.html')
-<<<<<<< HEAD
 
 
 
 def inner_page(request):
     return render(request, "inner-page.html")
-=======
->>>>>>> 75c32d966ac65d5fc7bc9da71943e510d23aec00
 
 def portfolio_details01(request):
     return render(request, "portfolio-details01.html")
