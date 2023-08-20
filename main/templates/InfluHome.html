@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% load static %}
 <!doctype html>
 <html lang="en">
@@ -167,116 +168,91 @@
           </ul>
         </nav>
         <!-- End Sidebar navigation -->
+=======
+{% extends "InfluHome-Base.html" %}
+
+{% load static %}
+
+{% block content %}
+<!--  Header Start -->
+<header class="app-header">
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <ul class="navbar-nav">
+      <li class="nav-item d-block d-xl-none">
+        <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
+          <i class="ti ti-menu-2"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link nav-icon-hover" href="" style="color: #5D87FF;">홈</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link nav-icon-hover" href="/ComparisonAnalysis">1대1 매칭 분석</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link nav-icon-hover" href="/notice">모집공고</a>
+      </li>
+    </ul>
+    <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+      <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+        <a href="/accounts/Influ_Logout" class="btn btn-primary">로그아웃</a>
+      </ul>
+    </div>
+  </nav>
+</header>
+<!--  Header End -->
+
+<div class="container-fluid">
+  <!--  Row 1 -->
+  <div class="row">
+    <h3>인기 포스트</h3>
+      <div class="col-sm-6 col-xl-3">
+        <div class="card overflow-hidden rounded-2">
+          <div class="position-relative">
+            <a href="javascript:void(0)"><img src="{% static 'img/products/s4.jpg' %}" class="card-img-top rounded-0" alt="..."></a>
+            <a href="javascript:void(0)" class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart"><i class="ti ti-basket fs-4"></i></a>                      
+          </div>
+          <div class="card-body pt-3 p-4">
+            <h6 class="fw-semibold fs-4">Boat Headphone</h6>
+            <div class="d-flex align-items-center justify-content-between">
+              <h6 class="fw-semibold fs-4 mb-0">$50 <span class="ms-2 fw-normal text-muted fs-3"><del>$65</del></span></h6>
+              <ul class="list-unstyled d-flex align-items-center mb-0">
+                <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                <li><a class="" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+>>>>>>> 75c32d966ac65d5fc7bc9da71943e510d23aec00
       </div>
-      <!-- End Sidebar scroll-->
-    </aside>
-    <!--  Sidebar End -->
-    <!--  Main wrapper -->
-    <div class="body-wrapper">
-      <!--  Header Start -->
-      <header class="app-header">
-        <nav class="navbar navbar-expand-lg navbar-light">
-          <ul class="navbar-nav">
-            <li class="nav-item d-block d-xl-none">
-              <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
-                <i class="ti ti-menu-2"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <!-- <a class="nav-link nav-icon-hover" href="javascript:void(0)">
-                <i class="ti ti-bell-ringing"></i>
-                <div class="notification bg-primary rounded-circle"></div>
-              </a> -->
-              <a class="nav-link nav-icon-hover" href="" style="color: #5D87FF;">홈</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link nav-icon-hover" href="javascript:void(0)">1대1 매칭 분석</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link nav-icon-hover" href="/notice">모집공고</a>
-            </li>
-          </ul>
-          <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
-            <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
-              <a href="/accounts/Influ_Logout" class="btn btn-primary">로그아웃</a>
-              <li class="nav-item dropdown">
-                <!-- <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
-                  aria-expanded="false">
-                  <img src="../assets/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
-                </a> -->
-                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
-                  <div class="message-body">
-                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
-                      <i class="ti ti-user fs-6"></i>
-                      <p class="mb-0 fs-3">My Profile</p>
-                    </a>
-                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
-                      <i class="ti ti-mail fs-6"></i>
-                      <p class="mb-0 fs-3">My Account</p>
-                    </a>
-                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
-                      <i class="ti ti-list-check fs-6"></i>
-                      <p class="mb-0 fs-3">My Task</p>
-                    </a>
-                    <!-- <a href="./authentication-login.html" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a> -->
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </header>
-      <!--  Header End -->
-      <div class="container-fluid">
-        <!--  Row 1 -->
-        <div class="row">
-          <h3>인기 포스트</h3>
-          <div class="col-sm-6 col-xl-3">
-            <div class="card overflow-hidden rounded-2">
-              <div class="position-relative">
-                <a href="javascript:void(0)"><img src="{% static 'img/products/s4.jpg' %}" class="card-img-top rounded-0" alt="..."></a>
-                <a href="javascript:void(0)" class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart"><i class="ti ti-basket fs-4"></i></a>                      
-              </div>
-              <div class="card-body pt-3 p-4">
-                <h6 class="fw-semibold fs-4">Boat Headphone</h6>
-                <div class="d-flex align-items-center justify-content-between">
-                  <h6 class="fw-semibold fs-4 mb-0">$50 <span class="ms-2 fw-normal text-muted fs-3"><del>$65</del></span></h6>
-                  <ul class="list-unstyled d-flex align-items-center mb-0">
-                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                    <li><a class="" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                  </ul>
-                </div>
+      <div class="col-sm-6 col-xl-3">
+        <div class="card overflow-hidden rounded-2">
+          <div class="position-relative">
+            <a href="javascript:void(0)"><img src="{% static 'img/products/s5.jpg' %}" class="card-img-top rounded-0" alt="..."></a>
+            <a href="javascript:void(0)" class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart"><i class="ti ti-basket fs-4"></i></a>                      </div>
+            <div class="card-body pt-3 p-4">
+              <h6 class="fw-semibold fs-4">MacBook Air Pro</h6>
+              <div class="d-flex align-items-center justify-content-between">
+                <h6 class="fw-semibold fs-4 mb-0">$650 <span class="ms-2 fw-normal text-muted fs-3"><del>$900</del></span></h6>
+                <ul class="list-unstyled d-flex align-items-center mb-0">
+                  <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                  <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                  <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                  <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                  <li><a class="" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                </ul>
               </div>
             </div>
           </div>
-          <div class="col-sm-6 col-xl-3">
-            <div class="card overflow-hidden rounded-2">
-              <div class="position-relative">
-                <a href="javascript:void(0)"><img src="{% static 'img/products/s5.jpg' %}" class="card-img-top rounded-0" alt="..."></a>
-                <a href="javascript:void(0)" class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart"><i class="ti ti-basket fs-4"></i></a>                      </div>
-              <div class="card-body pt-3 p-4">
-                <h6 class="fw-semibold fs-4">MacBook Air Pro</h6>
-                <div class="d-flex align-items-center justify-content-between">
-                  <h6 class="fw-semibold fs-4 mb-0">$650 <span class="ms-2 fw-normal text-muted fs-3"><del>$900</del></span></h6>
-                  <ul class="list-unstyled d-flex align-items-center mb-0">
-                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                    <li><a class="" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-xl-3">
-            <div class="card overflow-hidden rounded-2">
-              <div class="position-relative">
-                <a href="javascript:void(0)"><img src="{% static 'img/products/s7.jpg' %}" class="card-img-top rounded-0" alt="..."></a>
-                <a href="javascript:void(0)" class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart"><i class="ti ti-basket fs-4"></i></a>                      </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="card overflow-hidden rounded-2">
+            <div class="position-relative">
+              <a href="javascript:void(0)"><img src="{% static 'img/products/s7.jpg' %}" class="card-img-top rounded-0" alt="..."></a>
+              <a href="javascript:void(0)" class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart"><i class="ti ti-basket fs-4"></i></a>                      </div>
               <div class="card-body pt-3 p-4">
                 <h6 class="fw-semibold fs-4">Red Valvet Dress</h6>
                 <div class="d-flex align-items-center justify-content-between">
@@ -369,6 +345,240 @@
         </div>
         
         
+        <div class="row">
+          <div class="col-lg-6 d-flex align-items-stretch" style="height: 300px;">
+            <div class="card w-100">
+              <div class="card-body p-4">
+                <div class="mb-4">
+                  <h5 class="card-title fw-semibold">포스트 태그</h5>
+                </div>
+                <div id="chartkey"></div>
+
+                <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+                <script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>
+                <script>
+                  anychart.onDocumentReady(function () {
+                  var data = [
+                  {
+                    "x": "IT",
+                    "value": 590000000,
+                    category: "Sino-Tibetan"
+                  },
+                  {
+                    "x": "Python",
+                    "value": 283000000,
+                    category: "Indo-European"
+                  },
+                  {
+                    "x": "소프트웨어",
+                    "value": 544000000,
+                    category: "Indo-European"
+                  },
+                  {
+                    "x": "JAVA",
+                    "value": 527000000,
+                    category: "Indo-European"
+                  }, {
+                    "x": "C++",
+                    "value": 422000000,
+                    category: "Afro-Asiatic"
+                  }, {
+                    "x": "HTML",
+                    "value": 620000000,
+                    category: "Afro-Asiatic"
+                  }
+                  ];
+                  var chart = anychart.tagCloud(data);
+                  chart.angles([0]);
+                  chart.container("chartkey");
+                  // chart.getCredits().setEnabled(false);
+                  chart.draw();
+                });
+              </script>
+            
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 d-flex align-items-stretch" style="height: 300px;">
+          <div class="card w-100">
+            <div class="card-body p-4">
+              <h5 class="card-title fw-semibold mb-4">분석 제목 미정</h5>
+            </div>
+            <div id="chartdiv"></div>
+
+            <style>
+              #chartdiv {
+                width: 100%;
+                max-width: 100%;
+                height: 350px;
+              }
+            </style>
+              
+            <!-- Resources -->
+            <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+            <script src="https://cdn.amcharts.com/lib/5/hierarchy.js"></script>
+            <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+            <script>
+              am5.ready(function() {
+                
+              // Create root element
+              // https://www.amcharts.com/docs/v5/getting-started/#Root_element
+              var root = am5.Root.new("chartdiv");
+                
+              // Set themes
+              // https://www.amcharts.com/docs/v5/concepts/themes/
+              root.setThemes([
+                am5themes_Animated.new(root)
+              ]);
+                
+              var data = {
+                value: 0,
+                children: [
+                  {
+                    name: "Fruity",
+                    children: [
+                      {
+                        name: "Berry",
+                        children: [
+                          {
+                            name: "Blackberry",
+                            value: 1
+                          },
+                          {
+                            name: "Raspberry",
+                            value: 1
+                          },
+                          {
+                            name: "Blueberry",
+                            value: 1
+                          },
+                          {
+                            name: "Strawberry",
+                            value: 1
+                          }
+                        ]
+                      },
+                      {
+                        name: "Dried Fruit",
+                        children: [
+                          {
+                            name: "Raisin",
+                            value: 1
+                          },
+                          {
+                            name: "Prune",
+                            value: 1
+                          }
+                        ]
+                      },
+                      {
+                        name: "Other Fruit",
+                        children: [
+                          {
+                            name: "Coconut",
+                            value: 1
+                          },
+                          {
+                            name: "Cherry",
+                            value: 1
+                          },
+                          {
+                            name: "Pomegranate",
+                            value: 1
+                          },
+                          {
+                            name: "Pineapple",
+                            value: 1
+                          },
+                          {
+                            name: "Grape",
+                            value: 1
+                          },
+                          {
+                            name: "Apple",
+                            value: 1
+                          },
+                          {
+                            name: "Peach",
+                            value: 1
+                          },
+                          {
+                            name: "Pear",
+                            value: 1
+                          }
+                        ]
+                      },
+                      {
+                        name: "Citrus Fruit",
+                        children: [
+                          {
+                            name: "Grapefruit",
+                            value: 1
+                          },
+                          {
+                            name: "Orange",
+                            value: 1
+                          },
+                          {
+                            name: "Lemon",
+                            value: 1
+                          },
+                          {
+                            name: "Lime",
+                            value: 1
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              };
+                
+              // Create wrapper container
+                var container = root.container.children.push(am5.Container.new(root, {
+                  width: am5.percent(100),
+                  height: am5.percent(100),
+                  layout: root.verticalLayout
+                }));
+                
+                // Create series
+                // https://www.amcharts.com/docs/v5/charts/hierarchy/#Adding
+                var series = container.children.push(am5hierarchy.ForceDirected.new(root, {
+                  singleBranchOnly: false,
+                  downDepth: 2,
+                  topDepth: 1,
+                  initialDepth: 1,
+                  valueField: "value",
+                  categoryField: "name",
+                  childDataField: "children",
+                  idField: "name",
+                  linkWithField: "linkWith",
+                  manyBodyStrength: -10,
+                  centerStrength: 0.8
+                }));
+                
+                series.get("colors").setAll({
+                  step: 2
+                });
+                
+                series.links.template.set("strength", 0.5);
+                
+                series.data.setAll([data]);
+                
+                series.set("selectedDataItem", series.dataItems[0]);
+                
+                
+                // Make stuff animate on load
+                series.appear(1000, 100);
+                
+                }); // end am5.ready()
+                </script>
+
+            </div>
+          </div>
+        </div>
+
         <div class="row">
           <div class="col-lg-4 d-flex align-items-stretch">
             <div class="card w-100">
@@ -538,6 +748,7 @@
             </div>
           </div>
         </div>
+<<<<<<< HEAD
         
         <div class="py-6 px-6 text-center">
           <!-- ======= Footer ======= -->
@@ -648,3 +859,6 @@
 </div>
 {% endif %}
 </html>
+=======
+        {% endblock %}
+>>>>>>> 75c32d966ac65d5fc7bc9da71943e510d23aec00

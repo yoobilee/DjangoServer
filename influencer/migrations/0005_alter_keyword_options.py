@@ -14,4 +14,8 @@ class Migration(migrations.Migration):
             name='keyword',
             options={'managed': False},
         ),
+<<<<<<< HEAD
     ]
+=======
+    ]
+>>>>>>> 75c32d966ac65d5fc7bc9da71943e510d23aec00

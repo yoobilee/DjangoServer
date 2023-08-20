@@ -13,4 +13,8 @@ class Migration(migrations.Migration):
         migrations.DeleteModel(
             name='Influencer',
         ),
+<<<<<<< HEAD
     ]
+=======
+    ]
+>>>>>>> 75c32d966ac65d5fc7bc9da71943e510d23aec00

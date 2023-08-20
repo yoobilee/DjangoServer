@@ -1,0 +1,170 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+{% if request.session.user_id %}
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>infraze</title>
+  <link rel="shortcut icon" type="img/png" href="{% static 'img/logos/favicon.png' %}" />
+  <link rel="stylesheet" href="{% static 'css/styles.min.css' %}" />
+</head>
+
+<body>
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+
+    <!-- Sidebar Start -->
+    <aside class="left-sidebar">
+
+      <!-- Sidebar scroll-->
+      <div>
+        <div class="brand-logo d-flex align-items-center justify-content-between">
+          <a href="./index.html" class="text-nowrap logo-img">
+            <img src="{% static 'img/logos/logo.png' %}" width="180" alt="" />
+          </a>
+          <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+            <i class="ti ti-x fs-8"></i>
+          </div>
+        </div>
+
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+          <ul id="sidebarnav">
+            <li class="sidebar-item" style="text-align: center;">
+
+              <!-- 인스타그램 프로필 사진 -->
+              <a href="javascript:void(0)" class="profile" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
+                  <img src="{% static 'img/profile/user-1.jpg' %}" alt="" width="100" height="100" class="rounded-circle" style="margin-bottom: 36px; margin-top: 36px;">
+              </a>
+              <script>
+                // 마우스가 이미지 위로 올라왔을 때의 처리 함수
+                function enlargeImage() {
+                  var img = document.querySelector('.profile img');
+                  img.style.transform = 'scale(1.2)';
+                }
+              
+                // 마우스가 이미지를 벗어났을 때의 처리 함수
+                function restoreImage() {
+                  var img = document.querySelector('.profile img');
+                  img.style.transform = 'scale(1)';
+                }
+              
+                // 이벤트를 추가할 이미지 영역 요소 가져오기
+                var profileImage = document.querySelector('.profile');
+              
+                // 이벤트 리스너 등록
+                profileImage.addEventListener('mouseover', enlargeImage);
+                profileImage.addEventListener('mouseout', restoreImage);
+              </script>
+              <div style="text-align: center;">
+                <h5>에이전시명</h5>
+                <h6>기타 추가할거..</h6>
+              </div>
+            </li>
+            <div style="display: grid; grid-template-columns: repeat(2,1fr); row-gap: 20px; margin-top: 36px; text-align: center;">
+              <span style="display: flex; flex-direction: column-reverse;">
+                <label>고객수</label>
+                <strong>4</strong> <!-- strong 실제 데이터 값 출력되어야 함 -->
+              </span>
+              <span style="display: flex; flex-direction: column-reverse;">
+                <label>진행 캠페인</label> <!-- ==작성한 공지 수 -->
+                <strong>3</strong> <!-- strong 실제 데이터 값 출력되어야 함 -->
+              </span>
+            </div>
+          </ul>
+        </nav>
+        <!-- End Sidebar navigation -->
+
+      </div>
+      <!-- End Sidebar scroll-->
+
+    </aside>
+    <!--  Sidebar End -->
+
+    <!--  Main wrapper -->
+    <div class="body-wrapper">
+
+      {% block content %}
+
+        {% endblock %}
+        
+        <div class="py-6 px-6 text-center">
+        <!-- ======= Footer ======= -->
+        <hr>
+        <footer id="footer">
+          <div class="footer-top">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-4 col-md-6">
+                  <div class="footer-info">
+                    <p>
+                      Bundang-gu, Seongnam-si, Gyeonggi-do, Pangyo 289-20, Korea
+                    </p>
+                  </div>
+                </div>
+                <div class="col-lg-2 col-md-6 footer-links">
+                  <ul>
+                    <li><i class="bx bx-chevron-right"></i> <a href="/TermOfUse_I">이용약관</a></li>
+                  </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 footer-links">
+                  <ul>
+                    <li><i class="bx bx-chevron-right"></i> <a href="/PrivacyPolicy_I">개인정보처리방침</a></li>
+                  </ul>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                  <div class="footer-info">
+                    <p>
+                      <strong>Phone:</strong> +82 010 8937 6522<br>
+                      <strong>Email:</strong> ghdtmdalsdad@naver.com<br>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="copyright">
+              &copy; Copyright <strong><span>inflaze</span></strong>. All Rights Reserved
+            </div>
+            <div class="credits">
+              Designed by <a href="https://bootstrapmade.com/">CircuitChamps</a>
+            </div>
+          </div>
+        </footer>
+        <!-- End Footer -->
+        
+      </div>
+    </div>
+  </div>
+</div>
+  <script src="{% static 'libs/jquery/dist/jquery.min.js' %}"></script>
+  <script src="{% static 'libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'js/sidebarmenu.js' %}"></script>
+  <script src="{% static 'js/app.min.js' %}"></script>
+  <script src="{% static 'libs/apexcharts/dist/apexcharts.min.js' %}"></script>
+  <script src="{% static 'libs/simplebar/dist/simplebar.js' %}"></script>
+  <script src="{% static 'js/dashboard.js' %}"></script>
+
+  <!-- 부트스트랩 JavaScript 및 jQuery 라이브러리 불러오기 -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+{% else %} <!-- 로그인 안하고 주소창에 /AgencyHome 치고 들어왔을 때 서비스 이용 불가능 -->
+<head>
+  <title>페이지를 찾을 수 없음</title>
+</head>
+<body>
+  <h1>페이지를 찾을 수 없음</h1>
+  <p>죄송합니다. 요청하신 페이지를 찾을 수 없습니다.</p>
+</body>
+<div class="user-none">
+  <script>
+    alert("회원만 접근 가능합니다.");
+  </script>
+</div>
+{% endif %}
+</html>

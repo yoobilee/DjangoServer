@@ -15,4 +15,8 @@ class Migration(migrations.Migration):
             name='id',
             field=models.CharField(max_length=100, primary_key=True, serialize=False),
         ),
+<<<<<<< HEAD
     ]
+=======
+    ]
+>>>>>>> 75c32d966ac65d5fc7bc9da71943e510d23aec00
