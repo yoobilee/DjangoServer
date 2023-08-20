@@ -216,7 +216,7 @@ def delete_notice(request, notice_id):
         notice.delete()  # 공고 삭제
         return redirect('/notice-manage/')  # 관리 페이지로 리디렉션
     
-    return redirect('notice-manage')  # 삭제 확인 페이지 없이 바로 관리 페이지로 리디렉션
+    return redirect('/notice-manage/')  # 삭제 확인 페이지 없이 바로 관리 페이지로 리디렉션
 
 def your_upload_view(request):
     if request.method == 'POST' and request.FILES['content_images']:

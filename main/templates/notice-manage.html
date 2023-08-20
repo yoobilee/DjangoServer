@@ -183,7 +183,7 @@
                           </div>
                         </div>
                         <a href="/edit-notice' notice.pk " class="btn btn-primary">수정</a>
-                        <a href="/delete-notice' notice.pk " class="btn btn-danger" onclick="confirmDelete('{{ notice.pk }}')">삭제</a>
+                        <a href="/delete_notice' notice.pk " class="btn btn-danger" data-url="/delete_notice' notice.pk"  onclick="return confirmDelete('{{ notice.pk }}')">삭제</a>
 
                       </div>
                     </div>
@@ -291,16 +291,15 @@
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
   <script>
-    function confirmDelete(noticeId) {
-      var url = document.querySelector("[data-url='" + noticeId + "']").getAttribute("data-url");
-      if (confirm("정말로 이 공고를 삭제하시겠습니까?")) {
-        window.location.href = url;
-      }
+  function confirmDelete(noticeId) {
+    if (confirm("정말로 이 공고를 삭제하시겠습니까?")) {
+      var url = "../delete/" + noticeId + "/";
+      window.location.href = url;
     }
-  </script>
-
+    return false; // 이벤트를 계속 전파하지 않도록 false를 반환합니다.
+  }
+</script>
 </body>
 {% else %} <!-- 로그인 안하고 주소창에 /AgencyHome 치고 들어왔을 때 서비스 이용 불가능 -->
 
