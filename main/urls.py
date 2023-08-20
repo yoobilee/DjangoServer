@@ -20,6 +20,10 @@ urlpatterns = [
     path('get_additional_data/', views.get_additional_data, name='get_additional_data'),
     path('notice/', views.notice, name='notice'),
     path('notice-Agency1/', views.notice_Agency1, name='notice-Agency1'),
-
     path('notice-manage/', views.notice_manage, name='notice-manage'),
+    path('create/', views.create_notice, name='create_notice'),
+    path('edit/<int:notice_id>/', views.edit_notice, name='edit_notice'),
+    path('delete/<int:notice_id>/', views.delete_notice, name='delete_notice'),
+    path('your-upload-view/', views.your_upload_view, name='your_upload_view'),
+
 ]

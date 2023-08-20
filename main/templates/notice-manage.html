@@ -13,7 +13,8 @@
 
 <body>
   <!--  Body Wrapper -->
-  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
 
     <!-- Sidebar Start -->
     <aside class="left-sidebar">
@@ -60,7 +61,7 @@
                 profileImage.addEventListener('mouseout', restoreImage);
               </script>
               <div style="text-align: center;">
-                <h5>에이전시명</h5>
+                <h5>{{user.company}}</h5>
                 <h6>기타 추가할거..</h6>
               </div>
             </li>
@@ -118,73 +119,79 @@
       </header>
       <!--  Header End -->
 
-      <div class="container-fluid">
-
-        <!--  Row 1 -->
+      <div class="container-fluid" style="padding-top: 10px;">
+        <!-- Row 1 -->
         <div class="row">
           <h3>관리</h3>
           <div class="card">
             <div class="card-body">
               <div class="row">
+                {% for notice in notices %}
+                {% if notice.agency_id == user.id %}
+                {% if notice.images.all %}
                 <div class="col-md-4">
                   <div class="card">
-                    <img src="{% static 'img/notice/noticeEX_thumbnail.png' %}" class="card-img-top" alt="모집 공고글 1(광고 캠페인 글)">
+                    <img src="{% static 'img/recruitment_images/스크린샷_2023-05-12_171701_REaAvrc.png' %}" class="card-img-top" alt="모집 공고글 (광고 캠페인 글)">
                     <div class="card-body">
-                      <h5 class="card-title"><strong>딥스</strong></h5>
-                      <p class="card-text" style="font-size:11px;">2022년~현재<br>
-                        마케팅 진행내용: 브랜드 캠페인, 퍼포먼스 마케팅<br>
-                        진행 매체: SA, DA, SNS운영, SNS 스폰서드, 바이럴마케팅</p>
+                      <h5 class="card-title"><strong>{{ notice.title }}</strong></h5>
+                      <p class="card-text" style="font-size:11px;">{{ notice.period }}<br>
+                        {{ notice.marketing_content }}<br>
+                        {{ notice.media_channels }}</p>
                       <div class="col-md-12">
-                        <a href="#" class="btn btn-outline-primary" style="margin-right:33.3333%;" data-toggle="modal" data-target="#myModal">보기</a>
+                        <a href="#" class="btn btn-outline-primary" style="margin-right:33.3333%;" data-toggle="modal"
+                          data-target="#myModal{{ notice.pk }}">보기</a>
 
                         <!-- 모달 창 코드 -->
-                        <div class="modal fade" id="myModal">
+                        <div class="modal fade" id="myModal{{ notice.pk }}">
                           <div class="modal-dialog modal-lg">
                             <div class="modal-content">
-
                               <!-- 모달 헤더 -->
                               <div class="modal-header">
-                                <h4 class="modal-title">딥스_모집공고</h4>
-                                <button type="button" class="btn-close" aria-label="Close" data-dismiss="modal"></button>
+                                <h4 class="modal-title">{{ notice.title }}_모집공고</h4>
+                                <button type="button" class="btn-close" aria-label="Close"
+                                  data-dismiss="modal"></button>
                               </div>
-
                               <!-- 모달 본문 -->
                               <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
                                 <!-- 스크롤이 필요한 내용을 여기에 추가합니다. -->
                                 <!-- 많은 내용이 들어가면 스크롤이 나타납니다. -->
-                                <!-- 예제로 많은 텍스트 추가 -->
-                                <h2><strong>딥스</strong></h2>
-                                <p style="opacity:0.5;">2022년~현재</p>
-                                <br><hr>
-                                <strong><p>
-                                  [카테고리]<br>
-                                  브랜딩 캠페인, 퍼포먼스 마케팅<br><br>
-                                  [진행내용]<br>
-                                  1. 브랜딩 진행내용<br>
-                                  <li>SNS 브랜드 채널 생성, 프리미엄 천연 미네랄 해양심층수 브랜드 홍보</li>
-                                  <br>
-                                  2. 퍼포먼스 진행내용<br>
-                                  <li>운동, 가족 직장인 등 타겟 세분화를 통해 다수 매체 동시 집행</li>
-                                  <li>소구 포인트 캐치 후 충성고객 확보</li></p></strong>
-                                  <img src="{% static 'img/notice/noticeEX.png' %}" alt="" style="max-width:750px; margin-top: 100px;">
+                                <h2><strong>{{ notice.title }}</strong></h2>
+                                <p style="opacity:0.5;">{{ notice.period }}</p>
+                                <br>
+                                <hr>
+                                <strong>
+                                  <p>
+                                    [카테고리]<br>
+                                    {{ notice.category }}<br><br>
+                                    [진행내용]<br>
+                                    {{ notice.content_1|safe }}<br>
+                                    {% if notice.content_2 %}
+                                    <br>
+                                    {{ notice.content_2|safe }}<br>
+                                    {% endif %}
+                                  </p>
+                                </strong>
+                                <img src="{% static 'img/recruitment_images/스크린샷_2023-05-12_171701.png' %}" alt=""
+                                  style="max-width:750px; margin-top: 100px;">
                                 <!-- 다른 내용들 -->
                               </div>
-
                               <!-- 모달 푸터 -->
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
                               </div>
-
                             </div>
                           </div>
                         </div>
+                        <a href="/edit-notice' notice.pk " class="btn btn-primary">수정</a>
+                        <a href="/delete-notice' notice.pk " class="btn btn-danger" onclick="confirmDelete('{{ notice.pk }}')">삭제</a>
 
-                        <a href="#" class="btn btn-primary">수정</a>
-                        <a href="#" class="btn btn-danger">삭제</a>
                       </div>
                     </div>
                   </div>
                 </div>
+                {% endif %}
+                {% endif %}
+                {% endfor %}
                 <div class="col-md-4">
                   <div class="card">
                     <img src="{% static 'img/products/recruit2.jpg' %}" class="card-img-top" alt="모집 공고글 2(광고 캠페인 글)">
@@ -217,6 +224,7 @@
                     </div>
                   </div>
                 </div>
+                <a href="../create" class="btn btn-primary">공고 쓰기</a>
               </div>
             </div>
           </div>
@@ -283,6 +291,16 @@
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <script>
+    function confirmDelete(noticeId) {
+      var url = document.querySelector("[data-url='" + noticeId + "']").getAttribute("data-url");
+      if (confirm("정말로 이 공고를 삭제하시겠습니까?")) {
+        window.location.href = url;
+      }
+    }
+  </script>
+
 </body>
 {% else %} <!-- 로그인 안하고 주소창에 /AgencyHome 치고 들어왔을 때 서비스 이용 불가능 -->
 
