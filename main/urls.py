@@ -10,7 +10,6 @@ urlpatterns = [
     path('', views.first_index, name = "first-index"),
     path('InfluHome/', views.InfluHome, name = "InfluHome"),
     path('AgencyHome/', views.AgencyHome, name = "AgencyHome"),
-    path('portfolio-details01/', views.portfolio_details01, name = "portfolio-details01"),
     path('TermOfUse_A/', views.TermOfUse_A, name = "TermOfUse_A"),
     path('PrivacyPolicy_A/', views.PrivacyPolicy_A, name = "PrivacyPolicy_A"),
     path('TermOfUse_I/', views.TermOfUse_I, name = "TermOfUse_I"),

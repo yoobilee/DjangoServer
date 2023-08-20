@@ -1,102 +1,47 @@
 {% load static %}
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
+{% if request.session.user_id %}
 <head>
   <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-  <title>inflaze</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-
-  <!-- Favicons -->
-  <link href="{% static 'img/favicon.png' %}" rel="icon">
-  <link href="{% static 'img/apple-touch-icon.png' %}" rel="apple-touch-icon">
-
-  <!-- Google Fonts -->
-  <link
-    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-    rel="stylesheet">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=inter%7CNoto+Sans+KR:100,300,500,700,900"
-    media="all">
-
-  <!-- Vendor CSS Files -->
-  <link href="{% static 'vendor/aos/aos.css' %}" rel="stylesheet">
-  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-  <link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
-  <link href="{% static 'vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
-  <link href="{% static 'vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
-  <link href="{% static 'vendor/remixicon/remixicon.css' %}" rel="stylesheet">
-  <link href="{% static 'vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
-
-  <!-- Template Main CSS File -->
-  <link href="{% static 'css/styles.css' %}" rel="stylesheet">
-
-  <!-- =======================================================
-  * Template Name: Dewi
-  * Updated: Jul 27 2023 with Bootstrap v5.3.1
-  * Template URL: https://bootstrapmade.com/dewi-free-multi-purpose-html-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>infraze</title>
+  <link rel="shortcut icon" type="img/png" href="{% static 'img/logos/favicon.png' %}" />
+  <link rel="stylesheet" href="{% static 'css/styles.min.css' %}" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=inter%7CNoto+Sans+KR:100,300,500,700,900" media="all">
 </head>
 
 <body>
 
-  <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top header-inner-pages">
-    <div class="container d-flex align-items-center justify-content-between">
-
-      <a href="/AdvHome">
-        <img class="logo" src="{% static 'img/logo.png' %}" style="width:30%;" alt="" />
-      </a>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto active" href="/AdvHome/#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="/AdvHome/#about">About</a></li>
-          <li><a class="nav-link scrollto" href="/AdvHome/#recommend">Recommend</a></li>
-          <li><a class="nav-link scrollto" href="/AdvHome/#team">Team</a></li>
-          <li><a class="nav-link scrollto" href="/AdvHome/#contact">Contact</a></li>
-          {% if user.is_authenticated %}
-          <!-- 로그인 상태 -->
-          <li><a class="getstarted scrollto" href="{% url 'accounts:MyPage' %}"
-              style="margin-left:0; padding:5px 15px;">마이페이지</a></li>
-          <li><a class="getstarted scrollto" href="{% url 'accounts:Adv_Logout' %}"
-              style="margin-left:0; padding:5px 15px;">{{ user.username }} 로그아웃</a></li>
-          {% else %}
-          <!-- 로그아웃 상태 -->
-          <li><a class="getstarted scrollto" href="{% url 'accounts:Adv_Login' %}"
-              style="margin-left:0; padding:5px 15px;">로그인</a></li>
-          <li><a class="getstarted scrollto" href="{% url 'accounts:Adv_Signup' %}"
-              style="margin-left:0; padding:5px 15px;">회원가입</a></li>
-          {% endif %}
+  <!--  Header Start -->
+  <header class="app-header">
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <ul class="navbar-nav">
+        <li class="nav-item d-block d-xl-none">
+          <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
+            <i class="ti ti-menu-2"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-icon-hover" href="/AgencyHome">홈</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-icon-hover" href="/DetailedAnalysis" title="소속 인플루언서들을 시각적으로 자세히 분석해드립니다.">상세 분석</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-icon-hover" href="/notice-manage" title="모집공고 글을 작성, 수정 또는 삭제합니다.">모집공고 관리</a>
+        </li>
+      </ul>
+      <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+        <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+          <a href="/accounts/Adv_Logout" class="btn btn-primary">로그아웃</a>
         </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-
-    </div>
-  </header><!-- End Header -->
+      </div>
+    </nav>
+  </header>
+  <!--  Header End -->
 
   <main id="main">
-
-    <!-- ======= Breadcrumbs ======= -->
-    <section class="breadcrumbs">
-      <div class="container">
-
-        <div class="d-flex justify-content-between align-items-center">
-          <h2>이용약관</h2>
-          <ol>
-            <li><a href="/AdvHome">Home</a></li>
-            <li>이용약관</li>
-          </ol>
-        </div>
-
-      </div>
-    </section><!-- End Breadcrumbs -->
 
     <section class="inner-page">
       <div class="container">
@@ -149,103 +94,76 @@
 
   </main><!-- End #main -->
 
-  <!-- ======= Footer ======= -->
-  <footer id="footer">
-    <div class="footer-top">
-      <div class="container">
-        <div class="row">
-
-          <div class="col-lg-4 col-md-6">
-            <div class="footer-info">
-              <h3>Info</h3>
-              <p>
-                Bundang-gu, Seongnam-si, Gyeonggi-do <br>
-                Pangyo 289-20, Korea<br><br>
-              </p>
+  <div class="py-6 px-6 text-center">
+    <!-- ======= Footer ======= -->
+    <hr>
+    <footer id="footer">
+      <div class="footer-top">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-4 col-md-6">
+              <div class="footer-info">
+                <p>
+                  Bundang-gu, Seongnam-si, Gyeonggi-do, Pangyo 289-20, Korea
+                </p>
+              </div>
             </div>
-          </div>
-          <div class="col-lg-2 col-md-6 footer-links">
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="/TermOfUse_A">이용약관</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="/PrivacyPolicy_A">개인정보처리방침</a></li>
-            </ul>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <div class="footer-info">
-              <p>
-                <strong>Phone:</strong> +82 010 8937 6522<br>
-                <strong>Email:</strong> ghdtmdalsdad@naver.com<br>
-              </p>
+            <div class="col-lg-2 col-md-6 footer-links">
+              <ul>
+                <li><i class="bx bx-chevron-right"></i> <a href="/TermOfUse_I">이용약관</a></li>
+              </ul>
             </div>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <div class="footer-info">
-              <div class="social-links mt-3">
-                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            <div class="col-lg-2 col-md-6 footer-links">
+              <ul>
+                <li><i class="bx bx-chevron-right"></i> <a href="/PrivacyPolicy_I">개인정보처리방침</a></li>
+              </ul>
+            </div>
+            <div class="col-lg-4 col-md-6">
+              <div class="footer-info">
+                <p>
+                  <strong>Phone:</strong> +82 010 8937 6522<br>
+                  <strong>Email:</strong> ghdtmdalsdad@naver.com<br>
+                </p>
               </div>
             </div>
           </div>
-
-          {% comment %} <div class="col-lg-2 col-md-6 footer-links">
-            <h4>Useful Links</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Our Services</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
-            </ul>
-          </div> {% endcomment %}
-
         </div>
       </div>
-    </div>
-
-    <div class="container">
-      <div class="copyright">
-        &copy; Copyright <strong><span>inflaze</span></strong>. All Rights Reserved
+      <div class="container">
+        <div class="copyright">
+          &copy; Copyright <strong><span>inflaze</span></strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+          Designed by <a href="https://bootstrapmade.com/">CircuitChamps</a>
+        </div>
       </div>
-      <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/dewi-free-multi-purpose-html-template/ -->
-        Designed by <a href="https://bootstrapmade.com/">CircuitChamps</a>
-      </div>
+    </footer>
+    <!-- End Footer -->
     </div>
-  </footer><!-- End Footer -->
-
-  <div id="preloader"></div>
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-      class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Vendor JS Files -->
-  <script src="{% static 'vendor/purecounter/purecounter_vanilla.js' %}"></script>
-  <script src="{% static 'vendor/aos/aos.js' %}"></script>
-  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-  <script src="{% static 'vendor/glightbox/js/glightbox.min.js' %}"></script>
-  <script src="{% static 'vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
-  <script src="{% static 'vendor/swiper/swiper-bundle.min.js' %}"></script>
-  <script src="{% static 'vendor/php-email-form/validate.js' %}"></script>
-
-  <!-- Template Main JS File -->
-  <script src="{% static 'js/scripts.js' %}"></script>
-
-</body>
-
-</html>
+  </div><!-- End container-fluid -->
+  </div>
+  </div>
+  <script src="{% static 'libs/jquery/dist/jquery.min.js' %}"></script>
+  <script src="{% static 'libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'js/sidebarmenu.js' %}"></script>
+  <script src="{% static 'js/app.min.js' %}"></script>
+  <script src="{% static 'libs/apexcharts/dist/apexcharts.min.js' %}"></script>
+  <script src="{% static 'libs/simplebar/dist/simplebar.js' %}"></script>
+  <script src="{% static 'js/dashboard.js' %}"></script>
+  
+  </body>
+  {% else %} <!-- 로그인 안하고 주소창에 /InfluHome 치고 들어왔을 때 서비스 이용 불가능 -->
+  <head>
+    <title>페이지를 찾을 수 없음</title>
+  </head>
+  <body>
+    <h1>페이지를 찾을 수 없음</h1>
+    <p>죄송합니다. 요청하신 페이지를 찾을 수 없습니다.</p>
+  </body>
+  <div class="user-none">
+    <script>
+      alert("회원만 접근 가능합니다.");
+    </script>
+  </div>
+  {% endif %}
+  </html>

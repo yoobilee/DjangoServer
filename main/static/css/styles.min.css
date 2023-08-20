@@ -20234,3 +20234,33 @@ ul {
   margin-right: 8px;
   float: right;
 }
+
+/*이용약관*/
+.inner-page .container {
+  font-family: Inter,Noto Sans Kr,sans-serif; 
+  font-size: 14px;
+}
+
+.page-title {
+  padding: 32px 0 32px;
+  font-size: 25px;
+}
+
+.section-wrapper {
+  padding: 0 46px;
+}
+
+.section-wrapper h4, h5 {
+  font-family: Inter,Noto Sans Kr,sans-serif !important; 
+  font-size: 1em;
+}
+
+.section-wrapper h5 {
+  font-weight: 400;
+  line-height: 1.6em;
+  margin-bottom: 2em;
+}
+
+.section-wrapper strong {
+  font-weight: bold;
+}

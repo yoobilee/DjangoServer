@@ -52,9 +52,6 @@ def AgencyHome(request):
     # 사용자가 로그인하지 않았거나 사용자 정보가 없는 경우 기본 템플릿을 렌더링합니다.
     return render(request, 'AgencyHome.html')
 
-def portfolio_details01(request):
-    return render(request, "portfolio-details01.html")
-
 def TermOfUse_A(request):
     return render(request, "TermOfUse_A.html")
 
