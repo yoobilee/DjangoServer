@@ -21,7 +21,7 @@
       <!-- Sidebar scroll-->
       <div>
         <div class="brand-logo d-flex align-items-center justify-content-between">
-          <a href="./index.html" class="text-nowrap logo-img">
+          <a href="" class="text-nowrap logo-img">
             <img src="{% static 'img/logos/logo.png' %}" width="180" alt="" />
           </a>
           <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
@@ -36,7 +36,7 @@
 
               <!-- 인스타그램 프로필 사진 -->
               <a href="javascript:void(0)" class="profile" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
-                  <img src="{% static 'img/profile/user-1.jpg' %}" alt="" width="100" height="100" class="rounded-circle" style="margin-bottom: 36px; margin-top: 36px;">
+                  <img src="{{influencer.profile_url}}" alt="" width="100" height="100" class="rounded-circle" style="margin-bottom: 36px; margin-top: 36px;">
               </a>
               <!-- hover시 이미지 커짐 효과 -->
               <script>
@@ -62,11 +62,10 @@
               <!-- hover end -->
               
               <div style="text-align: center;">
-                <h5></h5>
-                <h6>{{ user.instagram_id }}</h6>
+                <h6 class="username">{{ user.instagram_id }}</h6>
                 <div class="biography">
-                  <h6 class="biography">{{ influencer.biography }}</h6>
-                  <button class="more-btn" style="color: rgb(145, 144, 144);":>더보기</button>
+                  <h6 class="biography">{{ influencer.category }}</h6>
+                  {% comment %} <button class="more-btn" style="color: rgb(145, 144, 144);":>더보기</button> {% endcomment %}
                 </div>
               </div>
             </li>
@@ -173,7 +172,7 @@
               </span>
               <span style="flex-direction: column-reverse; padding: 0% 25% 0% 25%;">
                 <input type="image" src="{% static '/img/instagram.png' %}"
-                  onclick="window.open('')"
+                  onclick="window.open('https://www.instagram.com/{{ user.instagram_id }}/')"
                   style="width:50px; filter: drop-shadow(1px 1px 1px #000); display:flex;">
               </span>
             </div>
