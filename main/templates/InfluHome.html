@@ -319,32 +319,26 @@
                   anychart.onDocumentReady(function () {
                   var data = [
                   {
-                    "x": "IT",
-                    "value": 590000000,
-                    category: "Sino-Tibetan"
+                    "x": "{{first_keywords.words}}",
+                    "value": {{first_keywords.weights}}
                   },
                   {
-                    "x": "Python",
-                    "value": 283000000,
-                    category: "Indo-European"
+                    "x": "{{second_keywords.words}}",
+                    "value": {{first_keywords.weights}}
                   },
                   {
-                    "x": "소프트웨어",
-                    "value": 544000000,
-                    category: "Indo-European"
+                    "x": "{{third_keywords.words}}",
+                    "value": {{first_keywords.weights}}
                   },
                   {
-                    "x": "JAVA",
-                    "value": 527000000,
-                    category: "Indo-European"
+                    "x": "{{forth_keywords.words}}",
+                    "value": {{first_keywords.weights}}
                   }, {
-                    "x": "C++",
-                    "value": 422000000,
-                    category: "Afro-Asiatic"
+                    "x": "{{fifth_keywords.words}}",
+                    "value": {{first_keywords.weights}}
                   }, {
-                    "x": "HTML",
-                    "value": 620000000,
-                    category: "Afro-Asiatic"
+                    "x": "{{sixth_keywords.words}}",
+                    "value": {{first_keywords.weights}}
                   }
                   ];
                   var chart = anychart.tagCloud(data);

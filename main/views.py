@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db import connection
 from django.contrib.auth import logout
-from accounts.models import Influencer, Post_master, Post_10_12_16yp, Post_b_saem, Post_wescsp1121, Post_vevi_d_live, Post_yakstory119, Post_iam_yaksa, Post_yakstagram, Post_pt_jjuny, User_adv, User_influ
+from accounts.models import Influencer, Keyword, Post_master, Post_10_12_16yp, Post_b_saem, Post_wescsp1121, Post_vevi_d_live, Post_yakstory119, Post_iam_yaksa, Post_yakstagram, Post_pt_jjuny, User_adv, User_influ
 from django.core import serializers
 from django.contrib.contenttypes.models import ContentType
 from django.db.models import Avg
@@ -26,8 +26,17 @@ def InfluHome(request):
             
             # 로그인한 사용자의 아이디로 Influencer 모델에서 해당 사용자의 정보를 가져옵니다.
             influencer = Influencer.objects.get(username=user_id)
+            first_keywords = Keyword.objects.filter(username=user_id).first()
+            second_keywords = Keyword.objects.filter(username=user_id)[2]
+            third_keywords = Keyword.objects.filter(username=user_id)[3]
+            forth_keywords = Keyword.objects.filter(username=user_id)[4]
+            fifth_keywords = Keyword.objects.filter(username=user_id)[5]
+            sixth_keywords = Keyword.objects.filter(username=user_id).last()
+
             
-            return render(request, 'InfluHome.html', {'user': user, 'influencer': influencer})
+            return render(request, 'InfluHome.html', {'user': user, 'influencer': influencer, 'first_keywords': first_keywords,
+                                                      'second_keywords': second_keywords, 'third_keywords': third_keywords, 'forth_keywords': forth_keywords,
+                                                      'fifth_keywords': fifth_keywords,'sixth_keywords': sixth_keywords})
         except (User_influ.DoesNotExist, Influencer.DoesNotExist):
             pass
     

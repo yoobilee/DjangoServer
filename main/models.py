@@ -31,3 +31,4 @@ class YourModel(models.Model):
 #   class Meta:
 #     managed = False
 #     db_table = 'influencers'
+# Create your models here.
