@@ -121,12 +121,12 @@ def InfluHome(request):
 def Adv_Logout(request):
     if 'user_id' in request.session:
         del request.session['user_id']
-    return redirect('main:first-index')  # 로그아웃 후 광고주 홈으로 리다이렉트
+    return redirect('main:first-index')  # 로그아웃 후 메인 홈으로 리다이렉트
 
 def Influ_Logout(request):
     if 'user_id' in request.session:
         del request.session['user_id']
-    return redirect('main:first-index')  # 로그아웃 후 인플루언서 홈으로 리다이렉트
+    return redirect('main:first-index')  # 로그아웃 후 메인 홈으로 리다이렉트
 
 
 def get_user_type(user):

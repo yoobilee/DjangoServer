@@ -38,3 +38,65 @@ label {
   flex-direction: column;
   margin-bottom: 50px;
 }
+
+/* Additional CSS for the main content section */
+#main {
+  padding: 80px 0;
+}
+
+#breadcrumbs {
+  background-color: #f8f9fa;
+  padding: 20px 0;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #dee2e6;
+}
+
+#breadcrumbs h2 {
+  font-size: 24px;
+  color: #343a40;
+  margin-bottom: 10px;
+}
+
+#breadcrumbs ol {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #6c757d;
+}
+
+#breadcrumbs ol li {
+  margin-right: 5px;
+}
+
+#breadcrumbs ol li a {
+  color: #ff4a17;
+}
+
+/* User info styles */
+.user-info {
+  text-align: center;
+  padding: 20px;
+}
+
+.user-info p {
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+.user-info strong {
+  font-size: 18px;
+  color: #343a40;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  #main {
+    padding: 40px 0;
+  }
+
+  .mypage {
+    width: 80%;
+    height: auto;
+    margin-bottom: 30px;
+  }
+}

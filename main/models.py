@@ -19,9 +19,6 @@ class Recruitment(models.Model):
     class Meta:
         managed = True
         db_table = 'Recruitment'
-    
-    def __str__(self):
-        return self.title
 
     
 class RecruitmentImage(models.Model):

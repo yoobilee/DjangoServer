@@ -17,6 +17,7 @@ def first_index(request):
     logout(request)
     return render(request, "first-index.html")
 
+
 def InfluHome(request):
     # 로그인한 사용자의 아이디를 가져옵니다.
     user_id = request.session.get('user_id', None)
@@ -52,16 +53,22 @@ def AgencyHome(request):
         try:
             # 로그인한 사용자의 아이디로 User_adv 모델에서 해당 사용자의 정보를 가져옵니다.
             user = User_adv.objects.get(id=user_id)
+            logger.info(user.business)
             
-            # 로그인한 사용자의 아이디로 Influencer 모델에서 해당 사용자의 정보를 가져옵니다.
-            influencer = Influencer.objects.get(id=user_id)
-            
-            return render(request, 'AgencyHome.html', {'user': user, 'influencer': influencer})
-        except (User_adv.DoesNotExist, Influencer.DoesNotExist):
+            return render(request, 'AgencyHome.html', {'user': user})
+        except (User_adv.DoesNotExist):
             pass
     
     # 사용자가 로그인하지 않았거나 사용자 정보가 없는 경우 기본 템플릿을 렌더링합니다.
-    return render(request, 'AgencyHome.html')
+    return render(request, 'first-index.html')
+
+
+
+def inner_page(request):
+    return render(request, "inner-page.html")
+
+def portfolio_details01(request):
+    return render(request, "portfolio-details01.html")
 
 def TermOfUse_A(request):
     return render(request, "TermOfUse_A.html")
@@ -166,6 +173,8 @@ def notice_manage(request):
     
     # 사용자가 로그인하지 않았거나 사용자 정보가 없는 경우 기본 템플릿을 렌더링합니다.
     return render(request, "notice-manage.html")
+
+
 
 def notice(request):
     # 로그인한 사용자의 아이디를 가져옵니다.
