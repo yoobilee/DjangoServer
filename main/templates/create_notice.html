@@ -16,11 +16,11 @@
               <a class="nav-link nav-icon-hover" href="/AgencyHome">홈</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link nav-icon-hover" href="javascript:void(0)" title="소속 인플루언서들을 시각적으로 자세히 분석해드립니다.">상세
+              <a class="nav-link nav-icon-hover" href="/DetailedAnalysis" title="소속 인플루언서들을 시각적으로 자세히 분석해드립니다.">상세
                 분석</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link nav-icon-hover" href="" title="모집공고 글을 작성, 수정 또는 삭제합니다." style="color: #5D87FF;">모집공고
+              <a class="nav-link nav-icon-hover" href="/notice-manage" title="모집공고 글을 작성, 수정 또는 삭제합니다." style="color: #5D87FF;">모집공고
                 관리</a>
             </li>
           </ul>
@@ -32,17 +32,18 @@
         </nav>
       </header>
       <!--  Header End -->
-
-      <div class="container-fluid" style="padding-top: 10px;">
+      <div class="container-fluid">
         <!-- Row 1 -->
         <div class="row">
-          <h2>공고 생성</h2>
+          <div class="card">
+            <div class="card-body">
+          <h2 class="create_notice">공고 생성</h2>
           <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.as_p }}
             <input type="hidden" name="agency" value="{{ user.id }}">
             <div class="dropzone" id="myDropzone"></div>
-            <button type="submit">공고 생성</button>
+            <button type="submit" class="btn btn-outline-primary" id="createbtn">공고 생성</button>
           </form>
         
         {% block scripts %}
@@ -69,4 +70,6 @@
           
         </div>
       </div>
+    </div>
+  </div>
 {% endblock %}

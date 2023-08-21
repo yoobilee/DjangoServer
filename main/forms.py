@@ -28,3 +28,4 @@ class RecruitmentForm(forms.ModelForm):
         if commit:
             instance.save()
         return instance
+    
