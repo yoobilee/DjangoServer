@@ -6,6 +6,7 @@ from django.core import serializers
 from django.contrib.contenttypes.models import ContentType
 from django.db.models import Avg
 import logging
+from .models import Hot_post
 
 logger = logging.getLogger(__name__)
 
@@ -27,16 +28,22 @@ def InfluHome(request):
             # 로그인한 사용자의 아이디로 Influencer 모델에서 해당 사용자의 정보를 가져옵니다.
             influencer = Influencer.objects.get(username=user_id)
             first_keywords = Keyword.objects.filter(username=user_id).first()
-            second_keywords = Keyword.objects.filter(username=user_id)[2]
-            third_keywords = Keyword.objects.filter(username=user_id)[3]
-            forth_keywords = Keyword.objects.filter(username=user_id)[4]
-            fifth_keywords = Keyword.objects.filter(username=user_id)[5]
+            second_keywords = Keyword.objects.filter(username=user_id)[1]
+            third_keywords = Keyword.objects.filter(username=user_id)[2]
+            forth_keywords = Keyword.objects.filter(username=user_id)[3]
+            fifth_keywords = Keyword.objects.filter(username=user_id)[4]
             sixth_keywords = Keyword.objects.filter(username=user_id).last()
-
             
+            hot_post1 = Hot_post.objects.filter(username=user_id)[0]
+            hot_post2 = Hot_post.objects.filter(username=user_id)[1]
+            hot_post3 = Hot_post.objects.filter(username=user_id)[2]
+            hot_post4 = Hot_post.objects.filter(username=user_id)[3]
+            
+    
             return render(request, 'InfluHome.html', {'user': user, 'influencer': influencer, 'first_keywords': first_keywords,
                                                       'second_keywords': second_keywords, 'third_keywords': third_keywords, 'forth_keywords': forth_keywords,
-                                                      'fifth_keywords': fifth_keywords,'sixth_keywords': sixth_keywords})
+                                                      'fifth_keywords': fifth_keywords,'sixth_keywords': sixth_keywords, 'hot_post1': hot_post1,
+                                                      'hot_post2': hot_post2,'hot_post3': hot_post3,'hot_post4': hot_post4})
         except (User_influ.DoesNotExist, Influencer.DoesNotExist):
             pass
     

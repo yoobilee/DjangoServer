@@ -32,3 +32,15 @@ class YourModel(models.Model):
 #     managed = False
 #     db_table = 'influencers'
 # Create your models here.
+
+class Hot_post(models.Model):
+  post_id = models.CharField(max_length=100)
+  comments_count = models.IntegerField()
+  like_count = models.CharField(max_length=100)
+  timestamp = models.CharField(max_length=100)
+  username = models.CharField(max_length=100)
+  post_url = models.CharField(max_length=1000, primary_key=True)
+   
+  class Meta:
+    managed = False
+    db_table = 'hot_post'
