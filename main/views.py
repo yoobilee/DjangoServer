@@ -241,7 +241,7 @@ def create_notice(request):
         else:
             form = RecruitmentForm()
             
-        return render(request, 'create_notice.html', {'form': form, 'user': user,'image': image})
+        return render(request, 'create_notice.html', {'form': form, 'user': user})
     else:
         # 로그인되지 않은 경우에 대한 처리
         return redirect('accounts:Adv_Login')     # 로그인 페이지로 리디렉션
