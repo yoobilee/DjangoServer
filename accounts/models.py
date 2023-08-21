@@ -9,25 +9,36 @@ class Influencer(models.Model):
   media_count = models.IntegerField()
   follows_count = models.IntegerField()
   followers_count = models.IntegerField()
+  category = models.CharField(max_length=100)
+  adv_count = models.IntegerField()
+  week_avg_post = models.DecimalField(max_digits=5, decimal_places=1)
+  am_pm = models.CharField(max_length=100)
+  avg_post_time = models.CharField(max_length=100)
+  feed_percent = models.IntegerField()
+  reels_percent = models.IntegerField()
+  avg_comments = models.IntegerField()
+  avg_goods = models.IntegerField()
+  comments_percent = models.IntegerField()
+  goods_percent = models.IntegerField()
   
   class Meta:
     managed = False
     db_table = 'influencers'
     
-
-class Post_limmiae(models.Model):
+    
+class Post_master(models.Model):
+  username = models.CharField(max_length=100)
   post_id = models.CharField(max_length=100, primary_key=True)
   caption = models.TextField(max_length=10000)
   comments_count = models.IntegerField()
   like_count = models.IntegerField()
   media_type = models.CharField(max_length=100)
   timestamp = models.CharField(max_length=100)
-  username = models.CharField(max_length=100)
   owner_id = models.CharField(max_length=100)
    
   class Meta:
     managed = False
-    db_table = 'post_limmiae'
+    db_table = 'post_master'
     
     
 class Post_10_12_16yp(models.Model):

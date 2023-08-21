@@ -131,10 +131,12 @@
 
 .swiper-button-prev {
   left: 10px;
+  opacity: 0.2;
   /* 왼쪽 화살표 위치 */
 }
 
 .swiper-button-next {
   right: 10px;
+  opacity: 0.2;
   /* 오른쪽 화살표 위치 */
 }

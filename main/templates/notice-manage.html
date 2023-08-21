@@ -1,0 +1,132 @@
+{% extends "AgencyHome-Base.html" %}
+
+{% load static %}
+
+{% block content %}
+<!--  Header Start -->
+<header class="app-header">
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link nav-icon-hover" href="/AgencyHome">홈</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link nav-icon-hover" href="/DetailedAnalysis" title="소속 인플루언서들을 시각적으로 자세히 분석해드립니다.">상세 분석</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link nav-icon-hover" href="" title="모집공고 글을 작성, 수정 또는 삭제합니다." style="color: #5D87FF;">모집공고 관리</a>
+      </li>
+    </ul>
+    <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+      <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+        <a href="/accounts/Adv_Logout" class="btn btn-primary">로그아웃</a>
+      </ul>
+    </div>
+  </nav>
+</header>
+<!--  Header End -->
+
+      <div class="container-fluid">
+
+        <!--  Row 1 -->
+        <div class="row">
+          <h3>관리</h3>
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="card">
+                    <img src="{% static 'img/notice/noticeEX_thumbnail.png' %}" class="card-img-top" alt="모집 공고글 1(광고 캠페인 글)">
+                    <div class="card-body">
+                      <h5 class="card-title"><strong>딥스</strong></h5>
+                      <p class="card-text" style="font-size:11px;">2022년~현재<br>
+                        마케팅 진행내용: 브랜드 캠페인, 퍼포먼스 마케팅<br>
+                        진행 매체: SA, DA, SNS운영, SNS 스폰서드, 바이럴마케팅</p>
+                      <div class="col-md-12">
+                        <a href="#" class="btn btn-outline-primary" style="margin-right:33.3333%;" data-toggle="modal" data-target="#myModal">보기</a>
+
+                        <!-- 모달 창 코드 -->
+                        <div class="modal fade" id="myModal">
+                          <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+
+                              <!-- 모달 헤더 -->
+                              <div class="modal-header">
+                                <h4 class="modal-title">딥스_모집공고</h4>
+                                <button type="button" class="btn-close" aria-label="Close" data-dismiss="modal"></button>
+                              </div>
+
+                              <!-- 모달 본문 -->
+                              <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
+                                <!-- 스크롤이 필요한 내용을 여기에 추가합니다. -->
+                                <!-- 많은 내용이 들어가면 스크롤이 나타납니다. -->
+                                <!-- 예제로 많은 텍스트 추가 -->
+                                <h2><strong>딥스</strong></h2>
+                                <p style="opacity:0.5;">2022년~현재</p>
+                                <br><hr>
+                                <strong><p>
+                                  [카테고리]<br>
+                                  브랜딩 캠페인, 퍼포먼스 마케팅<br><br>
+                                  [진행내용]<br>
+                                  1. 브랜딩 진행내용<br>
+                                  <li>SNS 브랜드 채널 생성, 프리미엄 천연 미네랄 해양심층수 브랜드 홍보</li>
+                                  <br>
+                                  2. 퍼포먼스 진행내용<br>
+                                  <li>운동, 가족 직장인 등 타겟 세분화를 통해 다수 매체 동시 집행</li>
+                                  <li>소구 포인트 캐치 후 충성고객 확보</li></p></strong>
+                                  <img src="{% static 'img/notice/noticeEX.png' %}" alt="" style="max-width:750px; margin-top: 100px;">
+                                <!-- 다른 내용들 -->
+                              </div>
+
+                              <!-- 모달 푸터 -->
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
+
+                        <a href="#" class="btn btn-primary">수정</a>
+                        <a href="#" class="btn btn-danger">삭제</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="card">
+                    <img src="{% static 'img/products/recruit2.jpg' %}" class="card-img-top" alt="모집 공고글 2(광고 캠페인 글)">
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                        the
+                        card's content.</p>
+                      <div class="col-md-12">
+                        <a href="#" class="btn btn-outline-primary" style="margin-right:33.3333%;">보기</a>
+                        <a href="#" class="btn btn-primary">수정</a>
+                        <a href="#" class="btn btn-danger">삭제</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="card">
+                    <img src="{% static 'img/products/recruit3.jpg' %}" class="card-img-top" alt="모집 공고글 3(광고 캠페인 글)">
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                        the
+                        card's content.</p>
+                      <div class="col-md-12">
+                        <a href="#" class="btn btn-outline-primary" style="margin-right:33.3333%;">보기</a>
+                        <a href="#" class="btn btn-primary">수정</a>
+                        <a href="#" class="btn btn-danger">삭제</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endblock %}

@@ -11,7 +11,7 @@ urlpatterns = [
     path('Adv_Signup/', views.Adv_Signup, name = "Adv_Signup"),
     path('Influ_Login/', views.Influ_Login, name = "Influ_Login"),
     path('Influ_Signup/', views.Influ_Signup, name = "Influ_Signup"),
-    path('MyPage/', views.MyPage, name = "MyPage"),
-    path('Adv_Logout/', auth_views.LogoutView.as_view(next_page='main:AdvHome'), name='Adv_Logout'),
-    path('Influ_Logout/', auth_views.LogoutView.as_view(next_page='main:InfluHome'), name='Influ_Logout'),
+    path('Adv_Logout/', auth_views.LogoutView.as_view(next_page='main:first-index'), name='Adv_Logout'),
+    path('Influ_Logout/', auth_views.LogoutView.as_view(next_page='main:first-index'), name='Influ_Logout'),
+    
 ]

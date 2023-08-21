@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import logout
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
-from .models import Influencer, Post_limmiae, Post_10_12_16yp, Post_b_saem, Post_wescsp1121, Post_vevi_d_live, Post_yakstory119, Post_iam_yaksa, Post_yakstagram, Post_pt_jjuny, User_adv, User_influ
+from .models import Influencer, Post_10_12_16yp, Post_b_saem, Post_wescsp1121, Post_vevi_d_live, Post_yakstory119, Post_iam_yaksa, Post_yakstagram, Post_pt_jjuny, User_adv, User_influ
 
 # Create your views here.
 
@@ -49,7 +49,7 @@ def Adv_Login(request):
                 referer = request.session.pop('login_referer')
                 return redirect(referer)
             else:
-                return redirect('main:AdvHome')
+                return redirect('main:AgencyHome')
         except User_adv.DoesNotExist:
             login_error = "사용자가 존재하지 않습니다."
         except User_adv.MultipleObjectsReturned:
@@ -126,7 +126,7 @@ def Adv_Logout(request):
 def Influ_Logout(request):
     if 'user_id' in request.session:
         del request.session['user_id']
-    return redirect('main:InfluHome')  # 로그아웃 후 인플루언서 홈으로 리다이렉트
+    return redirect('main:first-index')  # 로그아웃 후 인플루언서 홈으로 리다이렉트
 
 
 def get_user_type(user):
@@ -136,26 +136,3 @@ def get_user_type(user):
         return 'influ'
     else:
         return 'unknown'
-
-
-
-def MyPage(request):
-    if request.user.is_authenticated:  # 로그인한 사용자인지 확인
-        user_type = get_user_type(request.user)
-        user = request.user  # 로그인한 사용자 정보 가져오기
-    elif 'user_id' in request.session:  # 세션에 사용자 ID가 저장되어 있는지 확인
-        user_type = request.session.get('user_type', 'unknown')
-        user_id = request.session.get('user_id')
-        try:
-            if user_type == 'adv':
-                user = User_adv.objects.get(id=user_id)
-            elif user_type == 'influ':
-                user = User_influ.objects.get(id=user_id)
-            else:
-                user = None  # 사용자 유형이 알 수 없는 경우
-        except (User_adv.DoesNotExist, User_influ.DoesNotExist):
-            user = None  # 사용자가 존재하지 않는 경우
-    else:
-        return redirect('accounts:Adv_Login')  # 로그인 페이지로 리다이렉트
-
-    return render(request, 'MyPage.html', {'user_type': user_type, 'user': user})
