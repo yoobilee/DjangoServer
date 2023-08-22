@@ -5,9 +5,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>infraze</title>
+  <title>inflaze</title>
   <link rel="shortcut icon" type="img/png" href="{% static 'img/logos/favicon.png' %}" />
   <link rel="stylesheet" href="{% static 'css/styles.min.css' %}" />
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 </head>
 
 <body>
@@ -141,18 +145,18 @@
 
 <div class="container-fluid">
 
-{% comment %} <!-- ++++++ Search Section ++++++ --> <!-- 누가 넣자고 했던거 같은데 -->
-<div id="search"> <!-- 로직 구현 안됨 -->
-  <h3>키워드 검색</h3>
-  <form class="d-flex-s" role="search" method="GET">
-    {% csrf_token %}
-    <input type="text" class="form-control me-2" autocomplete="off" name="q" placeholder="키워드를 입력하세요">
-    <img class="absolute" src="{% static 'img/#.png' %}">
-    <button class="btn btn-info" type="submit" style="width:auto;">검색</button>
-</form>
-</div> {% endcomment %}
+  <!-- ++++++ Search Section ++++++ --> <!-- 누가 넣자고 했던거 같은데 -->
+  <div id="search"> <!-- 로직 구현 안됨 -->
+    <h3>키워드 검색</h3>
+    <form class="d-flex-s" role="search" method="GET">
+      {% csrf_token %}
+      <input type="text" class="form-control me-2" autocomplete="off" name="q" placeholder="키워드를 입력하세요">
+      <img class="absolute" src="{% static 'img/#.png' %}">
+      <button class="btn btn-info" type="submit" style="width:auto;">검색</button>
+    </form>
+  </div>
 
-  {% comment %} <!--  Row 1 -->
+  <!--  Row 1 -->
   <div class="row">
     <h3>분석</h3>
     <div class="col-lg-6 d-flex align-items-strech">
@@ -163,19 +167,118 @@
               <h5 class="card-title fw-semibold">Sales Overview</h5>
             </div>
             <div>
-              <select class="form-select">
-                <option value="1">March 2023</option>
-                <option value="2">April 2023</option>
-                <option value="3">May 2023</option>
-                <option value="4">June 2023</option>
+              <select id="influencerSelect">
+                <option value="">Select an influencer</option>
+                {% for influencer_data in company_influencers_list %}
+                <option value="{{ influencer_data.username }}">{{ influencer_data.username }}</option>
+                {% endfor %}
               </select>
             </div>
           </div>
-          <div id="chart"></div>
+          <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+          <canvas id="userComparisonChart"></canvas>
+          <script>
+            $(document).ready(function () {
+              console.log(company_influencers_avg_data.username)
+              var company_influencers_avg_data = {
+                '게시글 수': {{ company_influencers_avg_data.avg_media_count }},
+                '팔로워 수(백명)': {{ company_influencers_avg_data.avg_follower_count }} / 100,
+                '팔로우 수': {{ company_influencers_avg_data.avg_follow_count }},
+                '평균 댓글 수': {{ company_influencers_avg_data.avg_avg_comments }},
+                '평균 좋아요 수': {{ company_influencers_avg_data.avg_avg_goods }},
+                '광고글 수': {{ company_influencers_avg_data.avg_adv_count }},
+                '주당 평균 게시글 수': {{ company_influencers_avg_data.avg_week_avg_post }},
+                '게시글 비율': {{ company_influencers_avg_data.avg_feed_percent }},
+                '릴스 비율': {{ company_influencers_avg_data.avg_reels_percent }},
+                '댓글 비율': {{ company_influencers_avg_data.avg_comments_percent }},
+                '좋아요 비율': {{ company_influencers_avg_data.avg_goods_percent }},
+                }
+
+          $("#influencerSelect").change(function () {
+            var selectedUsername = $(this).val();
+            if (selectedUsername) {
+              fetchAdditionalData(selectedUsername);
+              selectedUsernames.push(selectedUsername);
+              updateSelectedUsernames();
+            }
+          });
+              
+
+              console.log(company_influencers_avg_data);
+
+            // Create the initial chart
+            var ctx = document.getElementById('userComparisonChart').getContext('2d');
+            var userComparisonChart = new Chart(ctx, {
+              type: 'bar', // You can choose different chart types here
+              data: {
+                labels: Object.keys(company_influencers_avg_data),
+                datasets: [{
+                  label: "{{ company_influencers_avg_data.username }}",
+                  data: Object.values(company_influencers_avg_data),
+                  backgroundColor: '#5D78FF',
+                  borderColor: '#5D78FF',
+                  borderWidth: 0
+                }]
+              },
+              options: {
+                scales: {
+                  y: {
+                    beginAtZero: true
+                  }
+                }
+              }
+            });
+
+            // 선택한 인플루언서의 추가 데이터를 가져와서 차트에 추가하는 함수
+            function fetchAdditionalData(username) {
+              $.ajax({
+                url: `/get_additional_data/?username=${username}`,
+                method: "GET",
+                success: function (response) {
+                  console.log("Fetched additional data:", response);
+
+                  // Add a new dataset for the selected influencer
+                  userComparisonChart.data.datasets.push({
+                    label: username,
+                    data: Object.values(response),
+                    backgroundColor: getRandomColor(), // Generate a random color
+                    borderColor: getRandomColor(),
+                    borderWidth: 0
+                  });
+
+                  // Update the chart
+                  userComparisonChart.update();
+                },
+                error: function () {
+                  console.log("Error fetching additional data.");
+                }
+              });
+            }
+
+            // Generate a random color
+            function getRandomColor() {
+              // Define an array of possible color letters for yellow, green, and blue
+              var possibleLetters = "89ABCDEF";
+              var color = "#";
+
+              // Loop to generate a random color
+              for (var i = 0; i < 6; i++) {
+                // Get a random index from the possibleLetters array
+                var randomIndex = Math.floor(Math.random() * possibleLetters.length);
+                // Append the selected letter to the color
+                color += possibleLetters[randomIndex];
+              }
+
+              return color;
+            }
+          
+            });
+
+          </script>
         </div>
       </div>
     </div>
-    
+
     <div class="col-lg-6">
       <div class="row">
         <div class="col-lg-12">
@@ -246,7 +349,14 @@
         </div>
       </div>
     </div>
-  </div> {% endcomment %}
+  </div>
+  <div>
+    <ul>
+      {% for z in company_influencers_avg_data %}
+      <li>Username: {{ z.username   }}</li>
+      {% endfor %}
+    </ul>
+  </div>
 
   {% include "test.html" %}
 
