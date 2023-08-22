@@ -220,6 +220,45 @@ def ComparisonAnalysis(request):
 
     return render(request, "first-index.html")
 
+def Belong_Influ(request): #DetailedComparison 이었던 것..
+    # 로그인한 사용자의 아이디를 가져옵니다.
+    user_id = request.session.get('user_id', None)
+    logger.info(user_id)
+    if user_id:
+        try:
+            # 로그인한 사용자의 id로 User_adv 모델에서 해당 사용자의 정보를 가져옵니다.
+            user = User_adv.objects.get(id=user_id)
+            avg = Influencer.objects.get(company="회로의 챔피언들 평균")
+            logger.info(avg.adv_count)
+            # 로그인한 사용자의 company 값을 가져옵니다.
+            user_company = user.company
+            # 로그인한 사용자의 아이디로 Influencer 모델에서 해당 사용자의 정보를 가져옵니다.
+            company_influencers_data = Influencer.objects.filter(company=user_company).values()   
+            company_influencers_list = list(company_influencers_data)  # QuerySet을 리스트로 변환
+            
+            company_influencers_avg_data = Influencer.objects.filter(company=user_company).annotate(
+                avg_media_count=Avg('media_count'),
+                avg_follower_count=Avg('followers_count'),
+                avg_follow_count=Avg('follows_count'),
+                avg_avg_comments=Avg('avg_comments'),
+                avg_avg_goods=Avg('avg_goods'),
+                avg_adv_count=Avg('adv_count'),
+                avg_week_avg_post=Avg('week_avg_post'),
+                avg_feed_percent=Avg('feed_percent'),
+                avg_reels_percent=Avg('reels_percent'),
+                avg_comments_percent=Avg('comments_percent'),
+                avg_goods_percent=Avg('goods_percent')
+            ).values()
+            company_influencers_avg_data = list(company_influencers_avg_data)  # QuerySet을 리스트로 변환
+
+            return render(request, 'Belong_Influ.html', {'user': user, 'company_influencers_list': company_influencers_list,'avg':avg})
+
+        except (User_adv.DoesNotExist, Influencer.DoesNotExist):
+            pass
+
+    return render(request, "first-index.html")
+
+
 def DetailedAnalysis(request):
     # 로그인한 사용자의 아이디를 가져옵니다.
     user_id = request.session.get('user_id', None)
@@ -291,6 +330,24 @@ def notice(request):
             pass
 
     return render(request, "notice.html")
+
+def campaign(request):
+    # 로그인한 사용자의 아이디를 가져옵니다.
+    user_id = request.session.get('user_id', None)
+    
+    if user_id:
+        try:
+            # 로그인한 사용자의 아이디로 User_influ 모델에서 해당 사용자의 정보를 가져옵니다.
+            user = User_influ.objects.get(id=user_id)
+            
+            # 로그인한 사용자의 아이디로 Influencer 모델에서 해당 사용자의 정보를 가져옵니다.
+            influencer = Influencer.objects.get(username=user_id)
+            
+            return render(request, 'campaign.html', {'user': user, 'influencer': influencer})
+        except (User_influ.DoesNotExist, Influencer.DoesNotExist):
+            pass
+
+    return render(request, "campaign.html")
 
 def notice_Agency1(request):
     # 로그인한 사용자의 아이디를 가져옵니다.
