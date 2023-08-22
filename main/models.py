@@ -39,6 +39,7 @@ class Hot_post(models.Model):
   like_count = models.CharField(max_length=100)
   timestamp = models.CharField(max_length=100)
   username = models.CharField(max_length=100)
+  insta_url = models.CharField(max_length=1000)
   post_url = models.CharField(max_length=1000, primary_key=True)
    
   class Meta:

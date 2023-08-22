@@ -38,7 +38,7 @@
       <div class="col-sm-6 col-xl-3">
         <div class="card overflow-hidden rounded-2">
           <div class="position-relative">
-            <a href="javascript:void(0)"><img src="{{hot_post1.post_url}}" class="card-img-top rounded-0" alt="..."></a>
+            <a href="{{hot_post1.insta_url}}" target="_blank"><img src="{{hot_post1.post_url}}" class="card-img-top rounded-0" alt="..."></a>
           </div>
           <div class="card-body pt-3 p-3">
             <h6 class="fw-semibold fs-4" style="display: flex; align-items: center; justify-content: space-between;">
@@ -57,7 +57,7 @@
       <div class="col-sm-6 col-xl-3">
         <div class="card overflow-hidden rounded-2">
           <div class="position-relative">
-            <a href="javascript:void(0)"><img src="{{hot_post2.post_url}}" class="card-img-top rounded-0" alt="..."></a>
+            <a href="{{hot_post2.insta_url}}" target="_blank"><img src="{{hot_post2.post_url}}" class="card-img-top rounded-0" alt="..."></a>
             </div>
           <div class="card-body pt-3 p-3">
             <h6 class="fw-semibold fs-4" style="display: flex; align-items: center; justify-content: space-between;">
@@ -76,7 +76,7 @@
         <div class="col-sm-6 col-xl-3">
           <div class="card overflow-hidden rounded-2">
             <div class="position-relative">
-              <a href="javascript:void(0)"><img src="{{hot_post3.post_url}}" class="card-img-top rounded-0" alt="..."></a>
+              <a href="{{hot_post3.insta_url}}" target="_blank"><img src="{{hot_post3.post_url}}" class="card-img-top rounded-0" alt="..."></a>
               </div>
               <div class="card-body pt-3 p-3">
                 <h6 class="fw-semibold fs-4" style="display: flex; align-items: center; justify-content: space-between;">
@@ -95,7 +95,7 @@
           <div class="col-sm-6 col-xl-3">
             <div class="card overflow-hidden rounded-2">
               <div class="position-relative">
-                <a href="javascript:void(0)"><img src="{{hot_post4.post_url}}" class="card-img-top rounded-0" alt="..."></a>
+                <a href="{{hot_post4.insta_url}}" target="_blank"><img src="{{hot_post4.post_url}}" class="card-img-top rounded-0" alt="..."></a>
               </div>
                 <div class="card-body pt-3 p-3">
                   <h6 class="fw-semibold fs-4" style="display: flex; align-items: center; justify-content: space-between;">
@@ -302,7 +302,7 @@
         <div class="row">
           <div class="col-lg-4 d-flex align-items-stretch" style="height: 300px;">
             <div class="card w-100">
-              <div class="card-body p-4">
+              <div class="card-body p-4 text-center">
                 <div class="mb-4">
                   <h5 class="card-title fw-semibold">포스트 태그</h5>
                 </div>
@@ -350,7 +350,7 @@
 
         <div class="col-lg-8 d-flex align-items-stretch" style="height: 300px;">
           <div class="card w-100">
-            <div class="card-body p-4">
+            <div class="card-body p-4 text-center">
               <h5 class="card-title fw-semibold mb-4">분석 제목 미정</h5>
             </div>
             <div id="chartdiv"></div>
@@ -526,75 +526,104 @@
             </div>
           </div>
         </div>
+        <style>
+          #chartdiv2 {
+            width: 100%;
+            height: 500px;
+          }
+          </style>
+          
+          <!-- Resources -->
+          <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+          <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
+          <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
 
         <div class="row">
-          <div class="col-lg-4 d-flex align-items-stretch">
+          <div class="col-lg-6 d-flex align-items-stretch">
             <div class="card w-100">
-              <div class="card-body p-4">
+              <div class="card-body p-4 text-center">
                 <div class="mb-4">
-                  <h5 class="card-title fw-semibold">Recent Transactions</h5>
+                  <h5 class="card-title fw-semibold">광고 포스트 비율</h5>
                 </div>
-                <ul class="timeline-widget mb-0 position-relative mb-n5">
-                  <li class="timeline-item d-flex position-relative overflow-hidden">
-                    <div class="timeline-time text-dark flex-shrink-0 text-end">09:30</div>
-                    <div class="timeline-badge-wrap d-flex flex-column align-items-center">
-                      <span class="timeline-badge border-2 border border-primary flex-shrink-0 my-8"></span>
-                      <span class="timeline-badge-border d-block flex-shrink-0"></span>
-                    </div>
-                    <div class="timeline-desc fs-3 text-dark mt-n1">Payment received from John Doe of $385.90</div>
-                  </li>
-                  <li class="timeline-item d-flex position-relative overflow-hidden">
-                    <div class="timeline-time text-dark flex-shrink-0 text-end">10:00 am</div>
-                    <div class="timeline-badge-wrap d-flex flex-column align-items-center">
-                      <span class="timeline-badge border-2 border border-info flex-shrink-0 my-8"></span>
-                      <span class="timeline-badge-border d-block flex-shrink-0"></span>
-                    </div>
-                    <div class="timeline-desc fs-3 text-dark mt-n1 fw-semibold">New sale recorded <a
-                        href="javascript:void(0)" class="text-primary d-block fw-normal">#ML-3467</a>
-                    </div>
-                  </li>
-                  <li class="timeline-item d-flex position-relative overflow-hidden">
-                    <div class="timeline-time text-dark flex-shrink-0 text-end">12:00 am</div>
-                    <div class="timeline-badge-wrap d-flex flex-column align-items-center">
-                      <span class="timeline-badge border-2 border border-success flex-shrink-0 my-8"></span>
-                      <span class="timeline-badge-border d-block flex-shrink-0"></span>
-                    </div>
-                    <div class="timeline-desc fs-3 text-dark mt-n1">Payment was made of $64.95 to Michael</div>
-                  </li>
-                  <li class="timeline-item d-flex position-relative overflow-hidden">
-                    <div class="timeline-time text-dark flex-shrink-0 text-end">09:30 am</div>
-                    <div class="timeline-badge-wrap d-flex flex-column align-items-center">
-                      <span class="timeline-badge border-2 border border-warning flex-shrink-0 my-8"></span>
-                      <span class="timeline-badge-border d-block flex-shrink-0"></span>
-                    </div>
-                    <div class="timeline-desc fs-3 text-dark mt-n1 fw-semibold">New sale recorded <a
-                        href="javascript:void(0)" class="text-primary d-block fw-normal">#ML-3467</a>
-                    </div>
-                  </li>
-                  <li class="timeline-item d-flex position-relative overflow-hidden">
-                    <div class="timeline-time text-dark flex-shrink-0 text-end">09:30 am</div>
-                    <div class="timeline-badge-wrap d-flex flex-column align-items-center">
-                      <span class="timeline-badge border-2 border border-danger flex-shrink-0 my-8"></span>
-                      <span class="timeline-badge-border d-block flex-shrink-0"></span>
-                    </div>
-                    <div class="timeline-desc fs-3 text-dark mt-n1 fw-semibold">New arrival recorded 
-                    </div>
-                  </li>
-                  <li class="timeline-item d-flex position-relative overflow-hidden">
-                    <div class="timeline-time text-dark flex-shrink-0 text-end">12:00 am</div>
-                    <div class="timeline-badge-wrap d-flex flex-column align-items-center">
-                      <span class="timeline-badge border-2 border border-success flex-shrink-0 my-8"></span>
-                    </div>
-                    <div class="timeline-desc fs-3 text-dark mt-n1">Payment Done</div>
-                  </li>
-                </ul>
+                <script>
+                  am5.ready(function() {
+                  
+                  // Create root element
+                  // https://www.amcharts.com/docs/v5/getting-started/#Root_element
+                  var root = am5.Root.new("chartdiv2");
+                  
+                  
+                  // Set themes
+                  // https://www.amcharts.com/docs/v5/concepts/themes/
+                  root.setThemes([
+                    am5themes_Animated.new(root)
+                  ]);
+                  
+                  
+                  // Create chart
+                  // https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/
+                  var chart = root.container.children.push(am5percent.PieChart.new(root, {
+                    layout: root.verticalLayout,
+                    innerRadius: am5.percent(50)
+                  }));
+                  
+                  
+                  // Create series
+                  // https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/#Series
+                  var series = chart.series.push(am5percent.PieSeries.new(root, {
+                    valueField: "value",
+                    categoryField: "category",
+                    alignLabels: false
+                  }));
+                  
+                  series.labels.template.setAll({
+                    textType: "circular",
+                    centerX: 0,
+                    centerY: 0
+                  });
+                  
+                  
+                  // Set data
+                  // https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/#Setting_data
+                  series.data.setAll([
+                    { value: 10, category: "One" },
+                    { value: 9, category: "Two" },
+                    { value: 6, category: "Three" },
+                    { value: 5, category: "Four" },
+                    { value: 4, category: "Five" },
+                    { value: 3, category: "Six" },
+                    { value: 1, category: "Seven" },
+                  ]);
+                  
+                  
+                  // Create legend
+                  // https://www.amcharts.com/docs/v5/charts/percent-charts/legend-percent-series/
+                  var legend = chart.children.push(am5.Legend.new(root, {
+                    centerX: am5.percent(50),
+                    x: am5.percent(50),
+                    marginTop: 15,
+                    marginBottom: 15,
+                  }));
+                  
+                  legend.data.setAll(series.dataItems);
+                  
+                  
+                  // Play initial series animation
+                  // https://www.amcharts.com/docs/v5/concepts/animations/#Animation_of_series
+                  series.appear(1000, 100);
+                  
+                  }); // end am5.ready()
+                  </script>
+                  
+                  <!-- HTML -->
+                  <div id="chartdiv2"></div>
               </div>
             </div>
           </div>
-          <div class="col-lg-8 d-flex align-items-stretch">
+          <div class="col-lg-6 d-flex align-items-stretch">
             <div class="card w-100">
-              <div class="card-body p-4">
-                <h5 class="card-title fw-semibold mb-4">Recent Transactions</h5>
+              <div class="card-body p-4 text-center">
+                <h5 class="card-title fw-semibold mb-4">월별 팔로워 추이</h5>
                 <div class="table-responsive">
                   <table class="table text-nowrap mb-0 align-middle">
                     <thead class="text-dark fs-4">
