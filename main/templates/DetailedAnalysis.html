@@ -65,42 +65,35 @@
           <canvas id="userComparisonChart"></canvas>
           <script>
             $(document).ready(function () {
-              console.log(company_influencers_avg_data.username)
-              var company_influencers_avg_data = {
-                '게시글 수': {{ company_influencers_avg_data.avg_media_count }},
-                '팔로워 수(백명)': {{ company_influencers_avg_data.avg_follower_count }} / 100,
-                '팔로우 수': {{ company_influencers_avg_data.avg_follow_count }},
-                '평균 댓글 수': {{ company_influencers_avg_data.avg_avg_comments }},
-                '평균 좋아요 수': {{ company_influencers_avg_data.avg_avg_goods }},
-                '광고글 수': {{ company_influencers_avg_data.avg_adv_count }},
-                '주당 평균 게시글 수': {{ company_influencers_avg_data.avg_week_avg_post }},
-                '게시글 비율': {{ company_influencers_avg_data.avg_feed_percent }},
-                '릴스 비율': {{ company_influencers_avg_data.avg_reels_percent }},
-                '댓글 비율': {{ company_influencers_avg_data.avg_comments_percent }},
-                '좋아요 비율': {{ company_influencers_avg_data.avg_goods_percent }},
+              
+              var avg_data = {
+                '게시글 수': {{ avg.media_count }},
+                '팔로워 수(백명)': {{ avg.followers_count }} / 100,
+                '팔로우 수': {{ avg.follows_count }},
+                '평균 댓글 수': {{ avg.avg_comments }},
+                '평균 좋아요 수': {{ avg.avg_goods }},
+                '광고글 수': {{ avg.adv_count }},
+                '주당 평균 게시글 수': {{ avg.week_avg_post }},
+                '게시글 비율': {{ avg.feed_percent }},
+                '릴스 비율': {{ avg.reels_percent }},
+                '댓글 비율': {{ avg.comments_percent }},
+                '좋아요 비율': {{ avg.goods_percent }},
                 }
 
-          $("#influencerSelect").change(function () {
-            var selectedUsername = $(this).val();
-            if (selectedUsername) {
-              fetchAdditionalData(selectedUsername);
-              selectedUsernames.push(selectedUsername);
-              updateSelectedUsernames();
-            }
-          });
+          
               
 
-              console.log(company_influencers_avg_data);
+              console.log(avg_data);
 
             // Create the initial chart
             var ctx = document.getElementById('userComparisonChart').getContext('2d');
             var userComparisonChart = new Chart(ctx, {
               type: 'bar', // You can choose different chart types here
               data: {
-                labels: Object.keys(company_influencers_avg_data),
+                labels: Object.keys(avg_data),
                 datasets: [{
-                  label: "{{ company_influencers_avg_data.username }}",
-                  data: Object.values(company_influencers_avg_data),
+                  label: "{{ avg.company }}",
+                  data: Object.values(avg_data),
                   backgroundColor: '#5D78FF',
                   borderColor: '#5D78FF',
                   borderWidth: 0
@@ -114,7 +107,14 @@
                 }
               }
             });
-
+            $("#influencerSelect").change(function () {
+                        var selectedUsername = $(this).val();
+                        if (selectedUsername) {
+                          fetchAdditionalData(selectedUsername);
+                          selectedUsernames.push(selectedUsername);
+                          updateSelectedUsernames();
+                        }
+                      });
             // 선택한 인플루언서의 추가 데이터를 가져와서 차트에 추가하는 함수
             function fetchAdditionalData(username) {
               $.ajax({
@@ -235,12 +235,5 @@
         </div>
       </div>
     </div>
-  </div>
-  <div>
-    <ul>
-      {% for z in company_influencers_avg_data %}
-      <li>Username: {{ z.username   }}</li>
-      {% endfor %}
-    </ul>
   </div>
   {% endblock %}
