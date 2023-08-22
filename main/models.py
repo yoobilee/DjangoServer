@@ -32,3 +32,17 @@ class YourModel(models.Model):
 #     managed = False
 #     db_table = 'influencers'
 # Create your models here.
+
+class Influencer_average(models.Model):
+    goods_average = models.IntegerField()
+    comments_average = models.IntegerField()
+    followers_average = models.IntegerField()
+    post_average = models.IntegerField()
+    advpost_average = models.IntegerField()
+    week_post_avg = models.IntegerField()
+    number = models.IntegerField()
+    ave_name = models.CharField(max_length=100)
+    
+    class Meta:
+        managed = False
+        db_table = 'influencer_average'
