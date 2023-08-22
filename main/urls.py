@@ -27,4 +27,5 @@ urlpatterns = [
     path('delete/<int:notice_id>/', views.delete_notice, name='delete_notice'),
     path('your-upload-view/', views.your_upload_view, name='your_upload_view'),
     path('serve-word2vec-model/', views.serve_word2vec_model, name='serve_word2vec_model'),
+    path('agency_application/', views.agency_application, name='agency_application')
 ]
