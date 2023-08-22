@@ -1,0 +1,75 @@
+{% extends "AgencyHome-Base.html" %}
+
+{% load static %}
+
+{% block content %}
+      <!--  Header Start -->
+      <header class="app-header">
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <ul class="navbar-nav">
+            <li class="nav-item d-block d-xl-none">
+              <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
+                <i class="ti ti-menu-2"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-icon-hover" href="/AgencyHome">홈</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-icon-hover" href="/DetailedAnalysis" title="소속 인플루언서들을 시각적으로 자세히 분석해드립니다.">상세
+                분석</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-icon-hover" href="/notice-manage" title="모집공고 글을 작성, 수정 또는 삭제합니다." style="color: #5D87FF;">모집공고
+                관리</a>
+            </li>
+          </ul>
+          <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+            <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+              <a href="/accounts/Adv_Logout" class="btn btn-primary">로그아웃</a>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <!--  Header End -->
+      <div class="container-fluid">
+        <!-- Row 1 -->
+        <div class="row">
+          <div class="card">
+            <div class="card-body">
+          <h2 class="create_notice">공고 생성</h2>
+          <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="hidden" name="agency" value="{{ user.id }}">
+            <div class="dropzone" id="myDropzone"></div>
+            <button type="submit" class="btn btn-outline-primary" id="createbtn">공고 생성</button>
+          </form>
+        
+        {% block scripts %}
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.js"></script>
+          <script>
+            $(document).ready(function() {
+              // Dropzone 초기화
+              var myDropzone = new Dropzone("#myDropzone", {
+                paramName: "content_images", // 폼 필드 이름
+                url: "/your-upload-view/", // 서버 측 업로드 뷰에 대한 URL
+                maxFilesize: 10, // 최대 파일 크기 (MB 단위)
+                acceptedFiles: 'image/*', // 허용되는 파일 유형
+                addRemoveLinks: true, // 업로드된 파일에 삭제 링크 표시
+                dictRemoveFile: "제거", // 제거 링크의 텍스트
+              });
+        
+              // 각 파일 업로드 후 이벤트 처리
+              myDropzone.on("success", function(file, response) {
+                // 필요한 경우 서버에서의 응답을 처리
+              });
+            });
+          </script>
+        {% endblock %}
+          
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

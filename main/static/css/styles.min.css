@@ -2686,7 +2686,7 @@ progress {
 }
 
 .table>tbody {
-  vertical-align: inherit
+  vertical-align: inherit;
 }
 
 .table>thead {
@@ -10368,6 +10368,10 @@ fieldset:disabled .btn {
 
 .border-bottom-0 {
   border-bottom: 0 !important
+}
+
+.border-bottom-1 {
+  border-bottom: 20px !important;
 }
 
 .border-start {
@@ -20166,8 +20170,6 @@ ul {
   border: 2px solid #5D87FF
 }
 
-<<<<<<< HEAD
-=======
 /* 검색창 스타일 */
 .d-flex-s {
   position: relative;
@@ -20214,12 +20216,13 @@ ul {
   --bs-btn-active-border-color: #5D87FF;
   --bs-btn-active-color: black;
 }
->>>>>>> 75c32d966ac65d5fc7bc9da71943e510d23aec00
 
 .biography h6 {
   max-height: 2.4em; /* 2줄에 해당하는 높이 설정 */
   overflow: hidden;
   text-overflow: ellipsis; /* 텍스트가 길 경우 ...으로 생략 표시 */
+  font-size: 12px;
+  color: var(--bs-cyan);
 }
 
 .biography.expanded h6 {
@@ -20266,4 +20269,104 @@ ul {
 
 .section-wrapper strong {
   font-weight: bold;
+}
+
+.username {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.container-fluid .row .card .card-body form p label {
+  display: block;
+  width: 60% !important;
+  margin: 0 auto;
+  height: 30px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 3px solid #c4d0e3;
+  font-weight: 700;
+  font-size: 16px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.container-fluid .row .card .card-body form p:nth-child(13) label {
+  border-bottom: none !important;
+}
+
+.container-fluid .row .card .card-body form p:nth-child(14) label {
+  border-bottom: none !important;
+}
+
+.container-fluid .row .card .card-body form p label, textarea, input, select {
+  display: block;
+  width: 60%;
+  margin: 0 auto;
+  margin-bottom: 5px;
+}
+
+.container-fluid .row .card .card-body form input#id_title, #id_period, #id_subtitle, #id_category {
+  border: var(--bs-border-width) solid #DFE5EF;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 7px;
+  -webkit-box-shadow: inset 0 1px 2px rgba(var(--bs-body-color-rgb), 0.075);
+  box-shadow: inset 0 1px 2px rgba(var(--bs-body-color-rgb), 0.075);
+  -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out
+}
+
+.container-fluid .row .card .card-body form textarea, select {
+  border: var(--bs-border-width) solid #DFE5EF;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 7px;
+  -webkit-box-shadow: inset 0 1px 2px rgba(var(--bs-body-color-rgb), 0.075);
+  box-shadow: inset 0 1px 2px rgba(var(--bs-body-color-rgb), 0.075);
+  -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out
+}
+
+.container-fluid .row .card .card-body form p, select {
+  text-align: center !important;
+}
+
+#id_profile_image, #id_content_images {
+  width: 300px !important;
+  margin: 0% 20% 0% 20% !important;
+}
+
+#id_content_images {
+  width: 300px !important;
+  margin: 0% 20% 0% 20% !important;
+}
+
+.container-fluid .row .card .card-body form p:nth-child(13) label {
+  padding: 3px 25px;
+  background-color:#C4D0E3;
+  border-radius: 7px;
+  color: white;
+  cursor: pointer;
+  width: 250px !important;
+  color: #5B6C87;
+}
+
+.container-fluid .row .card .card-body form p:nth-child(13) input {
+  display: none;
+}
+
+#createbtn {
+  display: block;
+  margin: 0 auto;
+}
+
+#clickableRow {
+  cursor: pointer;
 }

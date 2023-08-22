@@ -20,6 +20,8 @@ class Influencer(models.Model):
   avg_goods = models.IntegerField()
   comments_percent = models.IntegerField()
   goods_percent = models.IntegerField()
+  profile_url = models.CharField(max_length=1000)
+  company = models.CharField(max_length=100)
   
   class Meta:
     managed = False
@@ -175,14 +177,12 @@ class User_influ(models.Model):
     managed = False
     db_table = 'user_influ'
     
-    
 class Keyword(models.Model):
-    id=models.CharField(max_length=100)
-    username = models.CharField(max_length=100)
-    words = models.CharField(max_length=100)
-    weights = models.DecimalField(max_digits=15, decimal_places=10, primary_key=True)  # 소수점 10자리까지 저장
+  id=models.CharField(max_length=100)
+  username = models.CharField(max_length=100)
+  words = models.CharField(max_length=100)
+  weights = models.DecimalField(max_digits=15, decimal_places=10, primary_key=True)  # 소수점 10자리까지 저장
 
-   
-    class Meta:
-        managed = False
-        db_table = 'keyword'
+  class Meta:
+    managed = False
+    db_table = 'keyword'

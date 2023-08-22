@@ -21,7 +21,7 @@
       <!-- Sidebar scroll-->
       <div>
         <div class="brand-logo d-flex align-items-center justify-content-between">
-          <a href="./index.html" class="text-nowrap logo-img">
+          <a href="" class="text-nowrap logo-img">
             <img src="{% static 'img/logos/logo.png' %}" width="180" alt="" />
           </a>
           <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
@@ -59,7 +59,7 @@
                 profileImage.addEventListener('mouseout', restoreImage);
               </script>
               <div style="text-align: center;">
-                <h5>에이전시명</h5>
+                <h5>{{user.id}}</h5>
                 <h6>기타 추가할거..</h6>
               </div>
             </li>
@@ -149,7 +149,8 @@
   <script src="{% static 'js/dashboard.js' %}"></script>
 
   <!-- 부트스트랩 JavaScript 및 jQuery 라이브러리 불러오기 -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  {% comment %} <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> {% endcomment %}
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>

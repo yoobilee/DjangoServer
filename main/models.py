@@ -1,37 +1,49 @@
 from django.db import models
+from accounts.models import User_adv
 
 # Create your models here.
 
-class YourModel(models.Model):
-    title = models.CharField(max_length=100)
-    body = models.TextField()
+class Recruitment(models.Model):
+    agency = models.ForeignKey(User_adv, on_delete=models.CASCADE)
+    title = models.CharField(max_length=200)
+    period = models.CharField(max_length=100)
+    marketing_content = models.TextField()
+    media_channels = models.TextField()
+    subtitle = models.CharField(max_length=100)
+    category = models.CharField(max_length=100)
+    content_1 = models.TextField()
+    sub_content_1 = models.TextField()
+    content_2 = models.TextField()
+    sub_content_2 = models.TextField()
+    
+    class Meta:
+        managed = False
+        db_table = 'Recruitment'
 
-    def __str__(self):
-        return self.title
+    
+class RecruitmentImage(models.Model):
+    recruitment = models.ForeignKey(Recruitment, related_name='images', on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='recruitment_images/')
+    is_profile = models.BooleanField(default=False)  # True if this image is for profile
 
-# class Influencer(models.Model):
-#   id = models.CharField(max_length=100, primary_key=True)
-#   username = models.CharField(max_length=100)
-#   biography = models.CharField(max_length=300)
-#   media_count = models.IntegerField()
-#   follows_count = models.IntegerField()
-#   followers_count = models.IntegerField()
-#   category = models.CharField(max_length=100)
-#   adv_count = models.IntegerField()
-#   week_avg_post = models.DecimalField(max_digits=5, decimal_places=1)
-#   am_pm = models.CharField(max_length=100)
-#   avg_post_time = models.CharField(max_length=100)
-#   feed_percent = models.IntegerField()
-#   reels_percent = models.IntegerField()
-#   avg_comments = models.IntegerField()
-#   avg_goods = models.IntegerField()
-#   comments_percent = models.IntegerField()
-#   goods_percent = models.IntegerField()
-  
-#   class Meta:
-#     managed = False
-#     db_table = 'influencers'
-# Create your models here.
+    class Meta:
+        managed = False
+        db_table = 'RecruitmentImage'
+
+
+class Hot_post(models.Model):
+    post_id = models.CharField(max_length=100)
+    comments_count = models.IntegerField()
+    like_count = models.CharField(max_length=100)
+    timestamp = models.CharField(max_length=100)
+    username = models.CharField(max_length=100)
+    insta_url = models.CharField(max_length=1000)
+    post_url = models.CharField(max_length=1000, primary_key=True)
+   
+    class Meta:
+        managed = False
+        db_table = 'hot_post'
+
 
 class Influencer_average(models.Model):
     goods_average = models.IntegerField()
