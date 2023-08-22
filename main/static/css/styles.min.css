@@ -20166,6 +20166,8 @@ ul {
   border: 2px solid #5D87FF
 }
 
+<<<<<<< HEAD
+=======
 /* 검색창 스타일 */
 .d-flex-s {
   position: relative;
@@ -20212,6 +20214,7 @@ ul {
   --bs-btn-active-border-color: #5D87FF;
   --bs-btn-active-color: black;
 }
+>>>>>>> 75c32d966ac65d5fc7bc9da71943e510d23aec00
 
 .biography h6 {
   max-height: 2.4em; /* 2줄에 해당하는 높이 설정 */
