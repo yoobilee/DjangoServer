@@ -7,12 +7,55 @@ from django.contrib.contenttypes.models import ContentType
 from django.db.models import Avg
 import logging
 from .models import Recruitment, RecruitmentImage
+from .models import Hot_post
 from .forms import RecruitmentForm
 from django.contrib.auth.decorators import login_required
+
+from django.http import FileResponse
+from django.conf import settings
+import os
+from django.views.decorators.csrf import csrf_exempt
+from gensim.models import Word2Vec
+import json
 
 logger = logging.getLogger(__name__)
 
 # Create your views here.
+
+@csrf_exempt
+def serve_word2vec_model(request):
+    param = json.loads(request.body)
+    keyword = param.get("keyword")
+    user_id = param.get("user_id")
+    
+    # 모델 로드
+    # 자기 경로 찾아서 입력!!!!
+    model = Word2Vec.load('C:\\DjangoServer\\MA\\main\\static\\model\\'+user_id+'.model')  # 경로 구분자를 슬래시(/)로 사용하거나 역슬래시(\) 2개를 사용해야 함
+    
+    # 관련된 단어 찾기
+    similar_words = model.wv.most_similar(keyword, topn=5)
+    
+    print(similar_words)
+    
+    if len(similar_words) == 5:
+        first = similar_words[0][0]
+        second = similar_words[1][0]
+        third = similar_words[2][0]
+        fourth = similar_words[3][0]
+        fifth = similar_words[4][0]
+    
+    print(first)
+    # 수정된 코드
+    first_word = model.wv.most_similar(first, topn=3)
+    second_word = model.wv.most_similar(second, topn=3)
+    third_word =model.wv.most_similar(third, topn=3)
+    fourth_word = model.wv.most_similar(fourth, topn=3)
+    fifth_word = model.wv.most_similar(fifth, topn=3)
+    
+    print(first_word)
+    
+    return JsonResponse({'similar_words':similar_words, 'first':first_word, 'second':second_word, 'third':third_word, 'fourth':fourth_word, 'fifth':fifth_word})
+
 def first_index(request):
     logout(request)
     return render(request, "first-index.html")
@@ -35,10 +78,16 @@ def InfluHome(request):
             forth_keywords = Keyword.objects.filter(username=user_id)[3]
             fifth_keywords = Keyword.objects.filter(username=user_id)[4]
             sixth_keywords = Keyword.objects.filter(username=user_id).last()
+
+            hot_post1 = Hot_post.objects.filter(username=user_id)[0]
+            hot_post2 = Hot_post.objects.filter(username=user_id)[1]
+            hot_post3 = Hot_post.objects.filter(username=user_id)[2]
+            hot_post4 = Hot_post.objects.filter(username=user_id)[3]
             
             return render(request, 'InfluHome.html', {'user': user, 'influencer': influencer, 'first_keywords': first_keywords,
                                                       'second_keywords': second_keywords, 'third_keywords': third_keywords, 'forth_keywords': forth_keywords,
-                                                      'fifth_keywords': fifth_keywords,'sixth_keywords': sixth_keywords})
+                                                      'fifth_keywords': fifth_keywords,'sixth_keywords': sixth_keywords, 'hot_post1': hot_post1,
+                                                      'hot_post2': hot_post2,'hot_post3': hot_post3,'hot_post4': hot_post4})
         except (User_influ.DoesNotExist, Influencer.DoesNotExist):
             pass
     
@@ -54,8 +103,9 @@ def AgencyHome(request):
             # 로그인한 사용자의 아이디로 User_adv 모델에서 해당 사용자의 정보를 가져옵니다.
             user = User_adv.objects.get(id=user_id)
             logger.info(user.business)
-            
-            return render(request, 'AgencyHome.html', {'user': user})
+            company_influencers = list(Influencer.objects.filter(company=user.company))
+
+            return render(request, 'AgencyHome.html', {'user': user, 'company_influencers': company_influencers})
         except (User_adv.DoesNotExist):
             pass
     
@@ -157,6 +207,18 @@ def ComparisonAnalysis(request):
     return render(request, "ComparisonAnalysis.html")
 
 def DetailedAnalysis(request):
+    user_id = request.session.get('user_id', None)  # 로그인된 사용자 아이디 가져오기
+    
+    if user_id:
+        try:
+            # 로그인한 사용자의 아이디로 User_adv 모델에서 해당 사용자의 정보를 가져옵니다.
+            user = User_adv.objects.get(id=user_id)
+            notices = Recruitment.objects.filter(agency=user)  # 해당 사용자의 공고 목록을 가져옵니다.
+            return render(request, "DetailedAnalysis.html", {'user': user, 'notices': notices})
+        except User_adv.DoesNotExist:
+            pass
+    
+    # 사용자가 로그인하지 않았거나 사용자 정보가 없는 경우 기본 템플릿을 렌더링합니다.
     return render(request, "DetailedAnalysis.html")
 
 def notice_manage(request):

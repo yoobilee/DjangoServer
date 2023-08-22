@@ -25,7 +25,6 @@
   </nav>
 </header>
 <!--  Header End -->
-
 <div class="container-fluid">
   <!--  Row 1 -->
   <div class="row">
@@ -33,82 +32,77 @@
       <div class="col-sm-6 col-xl-3">
         <div class="card overflow-hidden rounded-2">
           <div class="position-relative">
-            <a href="javascript:void(0)"><img src="https://scontent-ssn1-1.xx.fbcdn.net/v/t51.2885-15/80534226_317026569221634_1886705001997271040_n.jpg?_nc_cat=1&ccb=1-7&_nc_sid=86c713&_nc_ohc=5avCsoS-pacAX_XblFg&_nc_ht=scontent-ssn1-1.xx&edm=AL-3X8kEAAAA&oh=00_AfCSoayznfd7ttXJZu26gEOwfG0_LiIWaId2jYhM9-LAeg&oe=64E7AC28" class="card-img-top rounded-0" alt="..."></a>
-            <a href="javascript:void(0)" class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart"><i class="ti ti-basket fs-4"></i></a>                      
+            <a href="{{hot_post1.insta_url}}" target="_blank"><img src="{{hot_post1.post_url}}" class="card-img-top rounded-0" alt="..."></a>
           </div>
-          <div class="card-body pt-3 p-4">
-            <h6 class="fw-semibold fs-4">Boat Headphone</h6>
-            <div class="d-flex align-items-center justify-content-between">
-              <h6 class="fw-semibold fs-4 mb-0">$50 <span class="ms-2 fw-normal text-muted fs-3"><del>$65</del></span></h6>
-              <ul class="list-unstyled d-flex align-items-center mb-0">
-                <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                <li><a class="" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-              </ul>
-            </div>
+          <div class="card-body pt-3 p-3">
+            <h6 class="fw-semibold fs-4" style="display: flex; align-items: center; justify-content: space-between;">
+              <span>
+                  <i class="ti ti-heart" style="display: inline;"></i>
+                  {{ hot_post1.like_count }}
+              </span>
+              <span>
+                  <i class="ti ti-message" style="display: inline;"></i>
+                  {{ hot_post1.comments_count }}
+              </span>
+          </h6>
           </div>
         </div>
       </div>
       <div class="col-sm-6 col-xl-3">
         <div class="card overflow-hidden rounded-2">
           <div class="position-relative">
-            <a href="javascript:void(0)"><img src="{% static 'img/products/s5.jpg' %}" class="card-img-top rounded-0" alt="..."></a>
-            <a href="javascript:void(0)" class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart"><i class="ti ti-basket fs-4"></i></a>                      </div>
-            <div class="card-body pt-3 p-4">
-              <h6 class="fw-semibold fs-4">MacBook Air Pro</h6>
-              <div class="d-flex align-items-center justify-content-between">
-                <h6 class="fw-semibold fs-4 mb-0">$650 <span class="ms-2 fw-normal text-muted fs-3"><del>$900</del></span></h6>
-                <ul class="list-unstyled d-flex align-items-center mb-0">
-                  <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                  <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                  <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                  <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                  <li><a class="" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                </ul>
-              </div>
+            <a href="{{hot_post2.insta_url}}" target="_blank"><img src="{{hot_post2.post_url}}" class="card-img-top rounded-0" alt="..."></a>
             </div>
+          <div class="card-body pt-3 p-3">
+            <h6 class="fw-semibold fs-4" style="display: flex; align-items: center; justify-content: space-between;">
+              <span>
+                  <i class="ti ti-heart" style="display: inline;"></i>
+                  {{ hot_post2.like_count }}
+              </span>
+              <span>
+                  <i class="ti ti-message" style="display: inline;"></i>
+                  {{ hot_post2.comments_count }}
+              </span>
+          </h6>
+          </div>
           </div>
         </div>
         <div class="col-sm-6 col-xl-3">
           <div class="card overflow-hidden rounded-2">
             <div class="position-relative">
-              <a href="javascript:void(0)"><img src="{% static 'img/products/s7.jpg' %}" class="card-img-top rounded-0" alt="..."></a>
-              <a href="javascript:void(0)" class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart"><i class="ti ti-basket fs-4"></i></a>                      </div>
-              <div class="card-body pt-3 p-4">
-                <h6 class="fw-semibold fs-4">Red Valvet Dress</h6>
-                <div class="d-flex align-items-center justify-content-between">
-                  <h6 class="fw-semibold fs-4 mb-0">$150 <span class="ms-2 fw-normal text-muted fs-3"><del>$200</del></span></h6>
-                  <ul class="list-unstyled d-flex align-items-center mb-0">
-                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                    <li><a class="" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                  </ul>
-                </div>
+              <a href="{{hot_post3.insta_url}}" target="_blank"><img src="{{hot_post3.post_url}}" class="card-img-top rounded-0" alt="..."></a>
+              </div>
+              <div class="card-body pt-3 p-3">
+                <h6 class="fw-semibold fs-4" style="display: flex; align-items: center; justify-content: space-between;">
+                  <span>
+                      <i class="ti ti-heart" style="display: inline;"></i>
+                      {{ hot_post3.like_count }}
+                  </span>
+                  <span>
+                      <i class="ti ti-message" style="display: inline;"></i>
+                      {{ hot_post3.comments_count }}
+                  </span>
+              </h6>
               </div>
             </div>
           </div>
           <div class="col-sm-6 col-xl-3">
             <div class="card overflow-hidden rounded-2">
               <div class="position-relative">
-                <a href="javascript:void(0)"><img src="{% static 'img/products/s11.jpg' %}" class="card-img-top rounded-0" alt="..."></a>
-                <a href="javascript:void(0)" class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart"><i class="ti ti-basket fs-4"></i></a>                      </div>
-              <div class="card-body pt-3 p-4">
-                <h6 class="fw-semibold fs-4">Cute Soft Teddybear</h6>
-                <div class="d-flex align-items-center justify-content-between">
-                  <h6 class="fw-semibold fs-4 mb-0">$285 <span class="ms-2 fw-normal text-muted fs-3"><del>$345</del></span></h6>
-                  <ul class="list-unstyled d-flex align-items-center mb-0">
-                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                    <li><a class="" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                  </ul>
-                </div>
+                <a href="{{hot_post4.insta_url}}" target="_blank"><img src="{{hot_post4.post_url}}" class="card-img-top rounded-0" alt="..."></a>
               </div>
+                <div class="card-body pt-3 p-3">
+                  <h6 class="fw-semibold fs-4" style="display: flex; align-items: center; justify-content: space-between;">
+                    <span>
+                        <i class="ti ti-heart" style="display: inline;"></i>
+                        {{ hot_post4.like_count }}
+                    </span>
+                    <span>
+                        <i class="ti ti-message" style="display: inline;"></i>
+                        {{ hot_post4.comments_count }}
+                    </span>
+                </h6>
+                </div>
             </div>
           </div>
         </div>
@@ -302,7 +296,7 @@
         <div class="row">
           <div class="col-lg-4 d-flex align-items-stretch" style="height: 300px;">
             <div class="card w-100">
-              <div class="card-body p-4">
+              <div class="card-body p-4 text-center">
                 <div class="mb-4">
                   <h5 class="card-title fw-semibold">포스트 태그</h5>
                 </div>
@@ -310,6 +304,11 @@
 
                 <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
                 <script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>
+                <script src="path/to/jquery.js"></script>
+                <script src="path/to/anychart-bundle.min.js"></script>
+                <script src="path/to/am5.js"></script>
+                <script src="path/to/am5themes_animated.js"></script>
+                <script src="path/to/am5themes_dark.js"></script>
                 <script>
                   anychart.onDocumentReady(function () {
                   var data = [
@@ -340,8 +339,141 @@
                   chart.angles([0]);
                   chart.container("chartkey");
                   // chart.getCredits().setEnabled(false);
-                  chart.draw();
-                });
+                  chart.listen("pointClick", function(e){
+                    console.log(e.point.get("x"),'{{ user.instagram_id }}');
+
+                    var keyword = e.point.get("x");
+                    $.ajax({
+                      url : '/serve-word2vec-model/', //
+                      type : 'post',
+                      dataType: 'json',
+                      contentType: 'application/json; charset=utf-8',
+                      data : JSON.stringify({
+                        keyword : keyword,
+                        user_id : '{{ user.instagram_id }}'
+                      }),
+                      success: function(data){
+                        console.log(JSON.stringify(data.similar_words))
+                        console.log(data.first)
+                        var children = [];
+                        var first_children = [];
+                        var second_children = [];
+                        var third_children = [];
+                        var fourth_children = [];
+                        var fifth_children = [];
+                        data.similar_words.forEach(item=>{
+                          var obj = {name:item[0],value:item[1]};
+                          children.push(obj);
+                        });
+                        data.first.forEach(item=>{
+                          var firstobj = {name:item[0],value:item[1]};
+                          first_children.push(firstobj);
+                        });
+                        data.second.forEach(item=>{
+                          var secondobj = {name:item[0],value:item[1]};
+                          second_children.push(secondobj);
+                        });
+                        data.third.forEach(item=>{
+                          var thirdobj = {name:item[0],value:item[1]};
+                          third_children.push(thirdobj);
+                        });
+                        data.fourth.forEach(item=>{
+                          var fourthobj = {name:item[0],value:item[1]};
+                          fourth_children.push(fourthobj);
+                        });
+                        data.fifth.forEach(item=>{
+                          var fifthobj = {name:item[0],value:item[1]};
+                          fifth_children.push(fifthobj);
+                        });
+
+
+                        children[0].children=first_children;
+                        children[1].children=second_children;
+                        children[2].children=third_children;
+                        children[3].children=fourth_children;
+                        children[4].children=fifth_children;
+
+                        var newData = {
+                          children: [
+                            {
+                              name: keyword,
+                              children: children
+                            }
+                          ]
+                        };
+
+
+                      // Update or recreate the existing series
+                      if (typeof series === 'undefined') {
+                          var root = am5.Root.new("chartdiv");
+                          root.setThemes([
+                              am5themes_Animated.new(root)
+                          ]);
+
+                          var container = root.container.children.push(am5.Container.new(root, {
+                              width: am5.percent(100),
+                              height: am5.percent(100),
+                              layout: root.verticalLayout
+                          }));
+                          
+
+                          series = container.children.push(am5hierarchy.ForceDirected.new(root, {
+                              singleBranchOnly: false,
+                              downDepth: 2,
+                              topDepth: 1,
+                              initialDepth: 1,
+                              valueField: "value",
+                              categoryField: "name",
+                              childDataField: "children",
+                              idField: "name",
+                              linkWithField: "linkWith",
+                              manyBodyStrength: -1,
+                              centerStrength: 0.1 ,     
+                              valueField: "value",
+                              categoryField: "name",
+                              childDataField: "children",
+                              minRadius: 17,
+                              maxRadius: am5.percent(10),
+                              nodePadding: 5,
+                              colorField: "color"            
+                            }));
+  
+                          series.labels.template.setAll({
+                              fontSize: 14
+                          });
+  
+                          series.get("colors").setAll({
+                              step: 2
+                          });
+  
+                          series.links.template.set("strength", 0.5);
+  
+                          series.data.setAll([newData]);
+  
+                          series.set("selectedDataItem", series.dataItems[0]);
+  
+                          series.appear(1000, 100);
+
+                          
+                      } else {
+                          // Update existing series data
+                          series.data.setAll([newData]);
+  
+                          // Optionally, trigger animations or updates here
+                          series.appear(1000, 100);
+                      }
+
+                      
+                      
+                      }
+                      
+                      });
+                      
+                      });
+                      
+                      chart.draw();
+                    });
+                
               </script>
             
             </div>
@@ -350,7 +482,7 @@
 
         <div class="col-lg-8 d-flex align-items-stretch" style="height: 300px;">
           <div class="card w-100">
-            <div class="card-body p-4">
+            <div class="card-body p-4 text-center">
               <h5 class="card-title fw-semibold mb-4">분석 제목 미정</h5>
             </div>
             <div id="chartdiv"></div>
@@ -368,7 +500,7 @@
             <script src="https://cdn.amcharts.com/lib/5/hierarchy.js"></script>
             <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
             <script>
-              am5.ready(function() {
+              {% comment %} am5.ready(function() {
                 
               // Create root element
               // https://www.amcharts.com/docs/v5/getting-started/#Root_element
@@ -520,81 +652,108 @@
                 // Make stuff animate on load
                 series.appear(1000, 100);
                 
-                }); // end am5.ready()
+                }); // end am5.ready() {% endcomment %}
                 </script>
 
             </div>
           </div>
         </div>
+        <style>
+          #chartdiv2 {
+            width: 100%;
+            height: 500px;
+          }
+          </style>
+
+        <!-- Resources -->
+        <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
 
         <div class="row">
           <div class="col-lg-4 d-flex align-items-stretch">
             <div class="card w-100">
-              <div class="card-body p-4">
+              <div class="card-body p-4 text-center">
                 <div class="mb-4">
-                  <h5 class="card-title fw-semibold">Recent Transactions</h5>
+                  <h5 class="card-title fw-semibold">광고 포스트 비율</h5>
                 </div>
-                <ul class="timeline-widget mb-0 position-relative mb-n5">
-                  <li class="timeline-item d-flex position-relative overflow-hidden">
-                    <div class="timeline-time text-dark flex-shrink-0 text-end">09:30</div>
-                    <div class="timeline-badge-wrap d-flex flex-column align-items-center">
-                      <span class="timeline-badge border-2 border border-primary flex-shrink-0 my-8"></span>
-                      <span class="timeline-badge-border d-block flex-shrink-0"></span>
-                    </div>
-                    <div class="timeline-desc fs-3 text-dark mt-n1">Payment received from John Doe of $385.90</div>
-                  </li>
-                  <li class="timeline-item d-flex position-relative overflow-hidden">
-                    <div class="timeline-time text-dark flex-shrink-0 text-end">10:00 am</div>
-                    <div class="timeline-badge-wrap d-flex flex-column align-items-center">
-                      <span class="timeline-badge border-2 border border-info flex-shrink-0 my-8"></span>
-                      <span class="timeline-badge-border d-block flex-shrink-0"></span>
-                    </div>
-                    <div class="timeline-desc fs-3 text-dark mt-n1 fw-semibold">New sale recorded <a
-                        href="javascript:void(0)" class="text-primary d-block fw-normal">#ML-3467</a>
-                    </div>
-                  </li>
-                  <li class="timeline-item d-flex position-relative overflow-hidden">
-                    <div class="timeline-time text-dark flex-shrink-0 text-end">12:00 am</div>
-                    <div class="timeline-badge-wrap d-flex flex-column align-items-center">
-                      <span class="timeline-badge border-2 border border-success flex-shrink-0 my-8"></span>
-                      <span class="timeline-badge-border d-block flex-shrink-0"></span>
-                    </div>
-                    <div class="timeline-desc fs-3 text-dark mt-n1">Payment was made of $64.95 to Michael</div>
-                  </li>
-                  <li class="timeline-item d-flex position-relative overflow-hidden">
-                    <div class="timeline-time text-dark flex-shrink-0 text-end">09:30 am</div>
-                    <div class="timeline-badge-wrap d-flex flex-column align-items-center">
-                      <span class="timeline-badge border-2 border border-warning flex-shrink-0 my-8"></span>
-                      <span class="timeline-badge-border d-block flex-shrink-0"></span>
-                    </div>
-                    <div class="timeline-desc fs-3 text-dark mt-n1 fw-semibold">New sale recorded <a
-                        href="javascript:void(0)" class="text-primary d-block fw-normal">#ML-3467</a>
-                    </div>
-                  </li>
-                  <li class="timeline-item d-flex position-relative overflow-hidden">
-                    <div class="timeline-time text-dark flex-shrink-0 text-end">09:30 am</div>
-                    <div class="timeline-badge-wrap d-flex flex-column align-items-center">
-                      <span class="timeline-badge border-2 border border-danger flex-shrink-0 my-8"></span>
-                      <span class="timeline-badge-border d-block flex-shrink-0"></span>
-                    </div>
-                    <div class="timeline-desc fs-3 text-dark mt-n1 fw-semibold">New arrival recorded 
-                    </div>
-                  </li>
-                  <li class="timeline-item d-flex position-relative overflow-hidden">
-                    <div class="timeline-time text-dark flex-shrink-0 text-end">12:00 am</div>
-                    <div class="timeline-badge-wrap d-flex flex-column align-items-center">
-                      <span class="timeline-badge border-2 border border-success flex-shrink-0 my-8"></span>
-                    </div>
-                    <div class="timeline-desc fs-3 text-dark mt-n1">Payment Done</div>
-                  </li>
-                </ul>
+                <script>
+                  am5.ready(function() {
+                  
+                  // Create root element
+                  // https://www.amcharts.com/docs/v5/getting-started/#Root_element
+                  var root = am5.Root.new("chartdiv2");
+                  
+                  
+                  // Set themes
+                  // https://www.amcharts.com/docs/v5/concepts/themes/
+                  root.setThemes([
+                    am5themes_Animated.new(root)
+                  ]);
+                  
+                  
+                  // Create chart
+                  // https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/
+                  var chart = root.container.children.push(am5percent.PieChart.new(root, {
+                    layout: root.verticalLayout,
+                    innerRadius: am5.percent(50)
+                  }));
+                  
+                  
+                  // Create series
+                  // https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/#Series
+                  var series = chart.series.push(am5percent.PieSeries.new(root, {
+                    valueField: "value",
+                    categoryField: "category",
+                    alignLabels: false
+                  }));
+                  
+                  series.labels.template.setAll({
+                    textType: "circular",
+                    centerX: 0,
+                    centerY: 0
+                  });
+                  
+                  
+                  // Set data
+                  // https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/#Setting_data
+                  series.data.setAll([
+                    { value: 10, category: "One" },
+                    { value: 9, category: "Two" },
+                    { value: 6, category: "Three" },
+                    { value: 5, category: "Four" },
+                    { value: 4, category: "Five" },
+                    { value: 3, category: "Six" },
+                    { value: 1, category: "Seven" },
+                  ]);
+                  
+                  
+                  // Create legend
+                  // https://www.amcharts.com/docs/v5/charts/percent-charts/legend-percent-series/
+                  var legend = chart.children.push(am5.Legend.new(root, {
+                    centerX: am5.percent(50),
+                    x: am5.percent(50),
+                    marginTop: 15,
+                    marginBottom: 15,
+                  }));
+                  
+                  legend.data.setAll(series.dataItems);
+                  
+                  
+                  // Play initial series animation
+                  // https://www.amcharts.com/docs/v5/concepts/animations/#Animation_of_series
+                  series.appear(1000, 100);
+                  
+                  }); // end am5.ready()
+                  </script>
+                  
+                  <!-- HTML -->
+                  <div id="chartdiv2"></div>
               </div>
             </div>
           </div>
           <div class="col-lg-8 d-flex align-items-stretch">
             <div class="card w-100">
-              <div class="card-body p-4">
-                <h5 class="card-title fw-semibold mb-4">Recent Transactions</h5>
+              <div class="card-body p-4 text-center">
+                <h5 class="card-title fw-semibold mb-4">월별 팔로워 추이</h5>
                 <div class="table-responsive">
                   <table class="table text-nowrap mb-0 align-middle">
                     <thead class="text-dark fs-4">

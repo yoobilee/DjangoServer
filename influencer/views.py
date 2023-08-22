@@ -13,3 +13,7 @@ def Influencer1(request):
 def Influencer2(request):
     Keyword = Keyword.objects.all()  
     return render(request, 'Influencer2.html',{'keyword': Keyword})
+
+def keyword_list(request):
+    keyword_list = Keyword.objects.all()
+    return render(request, 'keyword_list.html', {'keyword_list': keyword_list})

@@ -3,6 +3,7 @@ from django.urls import path, include
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
+from . import views
 
 app_name = 'main'
 
@@ -25,4 +26,5 @@ urlpatterns = [
     path('edit/<int:notice_id>/', views.edit_notice, name='edit_notice'),
     path('delete/<int:notice_id>/', views.delete_notice, name='delete_notice'),
     path('your-upload-view/', views.your_upload_view, name='your_upload_view'),
+    path('serve-word2vec-model/', views.serve_word2vec_model, name='serve_word2vec_model'),
 ]

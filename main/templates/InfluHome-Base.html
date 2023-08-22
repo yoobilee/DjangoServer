@@ -173,7 +173,7 @@
               <span style="flex-direction: column-reverse; padding: 0% 25% 0% 25%;">
                 <input type="image" src="{% static '/img/instagram.png' %}"
                   onclick="window.open('https://www.instagram.com/{{ user.instagram_id }}/')"
-                  style="width:50px; filter: drop-shadow(1px 1px 1px #000); display:flex;">
+                  style="width:50px; filter: drop-shadow(1px 1px 1px #000); display:flex; border: none !important;">
               </span>
             </div>
             {% endif %}
@@ -252,7 +252,8 @@
   <script src="{% static 'js/dashboard.js' %}"></script>
 
   <!-- 부트스트랩 JavaScript 및 jQuery 라이브러리 불러오기 -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  {% comment %} <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> {% endcomment %}
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 

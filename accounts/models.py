@@ -21,6 +21,7 @@ class Influencer(models.Model):
   comments_percent = models.IntegerField()
   goods_percent = models.IntegerField()
   profile_url = models.CharField(max_length=1000)
+  company = models.CharField(max_length=100)
   
   class Meta:
     managed = False

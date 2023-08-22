@@ -17,7 +17,7 @@ class Recruitment(models.Model):
     sub_content_2 = models.TextField()
     
     class Meta:
-        managed = True
+        managed = False
         db_table = 'Recruitment'
 
     
@@ -27,5 +27,34 @@ class RecruitmentImage(models.Model):
     is_profile = models.BooleanField(default=False)  # True if this image is for profile
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'RecruitmentImage'
+
+
+class Hot_post(models.Model):
+    post_id = models.CharField(max_length=100)
+    comments_count = models.IntegerField()
+    like_count = models.CharField(max_length=100)
+    timestamp = models.CharField(max_length=100)
+    username = models.CharField(max_length=100)
+    insta_url = models.CharField(max_length=1000)
+    post_url = models.CharField(max_length=1000, primary_key=True)
+   
+    class Meta:
+        managed = False
+        db_table = 'hot_post'
+
+
+class Influencer_average(models.Model):
+    goods_average = models.IntegerField()
+    comments_average = models.IntegerField()
+    followers_average = models.IntegerField()
+    post_average = models.IntegerField()
+    advpost_average = models.IntegerField()
+    week_post_avg = models.IntegerField()
+    number = models.IntegerField()
+    ave_name = models.CharField(max_length=100)
+    
+    class Meta:
+        managed = False
+        db_table = 'influencer_average'
