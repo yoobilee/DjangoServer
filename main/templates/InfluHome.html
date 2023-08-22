@@ -354,7 +354,6 @@
               <h5 class="card-title fw-semibold mb-4">분석 제목 미정</h5>
             </div>
             <div id="chartdiv"></div>
-
             <style>
               #chartdiv {
                 width: 100%;
@@ -526,201 +525,269 @@
             </div>
           </div>
         </div>
-        <style>
-          #chartdiv2 {
-            width: 100%;
-            height: 500px;
-          }
-          </style>
-          
-          <!-- Resources -->
-          <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
-          <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
-          <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+        
 
         <div class="row">
-          <div class="col-lg-6 d-flex align-items-stretch">
+          <div class="col-lg-4 d-flex align-items-stretch">
             <div class="card w-100">
               <div class="card-body p-4 text-center">
-                <div class="mb-4">
-                  <h5 class="card-title fw-semibold">광고 포스트 비율</h5>
-                </div>
-                <script>
-                  am5.ready(function() {
+                <h5 class="card-title fw-semibold">광고 포스트 비율</h5>
+                <div class="row align-items-center">
+                <style>
+                  #chartdiv2 {
+                    width: 100%;
+                    height: 250px;
+                  }
+                  </style>
                   
+                  <!-- Resources -->
+                  <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
+                  
+                  <!-- Chart code -->
+                  <script>
+                  am5.ready(function() {
                   // Create root element
                   // https://www.amcharts.com/docs/v5/getting-started/#Root_element
-                  var root = am5.Root.new("chartdiv2");
+                  var root2 = am5.Root.new("chartdiv2");
                   
                   
                   // Set themes
                   // https://www.amcharts.com/docs/v5/concepts/themes/
-                  root.setThemes([
-                    am5themes_Animated.new(root)
+                  root2.setThemes([
+                    am5themes_Animated.new(root2)
                   ]);
                   
                   
                   // Create chart
                   // https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/
-                  var chart = root.container.children.push(am5percent.PieChart.new(root, {
-                    layout: root.verticalLayout,
-                    innerRadius: am5.percent(50)
+                  var chart2 = root2.container.children.push(am5percent.PieChart.new(root2, {
+                    innerRadius: am5.percent(70),
+                    layout: root2.verticalLayout
                   }));
                   
                   
                   // Create series
                   // https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/#Series
-                  var series = chart.series.push(am5percent.PieSeries.new(root, {
-                    valueField: "value",
-                    categoryField: "category",
-                    alignLabels: false
+                  var series2 = chart2.series.push(am5percent.PieSeries.new(root2, {
+                    valueField: "size",
+                    categoryField: "sector"
                   }));
                   
-                  series.labels.template.setAll({
-                    textType: "circular",
-                    centerX: 0,
-                    centerY: 0
-                  });
-                  
+                  series2.get("colors").set("colors", [
+                  am5.color(0x5D87FF),
+                  am5.color(0xecf2ff)
+                ]);
                   
                   // Set data
                   // https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/#Setting_data
-                  series.data.setAll([
-                    { value: 10, category: "One" },
-                    { value: 9, category: "Two" },
-                    { value: 6, category: "Three" },
-                    { value: 5, category: "Four" },
-                    { value: 4, category: "Five" },
-                    { value: 3, category: "Six" },
-                    { value: 1, category: "Seven" },
+                  series2.data.setAll([
+                    { sector: "광고", size: {{influencer.adv_count}}, fill: am5.color(0xFF0000)},
+                    { sector: "비광고", size: {{influencer.media_count}}-{{influencer.adv_count}},fill: am5.color(0x00FF00)}
                   ]);
-                  
-                  
-                  // Create legend
-                  // https://www.amcharts.com/docs/v5/charts/percent-charts/legend-percent-series/
-                  var legend = chart.children.push(am5.Legend.new(root, {
-                    centerX: am5.percent(50),
-                    x: am5.percent(50),
-                    marginTop: 15,
-                    marginBottom: 15,
+                  var advCount = {{influencer.adv_count}};
+                  var mediaCount = {{influencer.media_count}};
+                  var roundedPercentage = Math.round((advCount / mediaCount) * 100);
+                  var label2 = root2.tooltipContainer.children.push(am5.Label.new(root2, {
+                    x: am5.p50,
+                    y: am5.p50,
+                    centerX: am5.p50,
+                    centerY: am5.p50,
+                    fill: am5.color(0x000000),
+                    fontSize: 40,
+                    html: "<span style='color: #5D87FF; font-size : 40px;'>" + roundedPercentage + "</span>%"
                   }));
                   
-                  legend.data.setAll(series.dataItems);
-                  
-                  
-                  // Play initial series animation
-                  // https://www.amcharts.com/docs/v5/concepts/animations/#Animation_of_series
-                  series.appear(1000, 100);
-                  
+                  series2.ticks.template.setAll({
+                    forceHidden: true
+                  });  
+                  series2.labels.clear();                  
+                 
                   }); // end am5.ready()
                   </script>
                   
                   <!-- HTML -->
                   <div id="chartdiv2"></div>
+                </div>
+              <p class="fs-1 mb-10"></p>
+              <p class="fs-1 mb-0">채널에 게시된 포스트 중 </p>
+              <p class="fs-1 mb-0">광고성향의 포스트를 파악할 수 있는 지표입니다</p>
+                
               </div>
             </div>
           </div>
-          <div class="col-lg-6 d-flex align-items-stretch">
+          <div class="col-lg-8 d-flex align-items-stretch">
             <div class="card w-100">
               <div class="card-body p-4 text-center">
                 <h5 class="card-title fw-semibold mb-4">월별 팔로워 추이</h5>
-                <div class="table-responsive">
-                  <table class="table text-nowrap mb-0 align-middle">
-                    <thead class="text-dark fs-4">
-                      <tr>
-                        <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">Id</h6>
-                        </th>
-                        <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">Assigned</h6>
-                        </th>
-                        <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">Name</h6>
-                        </th>
-                        <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">Priority</h6>
-                        </th>
-                        <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">Budget</h6>
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td class="border-bottom-0"><h6 class="fw-semibold mb-0">1</h6></td>
-                        <td class="border-bottom-0">
-                            <h6 class="fw-semibold mb-1">Sunil Joshi</h6>
-                            <span class="fw-normal">Web Designer</span>                          
-                        </td>
-                        <td class="border-bottom-0">
-                          <p class="mb-0 fw-normal">Elite Admin</p>
-                        </td>
-                        <td class="border-bottom-0">
-                          <div class="d-flex align-items-center gap-2">
-                            <span class="badge bg-primary rounded-3 fw-semibold">Low</span>
-                          </div>
-                        </td>
-                        <td class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0 fs-4">$3.9</h6>
-                        </td>
-                      </tr> 
-                      <tr>
-                        <td class="border-bottom-0"><h6 class="fw-semibold mb-0">2</h6></td>
-                        <td class="border-bottom-0">
-                            <h6 class="fw-semibold mb-1">Andrew McDownland</h6>
-                            <span class="fw-normal">Project Manager</span>                          
-                        </td>
-                        <td class="border-bottom-0">
-                          <p class="mb-0 fw-normal">Real Homes WP Theme</p>
-                        </td>
-                        <td class="border-bottom-0">
-                          <div class="d-flex align-items-center gap-2">
-                            <span class="badge bg-secondary rounded-3 fw-semibold">Medium</span>
-                          </div>
-                        </td>
-                        <td class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0 fs-4">$24.5k</h6>
-                        </td>
-                      </tr> 
-                      <tr>
-                        <td class="border-bottom-0"><h6 class="fw-semibold mb-0">3</h6></td>
-                        <td class="border-bottom-0">
-                            <h6 class="fw-semibold mb-1">Christopher Jamil</h6>
-                            <span class="fw-normal">Project Manager</span>                          
-                        </td>
-                        <td class="border-bottom-0">
-                          <p class="mb-0 fw-normal">MedicalPro WP Theme</p>
-                        </td>
-                        <td class="border-bottom-0">
-                          <div class="d-flex align-items-center gap-2">
-                            <span class="badge bg-danger rounded-3 fw-semibold">High</span>
-                          </div>
-                        </td>
-                        <td class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0 fs-4">$12.8k</h6>
-                        </td>
-                      </tr>      
-                      <tr>
-                        <td class="border-bottom-0"><h6 class="fw-semibold mb-0">4</h6></td>
-                        <td class="border-bottom-0">
-                            <h6 class="fw-semibold mb-1">Nirav Joshi</h6>
-                            <span class="fw-normal">Frontend Engineer</span>                          
-                        </td>
-                        <td class="border-bottom-0">
-                          <p class="mb-0 fw-normal">Hosting Press HTML</p>
-                        </td>
-                        <td class="border-bottom-0">
-                          <div class="d-flex align-items-center gap-2">
-                            <span class="badge bg-success rounded-3 fw-semibold">Critical</span>
-                          </div>
-                        </td>
-                        <td class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0 fs-4">$2.4k</h6>
-                        </td>
-                      </tr>                       
-                    </tbody>
-                  </table>
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                  <meta charset="UTF-8">
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                  <title>Chart</title>
+                  <!-- Resources -->
+                  <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+                  <!-- Styles -->
+                  <style>
+                    #chartdiv3 {
+                      width: 100%;
+                      height: 250px;
+                    }
+                  </style>
+                
+                  <!-- Chart container -->
+                  <div id="chartdiv3"></div>
+                
+                  <!-- Chart code -->
+                  <script>
+                    am5.ready(function() {
+                    
+                    // Create root element
+                    var root3 = am5.Root.new("chartdiv3");
+                    
+                    // Set themes
+                    root3.setThemes([
+                      am5themes_Animated.new(root3)
+                    ]);
+                    
+                    // Create chart
+                    var chart3 = root3.container.children.push(
+                      am5xy.XYChart.new(root3, {
+                        focusable: true,
+                        panX: true,
+                        panY: true,
+                        wheelX: "panX",
+                        wheelY: "zoomX",
+                        pinchZoomX: true
+                      })
+                    );
+                    
+                    var easing = am5.ease.linear;
+                    chart3.get("colors").set("step", 3);
+                    
+                    // Create axes
+                    var xAxis = chart3.xAxes.push(
+                      am5xy.DateAxis.new(root3, {
+                        maxDeviation: 0.1,
+                        groupData: false,
+                        baseInterval: {
+                          timeUnit: "day",
+                          count: 1
+                        },
+                        renderer: am5xy.AxisRendererX.new(root3, {}),
+                        tooltip: am5.Tooltip.new(root3, {})
+                      })
+                    );
+                    
+                    function createAxisAndSeries(startValue, opposite, category, legendText) {
+                      var yRenderer = am5xy.AxisRendererY.new(root3, {
+                        opposite: opposite
+                      });
+                      var yAxis = chart3.yAxes.push(
+                        am5xy.ValueAxis.new(root3, {
+                          maxDeviation: 1,
+                          renderer: yRenderer
+                        })
+                      );
+                    
+                      if (chart3.yAxes.indexOf(yAxis) > 0) {
+                        yAxis.set("syncWithAxis", chart3.yAxes.getIndex(0));
+                      }
+                    
+                      // Add series
+                      var series3 = chart3.series.push(
+                        am5xy.LineSeries.new(root3, {
+                          xAxis: xAxis,
+                          yAxis: yAxis,
+                          valueYField: "value",
+                          valueXField: "date",
+                          categoryXField: "category", 
+                          name: legendText, // 범례에 표시될 텍스트
+                          tooltip: am5.Tooltip.new(root3, {
+                            pointerOrientation: "horizontal",
+                            labelText: "{valueY}"
+                          })
+                        })
+                      );
+                    
+                      series3.strokes.template.setAll({ strokeWidth: 1 });
+                    
+                      yRenderer.grid.template.set("strokeOpacity", 0.05);
+                      yRenderer.labels.template.set("fill", series3.get("fill"));
+                      yRenderer.setAll({
+                        stroke: series3.get("fill"),
+                        strokeOpacity: 1,
+                        opacity: 1
+                      });
+                    
+                      series3.data.processor = am5.DataProcessor.new(root3, {
+                        dateFormat: "yyyy-MM-dd",
+                        dateFields: ["date"]
+                      });
+                    
+                      series3.data.setAll(generateChartData(startValue, category));
+                    }
+                    
+                    // Add cursor
+                    var cursor = chart3.set("cursor", am5xy.XYCursor.new(root3, {
+                      xAxis: xAxis,
+                      behavior: "none"
+                    }));
+                    cursor.lineY.set("visible", true);
+                    
+                    createAxisAndSeries(187329, true, "팔로워", "팔로워");
+                    createAxisAndSeries(1037, false, "좋아요", "좋아요");
+                    createAxisAndSeries(45, false, "댓글", "댓글");
+                    
+                    chart3.legend = new am5.Legend(root3, {
+                      target: chart3,
+                      marginBottom: 20
+                    });
+                    
+                    chart3.appear(1000, 100);
+                    
+                    function generateChartData(value, category) {
+                      var data3 = [];
+                      var firstDate = new Date("2023-06-02"); // 시작 날짜를 8월 2일로 설정
+                    
+                      for (var i = 0; i < 61; i++) {
+                        var newDate = new Date(firstDate);
+                        newDate.setDate(newDate.getDate() + i);
+                    
+                        value += Math.round(
+                          ((Math.random() < 0.5 ? 1 : -1) * Math.random() * value) / 20
+                        );
+                    
+                        data3.push({
+                          date: newDate,
+                          value: value,
+                          category: category
+                        });
+                      }
+                    
+                      var august2Date = new Date("2023-08-02");
+                      data3.push({
+                        date: august2Date,
+                        value: value,
+                        category: category
+                      });
+                    
+                      return data3;
+                    }
+                    
+                    }); // end am5.ready()
+                  </script>
+                  <div class="align-items-center">
+                    <span class="round-8 bg-primary rounded-circle me-2 d-inline-block" style="background-color: #82C4E2 !important;"></span>
+                    <span class="fs-2">팔로워</span>
+                    <span class="round-8 bg-secondary rounded-circle me-2 d-inline-block" style="background-color: #846CDD !important;"></span>
+                    <span class="fs-2">좋아요</span>
+                    <span class="round-8 bg-secondary rounded-circle me-2 d-inline-block" style="background-color: #E17ED6 !important;"></span>
+                    <span class="fs-2">댓글</span>
                 </div>
+                </body>
+                </html>
+                                
               </div>
             </div>
           </div>
