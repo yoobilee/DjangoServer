@@ -228,7 +228,8 @@ def DetailedAnalysis(request):
         try:
             # 로그인한 사용자의 id로 User_adv 모델에서 해당 사용자의 정보를 가져옵니다.
             user = User_adv.objects.get(id=user_id)
-            
+            avg = Influencer.objects.get(company="회로의 챔피언들 평균")
+            logger.info(avg.adv_count)
             # 로그인한 사용자의 company 값을 가져옵니다.
             user_company = user.company
             # 로그인한 사용자의 아이디로 Influencer 모델에서 해당 사용자의 정보를 가져옵니다.
@@ -250,12 +251,12 @@ def DetailedAnalysis(request):
             ).values()
             company_influencers_avg_data = list(company_influencers_avg_data)  # QuerySet을 리스트로 변환
 
-            return render(request, 'DetailedAnalysis.html', {'user': user, 'company_influencers_list': company_influencers_list,'company_influencers_avg_data':company_influencers_avg_data})
+            return render(request, 'DetailedAnalysis.html', {'user': user, 'company_influencers_list': company_influencers_list,'avg':avg})
 
         except (User_adv.DoesNotExist, Influencer.DoesNotExist):
             pass
 
-    return render(request, "DetailedAnalysis.html")
+    return render(request, "first-index.html")
 
 def notice_manage(request):
     user_id = request.session.get('user_id', None)  # 로그인된 사용자 아이디 가져오기
@@ -392,13 +393,12 @@ def InfluHome_Base(request):
     if user_id:
         try:
             # 로그인한 사용자의 아이디로 Influencer 모델에서 해당 사용자의 정보를 가져옵니다.
-            login_influencer = Influencer.objects.get(username=user_id)
-            logger.info(login_influencer.goods_percent)
+            avg = Influencer.objects.get(company="회로의 챔피언들 평균")
 
-            # 컨텍스트에 login_influencer 변수를 추가하여 해당 변수를 템플릿에서 사용할 수 있도록 합니다.
-            login_influencer = {'login_influencer': login_influencer}
+            # 컨텍스트에 avg 변수를 추가하여 해당 변수를 템플릿에서 사용할 수 있도록 합니다.
+            avg = {'avg': avg}
             
-            return render(request, 'InfluHome-Base.html', login_influencer)
+            return render(request, 'InfluHome-Base.html', avg)
         except Influencer.DoesNotExist:
             pass
 
