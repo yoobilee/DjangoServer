@@ -3,6 +3,7 @@ from django.urls import path, include
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
+from . import views
 
 app_name = 'main'
 
@@ -22,4 +23,5 @@ urlpatterns = [
     path('notice-Agency1/', views.notice_Agency1, name='notice-Agency1'),
 
     path('notice-manage/', views.notice_manage, name='notice-manage'),
+    path('serve-word2vec-model/', views.serve_word2vec_model, name='serve_word2vec_model')
 ]

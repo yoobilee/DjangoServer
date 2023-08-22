@@ -6,6 +6,12 @@ from django.core import serializers
 from django.contrib.contenttypes.models import ContentType
 from django.db.models import Avg
 import logging
+from django.http import FileResponse
+from django.conf import settings
+import os
+from django.views.decorators.csrf import csrf_exempt
+from gensim.models import Word2Vec
+import json
 
 logger = logging.getLogger(__name__)
 
@@ -27,10 +33,10 @@ def InfluHome(request):
             # 로그인한 사용자의 아이디로 Influencer 모델에서 해당 사용자의 정보를 가져옵니다.
             influencer = Influencer.objects.get(username=user_id)
             first_keywords = Keyword.objects.filter(username=user_id).first()
-            second_keywords = Keyword.objects.filter(username=user_id)[2]
-            third_keywords = Keyword.objects.filter(username=user_id)[3]
-            forth_keywords = Keyword.objects.filter(username=user_id)[4]
-            fifth_keywords = Keyword.objects.filter(username=user_id)[5]
+            second_keywords = Keyword.objects.filter(username=user_id)[1]
+            third_keywords = Keyword.objects.filter(username=user_id)[2]
+            forth_keywords = Keyword.objects.filter(username=user_id)[3]
+            fifth_keywords = Keyword.objects.filter(username=user_id)[4]
             sixth_keywords = Keyword.objects.filter(username=user_id).last()
 
             
@@ -191,3 +197,36 @@ def notice_Agency1(request):
             pass
 
     return render(request, "notice-Agency1.html")
+
+@csrf_exempt
+def serve_word2vec_model(request):
+    param = json.loads(request.body)
+    keyword = param.get("keyword")
+    user_id = param.get("user_id")
+    
+    # 모델 로드
+    model = Word2Vec.load('C:\\Users\\user\\git\\DjangoServer\\main\\static\\model\\'+user_id+'.model')  # 경로 구분자를 슬래시(/)로 사용하거나 역슬래시(\) 2개를 사용해야 함
+    
+    # 관련된 단어 찾기
+    similar_words = model.wv.most_similar(keyword, topn=5)
+    
+    print(similar_words)
+    
+    if len(similar_words) == 5:
+        first = similar_words[0][0]
+        second = similar_words[1][0]
+        third = similar_words[2][0]
+        fourth = similar_words[3][0]
+        fifth = similar_words[4][0]
+    
+    print(first)
+    # 수정된 코드
+    first_word = model.wv.most_similar(first, topn=3)
+    second_word = model.wv.most_similar(second, topn=3)
+    third_word =model.wv.most_similar(third, topn=3)
+    fourth_word = model.wv.most_similar(fourth, topn=3)
+    fifth_word = model.wv.most_similar(fifth, topn=3)
+    
+    print(first_word)
+    
+    return JsonResponse({'similar_words':similar_words, 'first':first_word, 'second':second_word, 'third':third_word, 'fourth':fourth_word, 'fifth':fifth_word})

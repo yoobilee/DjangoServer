@@ -4,6 +4,8 @@ from django.shortcuts import render
 from django.conf import settings
 from django.conf.urls.static import static
 from .models import Keyword
+from django.shortcuts import render
+
 
 # Create your views here.
 def Influencer1(request):
@@ -13,3 +15,7 @@ def Influencer1(request):
 def Influencer2(request):
     Keyword = Keyword.objects.all()  
     return render(request, 'Influencer2.html',{'keyword': Keyword})
+
+def keyword_list(request):
+    keyword_list = Keyword.objects.all()
+    return render(request, 'keyword_list.html', {'keyword_list': keyword_list})

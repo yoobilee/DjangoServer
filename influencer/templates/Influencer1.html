@@ -283,5 +283,13 @@
         // chart.getCredits().setEnabled(false);
         chart.draw();
     });
+    var keywordsData = {{ keywords_json|safe }};
+    var relatedWordsData = {{ related_words_json|safe }};  // word2vec 통합으로부터 가져온 데이터
+
+    // 키워드 데이터와 관련된 단어 데이터를 결합합니다.
+    for (var i = 0; i < keywordsData.length; i++) {
+        var keyword = keywordsData[i].keyword;
+        keywordsData[i].related_words = relatedWordsData[keyword];
+    }
     </script>
 {% endblock %}
