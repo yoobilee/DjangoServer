@@ -33,6 +33,7 @@ class Migration(migrations.Migration):
                 'managed': True,
             },
         ),
+        
         migrations.CreateModel(
             name='RecruitmentImage',
             fields=[

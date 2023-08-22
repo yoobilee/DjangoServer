@@ -25,4 +25,6 @@ urlpatterns = [
     path('edit/<int:notice_id>/', views.edit_notice, name='edit_notice'),
     path('delete/<int:notice_id>/', views.delete_notice, name='delete_notice'),
     path('your-upload-view/', views.your_upload_view, name='your_upload_view'),
+    path('InfluHome-base/', views.InfluHome_Base, name='InfluHome-Base'),
+    path('AgencyHome_Base/', views.AgencyHome_Base, name='AgencyHome_Base'),
 ]

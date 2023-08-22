@@ -17,7 +17,7 @@ class Recruitment(models.Model):
     sub_content_2 = models.TextField()
     
     class Meta:
-        managed = True
+        managed = False
         db_table = 'Recruitment'
 
     
@@ -27,5 +27,5 @@ class RecruitmentImage(models.Model):
     is_profile = models.BooleanField(default=False)  # True if this image is for profile
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'RecruitmentImage'
