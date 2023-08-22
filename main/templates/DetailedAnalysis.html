@@ -92,11 +92,62 @@
               <li class="sidebar-item" style="text-align: center;">
 
                 <!-- 인스타그램 프로필 사진 -->
-                {% for influencer in company_influencers_list %}
                 <a href="javascript:void(0)" class="profile" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="{{influencer.profile_url}}" alt="" width="30" height="30" class="rounded-circle" style="margin-top: 50px;">
+                    <img src="{{company_influencers_list.0.profile_url}}" alt="" width="30" height="30" class="rounded-circle" style="margin-top: 50px;">
                 </a>
-                {% endfor %}
+                <script>
+                  const profileLinks = document.querySelectorAll(".profile");
+              
+                  profileLinks.forEach(link => {
+                      link.addEventListener("click", function() {
+                          const username = "{{ company_influencers_list.0.username }}";
+                          const newUrl = `/DetailedAnalysis?username=${username}`;
+                          window.location.href = newUrl;
+                      });
+                  });
+              </script>   
+              <a href="javascript:void(0)" class="profile2" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="{{company_influencers_list.1.profile_url}}" alt="" width="30" height="30" class="rounded-circle" style="margin-top: 50px;">
+                </a>
+                <script>
+                  const profileLinks2 = document.querySelectorAll(".profile2");
+              
+                  profileLinks2.forEach(link => {
+                      link.addEventListener("click", function() {
+                          const username = "{{ company_influencers_list.1.username }}";
+                          const newUrl = `/DetailedAnalysis?username=${username}`;
+                          window.location.href = newUrl;
+                      });
+                  });
+              </script> 
+              <a href="javascript:void(0)" class="profile3" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="{{company_influencers_list.2.profile_url}}" alt="" width="30" height="30" class="rounded-circle" style="margin-top: 50px;">
+            </a>
+            <script>
+              const profileLinks3 = document.querySelectorAll(".profile3");
+          
+              profileLinks3.forEach(link => {
+                  link.addEventListener("click", function() {
+                      const username = "{{ company_influencers_list.2.username }}";
+                      const newUrl = `/DetailedAnalysis?username=${username}`;
+                      window.location.href = newUrl;
+                  });
+              });
+          </script>
+          <a href="javascript:void(0)" class="profile4" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="{{company_influencers_list.3.profile_url}}" alt="" width="30" height="30" class="rounded-circle" style="margin-top: 50px;">
+        </a>
+        <script>
+          const profileLinks4 = document.querySelectorAll(".profile4");
+      
+          profileLinks4.forEach(link => {
+              link.addEventListener("click", function() {
+                  const username = "{{ company_influencers_list.3.username }}";
+                  const newUrl = `/DetailedAnalysis?username=${username}`;
+                  window.location.href = newUrl;
+              });
+          });
+      </script>
             </ul>
           </nav>
           <!-- End Sidebar navigation -->
