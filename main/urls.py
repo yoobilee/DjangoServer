@@ -30,4 +30,5 @@ urlpatterns = [
     path('serve-word2vec-model/', views.serve_word2vec_model, name='serve_word2vec_model'),
     path('InfluHome-base/', views.InfluHome_Base, name='InfluHome-Base'),
     path('AgencyHome_Base/', views.AgencyHome_Base, name='AgencyHome_Base'),
+    path('agency_application/', views.agency_application, name='agency_application')
 ]

@@ -1,5 +1,3 @@
-{% extends "AgencyHome-Base.html" %}
-
 {% load static %}
 
 {% block content %}
@@ -238,4 +236,34 @@
       </div>
     </div>
   </div>
-  {% endblock %}
+</div>
+</div>
+</div>
+<script src="{% static 'libs/jquery/dist/jquery.min.js' %}"></script>
+<script src="{% static 'libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/sidebarmenu.js' %}"></script>
+<script src="{% static 'js/app.min.js' %}"></script>
+<script src="{% static 'libs/apexcharts/dist/apexcharts.min.js' %}"></script>
+<script src="{% static 'libs/simplebar/dist/simplebar.js' %}"></script>
+<script src="{% static 'js/dashboard.js' %}"></script>
+
+<!-- 부트스트랩 JavaScript 및 jQuery 라이브러리 불러오기 -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+{% else %} <!-- 로그인 안하고 주소창에 /AgencyHome 치고 들어왔을 때 서비스 이용 불가능 -->
+<head>
+<title>페이지를 찾을 수 없음</title>
+</head>
+<body>
+<h1>페이지를 찾을 수 없음</h1>
+<p>죄송합니다. 요청하신 페이지를 찾을 수 없습니다.</p>
+</body>
+<div class="user-none">
+<script>
+alert("회원만 접근 가능합니다.");
+</script>
+</div>
+{% endif %}
+</html>

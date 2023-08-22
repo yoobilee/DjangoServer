@@ -8,7 +8,7 @@ from django.db.models import Avg
 import logging
 from .models import Recruitment, RecruitmentImage
 from .models import Hot_post
-from .forms import RecruitmentForm
+from .forms import RecruitmentForm, SupplyForm
 from django.contrib.auth.decorators import login_required
 
 from django.http import FileResponse
@@ -17,6 +17,8 @@ import os
 from django.views.decorators.csrf import csrf_exempt
 from gensim.models import Word2Vec
 import json
+from django.http import HttpResponse
+from .models import Supply_influencer
 
 logger = logging.getLogger(__name__)
 
@@ -30,7 +32,7 @@ def serve_word2vec_model(request):
     
     # 모델 로드
     # 자기 경로 찾아서 입력!!!!
-    model = Word2Vec.load('C:\\DjangoServer\\MA\\main\\static\\model\\'+user_id+'.model')  # 경로 구분자를 슬래시(/)로 사용하거나 역슬래시(\) 2개를 사용해야 함
+    model = Word2Vec.load('C:\\Users\\user\\git\\DjangoServer\\main\\static\\model\\'+user_id+'.model')  # 경로 구분자를 슬래시(/)로 사용하거나 역슬래시(\) 2개를 사용해야 함
     
     # 관련된 단어 찾기
     similar_words = model.wv.most_similar(keyword, topn=5)
@@ -103,8 +105,20 @@ def AgencyHome(request):
             # 로그인한 사용자의 아이디로 User_adv 모델에서 해당 사용자의 정보를 가져옵니다.
             user = User_adv.objects.get(id=user_id)
             logger.info(user.business)
-
-            return render(request, 'AgencyHome.html', {'user': user})
+            company_influencers = list(Influencer.objects.filter(company=user.company))
+            
+            user_company = user.company
+            # 로그인한 사용자의 아이디로 Influencer 모델에서 해당 사용자의 정보를 가져옵니다.
+            company_influencers_data = Influencer.objects.filter(company=user_company).values()   
+            company_influencers_list = list(company_influencers_data)  # QuerySet을 리스트로 변환
+            print(company_influencers_list)
+            
+            matching_post_data = Post_master.objects.filter(post_id__in=[influencer['recent_adv'] for influencer in company_influencers_list]).values()
+            matching_post_data_list = list(matching_post_data)
+            print(matching_post_data_list)
+            
+            
+            return render(request, 'AgencyHome.html', {'user': user, 'company_influencers': company_influencers,'company_influencers_list': company_influencers_list,'matching_post_data_list': matching_post_data_list})
         except (User_adv.DoesNotExist):
             pass
     
@@ -289,8 +303,11 @@ def DetailedAnalysis(request):
                 avg_goods_percent=Avg('goods_percent')
             ).values()
             company_influencers_avg_data = list(company_influencers_avg_data)  # QuerySet을 리스트로 변환
+            
+            user_client = user.client
+            user_campaign_progress = user.campaign_progress
 
-            return render(request, 'DetailedAnalysis.html', {'user': user, 'company_influencers_list': company_influencers_list,'avg':avg})
+            return render(request, 'DetailedAnalysis.html', {'user': user, 'company_influencers_list': company_influencers_list,'company_influencers_avg_data':company_influencers_avg_data,'user_client': user_client,'user_campaign_progress': user_campaign_progress,})
 
         except (User_adv.DoesNotExist, Influencer.DoesNotExist):
             pass
@@ -361,7 +378,16 @@ def notice_Agency1(request):
             # 로그인한 사용자의 아이디로 Influencer 모델에서 해당 사용자의 정보를 가져옵니다.
             influencer = Influencer.objects.get(username=user_id)
             
-            return render(request, 'notice-Agency1.html', {'user': user, 'influencer': influencer})
+            if request.method == 'POST':
+                supply_form = SupplyForm(request.POST)
+            if supply_form.is_valid():
+                supply_form.save()
+                # Handle successful form submission, e.g., redirect or show a success message
+
+            else:
+                supply_form = SupplyForm()
+            
+            return render(request, 'notice-Agency1.html', {'user': user, 'influencer': influencer,'supply_form': supply_form})
         except (User_influ.DoesNotExist, Influencer.DoesNotExist):
             pass
 
@@ -480,3 +506,15 @@ def AgencyHome_Base(request):
             pass
 
     return render(request, "first-index.html")
+
+def agency_application(request):
+    if request.method == 'POST':
+        form = SupplyForm(request.POST)
+        logger.info(form.name)
+        if form.is_valid():
+            form.save()
+            return render(request, 'success.html')  # 저장 성공 시 보여줄 템플릿 (success.html)로 이동
+    else:
+        form = SupplyForm()
+    
+    return render(request, 'agency_application.html', {'form': form})
