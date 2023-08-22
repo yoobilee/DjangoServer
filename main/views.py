@@ -30,7 +30,7 @@ def serve_word2vec_model(request):
     
     # 모델 로드
     # 자기 경로 찾아서 입력!!!!
-    model = Word2Vec.load('C:\\DjangoServer\\MA\\main\\static\\model\\'+user_id+'.model')  # 경로 구분자를 슬래시(/)로 사용하거나 역슬래시(\) 2개를 사용해야 함
+    model = Word2Vec.load('C:\\DjangoServer\\main\\static\\model\\'+user_id+'.model')  # 경로 구분자를 슬래시(/)로 사용하거나 역슬래시(\) 2개를 사용해야 함
     
     # 관련된 단어 찾기
     similar_words = model.wv.most_similar(keyword, topn=5)
