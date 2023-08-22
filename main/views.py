@@ -103,9 +103,22 @@ def AgencyHome(request):
             # 로그인한 사용자의 아이디로 User_adv 모델에서 해당 사용자의 정보를 가져옵니다.
             user = User_adv.objects.get(id=user_id)
             logger.info(user.business)
-            company_influencers = list(Influencer.objects.filter(company=user.company))
+            
+            user_company = user.company
+            company_influencers_data = Influencer.objects.filter(company=user_company).values()
+            company_influencers_list = list(company_influencers_data)
+            matching_posts = []
+            for influencer_data in company_influencers_data:
+                recent_adv = influencer_data['recent_adv']  # recent_adv 값 가져오기
 
-            return render(request, 'AgencyHome.html', {'user': user, 'company_influencers': company_influencers})
+                try:
+                    matching_post = Post_master.objects.get(post_id=recent_adv)
+                    matching_posts.append(matching_post)
+                except Post_master.DoesNotExist:
+                    pass  # 일치하는 데이터가 없을 경우 건너뜁니다
+            
+            return render(request, 'AgencyHome.html', {'user': user, 'company_influencers_list': company_influencers_list,'matching_post':matching_post,'matching_posts':matching_posts
+                                                       })
         except (User_adv.DoesNotExist):
             pass
     
@@ -208,13 +221,33 @@ def ComparisonAnalysis(request):
 
 def DetailedAnalysis(request):
     user_id = request.session.get('user_id', None)  # 로그인된 사용자 아이디 가져오기
+    user_name = request.GET.get('username', None)
     
     if user_id:
         try:
             # 로그인한 사용자의 아이디로 User_adv 모델에서 해당 사용자의 정보를 가져옵니다.
             user = User_adv.objects.get(id=user_id)
             notices = Recruitment.objects.filter(agency=user)  # 해당 사용자의 공고 목록을 가져옵니다.
-            return render(request, "DetailedAnalysis.html", {'user': user, 'notices': notices})
+            user_company = user.company
+            influencer = Influencer.objects.get(username=user_name)
+            company_influencers_data = Influencer.objects.filter(company=user_company).values()
+            company_influencers_list = list(company_influencers_data)
+            first_keywords = Keyword.objects.filter(username=user_name).first()
+            second_keywords = Keyword.objects.filter(username=user_name)[1]
+            third_keywords = Keyword.objects.filter(username=user_name)[2]
+            forth_keywords = Keyword.objects.filter(username=user_name)[3]
+            fifth_keywords = Keyword.objects.filter(username=user_name)[4]
+            sixth_keywords = Keyword.objects.filter(username=user_name).last()
+
+            hot_post1 = Hot_post.objects.filter(username=user_name)[0]
+            hot_post2 = Hot_post.objects.filter(username=user_name)[1]
+            hot_post3 = Hot_post.objects.filter(username=user_name)[2]
+            hot_post4 = Hot_post.objects.filter(username=user_name)[3]
+            return render(request, "DetailedAnalysis.html", {'user': user, 'notices': notices,'company_influencers_list':company_influencers_list, 'user_name':user_name,
+                                                            'influencer': influencer, 'first_keywords': first_keywords,
+                                                            'second_keywords': second_keywords, 'third_keywords': third_keywords, 'forth_keywords': forth_keywords,
+                                                            'fifth_keywords': fifth_keywords,'sixth_keywords': sixth_keywords, 'hot_post1': hot_post1,
+                                                            'hot_post2': hot_post2,'hot_post3': hot_post3,'hot_post4': hot_post4})
         except User_adv.DoesNotExist:
             pass
     

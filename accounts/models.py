@@ -22,6 +22,7 @@ class Influencer(models.Model):
   goods_percent = models.IntegerField()
   profile_url = models.CharField(max_length=1000)
   company = models.CharField(max_length=100)
+  recent_adv = models.CharField(max_length=100)
   
   class Meta:
     managed = False
