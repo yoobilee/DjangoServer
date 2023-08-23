@@ -401,6 +401,60 @@ def notice_Agency1(request):
 
     return render(request, "notice-Agency1.html")
 
+def notice_Agency2(request):
+    # 로그인한 사용자의 아이디를 가져옵니다.
+    user_id = request.session.get('user_id', None)
+    
+    if user_id:
+        try:
+            # 로그인한 사용자의 아이디로 User_influ 모델에서 해당 사용자의 정보를 가져옵니다.
+            user = User_influ.objects.get(id=user_id)
+            
+            # 로그인한 사용자의 아이디로 Influencer 모델에서 해당 사용자의 정보를 가져옵니다.
+            influencer = Influencer.objects.get(username=user_id)
+            
+            if request.method == 'POST':
+                supply_form = SupplyForm(request.POST)
+                if supply_form.is_valid():
+                    supply_form.save()
+                # Handle successful form submission, e.g., redirect or show a success message
+
+            else:
+                supply_form = SupplyForm()
+            
+            return render(request, 'notice-Agency2.html', {'user': user, 'influencer': influencer,'supply_form': supply_form})
+        except (User_influ.DoesNotExist, Influencer.DoesNotExist):
+            pass
+
+    return render(request, "notice-Agency2.html")
+
+def notice_Agency3(request):
+    # 로그인한 사용자의 아이디를 가져옵니다.
+    user_id = request.session.get('user_id', None)
+    
+    if user_id:
+        try:
+            # 로그인한 사용자의 아이디로 User_influ 모델에서 해당 사용자의 정보를 가져옵니다.
+            user = User_influ.objects.get(id=user_id)
+            
+            # 로그인한 사용자의 아이디로 Influencer 모델에서 해당 사용자의 정보를 가져옵니다.
+            influencer = Influencer.objects.get(username=user_id)
+            
+            if request.method == 'POST':
+                supply_form = SupplyForm(request.POST)
+                if supply_form.is_valid():
+                    supply_form.save()
+                # Handle successful form submission, e.g., redirect or show a success message
+
+            else:
+                supply_form = SupplyForm()
+            
+            return render(request, 'notice-Agency3.html', {'user': user, 'influencer': influencer,'supply_form': supply_form})
+        except (User_influ.DoesNotExist, Influencer.DoesNotExist):
+            pass
+
+    return render(request, "notice-Agency3.html")
+
 def notice_list(request):
     notices = Recruitment.objects.all()  # 공고 목록을 가져옵니다.
     return render(request, 'notice_list.html', {'notices': notices})

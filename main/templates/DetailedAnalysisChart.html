@@ -168,12 +168,6 @@
 
     
                 <!-- Styles -->
-<style>
-  #chartdivz {
-    width: 100%;
-    height: 500px;
-  }
-  </style>
   
   <!-- Resources -->
   <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
@@ -190,7 +184,7 @@
   
   // Create root element
   // https://www.amcharts.com/docs/v5/getting-started/#Root_element
-  var root = am5.Root.new("chartdivz");
+  var root = am5.Root.new("chartdivz"); 
   
   
   // Set themes
@@ -232,16 +226,6 @@
   series.appear();
   
   
-  // Create legend
-  // https://www.amcharts.com/docs/v5/charts/percent-charts/legend-percent-series/
-  var legend = chart.children.push(am5.Legend.new(root, {
-    centerX: am5.percent(50),
-    x: am5.percent(50),
-    marginTop: 15,
-    marginBottom: 15
-  }));
-  
-  legend.data.setAll(am5.array.copy(series.dataItems).reverse());
   
   
   // Make stuff animate on load
@@ -252,7 +236,7 @@
   </script>
   
   <!-- HTML -->
-  <div class="col-lg-4">
+  <div class="col-lg-4 ">
     <div class="row">
       <div class="col-lg-12">
         <!-- Yearly Breakup -->
@@ -263,7 +247,7 @@
               <style>
                 #chartdivz {
                   width: 100%;
-                  height: 380px;
+                  height: 130px;
                 }
                 </style>
               <div id="chartdivz"></div>
@@ -276,6 +260,7 @@
       </div>
     </div>
   </div>
+  
   <div class="row">
     <div class="col-lg-12 d-flex align-items-stretch">
       <div class="card w-100">
