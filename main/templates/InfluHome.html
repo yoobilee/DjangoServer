@@ -294,13 +294,14 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-lg-4 d-flex align-items-stretch" style="height: 300px;">
+          <div class="col-lg-4 d-flex align-items-stretch" style="height: 320px;">
             <div class="card w-100">
               <div class="card-body p-4 text-center">
                 <div class="mb-4">
                   <h5 class="card-title fw-semibold">포스트 태그</h5>
                 </div>
                 <div id="chartkey"></div>
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
                 <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
                 <script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>
@@ -362,29 +363,31 @@
                         var fourth_children = [];
                         var fifth_children = [];
                         data.similar_words.forEach(item=>{
-                          var obj = {name:item[0],value:item[1]};
+                          var obj = {name:item[0],value:70};
                           children.push(obj);
                         });
                         data.first.forEach(item=>{
-                          var firstobj = {name:item[0],value:item[1]};
+                          var firstobj = {name:item[0],value:40};
                           first_children.push(firstobj);
                         });
                         data.second.forEach(item=>{
-                          var secondobj = {name:item[0],value:item[1]};
+                          var secondobj = {name:item[0],value:40};
                           second_children.push(secondobj);
                         });
                         data.third.forEach(item=>{
-                          var thirdobj = {name:item[0],value:item[1]};
+                          var thirdobj = {name:item[0],value:40};
                           third_children.push(thirdobj);
                         });
                         data.fourth.forEach(item=>{
-                          var fourthobj = {name:item[0],value:item[1]};
+                          var fourthobj = {name:item[0],value:40};
                           fourth_children.push(fourthobj);
                         });
                         data.fifth.forEach(item=>{
-                          var fifthobj = {name:item[0],value:item[1]};
+                          var fifthobj = {name:item[0],value:40};
                           fifth_children.push(fifthobj);
                         });
+
+                        fifth_children[2].value=10;
 
 
                         children[0].children=first_children;
@@ -394,13 +397,11 @@
                         children[4].children=fifth_children;
 
                         var newData = {
-                          children: [
-                            {
-                              name: keyword,
-                              children: children
-                            }
-                          ]
+                            name: keyword,
+                            value:100,
+                            children: children
                         };
+                        console.log(newData)
 
 
                       // Update or recreate the existing series
@@ -418,24 +419,13 @@
                           
 
                           series = container.children.push(am5hierarchy.ForceDirected.new(root, {
-                              singleBranchOnly: false,
-                              downDepth: 2,
-                              topDepth: 1,
-                              initialDepth: 1,
-                              valueField: "value",
-                              categoryField: "name",
-                              childDataField: "children",
-                              idField: "name",
-                              linkWithField: "linkWith",
-                              manyBodyStrength: -1,
-                              centerStrength: 0.1 ,     
-                              valueField: "value",
-                              categoryField: "name",
-                              childDataField: "children",
-                              minRadius: 17,
-                              maxRadius: am5.percent(10),
-                              nodePadding: 5,
-                              colorField: "color"            
+                            singleBranchOnly: false,
+                            downDepth: 1,
+                            initialDepth: 2,
+                            valueField: "value",
+                            categoryField: "name",
+                            childDataField: "children",
+                            centerStrength: 1           
                             }));
   
                           series.labels.template.setAll({
@@ -480,10 +470,10 @@
           </div>
         </div>
 
-        <div class="col-lg-8 d-flex align-items-stretch" style="height: 300px;">
+        <div class="col-lg-8 d-flex align-items-stretch" style="height: 320px;">
           <div class="card w-100">
             <div class="card-body p-4 text-center">
-              <h5 class="card-title fw-semibold mb-4">분석 제목 미정</h5>
+              <h5 class="card-title fw-semibold mb-4">관련 단어 분석</h5>
             </div>
             <div id="chartdiv"></div>
 

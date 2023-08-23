@@ -88,12 +88,13 @@
 
           <!-- Sidebar navigation-->
           <nav class="sidebar-nav scroll-sidebar" data-simplebar="" style="padding: 0 1em;">
-            <ul id="sidebarnav">
+            <ul id="sidebarnav" style="text-align: center;">
               <li class="sidebar-item" style="text-align: center;">
 
                 <!-- 인스타그램 프로필 사진 -->
-                <a href="javascript:void(0)" class="profile" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
+                <a href="javascript:void(0)" class="profile" id="drop2" data-bs-toggle="dropdown" aria-expanded="false" style="display: flex; flex-direction: column; align-items: center;">
                     <img src="{{company_influencers_list.0.profile_url}}" alt="" width="30" height="30" class="rounded-circle" style="margin-top: 50px;">
+                    <h6 class="fw-semibold mb-0 fs-1">{{company_influencers_list.0.username}}</h6>
                 </a>
                 <script>
                   const profileLinks = document.querySelectorAll(".profile");
@@ -106,8 +107,9 @@
                       });
                   });
               </script>   
-              <a href="javascript:void(0)" class="profile2" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
+              <a href="javascript:void(0)" class="profile2" id="drop2" data-bs-toggle="dropdown" aria-expanded="false" style="display: flex; flex-direction: column; align-items: center;">
                     <img src="{{company_influencers_list.1.profile_url}}" alt="" width="30" height="30" class="rounded-circle" style="margin-top: 50px;">
+                    <h6 class="fw-semibold mb-0 fs-1">{{company_influencers_list.1.username}}</h6>
                 </a>
                 <script>
                   const profileLinks2 = document.querySelectorAll(".profile2");
@@ -120,8 +122,9 @@
                       });
                   });
               </script> 
-              <a href="javascript:void(0)" class="profile3" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
+              <a href="javascript:void(0)" class="profile3" id="drop2" data-bs-toggle="dropdown" aria-expanded="false" style="display: flex; flex-direction: column; align-items: center;">
                 <img src="{{company_influencers_list.2.profile_url}}" alt="" width="30" height="30" class="rounded-circle" style="margin-top: 50px;">
+                <h6 class="fw-semibold mb-0 fs-1">{{company_influencers_list.2.username}}</h6>
             </a>
             <script>
               const profileLinks3 = document.querySelectorAll(".profile3");
@@ -134,8 +137,9 @@
                   });
               });
           </script>
-          <a href="javascript:void(0)" class="profile4" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
+          <a href="javascript:void(0)" class="profile4" id="drop2" data-bs-toggle="dropdown" aria-expanded="false" style="display: flex; flex-direction: column; align-items: center;">
             <img src="{{company_influencers_list.3.profile_url}}" alt="" width="30" height="30" class="rounded-circle" style="margin-top: 50px;">
+            <h6 class="fw-semibold mb-0 fs-1">{{company_influencers_list.3.username}}</h6>
         </a>
         <script>
           const profileLinks4 = document.querySelectorAll(".profile4");
@@ -353,7 +357,6 @@
   <script src="{% static 'js/dashboard.js' %}"></script>
 
   <!-- 부트스트랩 JavaScript 및 jQuery 라이브러리 불러오기 -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   </body>
