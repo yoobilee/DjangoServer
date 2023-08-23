@@ -102,9 +102,19 @@ def AgencyHome(request):
         try:
             # 로그인한 사용자의 아이디로 User_adv 모델에서 해당 사용자의 정보를 가져옵니다.
             user = User_adv.objects.get(id=user_id)
-            logger.info(user.business)
+            recruitment_queryset = Recruitment.objects.filter(agency_id=user_id)
+            logger.info(user)
+            influencer_queryset = Influencer.objects.filter(company=user.company)
+             # 데이터셋 개수 계산
+            recruitment_queryset_count = recruitment_queryset.count()
+            influencer_queryset_count = influencer_queryset.count()
+            context = {
+                'recruitment_queryset_count': recruitment_queryset_count,
+                'influencer_queryset_count': influencer_queryset_count,
+                'user': user  # 'user' 정보도 context에 추가
+            }
 
-            return render(request, 'AgencyHome.html', {'user': user})
+            return render(request, 'AgencyHome.html',context)
         except (User_adv.DoesNotExist):
             pass
     
@@ -235,7 +245,19 @@ def DetailedAnalysis(request):
             # 로그인한 사용자의 아이디로 Influencer 모델에서 해당 사용자의 정보를 가져옵니다.
             company_influencers_data = Influencer.objects.filter(company=user_company).values()   
             company_influencers_list = list(company_influencers_data)  # QuerySet을 리스트로 변환
-            
+            recruitment_queryset = Recruitment.objects.filter(agency_id=user_id)
+            logger.info(user)
+            influencer_queryset = Influencer.objects.filter(company=user.company)
+             # 데이터셋 개수 계산
+            recruitment_queryset_count = recruitment_queryset.count()
+            influencer_queryset_count = influencer_queryset.count()
+            context = {
+                'recruitment_queryset_count': recruitment_queryset_count,
+                'influencer_queryset_count': influencer_queryset_count,
+                'user': user,  # 'user' 정보도 context에 추가
+                'company_influencers_list': company_influencers_list,
+                'avg': avg
+            }
             company_influencers_avg_data = Influencer.objects.filter(company=user_company).annotate(
                 avg_media_count=Avg('media_count'),
                 avg_follower_count=Avg('followers_count'),
@@ -251,7 +273,7 @@ def DetailedAnalysis(request):
             ).values()
             company_influencers_avg_data = list(company_influencers_avg_data)  # QuerySet을 리스트로 변환
 
-            return render(request, 'DetailedAnalysis.html', {'user': user, 'company_influencers_list': company_influencers_list,'avg':avg})
+            return render(request, 'DetailedAnalysis.html', context)
 
         except (User_adv.DoesNotExist, Influencer.DoesNotExist):
             pass
@@ -266,7 +288,19 @@ def notice_manage(request):
             # 로그인한 사용자의 아이디로 User_adv 모델에서 해당 사용자의 정보를 가져옵니다.
             user = User_adv.objects.get(id=user_id)
             notices = Recruitment.objects.filter(agency=user)  # 해당 사용자의 공고 목록을 가져옵니다.
-            return render(request, "notice-manage.html", {'user': user, 'notices': notices})
+            recruitment_queryset = Recruitment.objects.filter(agency_id=user_id)
+            logger.info(user)
+            influencer_queryset = Influencer.objects.filter(company=user.company)
+             # 데이터셋 개수 계산
+            recruitment_queryset_count = recruitment_queryset.count()
+            influencer_queryset_count = influencer_queryset.count()
+            context = {
+                'recruitment_queryset_count': recruitment_queryset_count,
+                'influencer_queryset_count': influencer_queryset_count,
+                'user': user,  # 'user' 정보도 context에 추가
+                'notices': notices
+            }
+            return render(request, "notice-manage.html", context)
         except User_adv.DoesNotExist:
             pass
     
@@ -412,13 +446,26 @@ def AgencyHome_Base(request):
     if user_id:
         try:
             # 로그인한 사용자의 아이디로 Influencer 모델에서 해당 사용자의 정보를 가져옵니다.
+            user = User_adv.objects.get(id=user_id)
             login_influencer = Influencer.objects.get(username=user_id)
             logger.info(login_influencer.goods_percent)
 
             # 컨텍스트에 login_influencer 변수를 추가하여 해당 변수를 템플릿에서 사용할 수 있도록 합니다.
-            login_influencer = {'login_influencer': login_influencer}
             
-            return render(request, 'AgencyHome-Base.html', login_influencer)
+            recruitment_queryset = Recruitment.objects.filter(agency_id=user_id)
+            logger.info(user)
+            influencer_queryset = Influencer.objects.filter(company=user.company)
+             # 데이터셋 개수 계산
+            recruitment_queryset_count = recruitment_queryset.count()
+            influencer_queryset_count = influencer_queryset.count()
+            context = {
+                'recruitment_queryset_count': recruitment_queryset_count,
+                'influencer_queryset_count': influencer_queryset_count,
+                'user': user,# 'user' 정보도 context에 추가
+                'login_influencer': login_influencer
+            }
+            
+            return render(request, 'AgencyHome-Base.html', context)
         except Influencer.DoesNotExist:
             pass
 

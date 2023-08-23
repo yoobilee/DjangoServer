@@ -73,18 +73,18 @@
                 profileImage.addEventListener('mouseout', restoreImage);
               </script>
               <div style="text-align: center;">
-                <h5>{{user.id}}</h5>
-                <h6>기타 추가할거..</h6>
+                <h5>{{user.company}}</h5>
+                <h6>에이전시 명</h6>
               </div>
             </li>
             <div style="display: grid; grid-template-columns: repeat(2,1fr); row-gap: 20px; margin-top: 36px; text-align: center;">
               <span style="display: flex; flex-direction: column-reverse;">
-                <label>고객수</label>
-                <strong>4</strong> <!-- strong 실제 데이터 값 출력되어야 함 -->
+                <label>소속 <br>인플루언서 수</label>
+                <strong>{{influencer_queryset_count}}</strong> <!-- strong 실제 데이터 값 출력되어야 함 -->
               </span>
               <span style="display: flex; flex-direction: column-reverse;">
                 <label>진행 캠페인</label> <!-- ==작성한 공지 수 -->
-                <strong>3</strong> <!-- strong 실제 데이터 값 출력되어야 함 -->
+                <strong>{{recruitment_queryset_count}}</strong> <!-- strong 실제 데이터 값 출력되어야 함 -->
               </span>
             </div>
           </ul>

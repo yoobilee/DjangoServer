@@ -74,12 +74,12 @@
             </li>
             <div style="display: grid; grid-template-columns: repeat(2,1fr); row-gap: 20px; margin-top: 36px; text-align: center;">
               <span style="display: flex; flex-direction: column-reverse;">
-                <label>고객수</label>
-                <strong>4</strong> <!-- strong 실제 데이터 값 출력되어야 함 -->
+                <label>소속 <br>인플루언서 수</label>
+                <strong>{{influencer_queryset_count}}</strong> <!-- strong 실제 데이터 값 출력되어야 함 -->
               </span>
               <span style="display: flex; flex-direction: column-reverse;">
                 <label>진행 캠페인</label> <!-- ==작성한 공지 수 -->
-                <strong>3</strong> <!-- strong 실제 데이터 값 출력되어야 함 -->
+                <strong>{{recruitment_queryset_count}}</strong> <!-- strong 실제 데이터 값 출력되어야 함 -->
               </span>
             </div>
           </ul>
@@ -358,14 +358,257 @@
       </div>
     </div>
   </div>
-  <div>
-    <ul>
-      {% for z in company_influencers_avg_data %}
-      <li>Username: {{ z.username   }}</li>
-      {% endfor %}
-    </ul>
-  </div>
+  <div class="row">
+    <div class="col-lg-4 d-flex align-items-stretch">
+      <div class="card w-100">
+        <div class="card-body p-4 text-center">
+          <h5 class="card-title fw-semibold">광고 포스트 비율</h5>
+          <div class="row align-items-center">
+            <style>
+              #chartdiv2 {
+                width: 100%;
+                height: 250px;
+              }
+              </style>
 
+          <script>
+            am5.ready(function() {
+            
+            // Create root element
+            // https://www.amcharts.com/docs/v5/getting-started/#Root_element
+            var root2 = am5.Root.new("chartdiv2");
+            
+            
+            // Set themes
+            // https://www.amcharts.com/docs/v5/concepts/themes/
+            root2.setThemes([
+              am5themes_Animated.new(root2)
+            ]);
+            
+            
+            // Create chart
+            // https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/
+            var chart2 = root2.container.children.push(am5percent.PieChart.new(root2, {
+              innerRadius: am5.percent(70),
+              layout: root2.verticalLayout
+            }));
+            
+            
+            // Create series
+            // https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/#Series
+            var series2 = chart2.series.push(am5percent.PieSeries.new(root2, {
+              valueField: "size",
+              categoryField: "sector"
+            }));
+            
+            series2.get("colors").set("colors", [
+            am5.color(0x5D87FF),
+            am5.color(0xecf2ff)
+          ]);
+            
+            // Set data
+            // https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/#Setting_data
+            series2.data.setAll([
+              { sector: "광고", size: {{influencer.adv_count}}, fill: am5.color(0xFF0000)},
+              { sector: "비광고", size: {{influencer.media_count}}-{{influencer.adv_count}},fill: am5.color(0x00FF00)}
+            ]);
+            var advCount = {{influencer.adv_count}};
+            var mediaCount = {{influencer.media_count}};
+            var roundedPercentage = Math.round((advCount / mediaCount) * 100);
+            var label2 = root2.tooltipContainer.children.push(am5.Label.new(root2, {
+              x: am5.p50,
+              y: am5.p50,
+              centerX: am5.p50,
+              centerY: am5.p50,
+              fill: am5.color(0x000000),
+              fontSize: 40,
+              html: "<span style='color: #5D87FF; font-size : 40px;'>" + roundedPercentage + "</span>%"
+            }));
+            
+            series2.ticks.template.setAll({
+              forceHidden: true
+            });  
+            series2.labels.clear();                  
+           
+            }); // end am5.ready()
+            </script>
+            
+            <!-- HTML -->
+            <div id="chartdiv2"></div>
+        </div>
+        <p class="fs-1 mb-10"></p>
+        <p class="fs-1 mb-0">채널에 게시된 포스트 중 </p>
+        <p class="fs-1 mb-0">광고성향의 포스트를 파악할 수 있는 지표입니다</p>
+
+      </div>
+    </div>
+  </div>
+    <div class="col-lg-8 d-flex align-items-stretch">
+      <div class="card w-100">
+        <div class="card-body p-4 text-center">
+          <h5 class="card-title fw-semibold mb-4">월별 팔로워 추이</h5>
+          <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+            <!-- Styles -->
+            <style>
+              #chartdiv3 {
+                width: 100%;
+                height: 250px;
+              }
+            </style>
+          
+            <!-- Chart container -->
+            <div id="chartdiv3"></div>
+          
+            <!-- Chart code -->
+            <script>
+              am5.ready(function() {
+              
+              // Create root element
+              var root3 = am5.Root.new("chartdiv3");
+              
+              // Set themes
+              root3.setThemes([
+                am5themes_Animated.new(root3)
+              ]);
+              
+              // Create chart
+              var chart3 = root3.container.children.push(
+                am5xy.XYChart.new(root3, {
+                  focusable: true,
+                  panX: true,
+                  panY: true,
+                  wheelX: "panX",
+                  wheelY: "zoomX",
+                  pinchZoomX: true
+                })
+              );
+              
+              var easing = am5.ease.linear;
+              chart3.get("colors").set("step", 3);
+              
+              // Create axes
+              var xAxis = chart3.xAxes.push(
+                am5xy.DateAxis.new(root3, {
+                  maxDeviation: 0.1,
+                  groupData: false,
+                  baseInterval: {
+                    timeUnit: "day",
+                    count: 1
+                  },
+                  renderer: am5xy.AxisRendererX.new(root3, {}),
+                  tooltip: am5.Tooltip.new(root3, {})
+                })
+              );
+              
+              function createAxisAndSeries(startValue, opposite, category, legendText) {
+                var yRenderer = am5xy.AxisRendererY.new(root3, {
+                  opposite: opposite
+                });
+                var yAxis = chart3.yAxes.push(
+                  am5xy.ValueAxis.new(root3, {
+                    maxDeviation: 1,
+                    renderer: yRenderer
+                  })
+                );
+              
+                if (chart3.yAxes.indexOf(yAxis) > 0) {
+                  yAxis.set("syncWithAxis", chart3.yAxes.getIndex(0));
+                }
+              
+                // Add series
+                var series3 = chart3.series.push(
+                  am5xy.LineSeries.new(root3, {
+                    xAxis: xAxis,
+                    yAxis: yAxis,
+                    valueYField: "value",
+                    valueXField: "date",
+                    categoryXField: "category", 
+                    name: legendText, // 범례에 표시될 텍스트
+                    tooltip: am5.Tooltip.new(root3, {
+                      pointerOrientation: "horizontal",
+                      labelText: "{valueY}"
+                    })
+                  })
+                );
+              
+                series3.strokes.template.setAll({ strokeWidth: 1 });
+              
+                yRenderer.grid.template.set("strokeOpacity", 0.05);
+                yRenderer.labels.template.set("fill", series3.get("fill"));
+                yRenderer.setAll({
+                  stroke: series3.get("fill"),
+                  strokeOpacity: 1,
+                  opacity: 1
+                });
+              
+                series3.data.processor = am5.DataProcessor.new(root3, {
+                  dateFormat: "yyyy-MM-dd",
+                  dateFields: ["date"]
+                });
+              
+                series3.data.setAll(generateChartData(startValue, category));
+              }
+              
+              // Add cursor
+              var cursor = chart3.set("cursor", am5xy.XYCursor.new(root3, {
+                xAxis: xAxis,
+                behavior: "none"
+              }));
+              cursor.lineY.set("visible", true);
+              
+              createAxisAndSeries(187329, true, "팔로워", "팔로워");
+              createAxisAndSeries(1037, false, "좋아요", "좋아요");
+              createAxisAndSeries(45, false, "댓글", "댓글");
+              
+              chart3.legend = new am5.Legend(root3, {
+                target: chart3,
+                marginBottom: 20
+              });
+              
+              chart3.appear(1000, 100);
+              
+              function generateChartData(value, category) {
+                var data3 = [];
+                var firstDate = new Date("2023-06-02"); // 시작 날짜를 8월 2일로 설정
+              
+                for (var i = 0; i < 61; i++) {
+                  var newDate = new Date(firstDate);
+                  newDate.setDate(newDate.getDate() + i);
+              
+                  value += Math.round(
+                    ((Math.random() < 0.5 ? 1 : -1) * Math.random() * value) / 20
+                  );
+              
+                  data3.push({
+                    date: newDate,
+                    value: value,
+                    category: category
+                  });
+                }
+              
+                var august2Date = new Date("2023-08-02");
+                data3.push({
+                  date: august2Date,
+                  value: value,
+                  category: category
+                });
+              
+                return data3;
+              }
+              
+              }); // end am5.ready()
+            </script>
+            <div class="align-items-center">
+              <span class="round-8 bg-primary rounded-circle me-2 d-inline-block" style="background-color: #82C4E2 !important; margin-right: 0 !important;"></span>
+              <span class="fs-2" style="margin-right: 1rem !important;">팔로워</span>
+              <span class="round-8 bg-secondary rounded-circle me-2 d-inline-block" style="background-color: #846CDD !important; margin-right: 0 !important;"></span>
+              <span class="fs-2" style="margin-right: 1rem !important;">좋아요</span>
+              <span class="round-8 bg-secondary rounded-circle me-2 d-inline-block" style="background-color: #E17ED6 !important; margin-right: 0 !important;"></span>
+              <span class="fs-2">댓글</span>
+          </div>
+        </div>
+      </div>
+    </div>
   {% include "test.html" %}
 
   <div class="py-6 px-6 text-center">
@@ -491,12 +734,12 @@ alert("회원만 접근 가능합니다.");
   <!--  Row 1 -->
   <div class="row">
     <h3>분석</h3>
-    <div class="col-lg-6 d-flex align-items-strech">
+    <div class="col-lg-8 d-flex align-items-strech">
       <div class="card w-100">
         <div class="card-body">
           <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
             <div class="mb-3 mb-sm-0">
-              <h5 class="card-title fw-semibold">Sales Overview</h5>
+              <h5 class="card-title fw-semibold">평균치 대비 분석</h5>
             </div>
             <div>
               <select id="influencerSelect">
@@ -611,75 +854,281 @@ alert("회원만 접근 가능합니다.");
       </div>
     </div>
 
-    <div class="col-lg-6">
-      <div class="row">
-        <div class="col-lg-12">
-          <!-- Yearly Breakup -->
-          <div class="card overflow-hidden">
-            <div class="card-body p-4">
-              <h5 class="card-title mb-9 fw-semibold">Yearly Breakup</h5>
-              <div class="row align-items-center">
-                <div class="col-8">
-                  <h4 class="fw-semibold mb-3">$36,358</h4>
-                  <div class="d-flex align-items-center mb-3">
-                    <span
-                      class="me-1 rounded-circle bg-light-success round-20 d-flex align-items-center justify-content-center">
-                      <i class="ti ti-arrow-up-left text-success"></i>
-                    </span>
-                    <p class="text-dark me-1 fs-3 mb-0">+9%</p>
-                    <p class="fs-3 mb-0">last year</p>
-                  </div>
-                  <div class="d-flex align-items-center">
-                    <div class="me-4">
-                      <span class="round-8 bg-primary rounded-circle me-2 d-inline-block"></span>
-                      <span class="fs-2">2023</span>
-                    </div>
-                    <div>
-                      <span class="round-8 bg-light-primary rounded-circle me-2 d-inline-block"></span>
-                      <span class="fs-2">2023</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-4">
-                  <div class="d-flex justify-content-center">
-                    <div id="breakup"></div>
-                  </div>
-                </div>
+    
+                <!-- Styles -->
+<style>
+  #chartdivz {
+    width: 100%;
+    height: 500px;
+  }
+  </style>
+  
+  <!-- Resources -->
+  <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
+  
+  
+  
+  
+  <!-- Chart code -->
+  <script>
+  am5.ready(function() {
+  
+  // Create root element
+  // https://www.amcharts.com/docs/v5/getting-started/#Root_element
+  var root = am5.Root.new("chartdivz");
+  
+  
+  // Set themes
+  // https://www.amcharts.com/docs/v5/concepts/themes/
+  root.setThemes([
+    am5themes_Animated.new(root)
+  ]);
+  
+  
+  // Create chart
+  // https://www.amcharts.com/docs/v5/charts/percent-charts/sliced-chart/
+  var chart = root.container.children.push(am5percent.SlicedChart.new(root, {
+    layout: root.verticalLayout
+  }));
+  
+  
+  // Create series
+  // https://www.amcharts.com/docs/v5/charts/percent-charts/sliced-chart/#Series
+  var series = chart.series.push(am5percent.PyramidSeries.new(root, {
+    orientation: "vertical",
+    valueField: "value",
+    categoryField: "category"
+  }));
+  
+  
+  // Set data
+  // https://www.amcharts.com/docs/v5/charts/percent-charts/sliced-chart/#Setting_data
+  series.data.setAll([
+    
+    
+    
+    
+    { value: 10, category: "하위 50%" },{ value: 10, category: "상위 50%" },{ value: 6, category: "상위 30%" },{ value: 2, category: "상위 10%" },{ value: 1, category: "상위 5%" }
+  ].reverse());
+  
+  
+  // Play initial series animation
+  // https://www.amcharts.com/docs/v5/concepts/animations/#Animation_of_series
+  series.appear();
+  
+  
+  // Create legend
+  // https://www.amcharts.com/docs/v5/charts/percent-charts/legend-percent-series/
+  var legend = chart.children.push(am5.Legend.new(root, {
+    centerX: am5.percent(50),
+    x: am5.percent(50),
+    marginTop: 15,
+    marginBottom: 15
+  }));
+  
+  legend.data.setAll(am5.array.copy(series.dataItems).reverse());
+  
+  
+  // Make stuff animate on load
+  // https://www.amcharts.com/docs/v5/concepts/animations/
+  chart.appear(1000, 100);
+  
+  }); // end am5.ready()
+  </script>
+  
+  <!-- HTML -->
+  <div class="col-lg-4">
+    <div class="row">
+      <div class="col-lg-12">
+        <!-- Yearly Breakup -->
+        <div class="card overflow-hidden">
+          <div class="card-body p-4">
+            <h5 class="card-title mb-9 fw-semibold">광고 호응도</h5>
+            <div class="row align-items-center">
+              <div id="chartdivz"></div>
+  
               </div>
             </div>
           </div>
         </div>
-        <div class="col-lg-12">
-          <!-- Monthly Earnings -->
-          <div class="card">
-            <div class="card-body">
-              <div class="row alig n-items-start">
-                <div class="col-8">
-                  <h5 class="card-title mb-9 fw-semibold"> Monthly Earnings </h5>
-                  <h4 class="fw-semibold mb-3">$6,820</h4>
-                  <div class="d-flex align-items-center pb-1">
-                    <span
-                      class="me-2 rounded-circle bg-light-danger round-20 d-flex align-items-center justify-content-center">
-                      <i class="ti ti-arrow-down-right text-danger"></i>
-                    </span>
-                    <p class="text-dark me-1 fs-3 mb-0">+9%</p>
-                    <p class="fs-3 mb-0">last year</p>
-                  </div>
-                </div>
-                <div class="col-4">
-                  <div class="d-flex justify-content-end">
-                    <div
-                      class="text-white bg-secondary rounded-circle p-6 d-flex align-items-center justify-content-center">
-                      <i class="ti ti-currency-dollar fs-6"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div id="earning"></div>
-          </div>
-        </div>
+        
       </div>
     </div>
   </div>
+  <div class="row">
+    <div class="col-lg-12 d-flex align-items-stretch">
+      <div class="card w-100">
+        <div class="card-body p-4 text-center">
+          <h5 class="card-title fw-semibold">팔로워 변화에 따른 반응도 추이</h5>
+          <div class="row align-items-center">
+            <!-- Styles -->
+<style>
+  #chartdiv {
+    width: 100%;
+    height: 500px;
+  }
+  </style>
+  
+  <!-- Resources -->
+  
+  <!-- Chart code -->
+  <script>
+  am5.ready(function() {
+  
+  // Create root element
+  // https://www.amcharts.com/docs/v5/getting-started/#Root_element
+  var root = am5.Root.new("chartdiv");
+  
+  // Set themes
+  // https://www.amcharts.com/docs/v5/concepts/themes/
+  root.setThemes([
+    am5themes_Animated.new(root)
+  ]);
+  
+  // Create chart
+  // https://www.amcharts.com/docs/v5/charts/xy-chart/
+  var chart = root.container.children.push(
+    am5xy.XYChart.new(root, {
+      focusable: true,
+      panX: true,
+      panY: true,
+      wheelX: "panX",
+      wheelY: "zoomX",
+    pinchZoomX:true
+    })
+  );
+  
+  var easing = am5.ease.linear;
+  chart.get("colors").set("step", 3);
+  
+  // Create axes
+  // https://www.amcharts.com/docs/v5/charts/xy-chart/axes/
+  var xAxis = chart.xAxes.push(
+    am5xy.DateAxis.new(root, {
+      maxDeviation: 0.1,
+      groupData: false,
+      baseInterval: {
+        timeUnit: "day",
+        count: 1
+      },
+      renderer: am5xy.AxisRendererX.new(root, {}),
+      tooltip: am5.Tooltip.new(root, {})
+    })
+  );
+  
+  function createAxisAndSeries(startValue, opposite) {
+    var yRenderer = am5xy.AxisRendererY.new(root, {
+      opposite: opposite
+    });
+    var yAxis = chart.yAxes.push(
+      am5xy.ValueAxis.new(root, {
+        maxDeviation: 1,
+        renderer: yRenderer
+      })
+    );
+  
+    if (chart.yAxes.indexOf(yAxis) > 0) {
+      yAxis.set("syncWithAxis", chart.yAxes.getIndex(0));
+    }
+  
+    // Add series
+    // https://www.amcharts.com/docs/v5/charts/xy-chart/series/
+    var series = chart.series.push(
+      am5xy.LineSeries.new(root, {
+        xAxis: xAxis,
+        yAxis: yAxis,
+        valueYField: "value",
+        valueXField: "date",
+        tooltip: am5.Tooltip.new(root, {
+          pointerOrientation: "horizontal",
+          labelText: "{valueY}"
+        })
+      })
+    );
+  
+    //series.fills.template.setAll({ fillOpacity: 0.2, visible: true });
+    series.strokes.template.setAll({ strokeWidth: 3 });
+  
+    yRenderer.grid.template.set("strokeOpacity", 0.05);
+    yRenderer.labels.template.set("fill", series.get("fill"));
+    yRenderer.setAll({
+      stroke: series.get("fill"),
+      strokeOpacity: 1,
+      opacity: 1
+    });
+  
+    // Set up data processor to parse string dates
+    // https://www.amcharts.com/docs/v5/concepts/data/#Pre_processing_data
+    series.data.processor = am5.DataProcessor.new(root, {
+      dateFormat: "yyyy-MM-dd",
+      dateFields: ["date"]
+    });
+  
+    series.data.setAll(generateChartData(startValue));
+  }
+  
+  // Add cursor
+  // https://www.amcharts.com/docs/v5/charts/xy-chart/cursor/
+  var cursor = chart.set("cursor", am5xy.XYCursor.new(root, {
+    xAxis: xAxis,
+    behavior: "none"
+  }));
+  cursor.lineY.set("visible", false);
+  
+
+  createAxisAndSeries(30, true);
+  createAxisAndSeries(8000, true);
+  
+  // Make stuff animate on load
+  // https://www.amcharts.com/docs/v5/concepts/animations/
+
+  
+  // Generates random data, quite different range
+  function generateChartData(value) {
+    var data = [];
+    var firstDate = new Date();
+    firstDate.setDate(firstDate.getDate() - 100);
+    firstDate.setHours(0, 0, 0, 0);
+  
+    for (var i = 0; i < 100; i++) {
+      var newDate = new Date(firstDate);
+      newDate.setDate(newDate.getDate() + i);
+  
+      value += Math.round(
+        ((Math.random() < 0.5 ? 1 : -1) * Math.random() * value) / 20
+      );
+  
+      data.push({
+        date: newDate,
+        value: value
+      });
+    }
+    return data;
+  }
+  
+  }); // end am5.ready()
+  </script>
+  
+  <!-- HTML -->
+  <div id="chartdiv"></div>
+  <div class="align-items-center">
+    <span class="round-8 bg-primary rounded-circle me-2 d-inline-block" style="background-color: #82C4E2 !important; margin-right: 0 !important;"></span>
+    <span class="fs-2" style="margin-right: 1rem !important;">반응도</span>
+    <span class="round-8 bg-secondary rounded-circle me-2 d-inline-block" style="background-color: #846CDD !important; margin-right: 0 !important;"></span>
+    <span class="fs-2" style="margin-right: 1rem !important;">팔로워</span>
+</div>
+
+        </div>
+        <p class="fs-1 mb-10"></p>
+        <p class="fs-1 mb-0">채널에 게시된 포스트 중 </p>
+        <p class="fs-1 mb-0">광고성향의 포스트를 파악할 수 있는 지표입니다</p>
+
+      </div>
+    </div>
+  </div>
+    
+        
   {% endblock %}
