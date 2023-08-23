@@ -58,3 +58,14 @@ class Influencer_average(models.Model):
     class Meta:
         managed = False
         db_table = 'influencer_average'
+        
+class Supply_influencer(models.Model):
+    name = models.CharField(max_length=100)
+    username = models.CharField(max_length=100, primary_key=True)
+    email = models.CharField(max_length=100)
+    phone_num = models.CharField(max_length=100)
+    reason_supply = models.TextField(max_length=10000)
+
+    class Meta:
+        managed = False
+        db_table = 'supply_influencer'

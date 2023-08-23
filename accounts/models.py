@@ -22,6 +22,7 @@ class Influencer(models.Model):
   goods_percent = models.IntegerField()
   profile_url = models.TextField()
   company = models.CharField(max_length=100)
+  recent_adv = models.CharField(max_length=100)
   
   class Meta:
     managed = False
@@ -161,6 +162,8 @@ class User_adv(models.Model):
   password = models.CharField(max_length=100)
   business = models.CharField(max_length=100)
   size = models.CharField(max_length=100)
+  client = models.IntegerField()
+  campaign_progress = models.IntegerField()
   
   class Meta:
     managed = False

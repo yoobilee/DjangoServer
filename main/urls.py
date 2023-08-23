@@ -18,7 +18,9 @@ urlpatterns = [
     path('get_additional_data/', views.get_additional_data, name='get_additional_data'),
     path('ComparisonAnalysis/', views.ComparisonAnalysis, name='ComparisonAnalysis'),
     path('DetailedAnalysis/', views.DetailedAnalysis, name='DetailedAnalysis'),
+    path('DetailedAnalysisChart/', views.DetailedAnalysisChart, name='DetailedAnalysisChart'),
     path('notice/', views.notice, name='notice'),
+    path('campaign/', views.campaign, name='campaign'),
     path('notice-Agency1/', views.notice_Agency1, name='notice-Agency1'),
     path('notice-manage/', views.notice_manage, name='notice-manage'),
     path('create/', views.create_notice, name='create_notice'),
@@ -28,4 +30,5 @@ urlpatterns = [
     path('serve-word2vec-model/', views.serve_word2vec_model, name='serve_word2vec_model'),
     path('InfluHome-base/', views.InfluHome_Base, name='InfluHome-Base'),
     path('AgencyHome_Base/', views.AgencyHome_Base, name='AgencyHome_Base'),
+    path('agency_application/', views.agency_application, name='agency_application')
 ]

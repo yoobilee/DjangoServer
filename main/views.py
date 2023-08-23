@@ -8,7 +8,7 @@ from django.db.models import Avg
 import logging
 from .models import Recruitment, RecruitmentImage
 from .models import Hot_post
-from .forms import RecruitmentForm
+from .forms import RecruitmentForm, SupplyForm
 from django.contrib.auth.decorators import login_required
 
 from django.http import FileResponse
@@ -17,6 +17,8 @@ import os
 from django.views.decorators.csrf import csrf_exempt
 from gensim.models import Word2Vec
 import json
+from django.http import HttpResponse
+from .models import Supply_influencer
 
 logger = logging.getLogger(__name__)
 
@@ -30,7 +32,7 @@ def serve_word2vec_model(request):
     
     # 모델 로드
     # 자기 경로 찾아서 입력!!!!
-    model = Word2Vec.load('C:\\DjangoServer\\MA\\main\\static\\model\\'+user_id+'.model')  # 경로 구분자를 슬래시(/)로 사용하거나 역슬래시(\) 2개를 사용해야 함
+    model = Word2Vec.load('C:\\DjangoServer\\MA\main\\static\\model\\'+user_id+'.model')  # 경로 구분자를 슬래시(/)로 사용하거나 역슬래시(\) 2개를 사용해야 함
     
     # 관련된 단어 찾기
     similar_words = model.wv.most_similar(keyword, topn=5)
@@ -102,6 +104,11 @@ def AgencyHome(request):
         try:
             # 로그인한 사용자의 아이디로 User_adv 모델에서 해당 사용자의 정보를 가져옵니다.
             user = User_adv.objects.get(id=user_id)
+            logger.info(user.business)
+            
+            user_company = user.company
+            company_influencers_data = Influencer.objects.filter(company=user_company).values()
+            company_influencers_list = list(company_influencers_data)
             recruitment_queryset = Recruitment.objects.filter(agency_id=user_id)
             logger.info(user)
             influencer_queryset = Influencer.objects.filter(company=user.company)
@@ -111,9 +118,22 @@ def AgencyHome(request):
             context = {
                 'recruitment_queryset_count': recruitment_queryset_count,
                 'influencer_queryset_count': influencer_queryset_count,
-                'user': user  # 'user' 정보도 context에 추가
+                'user': user,  # 'user' 정보도 context에 추가
+                'company_influencers_list': company_influencers_list,
+                'matching_post': matching_post,
+                'matching_posts': matching_posts,
+                
             }
+            matching_posts = []
+            for influencer_data in company_influencers_data:
+                recent_adv = influencer_data['recent_adv']  # recent_adv 값 가져오기
 
+                try:
+                    matching_post = Post_master.objects.get(post_id=recent_adv)
+                    matching_posts.append(matching_post)
+                except Post_master.DoesNotExist:
+                    pass  # 일치하는 데이터가 없을 경우 건너뜁니다
+            
             return render(request, 'AgencyHome.html',context)
         except (User_adv.DoesNotExist):
             pass
@@ -230,7 +250,43 @@ def ComparisonAnalysis(request):
 
     return render(request, "first-index.html")
 
-def DetailedAnalysis(request):
+def DetailedAnalysis(request): #DetailedComparison 이었던 것..
+    user_id = request.session.get('user_id', None)  # 로그인된 사용자 아이디 가져오기
+    user_name = request.GET.get('username', None)
+    
+    if user_id:
+        try:
+            # 로그인한 사용자의 아이디로 User_adv 모델에서 해당 사용자의 정보를 가져옵니다.
+            user = User_adv.objects.get(id=user_id)
+            notices = Recruitment.objects.filter(agency=user)  # 해당 사용자의 공고 목록을 가져옵니다.
+            user_company = user.company
+            influencer = Influencer.objects.get(username=user_name)
+            company_influencers_data = Influencer.objects.filter(company=user_company).values()
+            company_influencers_list = list(company_influencers_data)
+            first_keywords = Keyword.objects.filter(username=user_name).first()
+            second_keywords = Keyword.objects.filter(username=user_name)[1]
+            third_keywords = Keyword.objects.filter(username=user_name)[2]
+            forth_keywords = Keyword.objects.filter(username=user_name)[3]
+            fifth_keywords = Keyword.objects.filter(username=user_name)[4]
+            sixth_keywords = Keyword.objects.filter(username=user_name).last()
+
+            hot_post1 = Hot_post.objects.filter(username=user_name)[0]
+            hot_post2 = Hot_post.objects.filter(username=user_name)[1]
+            hot_post3 = Hot_post.objects.filter(username=user_name)[2]
+            hot_post4 = Hot_post.objects.filter(username=user_name)[3]
+            return render(request, "DetailedAnalysis.html", {'user': user, 'notices': notices,'company_influencers_list':company_influencers_list, 'user_name':user_name,
+                                                            'influencer': influencer, 'first_keywords': first_keywords,
+                                                            'second_keywords': second_keywords, 'third_keywords': third_keywords, 'forth_keywords': forth_keywords,
+                                                            'fifth_keywords': fifth_keywords,'sixth_keywords': sixth_keywords, 'hot_post1': hot_post1,
+                                                            'hot_post2': hot_post2,'hot_post3': hot_post3,'hot_post4': hot_post4})
+        except User_adv.DoesNotExist:
+            pass
+    
+    # 사용자가 로그인하지 않았거나 사용자 정보가 없는 경우 기본 템플릿을 렌더링합니다.
+    return render(request, "DetailedAnalysis.html")
+
+
+def DetailedAnalysisChart(request):
     # 로그인한 사용자의 아이디를 가져옵니다.
     user_id = request.session.get('user_id', None)
     logger.info(user_id)
@@ -273,7 +329,7 @@ def DetailedAnalysis(request):
             ).values()
             company_influencers_avg_data = list(company_influencers_avg_data)  # QuerySet을 리스트로 변환
 
-            return render(request, 'DetailedAnalysis.html', context)
+            return render(request, 'DetailedAnalysisChart.html', context)
 
         except (User_adv.DoesNotExist, Influencer.DoesNotExist):
             pass
@@ -326,6 +382,24 @@ def notice(request):
 
     return render(request, "notice.html")
 
+def campaign(request):
+    # 로그인한 사용자의 아이디를 가져옵니다.
+    user_id = request.session.get('user_id', None)
+    
+    if user_id:
+        try:
+            # 로그인한 사용자의 아이디로 User_influ 모델에서 해당 사용자의 정보를 가져옵니다.
+            user = User_influ.objects.get(id=user_id)
+            
+            # 로그인한 사용자의 아이디로 Influencer 모델에서 해당 사용자의 정보를 가져옵니다.
+            influencer = Influencer.objects.get(username=user_id)
+            
+            return render(request, 'campaign.html', {'user': user, 'influencer': influencer})
+        except (User_influ.DoesNotExist, Influencer.DoesNotExist):
+            pass
+
+    return render(request, "campaign.html")
+
 def notice_Agency1(request):
     # 로그인한 사용자의 아이디를 가져옵니다.
     user_id = request.session.get('user_id', None)
@@ -338,7 +412,16 @@ def notice_Agency1(request):
             # 로그인한 사용자의 아이디로 Influencer 모델에서 해당 사용자의 정보를 가져옵니다.
             influencer = Influencer.objects.get(username=user_id)
             
-            return render(request, 'notice-Agency1.html', {'user': user, 'influencer': influencer})
+            if request.method == 'POST':
+                supply_form = SupplyForm(request.POST)
+                if supply_form.is_valid():
+                    supply_form.save()
+                # Handle successful form submission, e.g., redirect or show a success message
+
+            else:
+                supply_form = SupplyForm()
+            
+            return render(request, 'notice-Agency1.html', {'user': user, 'influencer': influencer,'supply_form': supply_form})
         except (User_influ.DoesNotExist, Influencer.DoesNotExist):
             pass
 
@@ -470,3 +553,15 @@ def AgencyHome_Base(request):
             pass
 
     return render(request, "first-index.html")
+
+def agency_application(request):
+    if request.method == 'POST':
+        form = SupplyForm(request.POST)
+        logger.info(form.name)
+        if form.is_valid():
+            form.save()
+            return render(request, 'success.html')  # 저장 성공 시 보여줄 템플릿 (success.html)로 이동
+    else:
+        form = SupplyForm()
+    
+    return render(request, 'agency_application.html', {'form': form})

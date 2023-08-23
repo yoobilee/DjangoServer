@@ -1,5 +1,7 @@
 from django import forms
 from .models import Recruitment
+from .models import Supply_influencer
+
 
 class RecruitmentForm(forms.ModelForm):
     profile_image = forms.ImageField(label='프로필 이미지 업로드')
@@ -29,3 +31,7 @@ class RecruitmentForm(forms.ModelForm):
             instance.save()
         return instance
     
+class SupplyForm(forms.ModelForm):
+    class Meta:
+        model = Supply_influencer
+        fields = ['name', 'username', 'email', 'phone_num', 'reason_supply']
