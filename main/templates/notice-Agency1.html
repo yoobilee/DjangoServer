@@ -222,7 +222,7 @@
                       <form method="post" enctype="multipart/form-data" role="form" class="php-email-form" style="background: white;">
                           {% csrf_token %}
                           {{ supply_form.as_p }}
-                          <div style="margin-bottom:10px; padding-top:10px;">
+                          {% comment %} <div style="margin-bottom:10px; padding-top:10px;">
                               <label class="ant-checkbox-wrapper">
                                   <span class="ant-checkbox">
                                       <input type="checkbox" id="supply-ant-checkbox-input" value=""
@@ -232,7 +232,7 @@
                               </label>
                               <span class="policy-title">개인정보처리방침</span> / <span class="policy-title">이용방침</span>에 동의
                               합니다.
-                          </div>
+                          </div> {% endcomment %}
                           <div class="text-center"><button type="submit" class="btn btn-primary" id="supply-submit-btn">지원하기</button></div>
                       </form>
                   </div>

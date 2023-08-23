@@ -8,16 +8,13 @@
   <nav class="navbar navbar-expand-lg navbar-light">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link nav-icon-hover" href="" style="color: #5D87FF;">상세 분석</a>
+        <a class="nav-link nav-icon-hover" href="" style="color: #5D87FF;">홈</a>
       </li>
       <li class="nav-item">
         <a class="nav-link nav-icon-hover" href="/ComparisonAnalysis">1대1 매칭 분석</a>
       </li>
       <li class="nav-item">
         <a class="nav-link nav-icon-hover" href="/notice">모집공고</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link nav-icon-hover" href="/campaign">캠페인공고</a>
       </li>
     </ul>
     <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
@@ -32,480 +29,478 @@
   <!--  Row 1 -->
   <div class="row">
     <h3>인기 포스트</h3>
-      <div class="col-sm-6 col-xl-3">
-        <div class="card overflow-hidden rounded-2">
-          <div class="position-relative">
-            <a href="{{hot_post1.insta_url}}" target="_blank"><img src="{{hot_post1.post_url}}" class="card-img-top rounded-0" alt="..."></a>
-          </div>
-          <div class="card-body pt-3 p-3">
-            <h6 class="fw-semibold fs-4" style="display: flex; align-items: center; justify-content: space-between;">
-              <span>
-                  <i class="ti ti-heart" style="display: inline;"></i>
-                  {{ hot_post1.like_count }}
-              </span>
-              <span>
-                  <i class="ti ti-message" style="display: inline;"></i>
-                  {{ hot_post1.comments_count }}
-              </span>
+    <div class="col-sm-6 col-xl-3">
+      <div class="card overflow-hidden rounded-2">
+        <div class="position-relative">
+          <a href="{{hot_post1.insta_url}}" target="_blank"><img src="{{hot_post1.post_url}}"
+              class="card-img-top rounded-0" alt="..."></a>
+        </div>
+        <div class="card-body pt-3 p-3">
+          <h6 class="fw-semibold fs-4" style="display: flex; align-items: center; justify-content: space-between;">
+            <span>
+              <i class="ti ti-heart" style="display: inline;"></i>
+              {{ hot_post1.like_count }}
+            </span>
+            <span>
+              <i class="ti ti-message" style="display: inline;"></i>
+              {{ hot_post1.comments_count }}
+            </span>
           </h6>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+      <div class="card overflow-hidden rounded-2">
+        <div class="position-relative">
+          <a href="{{hot_post2.insta_url}}" target="_blank"><img src="{{hot_post2.post_url}}"
+              class="card-img-top rounded-0" alt="..."></a>
+        </div>
+        <div class="card-body pt-3 p-3">
+          <h6 class="fw-semibold fs-4" style="display: flex; align-items: center; justify-content: space-between;">
+            <span>
+              <i class="ti ti-heart" style="display: inline;"></i>
+              {{ hot_post2.like_count }}
+            </span>
+            <span>
+              <i class="ti ti-message" style="display: inline;"></i>
+              {{ hot_post2.comments_count }}
+            </span>
+          </h6>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+      <div class="card overflow-hidden rounded-2">
+        <div class="position-relative">
+          <a href="{{hot_post3.insta_url}}" target="_blank"><img src="{{hot_post3.post_url}}"
+              class="card-img-top rounded-0" alt="..."></a>
+        </div>
+        <div class="card-body pt-3 p-3">
+          <h6 class="fw-semibold fs-4" style="display: flex; align-items: center; justify-content: space-between;">
+            <span>
+              <i class="ti ti-heart" style="display: inline;"></i>
+              {{ hot_post3.like_count }}
+            </span>
+            <span>
+              <i class="ti ti-message" style="display: inline;"></i>
+              {{ hot_post3.comments_count }}
+            </span>
+          </h6>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+      <div class="card overflow-hidden rounded-2">
+        <div class="position-relative">
+          <a href="{{hot_post4.insta_url}}" target="_blank"><img src="{{hot_post4.post_url}}"
+              class="card-img-top rounded-0" alt="..."></a>
+        </div>
+        <div class="card-body pt-3 p-3">
+          <h6 class="fw-semibold fs-4" style="display: flex; align-items: center; justify-content: space-between;">
+            <span>
+              <i class="ti ti-heart" style="display: inline;"></i>
+              {{ hot_post4.like_count }}
+            </span>
+            <span>
+              <i class="ti ti-message" style="display: inline;"></i>
+              {{ hot_post4.comments_count }}
+            </span>
+          </h6>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <h3 class="col-lg-12">포스트 정보</h3>
+    <div class="col-lg-6"> <!-- 첫 번째 카드 -->
+      <div class="card overflow-hidden">
+        <div class="card-body p-4 text-center">
+          <h6 class="card-title mb-9 fw-semibold">포스트 유형</h6>
+
+          <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+          <script src="https://cdn.anychart.com/releases/v8/js/anychart-ui.min.js"></script>
+          <script src="https://cdn.anychart.com/releases/v8/js/anychart-exports.min.js"></script>
+          <link href="https://cdn.anychart.com/releases/v8/css/anychart-ui.min.css" type="text/css" rel="stylesheet">
+          <link href="https://cdn.anychart.com/releases/v8/fonts/css/anychart-font.min.css" type="text/css"
+            rel="stylesheet">
+          <style type="text/css">
+            html,
+            body,
+            #container {
+              width: 100%;
+              height: 50px;
+              margin: 0;
+              padding: 0;
+            }
+          </style>
+          <div id="container"></div>
+          <script>
+            anychart.onDocumentReady(function () {
+              // create data set on our data
+              var dataSet = anychart.data.set([
+                ['media type', {{ influencer.feed_percent }}, {{ influencer.reels_percent }}],
+                  ]);
+
+            // map data for the first series, take x from the zero column and value from the first column of data set
+            var floridaData = dataSet.mapAs({ x: 0, value: 1 });
+
+            // map data for the second series, take x from the zero column and value from the second column of data set
+            var texasData = dataSet.mapAs({ x: 0, value: 2 });
+
+            // create bar chart
+            var chart = anychart.bar();
+
+            // turn on chart animation
+            chart.animation(true);
+
+            // force chart to stack values by Y scale.
+            chart.yScale().stackMode('percent');
+
+
+            // set yAxis labels formatting, force it to add % to values
+            chart.yAxis(0).labels().format('{%Value}%');
+
+            // helper function to setup label settings for all series
+            var setupSeriesLabels = function (series, name) {
+              series.name(name).stroke('3 #fff 1');
+              series.hovered().stroke('3 #fff 1');
+            };
+
+            // temp variable to store series instance
+            var series;
+
+            // create Florida series with mapped data
+            series = chart.bar(floridaData);
+            setupSeriesLabels(series, '사진/비디오');
+
+            // create Texas series with mapped data
+            series = chart.bar(texasData);
+            setupSeriesLabels(series, '릴스');
+
+            chart.interactivity().hoverMode('by-x');
+
+            chart.tooltip().displayMode('union').valuePrefix('%');
+            chart.xAxis(0).enabled(false);
+            chart.yAxis(0).enabled(false);
+
+
+            chart.legend().enabled(false)
+            chart.height(50);
+            chart.palette(['#5D87FF', '#49BEFF']);
+            // set container id for the chart
+            chart.container('container');
+            // initiate chart drawing
+            chart.draw();
+                });
+          </script>
+
+          <div class="row align-items-center">
+            <div class="col-12">
+              <div class="align-items-center">
+                <span class="round-8 bg-primary rounded-circle me-2 d-inline-block"></span>
+                <span class="fs-2">사진/비디오 </span>
+                <span class="round-8 bg-secondary rounded-circle me-2 d-inline-block"></span>
+                <span class="fs-2">릴스</span>
+              </div>
+              <p class="fs-1 mb-0">채널에 게시된 포스트의 구성을 유형별로 파악할 수 있습니다.</p>
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-sm-6 col-xl-3">
-        <div class="card overflow-hidden rounded-2">
-          <div class="position-relative">
-            <a href="{{hot_post2.insta_url}}" target="_blank"><img src="{{hot_post2.post_url}}" class="card-img-top rounded-0" alt="..."></a>
-            </div>
-          <div class="card-body pt-3 p-3">
-            <h6 class="fw-semibold fs-4" style="display: flex; align-items: center; justify-content: space-between;">
-              <span>
-                  <i class="ti ti-heart" style="display: inline;"></i>
-                  {{ hot_post2.like_count }}
-              </span>
-              <span>
-                  <i class="ti ti-message" style="display: inline;"></i>
-                  {{ hot_post2.comments_count }}
-              </span>
-          </h6>
-          </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-xl-3">
-          <div class="card overflow-hidden rounded-2">
-            <div class="position-relative">
-              <a href="{{hot_post3.insta_url}}" target="_blank"><img src="{{hot_post3.post_url}}" class="card-img-top rounded-0" alt="..."></a>
+    </div>
+    <div class="col-lg-3"> <!-- 두 번째 카드 -->
+      <div class="card overflow-hidden">
+        <div class="card-body p-4 text-center">
+          <h6 class="card-title mb-9 fw-semibold">주 평균 포스팅 현황</h6>
+          <div class="row align-items-center">
+            <div class="col-12">
+              <div class="d-flex justify-content-center align-items-center">
+                <h1 class="fw-semibold mb-3 me-2" style="color: #5D87FF;">{{influencer.week_avg_post}}</h1>
+                <h3 class="fw-semibold mb-3">개/주</h3>
               </div>
-              <div class="card-body pt-3 p-3">
-                <h6 class="fw-semibold fs-4" style="display: flex; align-items: center; justify-content: space-between;">
-                  <span>
-                      <i class="ti ti-heart" style="display: inline;"></i>
-                      {{ hot_post3.like_count }}
-                  </span>
-                  <span>
-                      <i class="ti ti-message" style="display: inline;"></i>
-                      {{ hot_post3.comments_count }}
-                  </span>
-              </h6>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-xl-3">
-            <div class="card overflow-hidden rounded-2">
-              <div class="position-relative">
-                <a href="{{hot_post4.insta_url}}" target="_blank"><img src="{{hot_post4.post_url}}" class="card-img-top rounded-0" alt="..."></a>
-              </div>
-                <div class="card-body pt-3 p-3">
-                  <h6 class="fw-semibold fs-4" style="display: flex; align-items: center; justify-content: space-between;">
-                    <span>
-                        <i class="ti ti-heart" style="display: inline;"></i>
-                        {{ hot_post4.like_count }}
-                    </span>
-                    <span>
-                        <i class="ti ti-message" style="display: inline;"></i>
-                        {{ hot_post4.comments_count }}
-                    </span>
-                </h6>
-                </div>
+              <p class="fs-1 mb-0">채널이 포스트를 게시하는 주 평균 횟수를</p>
+              <p class="fs-1 mb-0">파악할 수 있습니다</p>
             </div>
           </div>
         </div>
-        <div class="row">
-          <h3 class="col-lg-12">포스트 정보</h3>
-          <div class="col-lg-6"> <!-- 첫 번째 카드 -->
-            <div class="card overflow-hidden">
-              <div class="card-body p-4 text-center">
-                <h6 class="card-title mb-9 fw-semibold">포스트 유형</h6>
-                
-                <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
-                <script src="https://cdn.anychart.com/releases/v8/js/anychart-ui.min.js"></script>
-                <script src="https://cdn.anychart.com/releases/v8/js/anychart-exports.min.js"></script>
-                <link href="https://cdn.anychart.com/releases/v8/css/anychart-ui.min.css" type="text/css" rel="stylesheet">
-                <link href="https://cdn.anychart.com/releases/v8/fonts/css/anychart-font.min.css" type="text/css" rel="stylesheet">
-                <style type="text/css">
-                  html,
-                  body,
-                  #container {
-                    width: 100%;
-                    height: 50px;
-                    margin: 0;
-                    padding: 0;
-                  }
-              </style>
-              <div id="container"></div>
-              <script>
-                anychart.onDocumentReady(function () {
-                  // create data set on our data
-                  var dataSet = anychart.data.set([
-                    ['media type', {{influencer.feed_percent}}, {{influencer.reels_percent}}],
-                  ]);
-                 
-                  // map data for the first series, take x from the zero column and value from the first column of data set
-                  var floridaData = dataSet.mapAs({ x: 0, value: 1 });
-              
-                  // map data for the second series, take x from the zero column and value from the second column of data set
-                  var texasData = dataSet.mapAs({ x: 0, value: 2 });
-              
-                  // create bar chart
-                  var chart = anychart.bar();
-              
-                  // turn on chart animation
-                  chart.animation(true);
-              
-                  // force chart to stack values by Y scale.
-                  chart.yScale().stackMode('percent');
-              
-              
-                  // set yAxis labels formatting, force it to add % to values
-                  chart.yAxis(0).labels().format('{%Value}%');
-              
-                  // helper function to setup label settings for all series
-                  var setupSeriesLabels = function (series, name) {
-                    series.name(name).stroke('3 #fff 1');
-                    series.hovered().stroke('3 #fff 1');
+      </div>
+    </div>
+    <div class="col-lg-3"> <!-- 세 번째 카드 -->
+      <div class="card overflow-hidden">
+        <div class="card-body p-4 text-center">
+          <h6 class="card-title mb-9 fw-semibold">포스트 활동 성향</h6>
+          <div class="row align-items-center">
+            <div class="col-12">
+              <div class="d-flex justify-content-center align-items-center">
+                <h5 class="fw-semibold mb-3 me-2" style="color: #5D87FF;">{{influencer.am_pm}}</h5>
+                <h1 class="fw-semibold mb-3" style="color: #5D87FF;">{{influencer.avg_post_time}}</h1>
+                <h3 class="fw-semibold mb-3 me-2;">시</h3>
+              </div>
+              <p class="fs-1 mb-0">채널에 포스트가 게시되는 빈도가 </p>
+              <p class="fs-1 mb-0">가장 많은 시점을 파악할 수 있습니다</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <h3 class="col-lg-12">포스트 반응</h3>
+    <div class="col-lg-4"> <!-- 첫 번째 카드 -->
+      <div class="card overflow-hidden">
+        <div class="card-body p-4 text-center">
+          <h6 class="card-title mb-9 fw-semibold">평균 좋아요</h6>
+          <div class="row align-items-center">
+            <div class="col-12">
+              <div class="d-flex justify-content-center align-items-center">
+                <h1 class="fw-semibold mb-3 me-2" style="color: #5D87FF;">{{influencer.avg_goods}}</h1>
+                <h1 class="fw-semibold mb-3">개</h1>
+              </div>
+              <p class="fs-1 mb-0">최근 3개월간 포스트를 기준으로 계산한</p>
+              <p class="fs-1 mb-0"> 포스트 1개에 대한 평균좋아요수를 나타내는 지표입니다</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4"> <!-- 두 번째 카드 -->
+      <div class="card overflow-hidden">
+        <div class="card-body p-4 text-center">
+          <h6 class="card-title mb-9 fw-semibold">평균 댓글</h6>
+          <div class="row align-items-center">
+            <div class="col-12">
+              <div class="d-flex justify-content-center align-items-center">
+                <h1 class="fw-semibold mb-3 me-2" style="color: #5D87FF;">{{influencer.avg_comments}}</h1>
+                <h1 class="fw-semibold mb-3">개</h1>
+              </div>
+              <p class="fs-1 mb-0">최근 3개월간 포스트를 기준으로 계산한</p>
+              <p class="fs-1 mb-0">포스트 1개에 대한 평균댓글수를 나타내는 지표입니다</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4"> <!-- 세 번째 카드 -->
+      <div class="card overflow-hidden">
+        <div class="card-body p-4 text-center">
+          <h6 class="card-title mb-9 fw-semibold">댓글/좋아요 비율</h6>
+          <div class="row align-items-center">
+            <div class="col-12">
+              <div class="d-flex justify-content-center align-items-center">
+                <h1 class="fw-semibold mb-3 me-2" style="color: #5D87FF;">{{influencer.comments_percent}}</h1>
+                <h1 class="fw-semibold mb-3">%</h1>
+              </div>
+              <p class="fs-1 mb-0">어떤 인플루언서들은 좋아요를 구매하는 경우가 있으므로</p>
+              <p class="fs-1 mb-0">비율이 낮은 경우 의심해 볼 수 있는 지표로 사용될 수 있습니다</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-4 d-flex align-items-stretch" style="height: 320px;">
+      <div class="card w-100">
+        <div class="card-body p-4 text-center">
+          <div class="mb-4">
+            <h5 class="card-title fw-semibold">포스트 태그</h5>
+          </div>
+          <div id="chartkey"></div>
+          <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+          <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+          <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+          <script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>
+          <script src="path/to/jquery.js"></script>
+          <script src="path/to/anychart-bundle.min.js"></script>
+          <script src="path/to/am5.js"></script>
+          <script src="path/to/am5themes_animated.js"></script>
+          <script src="path/to/am5themes_dark.js"></script>
+          <script>
+            anychart.onDocumentReady(function () {
+            var data = [
+            {
+              "x": "{{first_keywords.words}}",
+              "value": {{first_keywords.weights}}
+            },
+            {
+              "x": "{{second_keywords.words}}",
+              "value": {{second_keywords.weights}}
+            },
+            {
+              "x": "{{third_keywords.words}}",
+              "value": {{third_keywords.weights}}
+            },
+            {
+              "x": "{{forth_keywords.words}}",
+              "value": {{forth_keywords.weights}}
+            }, {
+              "x": "{{fifth_keywords.words}}",
+              "value": {{fifth_keywords.weights}}
+            }, {
+              "x": "{{sixth_keywords.words}}",
+              "value": {{sixth_keywords.weights}}
+            }
+            ];
+            var chart = anychart.tagCloud(data);
+            chart.angles([0]);
+            chart.container("chartkey");
+            // chart.getCredits().setEnabled(false);
+            chart.listen("pointClick", function(e){
+              console.log(e.point.get("x"),'{{ influencer.username }}');
+
+              var keyword = e.point.get("x");
+              $.ajax({
+                url : '/serve-word2vec-model/', //
+                type : 'post',
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                data : JSON.stringify({
+                  keyword : keyword,
+                  user_id : '{{ influencer.username }}'
+                }),
+                success: function(data){
+                  console.log(JSON.stringify(data.similar_words))
+                  console.log(data.first)
+                  var children = [];
+                  var first_children = [];
+                  var second_children = [];
+                  var third_children = [];
+                  var fourth_children = [];
+                  var fifth_children = [];
+                  data.similar_words.forEach(item=>{
+                    var obj = {name:item[0],value:70};
+                    children.push(obj);
+                  });
+                  data.first.forEach(item=>{
+                    var firstobj = {name:item[0],value:40};
+                    first_children.push(firstobj);
+                  });
+                  data.second.forEach(item=>{
+                    var secondobj = {name:item[0],value:40};
+                    second_children.push(secondobj);
+                  });
+                  data.third.forEach(item=>{
+                    var thirdobj = {name:item[0],value:40};
+                    third_children.push(thirdobj);
+                  });
+                  data.fourth.forEach(item=>{
+                    var fourthobj = {name:item[0],value:40};
+                    fourth_children.push(fourthobj);
+                  });
+                  data.fifth.forEach(item=>{
+                    var fifthobj = {name:item[0],value:40};
+                    fifth_children.push(fifthobj);
+                  });
+
+                  fifth_children[2].value=10;
+
+
+                  children[0].children=first_children;
+                  children[1].children=second_children;
+                  children[2].children=third_children;
+                  children[3].children=fourth_children;
+                  children[4].children=fifth_children;
+
+                  var newData = {
+                      name: keyword,
+                      value:100,
+                      children: children
                   };
-              
-                  // temp variable to store series instance
-                  var series;
-              
-                  // create Florida series with mapped data
-                  series = chart.bar(floridaData);
-                  setupSeriesLabels(series, '사진/비디오');
-              
-                  // create Texas series with mapped data
-                  series = chart.bar(texasData);
-                  setupSeriesLabels(series, '릴스');
-              
-                  chart.interactivity().hoverMode('by-x');
-              
-                  chart.tooltip().displayMode('union').valuePrefix('%');
-                  chart.xAxis(0).enabled(false);
-                  chart.yAxis(0).enabled(false);
-              
-                 
-                  chart.legend().enabled(false)
-                  chart.height(50);
-                  chart.palette(['#5D87FF','#49BEFF']);
-                  // set container id for the chart
-                  chart.container('container');
-                  // initiate chart drawing
-                  chart.draw();
-                });
-              </script>
-              
-                <div class="row align-items-center">
-                  <div class="col-12">
-                    <div class="align-items-center">
-                        <span class="round-8 bg-primary rounded-circle me-2 d-inline-block"></span>
-                        <span class="fs-2">사진/비디오 </span>
-                        <span class="round-8 bg-secondary rounded-circle me-2 d-inline-block"></span>
-                        <span class="fs-2">릴스</span>
-                    </div>
-                    <p class="fs-1 mb-0">채널에 게시된 포스트의 구성을 유형별로 파악할 수 있습니다.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3"> <!-- 두 번째 카드 -->
-            <div class="card overflow-hidden">
-              <div class="card-body p-4 text-center">
-                <h6 class="card-title mb-9 fw-semibold">주 평균 포스팅 현황</h6>
-                <div class="row align-items-center">
-                  <div class="col-12">
-                    <div class="d-flex justify-content-center align-items-center">
-                      <h1 class="fw-semibold mb-3 me-2" style="color: #5D87FF;">{{influencer.week_avg_post}}</h1>
-                      <h3 class="fw-semibold mb-3">개/주</h3>
-                    </div>
-                    <p class="fs-1 mb-0">채널이 포스트를 게시하는 주 평균 횟수를</p>
-                    <p class="fs-1 mb-0">파악할 수 있습니다</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3"> <!-- 세 번째 카드 -->
-            <div class="card overflow-hidden">
-              <div class="card-body p-4 text-center">
-                <h6 class="card-title mb-9 fw-semibold">포스트 활동 성향</h6>
-                <div class="row align-items-center">
-                  <div class="col-12">
-                    <div class="d-flex justify-content-center align-items-center">
-                      <h5 class="fw-semibold mb-3 me-2" style="color: #5D87FF;">{{influencer.am_pm}}</h5>
-                      <h1 class="fw-semibold mb-3" style="color: #5D87FF;">{{influencer.avg_post_time}}</h1>
-                      <h3 class="fw-semibold mb-3 me-2;">시</h3>  
-                    </div>
-                    <p class="fs-1 mb-0">채널에 포스트가 게시되는 빈도가 </p>
-                    <p class="fs-1 mb-0">가장 많은 시점을 파악할 수 있습니다</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <h3 class="col-lg-12">포스트 반응</h3>
-          <div class="col-lg-4"> <!-- 첫 번째 카드 -->
-            <div class="card overflow-hidden">
-              <div class="card-body p-4 text-center">
-                <h6 class="card-title mb-9 fw-semibold">평균 좋아요</h6>
-                <div class="row align-items-center">
-                  <div class="col-12">
-                    <div class="d-flex justify-content-center align-items-center">
-                      <h1 class="fw-semibold mb-3 me-2" style="color: #5D87FF;">{{influencer.avg_goods}}</h1>
-                      <h1 class="fw-semibold mb-3">개</h1>
-                    </div>
-                    <p class="fs-1 mb-0">최근 3개월간 포스트를 기준으로 계산한</p>
-                    <p class="fs-1 mb-0"> 포스트 1개에 대한 평균좋아요수를 나타내는 지표입니다</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4"> <!-- 두 번째 카드 -->
-            <div class="card overflow-hidden">
-              <div class="card-body p-4 text-center">
-                <h6 class="card-title mb-9 fw-semibold">평균 댓글</h6>
-                <div class="row align-items-center">
-                  <div class="col-12">
-                    <div class="d-flex justify-content-center align-items-center">
-                      <h1 class="fw-semibold mb-3 me-2" style="color: #5D87FF;">{{influencer.avg_comments}}</h1>
-                      <h1 class="fw-semibold mb-3">개</h1>
-                    </div>
-                    <p class="fs-1 mb-0">최근 3개월간 포스트를 기준으로 계산한</p>
-                    <p class="fs-1 mb-0">포스트 1개에 대한 평균댓글수를 나타내는 지표입니다</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4"> <!-- 세 번째 카드 -->
-            <div class="card overflow-hidden">
-              <div class="card-body p-4 text-center">
-                <h6 class="card-title mb-9 fw-semibold">댓글/좋아요 비율</h6>
-                <div class="row align-items-center">
-                  <div class="col-12">
-                    <div class="d-flex justify-content-center align-items-center">
-                      <h1 class="fw-semibold mb-3 me-2" style="color: #5D87FF;">{{influencer.comments_percent}}</h1>
-                      <h1 class="fw-semibold mb-3">%</h1>
-                    </div>
-                    <p class="fs-1 mb-0">어떤 인플루언서들은 좋아요를 구매하는 경우가 있으므로</p>
-                    <p class="fs-1 mb-0">비율이 낮은 경우 의심해 볼 수 있는 지표로 사용될 수 있습니다</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="row">
-          <div class="col-lg-4 d-flex align-items-stretch" style="height: 300px;">
-            <div class="card w-100">
-              <div class="card-body p-4 text-center">
-                <div class="mb-4">
-                  <h5 class="card-title fw-semibold">포스트 태그</h5>
-                </div>
-                <div id="chartkey"></div>
-
-                <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
-                <script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>
-                <script>
-
-                  anychart.onDocumentReady(function () {
-                  var data = [
-                  {
-                    "x": "{{first_keywords.words}}",
-                    "value": {{first_keywords.weights}}
-                  },
-                  {
-                    "x": "{{second_keywords.words}}",
-                    "value": {{second_keywords.weights}}
-                  },
-                  {
-                    "x": "{{third_keywords.words}}",
-                    "value": {{third_keywords.weights}}
-                  },
-                  {
-                    "x": "{{forth_keywords.words}}",
-                    "value": {{forth_keywords.weights}}
-                  }, {
-                    "x": "{{fifth_keywords.words}}",
-                    "value": {{fifth_keywords.weights}}
-                  }, {
-                    "x": "{{sixth_keywords.words}}",
-                    "value": {{sixth_keywords.weights}}
-                  }
-                  ];
-                  var chart = anychart.tagCloud(data);
-                  chart.angles([0]);
-                  chart.container("chartkey");
-                  // chart.getCredits().setEnabled(false);
-                  chart.listen("pointClick", function(e){
-                    console.log(e.point.get("x"),'{{ user.instagram_id }}');
-
-                    var keyword = e.point.get("x");
-                    $.ajax({
-                      url : '/serve-word2vec-model/', //
-                      type : 'post',
-                      dataType: 'json',
-                      contentType: 'application/json; charset=utf-8',
-                      data : JSON.stringify({
-                        keyword : keyword,
-                        user_id : '{{ user.instagram_id }}'
-                      }),
-                      success: function(data){
-                        console.log(JSON.stringify(data.similar_words))
-                        console.log(data.first)
-                        var children = [];
-                        var first_children = [];
-                        var second_children = [];
-                        var third_children = [];
-                        var fourth_children = [];
-                        var fifth_children = [];
-                        data.similar_words.forEach(item=>{
-                          var obj = {name:item[0],value:item[1]};
-                          children.push(obj);
-                        });
-                        data.first.forEach(item=>{
-                          var firstobj = {name:item[0],value:item[1]};
-                          first_children.push(firstobj);
-                        });
-                        data.second.forEach(item=>{
-                          var secondobj = {name:item[0],value:item[1]};
-                          second_children.push(secondobj);
-                        });
-                        data.third.forEach(item=>{
-                          var thirdobj = {name:item[0],value:item[1]};
-                          third_children.push(thirdobj);
-                        });
-                        data.fourth.forEach(item=>{
-                          var fourthobj = {name:item[0],value:item[1]};
-                          fourth_children.push(fourthobj);
-                        });
-                        data.fifth.forEach(item=>{
-                          var fifthobj = {name:item[0],value:item[1]};
-                          fifth_children.push(fifthobj);
-                        });
+                  console.log(newData)
 
 
-                        children[0].children=first_children;
-                        children[1].children=second_children;
-                        children[2].children=third_children;
-                        children[3].children=fourth_children;
-                        children[4].children=fifth_children;
+                // Update or recreate the existing series
+                if (typeof series === 'undefined') {
+                    var root = am5.Root.new("chartdiv");
+                    root.setThemes([
+                        am5themes_Animated.new(root)
+                    ]);
 
-                        var newData = {
-                          children: [
-                            {
-                              name: keyword,
-                              children: children
-                            }
-                          ]
-                        };
+                    var container = root.container.children.push(am5.Container.new(root, {
+                        width: am5.percent(100),
+                        height: am5.percent(100),
+                        layout: root.verticalLayout
+                    }));
+                    
 
+                    series = container.children.push(am5hierarchy.ForceDirected.new(root, {
+                      singleBranchOnly: false,
+                      downDepth: 1,
+                      initialDepth: 2,
+                      valueField: "value",
+                      categoryField: "name",
+                      childDataField: "children",
+                      centerStrength: 1           
+                      }));
 
-                      // Update or recreate the existing series
-                      if (typeof series === 'undefined') {
-                          var root = am5.Root.new("chartdiv");
-                          root.setThemes([
-                              am5themes_Animated.new(root)
-                          ]);
-
-                          var container = root.container.children.push(am5.Container.new(root, {
-                              width: am5.percent(100),
-                              height: am5.percent(100),
-                              layout: root.verticalLayout
-                          }));
-                          
-
-                          series = container.children.push(am5hierarchy.ForceDirected.new(root, {
-                              singleBranchOnly: false,
-                              downDepth: 2,
-                              topDepth: 1,
-                              initialDepth: 1,
-                              valueField: "value",
-                              categoryField: "name",
-                              childDataField: "children",
-                              idField: "name",
-                              linkWithField: "linkWith",
-                              manyBodyStrength: -1,
-                              centerStrength: 0.1 ,     
-                              valueField: "value",
-                              categoryField: "name",
-                              childDataField: "children",
-                              minRadius: 17,
-                              maxRadius: am5.percent(10),
-                              nodePadding: 5,
-                              colorField: "color"            
-                            }));
-  
-                          series.labels.template.setAll({
-                              fontSize: 14
-                          });
-  
-                          series.get("colors").setAll({
-                              step: 2
-                          });
-  
-                          series.links.template.set("strength", 0.5);
-  
-                          series.data.setAll([newData]);
-  
-                          series.set("selectedDataItem", series.dataItems[0]);
-  
-                          series.appear(1000, 100);
-
-                          
-                      } else {
-                          // Update existing series data
-                          series.data.setAll([newData]);
-  
-                          // Optionally, trigger animations or updates here
-                          series.appear(1000, 100);
-                      }
-
-                      
-                      
-                      }
-                      
-                      });
-                      
-                      });
-                      
-                      chart.draw();
+                    series.labels.template.setAll({
+                        fontSize: 14
                     });
+
+                    series.get("colors").setAll({
+                        step: 2
+                    });
+
+                    series.links.template.set("strength", 0.5);
+
+                    series.data.setAll([newData]);
+
+                    series.set("selectedDataItem", series.dataItems[0]);
+
+                    series.appear(1000, 100);
+
+                    
+                } else {
+                    // Update existing series data
+                    series.data.setAll([newData]);
+
+                    // Optionally, trigger animations or updates here
+                    series.appear(1000, 100);
+                }
+
                 
-              </script>
-            
-            </div>
-          </div>
-        </div>
+                
+                }
+                
+                });
+                
+                });
+                
+                chart.draw();
+              });
+          
+        </script>
+      
+      </div>
+    </div>
+  </div>
 
-        <div class="col-lg-8 d-flex align-items-stretch" style="height: 300px;">
-          <div class="card w-100">
-            <div class="card-body p-4 text-center">
-              <h5 class="card-title fw-semibold mb-4">분석 제목 미정</h5>
-            </div>
-            <div id="chartdiv"></div>
+  <div class="col-lg-8 d-flex align-items-stretch" style="height: 320px;">
+    <div class="card w-100">
+      <div class="card-body p-4 text-center">
+        <h5 class="card-title fw-semibold mb-4">같이 사용한 단어</h5>
+      </div>
+      <div id="chartdiv"></div>
 
-            <style>
-              #chartdiv {
-                width: 100%;
-                max-width: 100%;
-                height: 350px;
-              }
-            </style>
-              
-            <!-- Resources -->
-            <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
-            <script src="https://cdn.amcharts.com/lib/5/hierarchy.js"></script>
-            <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+      <style>
+        #chartdiv {
+          width: 100%;
+          max-width: 100%;
+          height: 350px;
+        }
+      </style>
+        
+      <!-- Resources -->
+      <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+      <script src="https://cdn.amcharts.com/lib/5/hierarchy.js"></script>
+      <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
 
-            </div>
-          </div>
-        </div>
+      </div>
+    </div>
+  </div>
 
-        <!-- Resources -->
-        <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
 
         <div class="row">
           <div class="col-lg-4 d-flex align-items-stretch">
@@ -759,4 +754,5 @@
             </div>
           </div>
         </div>
-      {% endblock %}
+</div>
+{% endblock %}
