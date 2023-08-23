@@ -88,22 +88,70 @@
 
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav scroll-sidebar" data-simplebar="" style="padding: 0 1em;">
-          <ul id="sidebarnav">
+          <ul id="sidebarnav" style="text-align: center;">
             <li class="sidebar-item" style="text-align: center;">
 
               <!-- 인스타그램 프로필 사진 -->
-              <a href="javascript:void(0)" class="profile" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
-                  <img src="{% static 'img/profile/user-1.jpg' %}" alt="" width="30" height="30" class="rounded-circle" style="margin-bottom: 10px; margin-top: 100px;">
+              <a href="javascript:void(0)" class="profile" id="drop2" data-bs-toggle="dropdown" aria-expanded="false" style="display: flex; flex-direction: column; align-items: center;">
+                  <img src="{{company_influencers_list.0.profile_url}}" alt="" width="30" height="30" class="rounded-circle" style="margin-top: 50px;">
+                  <h6 class="fw-semibold mb-0 fs-1">{{company_influencers_list.0.username}}</h6>
               </a>
-              <a href="javascript:void(0)" class="profile" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="{% static 'img/profile/user-1.jpg' %}" alt="" width="30" height="30" class="rounded-circle" style="margin-bottom: 10px; margin-top: 36px;">
-            </a>
-            <a href="javascript:void(0)" class="profile" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
-              <img src="{% static 'img/profile/user-1.jpg' %}" alt="" width="30" height="30" class="rounded-circle" style="margin-bottom: 10px; margin-top: 36px;">
+              <script>
+                const profileLinks = document.querySelectorAll(".profile");
+            
+                profileLinks.forEach(link => {
+                    link.addEventListener("click", function() {
+                        const username = "{{ company_influencers_list.0.username }}";
+                        const newUrl = `/DetailedAnalysis?username=${username}`;
+                        window.location.href = newUrl;
+                    });
+                });
+            </script>   
+            <a href="javascript:void(0)" class="profile2" id="drop2" data-bs-toggle="dropdown" aria-expanded="false" style="display: flex; flex-direction: column; align-items: center;">
+                  <img src="{{company_influencers_list.1.profile_url}}" alt="" width="30" height="30" class="rounded-circle" style="margin-top: 50px;">
+                  <h6 class="fw-semibold mb-0 fs-1">{{company_influencers_list.1.username}}</h6>
+              </a>
+              <script>
+                const profileLinks2 = document.querySelectorAll(".profile2");
+            
+                profileLinks2.forEach(link => {
+                    link.addEventListener("click", function() {
+                        const username = "{{ company_influencers_list.1.username }}";
+                        const newUrl = `/DetailedAnalysis?username=${username}`;
+                        window.location.href = newUrl;
+                    });
+                });
+            </script> 
+            <a href="javascript:void(0)" class="profile3" id="drop2" data-bs-toggle="dropdown" aria-expanded="false" style="display: flex; flex-direction: column; align-items: center;">
+              <img src="{{company_influencers_list.2.profile_url}}" alt="" width="30" height="30" class="rounded-circle" style="margin-top: 50px;">
+              <h6 class="fw-semibold mb-0 fs-1">{{company_influencers_list.2.username}}</h6>
           </a>
-          <a href="javascript:void(0)" class="profile" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="{% static 'img/profile/user-1.jpg' %}" alt="" width="30" height="30" class="rounded-circle" style="margin-bottom: 10px; margin-top: 36px;">
-        </a>
+          <script>
+            const profileLinks3 = document.querySelectorAll(".profile3");
+        
+            profileLinks3.forEach(link => {
+                link.addEventListener("click", function() {
+                    const username = "{{ company_influencers_list.2.username }}";
+                    const newUrl = `/DetailedAnalysis?username=${username}`;
+                    window.location.href = newUrl;
+                });
+            });
+        </script>
+        <a href="javascript:void(0)" class="profile4" id="drop2" data-bs-toggle="dropdown" aria-expanded="false" style="display: flex; flex-direction: column; align-items: center;">
+          <img src="{{company_influencers_list.3.profile_url}}" alt="" width="30" height="30" class="rounded-circle" style="margin-top: 50px;">
+          <h6 class="fw-semibold mb-0 fs-1">{{company_influencers_list.3.username}}</h6>
+      </a>
+      <script>
+        const profileLinks4 = document.querySelectorAll(".profile4");
+    
+        profileLinks4.forEach(link => {
+            link.addEventListener("click", function() {
+                const username = "{{ company_influencers_list.3.username }}";
+                const newUrl = `/DetailedAnalysis?username=${username}`;
+                window.location.href = newUrl;
+            });
+        });
+    </script>
           </ul>
         </nav>
         <!-- End Sidebar navigation -->
@@ -124,7 +172,10 @@
         <a class="nav-link nav-icon-hover" href="/AgencyHome">홈</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link nav-icon-hover" href="" title="소속 인플루언서들을 시각적으로 자세히 분석해드립니다." style="color: #5D87FF;">상세 분석</a>
+        <a class="nav-link nav-icon-hover" href="" style="color: #5D87FF;">인플루언서 정보</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link nav-icon-hover" href="/DetailedAnalysisChart" title="소속 인플루언서들을 시각적으로 자세히 분석해드립니다.">상세 분석</a>
       </li>
       <li class="nav-item">
         <a class="nav-link nav-icon-hover" href="/notice-manage" title="모집공고 글을 작성, 수정 또는 삭제합니다.">모집공고 관리</a>
@@ -309,7 +360,6 @@
 <script src="{% static 'js/dashboard.js' %}"></script>
 
 <!-- 부트스트랩 JavaScript 및 jQuery 라이브러리 불러오기 -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>

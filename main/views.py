@@ -32,7 +32,7 @@ def serve_word2vec_model(request):
     
     # 모델 로드
     # 자기 경로 찾아서 입력!!!!
-    model = Word2Vec.load('C:\\DjangoServer\\main\\static\\model\\'+user_id+'.model')  # 경로 구분자를 슬래시(/)로 사용하거나 역슬래시(\) 2개를 사용해야 함
+    model = Word2Vec.load('C:\\DjangoServer\\MA\main\\static\\model\\'+user_id+'.model')  # 경로 구분자를 슬래시(/)로 사용하거나 역슬래시(\) 2개를 사용해야 함
     
     # 관련된 단어 찾기
     similar_words = model.wv.most_similar(keyword, topn=5)
@@ -236,46 +236,43 @@ def ComparisonAnalysis(request):
 
     return render(request, "first-index.html")
 
-def Belong_Influ(request): #DetailedComparison 이었던 것..
-    # 로그인한 사용자의 아이디를 가져옵니다.
-    user_id = request.session.get('user_id', None)
-    logger.info(user_id)
+def DetailedAnalysis(request): #DetailedComparison 이었던 것..
+    user_id = request.session.get('user_id', None)  # 로그인된 사용자 아이디 가져오기
+    user_name = request.GET.get('username', None)
+    
     if user_id:
         try:
-            # 로그인한 사용자의 id로 User_adv 모델에서 해당 사용자의 정보를 가져옵니다.
+            # 로그인한 사용자의 아이디로 User_adv 모델에서 해당 사용자의 정보를 가져옵니다.
             user = User_adv.objects.get(id=user_id)
-            avg = Influencer.objects.get(company="회로의 챔피언들 평균")
-            logger.info(avg.adv_count)
-            # 로그인한 사용자의 company 값을 가져옵니다.
+            notices = Recruitment.objects.filter(agency=user)  # 해당 사용자의 공고 목록을 가져옵니다.
             user_company = user.company
-            # 로그인한 사용자의 아이디로 Influencer 모델에서 해당 사용자의 정보를 가져옵니다.
-            company_influencers_data = Influencer.objects.filter(company=user_company).values()   
-            company_influencers_list = list(company_influencers_data)  # QuerySet을 리스트로 변환
-            
-            company_influencers_avg_data = Influencer.objects.filter(company=user_company).annotate(
-                avg_media_count=Avg('media_count'),
-                avg_follower_count=Avg('followers_count'),
-                avg_follow_count=Avg('follows_count'),
-                avg_avg_comments=Avg('avg_comments'),
-                avg_avg_goods=Avg('avg_goods'),
-                avg_adv_count=Avg('adv_count'),
-                avg_week_avg_post=Avg('week_avg_post'),
-                avg_feed_percent=Avg('feed_percent'),
-                avg_reels_percent=Avg('reels_percent'),
-                avg_comments_percent=Avg('comments_percent'),
-                avg_goods_percent=Avg('goods_percent')
-            ).values()
-            company_influencers_avg_data = list(company_influencers_avg_data)  # QuerySet을 리스트로 변환
+            influencer = Influencer.objects.get(username=user_name)
+            company_influencers_data = Influencer.objects.filter(company=user_company).values()
+            company_influencers_list = list(company_influencers_data)
+            first_keywords = Keyword.objects.filter(username=user_name).first()
+            second_keywords = Keyword.objects.filter(username=user_name)[1]
+            third_keywords = Keyword.objects.filter(username=user_name)[2]
+            forth_keywords = Keyword.objects.filter(username=user_name)[3]
+            fifth_keywords = Keyword.objects.filter(username=user_name)[4]
+            sixth_keywords = Keyword.objects.filter(username=user_name).last()
 
-            return render(request, 'Belong_Influ.html', {'user': user, 'company_influencers_list': company_influencers_list,'avg':avg})
-
-        except (User_adv.DoesNotExist, Influencer.DoesNotExist):
+            hot_post1 = Hot_post.objects.filter(username=user_name)[0]
+            hot_post2 = Hot_post.objects.filter(username=user_name)[1]
+            hot_post3 = Hot_post.objects.filter(username=user_name)[2]
+            hot_post4 = Hot_post.objects.filter(username=user_name)[3]
+            return render(request, "DetailedAnalysis.html", {'user': user, 'notices': notices,'company_influencers_list':company_influencers_list, 'user_name':user_name,
+                                                            'influencer': influencer, 'first_keywords': first_keywords,
+                                                            'second_keywords': second_keywords, 'third_keywords': third_keywords, 'forth_keywords': forth_keywords,
+                                                            'fifth_keywords': fifth_keywords,'sixth_keywords': sixth_keywords, 'hot_post1': hot_post1,
+                                                            'hot_post2': hot_post2,'hot_post3': hot_post3,'hot_post4': hot_post4})
+        except User_adv.DoesNotExist:
             pass
+    
+    # 사용자가 로그인하지 않았거나 사용자 정보가 없는 경우 기본 템플릿을 렌더링합니다.
+    return render(request, "DetailedAnalysis.html")
 
-    return render(request, "first-index.html")
 
-
-def DetailedAnalysis(request):
+def DetailedAnalysisChart(request):
     # 로그인한 사용자의 아이디를 가져옵니다.
     user_id = request.session.get('user_id', None)
     logger.info(user_id)
@@ -290,7 +287,19 @@ def DetailedAnalysis(request):
             # 로그인한 사용자의 아이디로 Influencer 모델에서 해당 사용자의 정보를 가져옵니다.
             company_influencers_data = Influencer.objects.filter(company=user_company).values()   
             company_influencers_list = list(company_influencers_data)  # QuerySet을 리스트로 변환
-            
+            recruitment_queryset = Recruitment.objects.filter(agency_id=user_id)
+            logger.info(user)
+            influencer_queryset = Influencer.objects.filter(company=user.company)
+             # 데이터셋 개수 계산
+            recruitment_queryset_count = recruitment_queryset.count()
+            influencer_queryset_count = influencer_queryset.count()
+            context = {
+                'recruitment_queryset_count': recruitment_queryset_count,
+                'influencer_queryset_count': influencer_queryset_count,
+                'user': user,  # 'user' 정보도 context에 추가
+                'company_influencers_list': company_influencers_list,
+                'avg': avg
+            }
             company_influencers_avg_data = Influencer.objects.filter(company=user_company).annotate(
                 avg_media_count=Avg('media_count'),
                 avg_follower_count=Avg('followers_count'),
@@ -305,11 +314,8 @@ def DetailedAnalysis(request):
                 avg_goods_percent=Avg('goods_percent')
             ).values()
             company_influencers_avg_data = list(company_influencers_avg_data)  # QuerySet을 리스트로 변환
-            
-            user_client = user.client
-            user_campaign_progress = user.campaign_progress
 
-            return render(request, 'DetailedAnalysis.html', {'user': user, 'company_influencers_list': company_influencers_list,'company_influencers_avg_data':company_influencers_avg_data,'user_client': user_client,'user_campaign_progress': user_campaign_progress,})
+            return render(request, 'DetailedAnalysisChart.html', context)
 
         except (User_adv.DoesNotExist, Influencer.DoesNotExist):
             pass
