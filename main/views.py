@@ -32,7 +32,7 @@ def serve_word2vec_model(request):
     
     # 모델 로드
     # 자기 경로 찾아서 입력!!!!
-    model = Word2Vec.load('C:\\DjangoServer\\MA\\main\\static\\model\\'+user_id+'.model')  # 경로 구분자를 슬래시(/)로 사용하거나 역슬래시(\) 2개를 사용해야 함
+    model = Word2Vec.load('C:\\DjangoServer\\main\\static\\model\\'+user_id+'.model')  # 경로 구분자를 슬래시(/)로 사용하거나 역슬래시(\) 2개를 사용해야 함
     
     # 관련된 단어 찾기
     similar_words = model.wv.most_similar(keyword, topn=5)
@@ -105,20 +105,22 @@ def AgencyHome(request):
             # 로그인한 사용자의 아이디로 User_adv 모델에서 해당 사용자의 정보를 가져옵니다.
             user = User_adv.objects.get(id=user_id)
             logger.info(user.business)
-            company_influencers = list(Influencer.objects.filter(company=user.company))
             
             user_company = user.company
-            # 로그인한 사용자의 아이디로 Influencer 모델에서 해당 사용자의 정보를 가져옵니다.
-            company_influencers_data = Influencer.objects.filter(company=user_company).values()   
-            company_influencers_list = list(company_influencers_data)  # QuerySet을 리스트로 변환
-            print(company_influencers_list)
+            company_influencers_data = Influencer.objects.filter(company=user_company).values()
+            company_influencers_list = list(company_influencers_data)
+            matching_posts = []
+            for influencer_data in company_influencers_data:
+                recent_adv = influencer_data['recent_adv']  # recent_adv 값 가져오기
+
+                try:
+                    matching_post = Post_master.objects.get(post_id=recent_adv)
+                    matching_posts.append(matching_post)
+                except Post_master.DoesNotExist:
+                    pass  # 일치하는 데이터가 없을 경우 건너뜁니다
             
-            matching_post_data = Post_master.objects.filter(post_id__in=[influencer['recent_adv'] for influencer in company_influencers_list]).values()
-            matching_post_data_list = list(matching_post_data)
-            print(matching_post_data_list)
-            
-            
-            return render(request, 'AgencyHome.html', {'user': user, 'company_influencers': company_influencers,'company_influencers_list': company_influencers_list,'matching_post_data_list': matching_post_data_list})
+            return render(request, 'AgencyHome.html', {'user': user, 'company_influencers_list': company_influencers_list,'matching_post':matching_post,'matching_posts':matching_posts
+                                                       })
         except (User_adv.DoesNotExist):
             pass
     

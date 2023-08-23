@@ -37,7 +37,7 @@
                         <h5 class="card-title fw-semibold mb-4">소속 인플루언서</h5>
                         <div class="table-responsive">
                             <table class="table text-nowrap mb-0 align-middle">
-                                <thead class="text-dark fs-4">
+                                <thead class="text-dark fs-4" >
                                     <tr>
                                         <th class="border-bottom-1">
                                             <h6 class="fw-semibold mb-0">프로필</h6>
@@ -48,53 +48,211 @@
                                         <th class="border-bottom-1">
                                             <h6 class="fw-semibold mb-0">기본 정보</h6>
                                         </th>
+                                        <th class="border-bottom-1  ">
+                                            <h6 class="fw-semibold mb-0">팔로워 대비 반응도</h6>
+                                        </th>
                                         <th class="border-bottom-1">
-                                            <h6 class="fw-semibold mb-0">참여도(미디언스 EGR 느낌)</h6>
+                                          <h6 class="fw-semibold mb-0">카테고리 내 반응도</h6>
                                         </th>
                                         <th class="border-bottom-1">
                                             <h6 class="fw-semibold mb-0">최신 광고글</h6>
                                         </th>
                                     </tr>
                                 </thead>
+                                
                                 <tbody>
-                                    {% for influencer in company_influencers_list %}
-                                    <tr id="clickableRow" data-href="/Belong_Influ">
-                                        <td class="border-bottom-1"><a href="javascript:void(0)" class="profile" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
-                                          <img src="{{influencer.profile_url}}" alt="" width="30" height="30" class="rounded-circle" >
-                                      </a></td>
-                                        <td class="border-bottom-1">
-                                            <h6 class="fw-semibold mb-1">{{ influencer.username }}</h6>
-                                        </td>
-                                        <td class="border-bottom-1">
-                                          <p class="mb-0 fw-normal">팔로워: {{ influencer.followers_count }}</p>
-                                          <p class="mb-0 fw-normal">팔로우: {{ influencer.follows_count }}</p>
-                                      </td>
-                                        <td class="border-bottom-1">
-                                            <div class="d-flex align-items-center gap-2">
-                                                <span class="badge bg-primary rounded-3 fw-semibold">Low</span>
-                                            </div>
-                                        </td>
+                                  <tr id="clickableRow" data-href="/Belong-Influ">
+                                    <td class="border-bottom-1"><h6 class="fw-semibold mb-0"><a href="javascript:void(0)" class="profile" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
+                                      <img src="{{company_influencers_list.0.profile_url}}" alt="" width="30" height="30" class="rounded-circle" ">
+                                  </a></h6></td>
+                                    <td class="border-bottom-1">
+                                        <h6 class="fw-semibold mb-1">{{company_influencers_list.0.username}}</h6>                        
+                                    </td>
+                                    <td class="border-bottom-1">
+                                      <p class="mb-0 fw-normal">팔로워: {{company_influencers_list.0.followers_count}}</p>
+                                      <p class="mb-0 fw-normal">팔로우: {{company_influencers_list.0.follows_count}}</p>
+                                    </td>
+                                    <td class="border-bottom-1">
+                                      <div class="d-flex align-items-center gap-2">
+                                        <span class="badge bg-primary rounded-3 fw-semibold">Low</span>
+                                      </div>
+                                    </td>
+                                    <td class="border-bottom-1">
+                                      <div class="d-flex align-items-center gap-2">
+                                        <span class="badge bg-primary rounded-3 fw-semibold">Low</span>
+                                      </div>
+                                    </td>
+                                    <td class="border-bottom-1">
+                                        <p class="mb-0 fw-normal">좋아요: {{matching_posts.0.like_count}}</p>
+                                        <p class="mb-0 fw-normal">댓글: {{matching_posts.0.comments_count}}</p>
+                                      </h6>
+                                    </td>
+                                  </tr> 
+            
+                                  <script>
+                                    // 특정 tr 요소를 클릭할 때 이벤트 리스너를 호출하는 함수
+                                    function redirectToPage(event) {
+                                        // tr 요소의 data-href 속성에서 목표 페이지의 URL을 가져옵니다.
+                                        const targetUrl = document.getElementById("clickableRow").getAttribute("data-href");
                                         
-                                        <td class="border-bottom-1">
-                                            <h6 class="fw-semibold mb-0 fs-4">좋아요: {{influencer.like_count}}</h6>
-                                            <h6 class="fw-semibold mb-0 fs-4">댓글수: {{influencer.comments_count}}</h6>
-                                        </td>
-                                    </tr>
-                                    {% endfor %}
-                                    <script>
-                                      // 특정 tr 요소를 클릭할 때 이벤트 리스너를 호출하는 함수
-                                      function redirectToPage(event) {
-                                          // tr 요소의 data-href 속성에서 목표 페이지의 URL을 가져옵니다.
-                                          const targetUrl = document.getElementById("clickableRow").getAttribute("data-href");
-                              
-                                          // 목표 페이지로 이동합니다.
-                                          window.location.href = targetUrl;
-                                      }
-                              
-                                      // 특정 tr 요소에 클릭 이벤트 리스너를 추가합니다.
-                                      const clickableRow = document.getElementById("clickableRow");
-                                      clickableRow.addEventListener("click", redirectToPage);
+                                        // company_influencers_list.0.username 값을 가져옵니다.
+                                        const username = "{{ company_influencers_list.0.username }}";
+                                        
+                                        // 목표 페이지 URL에 username을 파라미터로 추가합니다.
+                                        const finalUrl = targetUrl + "?username=" + encodeURIComponent(username);
+                                        
+                                        // 목표 페이지로 이동합니다.
+                                        window.location.href = finalUrl;
+                                    }
+                                    
+                                    // 특정 tr 요소에 클릭 이벤트 리스너를 추가합니다.
+                                    const clickableRow = document.getElementById("clickableRow");
+                                    clickableRow.addEventListener("click", redirectToPage);
                                   </script>
+                                
+                                <tr id="clickableRow2" data-href="/DetailedAnalysis">
+                                    <td class="border-bottom-1"><h6 class="fw-semibold mb-0"><a href="javascript:void(0)" class="profile" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
+                                      <img src="{{company_influencers_list.1.profile_url}}" alt="" width="30" height="30" class="rounded-circle" ">
+                                  </a></h6></td>
+                                    <td class="border-bottom-1">
+                                        <h6 class="fw-semibold mb-1">{{company_influencers_list.1.username}}</h6>                       
+                                    </td>
+                                    <td class="border-bottom-1">
+                                      <p class="mb-0 fw-normal">팔로워:{{company_influencers_list.1.followers_count}} </p>
+                                      <p class="mb-0 fw-normal">팔로우: {{company_influencers_list.1.follows_count}}</p>
+                                    </td>
+                                    <td class="border-bottom-1">
+                                      <div class="d-flex align-items-center gap-2">
+                                        <span class="badge bg-danger rounded-3 fw-semibold">High</span>
+                                      </div>
+                                    </td>
+                                    <td class="border-bottom-1">
+                                      <div class="d-flex align-items-center gap-2">
+                                        <span class="badge bg-danger rounded-3 fw-semibold">High</span>
+                                      </div>
+                                    </td>
+                                    <td class="border-bottom-1">
+                                        <p class="mb-0 fw-normal">좋아요: {{matching_posts.1.like_count}}</p>
+                                        <p class="mb-0 fw-normal">댓글: {{matching_posts.1.comments_count}}</p>
+                                      </h6>
+                                    </td>
+                                  </tr> 
+                                  <script>
+                                    // 특정 tr 요소를 클릭할 때 이벤트 리스너를 호출하는 함수
+                                    function redirectToPage(event) {
+                                        // tr 요소의 data-href 속성에서 목표 페이지의 URL을 가져옵니다.
+                                        const targetUrl = document.getElementById("clickableRow2").getAttribute("data-href");
+                                        
+                                        // company_influencers_list.0.username 값을 가져옵니다.
+                                        const username = "{{ company_influencers_list.1.username }}";
+                                        
+                                        // 목표 페이지 URL에 username을 파라미터로 추가합니다.
+                                        const finalUrl = targetUrl + "?username=" + encodeURIComponent(username);
+                                        
+                                        // 목표 페이지로 이동합니다.
+                                        window.location.href = finalUrl;
+                                    }
+                                    
+                                    // 특정 tr 요소에 클릭 이벤트 리스너를 추가합니다.
+                                    const clickableRow2 = document.getElementById("clickableRow2");
+                                    clickableRow2.addEventListener("click", redirectToPage);
+                                  </script>
+                                  
+
+                                  <tr id="clickableRow3" data-href="/DetailedAnalysis">
+                                    <td class="border-bottom-1"><h6 class="fw-semibold mb-0"><a href="javascript:void(0)" class="profile" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
+                                      <img src="{{company_influencers_list.2.profile_url}}" alt="" width="30" height="30" class="rounded-circle" ">
+                                  </a></h6></td>
+                                    <td class="border-bottom-1">
+                                        <h6 class="fw-semibold mb-1">{{company_influencers_list.2.username}}</h6>                        
+                                    </td>
+                                    <td class="border-bottom-1">
+                                      <p class="mb-0 fw-normal">팔로워: {{company_influencers_list.2.followers_count}}</p>
+                                      <p class="mb-0 fw-normal">팔로우: {{company_influencers_list.2.follows_count}}</p>
+                                    </td>
+                                    <td class="border-bottom-1">
+                                      <div class="d-flex align-items-center gap-2">
+                                        <span class="badge bg-danger rounded-3 fw-semibold">High</span>
+                                      </div>
+                                    </td>
+                                    <td class="border-bottom-1">
+                                      <div class="d-flex align-items-center gap-2">
+                                        <span class="badge bg-danger rounded-3 fw-semibold">High</span>
+                                      </div>
+                                    </td>
+                                    <td class="border-bottom-1">
+                                        <p class="mb-0 fw-normal">좋아요: {{matching_posts.2.like_count}}</p>
+                                        <p class="mb-0 fw-normal">댓글: {{matching_posts.2.comments_count}}</p>
+                                      </h6>
+                                    </td>
+                                  </tr>      
+                                  <script>
+                                    // 특정 tr 요소를 클릭할 때 이벤트 리스너를 호출하는 함수
+                                    function redirectToPage(event) {
+                                        // tr 요소의 data-href 속성에서 목표 페이지의 URL을 가져옵니다.
+                                        const targetUrl = document.getElementById("clickableRow3").getAttribute("data-href");
+                                        
+                                        // company_influencers_list.0.username 값을 가져옵니다.
+                                        const username = "{{ company_influencers_list.2.username }}";
+                                        
+                                        // 목표 페이지 URL에 username을 파라미터로 추가합니다.
+                                        const finalUrl = targetUrl + "?username=" + encodeURIComponent(username);
+                                        
+                                        // 목표 페이지로 이동합니다.
+                                        window.location.href = finalUrl;
+                                    }
+                                    
+                                    // 특정 tr 요소에 클릭 이벤트 리스너를 추가합니다.
+                                    const clickableRow3 = document.getElementById("clickableRow3");
+                                    clickableRow3.addEventListener("click", redirectToPage);
+                                  </script>
+                                  
+                                  <tr id="clickableRow4" data-href="/DetailedAnalysis">
+                                    <td class="border-bottom-1"><h6 class="fw-semibold mb-0"><a href="javascript:void(0)" class="profile" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
+                                      <img src="{{company_influencers_list.3.profile_url}}" alt="" width="30" height="30" class="rounded-circle" ">
+                                  </a></h6></td>
+                                    <td class="border-bottom-1">
+                                        <h6 class="fw-semibold mb-1">{{company_influencers_list.3.username}}</h6>                        
+                                    </td>
+                                    <td class="border-bottom-1">
+                                      <p class="mb-0 fw-normal">팔로워: {{company_influencers_list.3.followers_count}}</p>
+                                      <p class="mb-0 fw-normal">팔로우: {{company_influencers_list.3.follows_count}}</p>
+                                    </td>
+                                    <td class="border-bottom-1">
+                                      <div class="d-flex align-items-center gap-2">
+                                        <span class="badge bg-secondary rounded-3 fw-semibold">Medium</span>
+                                      </div>
+                                    </td>
+                                    <td class="border-bottom-1">
+                                      <div class="d-flex align-items-center gap-2">
+                                        <span class="badge bg-secondary rounded-3 fw-semibold">Medium</span>
+                                      </div>
+                                    </td>
+                                    <td class="border-bottom-1">
+                                      <p class="mb-0 fw-normal">좋아요: {{matching_posts.3.like_count}}</p>
+                                      <p class="mb-0 fw-normal">댓글: {{matching_posts.3.comments_count}}</p>
+                                    </td>
+                                  </tr>    
+                                  <script>
+                                    // 특정 tr 요소를 클릭할 때 이벤트 리스너를 호출하는 함수
+                                    function redirectToPage(event) {
+                                        // tr 요소의 data-href 속성에서 목표 페이지의 URL을 가져옵니다.
+                                        const targetUrl = document.getElementById("clickableRow4").getAttribute("data-href");
+                                        
+                                        // company_influencers_list.0.username 값을 가져옵니다.
+                                        const username = "{{ company_influencers_list.3.username }}";
+                                        
+                                        // 목표 페이지 URL에 username을 파라미터로 추가합니다.
+                                        const finalUrl = targetUrl + "?username=" + encodeURIComponent(username);
+                                        
+                                        // 목표 페이지로 이동합니다.
+                                        window.location.href = finalUrl;
+                                    }
+                                    
+                                    // 특정 tr 요소에 클릭 이벤트 리스너를 추가합니다.
+                                    const clickableRow4 = document.getElementById("clickableRow4");
+                                    clickableRow4.addEventListener("click", redirectToPage);
+                                  </script>                 
                                 </tbody>
                             </table>
                         </div>
@@ -103,5 +261,4 @@
             </div>
         </div>
     </div>
-    
         {% endblock %}
