@@ -11,7 +11,7 @@
         <a class="nav-link nav-icon-hover" href="/AgencyHome">소속 목록</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link nav-icon-hover" href="/DetailedAnalysis">인플루언서 정보</a>
+        <a class="nav-link nav-icon-hover" href="/DetailedAnalysis/?username=b.saem">인플루언서 정보</a>
       </li>
       <li class="nav-item">
         <a class="nav-link nav-icon-hover" href="" title="소속 인플루언서들을 시각적으로 자세히 분석해드립니다." style="color: #5D87FF;">상세 분석</a>
@@ -37,10 +37,15 @@
     <h3>키워드 검색</h3>
     <form class="d-flex-s" role="search" method="GET">
       {% csrf_token %}
-      <input type="text" class="form-control me-2" autocomplete="off" name="q" placeholder="키워드를 입력하세요">
+      <input type="text" class="form-control me-2" autocomplete="off" name="q" placeholder="키워드를 입력하세요" style="margin-bottom: 0;">
       <img class="absolute" src="{% static 'img/#.png' %}">
-      <button class="btn btn-info" type="submit" style="width:auto;">검색</button>
+      <button class="btn btn-info" type="submit" style="width:auto;" onclick="showAlert()">검색</button>
     </form>
+    <script>
+      function showAlert() {
+          alert("구현 준비 중 입니다.");
+      }
+  </script>
   </div>
 
   <!--  Row 1 -->
@@ -174,69 +179,68 @@
   <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
   <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
   <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
-  
-  
-  
-  
+
   <!-- Chart code -->
   <script>
-  am5.ready(function() {
-  
-  // Create root element
-  // https://www.amcharts.com/docs/v5/getting-started/#Root_element
-  var root = am5.Root.new("chartdivz"); 
-  
-  
-  // Set themes
-  // https://www.amcharts.com/docs/v5/concepts/themes/
-  root.setThemes([
-    am5themes_Animated.new(root)
-  ]);
-  
-  
-  // Create chart
-  // https://www.amcharts.com/docs/v5/charts/percent-charts/sliced-chart/
-  var chart = root.container.children.push(am5percent.SlicedChart.new(root, {
-    layout: root.verticalLayout
-  }));
-  
-  
-  // Create series
-  // https://www.amcharts.com/docs/v5/charts/percent-charts/sliced-chart/#Series
-  var series = chart.series.push(am5percent.PyramidSeries.new(root, {
-    orientation: "vertical",
-    valueField: "value",
-    categoryField: "category"
-  }));
-  
-  
-  // Set data
-  // https://www.amcharts.com/docs/v5/charts/percent-charts/sliced-chart/#Setting_data
-  series.data.setAll([
+    am5.ready(function() {
+    
+    // Create root element
+    // https://www.amcharts.com/docs/v5/getting-started/#Root_element
+    var root = am5.Root.new("chartdivz"); 
+    
+    
+    // Set themes
+    // https://www.amcharts.com/docs/v5/concepts/themes/
+    root.setThemes([
+      am5themes_Animated.new(root)
+    ]);
+    
+    
+    // Create chart
+    // https://www.amcharts.com/docs/v5/charts/percent-charts/sliced-chart/
+    var chart = root.container.children.push(am5percent.SlicedChart.new(root, {
+      layout: root.verticalLayout
+    }));
+    
+    
+    // Create series
+    // https://www.amcharts.com/docs/v5/charts/percent-charts/sliced-chart/#Series
+    var series = chart.series.push(am5percent.PyramidSeries.new(root, {
+      orientation: "vertical",
+      valueField: "value",
+      categoryField: "category"
+    }));
+    
+    
+    // Set data
+    // https://www.amcharts.com/docs/v5/charts/percent-charts/sliced-chart/#Setting_data
+    series.data.setAll([
+      
+      
+      
+      
+      { value: 10 },{ value: 6},{ value: 2 },{ value: 1, category: "나의 위치" }
+    ].reverse());
+    
+    
+    // Play initial series animation
+    // https://www.amcharts.com/docs/v5/concepts/animations/#Animation_of_series
+    /*series.appear();*/
     
     
     
     
-    { value: 10, category: "상위 50%" },{ value: 6, category: "상위 30%" },{ value: 2, category: "상위 10%" },{ value: 1, category: "상위 5%" }
-  ].reverse());
-  
-  
-  // Play initial series animation
-  // https://www.amcharts.com/docs/v5/concepts/animations/#Animation_of_series
-  series.appear();
-  
-  
-  
-  
-  // Make stuff animate on load
-  // https://www.amcharts.com/docs/v5/concepts/animations/
-  chart.appear(1000, 100);
-  
-  }); // end am5.ready()
-  </script>
+    // Make stuff animate on load
+    // https://www.amcharts.com/docs/v5/concepts/animations/
+    chart.appear(1000, 100);
+    
+    }); // end am5.ready()
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
   
   <!-- HTML -->
-  <div class="col-lg-4 ">
+  <div class="col-lg-4">
     <div class="row">
       <div class="col-lg-12">
         <!-- Yearly Breakup -->
@@ -247,7 +251,7 @@
               <style>
                 #chartdivz {
                   width: 100%;
-                  height: 130px;
+                  height: 370px;
                 }
                 </style>
               <div id="chartdivz"></div>
@@ -257,9 +261,13 @@
           </div>
         </div>
         
+    
+          
+        </div>
+
       </div>
     </div>
-  </div>
+  
   
   <div class="row">
     <div class="col-lg-12 d-flex align-items-stretch">
@@ -430,6 +438,7 @@
         <p class="fs-1 mb-0">광고성향의 포스트를 파악할 수 있는 지표입니다</p>
 
       </div>
+    </div>
     </div>
   </div>
     

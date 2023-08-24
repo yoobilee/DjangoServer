@@ -11,13 +11,13 @@
               <a class="nav-link nav-icon-hover" href="/InfluHome">상세 분석</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link nav-icon-hover" href="javascript:void(0)">1대1 매칭 분석</a>
+              <a class="nav-link nav-icon-hover" href="/ComparisonAnalysis">1대1 매칭 분석</a>
             </li>
             <li class="nav-item">
               <a class="nav-link nav-icon-hover" href="/notice" style="color: #5D87FF;">모집공고</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link nav-icon-hover" href="/notice">캠페인공고</a>
+              <a class="nav-link nav-icon-hover" href="/campaign">캠페인공고</a>
             </li>
           </ul>
           <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
@@ -60,148 +60,285 @@
 
       <div class="container-fluid" style="padding-top:10px;">
         <!--  Row 1 -->
+  <div class="row">
+    <h3>진행 중인 캠페인</h3>
+    <div class="card">
+      <div class="card-body">
         <div class="row">
-          <h3>진행 중인 캠페인</h3>
-          <div class="card">
-            <div class="card-body">
-              <div class="row">
-                <div class="col-md-4">
-                  <div class="card">
-                    <img src="{% static 'img/notice/noticeEX_thumbnail.png' %}" class="card-img-top" alt="모집 공고글 1(광고 캠페인 글)">
-                    <div class="card-body">
-                      <h5 class="card-title"><strong>딥스</strong></h5>
-                      <p class="card-text" style="font-size:11px;">2022년~현재<br>
-                        마케팅 진행내용: 브랜드 캠페인, 퍼포먼스 마케팅<br>
-                        진행 매체: SA, DA, SNS운영, SNS 스폰서드, 바이럴마케팅</p>
-                      <div class="col-md-12">
-                        <a href="#" class="btn btn-outline-primary" style="margin-right: 31%;" data-toggle="modal" data-target="#myModal">자세히 보기</a>
-                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#supplyModal">지원하기</a>
+          <div class="col-md-4">
+            <div class="card">
+              <img src="{% static 'img/notice/noticeEX_thumbnail.png' %}" class="card-img-top" alt="모집 공고글 1(광고 캠페인 글)">
+              <div class="card-body">
+                <h5 class="card-title"><strong>딥스</strong></h5>
+                <p class="card-text" style="font-size:11px;">2022년~현재<br>
+                  마케팅 진행내용: 브랜드 캠페인, 퍼포먼스 마케팅<br>
+                  진행 매체: SA, DA, SNS운영, SNS 스폰서드, 바이럴마케팅</p>
+                <div class="col-md-12">
+                  <a href="#" class="btn btn-outline-primary" style="margin-right: 31%;" data-toggle="modal"
+                    data-target="#myModal">자세히 보기</a>
+                  <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#supplyModal">지원하기</a>
 
-                        <!-- 모달 창1 코드 -->
-                        <div class="modal fade" id="myModal">
-                          <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
+                  <!-- 모달 창1 코드 -->
+                  <div class="modal fade" id="myModal">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
 
-                              <!-- 모달 헤더 -->
-                              <div class="modal-header">
-                                <h4 class="modal-title">딥스_모집공고</h4>
-                                <button type="button" class="btn-close" aria-label="Close" data-dismiss="modal"></button>
-                              </div>
-
-                              <!-- 모달 본문 -->
-                              <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
-                                <!-- 스크롤이 필요한 내용을 여기에 추가합니다. -->
-                                <!-- 많은 내용이 들어가면 스크롤이 나타납니다. -->
-                                <!-- 예제로 많은 텍스트 추가 -->
-                                <h2><strong>딥스</strong></h2>
-                                <p style="opacity:0.5;">2022년~현재</p>
-                                <br><hr>
-                                <strong><p>
-                                  [카테고리]<br>
-                                  브랜딩 캠페인, 퍼포먼스 마케팅<br><br>
-                                  [진행내용]<br>
-                                  1. 브랜딩 진행내용<br>
-                                  <li>SNS 브랜드 채널 생성, 프리미엄 천연 미네랄 해양심층수 브랜드 홍보</li>
-                                  <br>
-                                  2. 퍼포먼스 진행내용<br>
-                                  <li>운동, 가족 직장인 등 타겟 세분화를 통해 다수 매체 동시 집행</li>
-                                  <li>소구 포인트 캐치 후 충성고객 확보</li></p></strong>
-                                  <img src="{% static 'img/notice/noticeEX.png' %}" alt="" style="max-width:750px; margin-top: 100px;">
-                                <!-- 다른 내용들 -->
-                              </div>
-
-                              <!-- 모달 푸터 -->
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-                              </div>
-
-                            </div>
-                          </div>
+                        <!-- 모달 헤더 -->
+                        <div class="modal-header">
+                          <h4 class="modal-title">딥스_모집공고</h4>
+                          <button type="button" class="btn-close" aria-label="Close" data-dismiss="modal"></button>
                         </div>
 
-                        <!-- 모달 창2 코드 -->
-                        <div class="modal fade" id="supplyModal">
-                          <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
+                        <!-- 모달 본문 -->
+                        <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
+                          <!-- 스크롤이 필요한 내용을 여기에 추가합니다. -->
+                          <!-- 많은 내용이 들어가면 스크롤이 나타납니다. -->
+                          <!-- 예제로 많은 텍스트 추가 -->
+                          <h2><strong>딥스</strong></h2>
+                          <p style="opacity:0.5;">2022년~현재</p>
+                          <br>
+                          <hr>
+                          <strong>
+                            <p>
+                              [카테고리]<br>
+                              브랜딩 캠페인, 퍼포먼스 마케팅<br><br>
+                              [진행내용]<br>
+                              1. 브랜딩 진행내용<br>
+                              <li>SNS 브랜드 채널 생성, 프리미엄 천연 미네랄 해양심층수 브랜드 홍보</li>
+                              <br>
+                              2. 퍼포먼스 진행내용<br>
+                              <li>운동, 가족 직장인 등 타겟 세분화를 통해 다수 매체 동시 집행</li>
+                              <li>소구 포인트 캐치 후 충성고객 확보</li>
+                            </p>
+                          </strong>
+                          <img src="{% static 'img/notice/noticeEX.png' %}" alt=""
+                            style="max-width:750px; margin-top: 100px;">
+                          <!-- 다른 내용들 -->
+                        </div>
 
-                              <!-- 모달 헤더 -->
-                              <div class="modal-header">
-                                <h4 class="modal-title">캠페인 지원하기</h4>
-                                <button type="button" class="btn-close" aria-label="Close" data-dismiss="modal"></button>
-                              </div>
+                        <!-- 모달 푸터 -->
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                        </div>
 
-                              <div class="container-fluid" style="padding-top:10px;">
-                              <div class="row">
-                                <div class="card">
-                                  <div class="card-body">
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 모달 창2 코드 -->
+                  <div class="modal fade" id="supplyModal">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+
+                        <!-- 모달 헤더 -->
+                        <div class="modal-header">
+                          <h4 class="modal-title">캠페인 지원하기</h4>
+                          <button type="button" class="btn-close" aria-label="Close" data-dismiss="modal"></button>
+                        </div>
+
+                        <div class="container-fluid" style="padding-top:10px;">
+                          <div class="row">
+                            <div class="card">
+                              <div class="card-body">
                                 <div class="col-lg-12 mt-4 mt-lg-0">
-                                  <form action="https://script.google.com/macros/s/AKfycbzOXXtFoSEWWUI0P7AXxQ0fFqJhh3LDgoe1EhEJ0t0d5Dlzpn8IgeO_utj61Ubhcl5P/exec" method="post" role="form" class="php-email-form" target="frAttachFiles" style="background: white;">
+                                  <form
+                                    action="https://script.google.com/macros/s/AKfycbzOXXtFoSEWWUI0P7AXxQ0fFqJhh3LDgoe1EhEJ0t0d5Dlzpn8IgeO_utj61Ubhcl5P/exec"
+                                    method="post" role="form" class="php-email-form" target="frAttachFiles"
+                                    style="background: white;">
                                     <div class="row">
                                       <div class="col-md-6 form-group">
                                         <label for="이름">이름</label>
-                                        <input type="name" class="form-control" name="이름" id="name" placeholder="이름을 입력해 주세요." required>
+                                        <input type="name" class="form-control" name="이름" id="name"
+                                          placeholder="이름을 입력해 주세요." required>
                                       </div>
                                       <div class="col-md-6 form-group">
                                         <label for="ID">계정 아이디</label>
-                                        <input type="id" class="form-control" name="ID" id="ID" placeholder="계정 아이디를 입력해 주세요." required>
+                                        <input type="id" class="form-control" name="ID" id="ID"
+                                          placeholder="계정 아이디를 입력해 주세요." required>
                                       </div>
                                       <div class="col-md-6 form-group">
                                         <label for="이메일">이메일</label>
-                                        <input type="email" class="form-control" name="이메일" id="email" placeholder="이메일 주소를 입력해 주세요." required>
+                                        <input type="email" class="form-control" name="이메일" id="email"
+                                          placeholder="이메일 주소를 입력해 주세요." required>
                                       </div>
                                       <div class="col-md-6 form-group">
                                         <label for="연락처">연락처</label>
-                                        <input type="text" name="연락처" class="form-control" id="contact" placeholder="연락 받으실 연락처를 입력해 주세요." required>
+                                        <input type="text" name="연락처" class="form-control" id="contact"
+                                          placeholder="연락 받으실 연락처를 입력해 주세요." required>
                                       </div>
-                                    <div class="form-group mt-3">
-                                      <label for="지원내용">지원 내용</label>
-                                      <textarea class="form-control" name="지원내용" rows="5" placeholder=""></textarea>
-                                    </div>
-                        
+                                      <div class="form-group mt-3">
+                                        <label for="지원내용">지원 내용</label>
+                                        <textarea class="form-control" name="지원내용" rows="5" placeholder=""></textarea>
+                                      </div>
+
                                       <div style="margin-bottom:10px; padding-top:10px;">
                                         <label class="ant-checkbox-wrapper">
                                           <span class="ant-checkbox">
-                                            <input type="checkbox" id="ant-checkbox-input" value="" data-gtm-form-interact-field-id="0" style="width: 100%; margin-bottom: 0;">
+                                            <input type="checkbox" id="ant-checkbox-input" value=""
+                                              data-gtm-form-interact-field-id="0"
+                                              style="width: 100%; margin-bottom: 0;">
                                             <span class="ant-checkbox-inner"></span>
                                           </span>
                                         </label>
-                                        <span class="policy-title">개인정보처리방침</span> / <span class="policy-title">이용방침</span>에 동의 합니다.
+                                        <span class="policy-title">개인정보처리방침</span> / <span
+                                          class="policy-title">이용방침</span>에 동의 합니다.
                                       </div>
-                        
-                                    <div class="text-center"><button type="submit" class="btn btn-primary" id="submit-btn" disabled>지원하기</button></div>
+
+                                      <div class="text-center"><button type="submit" class="btn btn-primary"
+                                          id="submit-btn" disabled>지원하기</button></div>
                                   </form>
                                   <iframe name="frAttachFiles" style="display:none"></iframe>
                                 </div>
                               </div>
                             </div>
-                        
-                                  <script>
-                                    document.addEventListener('DOMContentLoaded', function () {
-                                      const checkbox = document.getElementById('ant-checkbox-input');
-                                      const button = document.getElementById('submit-btn');
-                        
-                                      checkbox.addEventListener('change', function () {
-                                        if (checkbox.checked) {
-                                          button.removeAttribute('disabled');
-                                        } else {
-                                          button.setAttribute('disabled', 'true');
-                                        }
-                                    });
-                        
-                                    button.addEventListener('click', function() {
-                                      alert('전송되었습니다.');
-                                    });
-                                });
-                              </script>
 
-                            </div>
-                            <!-- 모달 푸터 -->
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-                            </div>
-                            
+                            <script>
+                              document.addEventListener('DOMContentLoaded', function () {
+                                const checkbox = document.getElementById('ant-checkbox-input');
+                                const button = document.getElementById('submit-btn');
+
+                                checkbox.addEventListener('change', function () {
+                                  if (checkbox.checked) {
+                                    button.removeAttribute('disabled');
+                                  } else {
+                                    button.setAttribute('disabled', 'true');
+                                  }
+                                });
+
+                                button.addEventListener('click', function () {
+                                  alert('전송되었습니다.');
+                                });
+                              });
+                            </script>
+
                           </div>
+                          <!-- 모달 푸터 -->
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                          </div>
+
                         </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card">
+            <img src="{% static 'img/notice/fitamin1.jpg' %}" class="card-img-top" alt="모집 공고글 1(광고 캠페인 글)">
+            <div class="card-body">
+              <h5 class="card-title"><strong>핏타민</strong></h5>
+              <p class="card-text" style="font-size:11px;">2023년~현재<br>
+                마케팅 진행내용: 브랜드 캠페인, 퍼포먼스 마케팅<br>
+                진행 매체: SA, DA, SNS, 바이럴마케팅</p>
+              <div class="col-md-12">
+                <a href="#" class="btn btn-outline-primary" style="margin-right: 31%;" data-toggle="modal"
+                  data-target="#myModal2">자세히 보기</a>
+                <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#supplyModal">지원하기</a>
+
+                <!-- 모달 창1 코드 -->
+                <div class="modal fade" id="myModal2">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+
+                      <!-- 모달 헤더 -->
+                      <div class="modal-header">
+                        <h4 class="modal-title">킥더허들_모집공고</h4>
+                        <button type="button" class="btn-close" aria-label="Close" data-dismiss="modal"></button>
+                      </div>
+
+                      <!-- 모달 본문 -->
+                      <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
+                        <!-- 스크롤이 필요한 내용을 여기에 추가합니다. -->
+                        <!-- 많은 내용이 들어가면 스크롤이 나타납니다. -->
+                        <!-- 예제로 많은 텍스트 추가 -->
+                        <h2><strong>킥더허들-핏타민</strong></h2>
+                        <p style="opacity:0.5;">2023년~현재</p>
+                        <br>
+                        <hr>
+                        <strong>
+                          <p>
+                            [카테고리]<br>
+                            퍼포먼스 마케팅<br><br>
+                            [진행내용]<br>
+                            DB 확보를 위한 CPI 및 DA 매체 운영<br>
+                            앱 리뉴얼에 따른 DAU 상승을 위해 네이버 상위노출 바이럴 진행
+                          </p>
+                        </strong>
+                        <img src="{% static 'img/notice/fitamin2.jpg' %}" alt=""
+                          style="max-width:750px; margin-top: 100px;">
+                        <!-- 다른 내용들 -->
+                      </div>
+
+                      <!-- 모달 푸터 -->
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card">
+            <img src="{% static 'img/notice/boto1.png' %}" class="card-img-top" alt="모집 공고글 1(광고 캠페인 글)">
+            <div class="card-body">
+              <h5 class="card-title"><strong>B&F-아후카틀</strong></h5>
+              <p class="card-text" style="font-size:11px;">2023년~현재<br>
+                마케팅 진행내용: 퍼포먼스 마케팅<br>
+                진행 매체: SA, DA, SNS, 바이럴</p>
+              <div class="col-md-12">
+                <a href="#" class="btn btn-outline-primary" style="margin-right: 31%;" data-toggle="modal"
+                  data-target="#myModal3">자세히 보기</a>
+                <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#supplyModal">지원하기</a>
+
+                <!-- 모달 창1 코드 -->
+                <div class="modal fade" id="myModal3">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+
+                      <!-- 모달 헤더 -->
+                      <div class="modal-header">
+                        <h4 class="modal-title">B&F_모집공고</h4>
+                        <button type="button" class="btn-close" aria-label="Close" data-dismiss="modal"></button>
+                      </div>
+
+                      <!-- 모달 본문 -->
+                      <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
+                        <!-- 스크롤이 필요한 내용을 여기에 추가합니다. -->
+                        <!-- 많은 내용이 들어가면 스크롤이 나타납니다. -->
+                        <!-- 예제로 많은 텍스트 추가 -->
+                        <h2><strong>B&F-아후카틀</strong></h2>
+                        <p style="opacity:0.5;">2023년~현재</p>
+                        <br>
+                        <hr>
+                        <strong>
+                          <p>
+                            [카테고리]<br>
+                            퍼포먼스 마케팅<br><br>
+                            [진행내용]<br>
+                            1. 브랜딩 진행내용<br>
+                            <li>컨셉별 SNS 서브 채널 생성 후 컨셉에 맞춰 다양한 형태의 메시지 전달</li>
+                            <br>
+                            2. 퍼포먼스 진행내용<br>
+                            <li>요리, 건강, 브랜드 등 다양한 타켓 활용 검색 및 디스플레이 매체 집행</li>
+                          </p>
+                        </strong>
+                        <img src="{% static 'img/notice/boto2.png' %}" alt=""
+                          style="max-width:750px; margin-top: 100px;">
+                        <!-- 다른 내용들 -->
+                      </div>
+
+                      <!-- 모달 푸터 -->
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
                       </div>
                     </div>
                   </div>
@@ -212,6 +349,8 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
 
     <div class="container-fluid" style="padding-top:10px;">
       <h3>에이전시 지원하기</h3>
